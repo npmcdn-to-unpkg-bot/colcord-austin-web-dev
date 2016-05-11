@@ -9,12 +9,7 @@ body {
 
 ul {
     list-style-type: none;
-    margin: 0 auto;
     padding: 0;
-    overflow: hidden;
-    background-color: #009933;
-    width: 80%;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 }
 
 li a {
@@ -29,5 +24,60 @@ li a {
 li a:hover {
     background-color: #000;
     /* w3schools.com */
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+    box-shadow: 0 20px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 5%;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
 }
+
+#container {
+    background-color: #009933;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+}
+
+.centered {
+    /* https://css-tricks.com/quick-css-trick-how-to-center-an-object-exactly-in-the-center/ */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
+
+#name {
+    padding: 5%
+}
+
+#profile-picture {
+    width: 30%;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+}
+
+#name-picture-wrapper {
+    overflow: auto;
+}
+
+#name-div {
+    float: left;
+    margin: 5%;
+}
+
+#picture-div {
+    margin: 5%;
+}
+
+#footer {
+    padding: 2%;
+}
+
