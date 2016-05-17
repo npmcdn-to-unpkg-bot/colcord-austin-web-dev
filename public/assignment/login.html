@@ -2,44 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-    <header>
-        <h1>
-            Login
-        </h1>
-    </header>
 
-    <form>
-        <input name="username"
-               id="username"
-               type="text"
-               class="form-control"
-               placeholder="username"/>
-        <input name="password"
-               id="password"
-               type="password"
-               class="form-control"
-               placeholder="password"/>
-        <a  class="button"
-            href="profile.html">
-            <!--<button>-->
-                <!--Login-->
-            <!--</button>-->
-            Login
-        </a>
+    <div class="container-fluid">
+        <header>
+            <h1>
+                Login
+            </h1>
+        </header>
 
-        <a  class="button"
-            href="register.html">
-            <!--<button>-->
-            <!--Register-->
-            <!--</button>-->
-            Register
-        </a>
+        <form>
+            <div class="form-group">
+                <input name="username"
+                       id="username"
+                       type="text"
+                       class="form-control"
+                       placeholder="username"/>
+            </div>
 
-    </form>
+            <div class="form-group">
+                <input name="password"
+                       id="password"
+                       type="password"
+                       class="form-control"
+                       placeholder="password"/>
+            </div>
+
+            <a  class="btn btn-block btn-primary"
+                href="profile.html">
+                <!--<button>-->
+                    <!--Login-->
+                <!--</button>-->
+                Login
+            </a>
+
+            <a  class="btn btn-block btn-success"
+                href="register.html">
+                <!--<button>-->
+                <!--Register-->
+                <!--</button>-->
+                Register
+            </a>
+
+        </form>
+    </div>
 
 </body>
 </html>
