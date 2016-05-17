@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Register</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-    <body>
+<body>
+
+    <div class="container-fluid">
         <header>
             <h1>
                 Register
@@ -13,37 +17,40 @@
         </header>
 
         <form>
-            <input name="username"
-                   id="username"
-                   type="text"
-                   class="form-control"
-                   placeholder="username"/>
-            <input name="password"
-                   id="password"
-                   type="password"
-                   class="form-control"
-                   placeholder="password"/>
-            <input name="verify-password"
-                   id="verify-password"
-                   type="password"
-                   class="form-control"
-                   placeholder="verify password"/>
-            <a  class="button"
+            <div class="form-group">
+                <input name="username"
+                       id="username"
+                       type="text"
+                       class="form-control"
+                       placeholder="username"/>
+            </div>
+
+            <div class="form-group">
+                <input name="password"
+                       id="password"
+                       type="password"
+                       class="form-control"
+                       placeholder="password"/>
+            </div>
+
+            <div class="form-group">
+                <input name="verify-password"
+                       id="verify-password"
+                       type="password"
+                       class="form-control"
+                       placeholder="verify password"/>
+            </div>
+
+            <a  class="btn btn-block btn-primary"
                 href="profile.html">
-                <!--<button>-->
-                <!--Register-->
-                <!--</button>-->
                 Register
             </a>
 
-            <a  class="button"
+            <a  class="btn btn-block btn-danger"
                 href="login.html">
-                <!--<button>-->
-                <!--Cancel-->
-                <!--</button>-->
                 Cancel
             </a>
         </form>
-
-    </body>
+    </div>
+</body>
 </html>
