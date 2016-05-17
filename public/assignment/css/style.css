@@ -4,4 +4,9 @@ body {
 
 span.glyphicon {
     margin-right: 15px;
+    margin-left: 15px;
+}
+
+.back-button {
+    float: left
 }
