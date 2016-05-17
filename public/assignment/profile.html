@@ -2,77 +2,90 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Profile</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/roboto.min.css">-->
     <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material-fullpalette.min.css">-->
     <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/ripples.min.css">-->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
     <header>
-        <h2>
-            Profile
-        </h2>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand">
+                        Profile
+                    </a>
+                    <p class="navbar-text navbar-right">
+                        <a href="profile.html" class="navbar-link">
+                            <span class="glyphicon glyphicon-ok pull-right"></span>
+                        </a>
+                    </p>
 
-        <a  class="button"
-            href="profile.html">
-            <span class="glyphicon glyphicon-ok pull-right"></span>
-        </a>
+                </div>
+            </div>
+        </nav>
 
     </header>
 
-    <form>
+    <div class="container-fluid">
+        <form>
 
-        <label for="username">Username</label>
-        <input name="username"
-               id="username"
-               type="text"
-               class="form-control"
-               value="acolcord"/>
+            <label for="username">Username</label>
+            <input name="username"
+                   id="username"
+                   type="text"
+                   class="form-control"
+                   value="acolcord"/>
 
-        <label for="email">Email</label>
-        <input name="email"
-               id="email"
-               type="email"
-               class="form-control"
-               value="colcord.a@husky.neu.edu"/>
+            <label for="email">Email</label>
+            <input name="email"
+                   id="email"
+                   type="email"
+                   class="form-control"
+                   value="colcord.a@husky.neu.edu"/>
 
-        <label for="first-name">First Name</label>
-        <input name="first-name"
-               id="first-name"
-               type="text"
-               class="form-control"
-               value="Austin"/>
+            <label for="first-name">First Name</label>
+            <input name="first-name"
+                   id="first-name"
+                   type="text"
+                   class="form-control"
+                   value="Austin"/>
 
-        <label for="last-name">Last Name</label>
-        <input name="last-name"
-               id="last-name"
-               type="text"
-               class="form-control"
-               value="Colcord"/>
+            <label for="last-name">Last Name</label>
+            <input name="last-name"
+                   id="last-name"
+                   type="text"
+                   class="form-control"
+                   value="Colcord"/>
 
-        <a  class="button"
-            href="website-list.html">
-            <!--<button>-->
-            <!--Websites-->
-            <!--</button>-->
-            Websites
-        </a>
+            <a  class="btn btn-block btn-primary"
+                href="website-list.html">
+                Websites
+            </a>
 
-        <a  class="button"
-            href="login.html">
-            <!--<button>-->
-            <!--Logout-->
-            <!--</button>-->
-            Logout
-        </a>
-    </form>
+            <a  class="btn btn-block btn-danger"
+                href="login.html">
+                Logout
+            </a>
+        </form>
+    </div>
 
     <footer>
-        <a  class="button"
-            href="profile.html">
-            <span class="glyphicon glyphicon-user pull-right"></span>
-        </a>
+        <nav class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container-fluid">
+                <div class="navbar-header">
+
+                    <div class="navbar-text pull-right">
+                        <a href="profile.html">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </footer>
 
 </body>
