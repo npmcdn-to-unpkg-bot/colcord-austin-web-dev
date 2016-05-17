@@ -2,44 +2,65 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Pages</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
         <header>
 
-            <a  class="button"
-                href="website-list.html">
-                <span class="glyphicon glyphicon-chevron-left pull-left"></span>
-            </a>
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <p class="navbar-text navbar-left back-button">
+                            <a href="website-list.html" class="navbar-link">
+                                <span class="glyphicon glyphicon-chevron-left pull-left"></span>
+                            </a>
+                        </p>
+                        <a class="navbar-brand">
+                            Pages
+                        </a>
+                        <p class="navbar-text navbar-right">
+                            <a href="page-new.html" class="navbar-link">
+                                <span class="glyphicon glyphicon-plus pull-right"></span>
+                            </a>
+                        </p>
 
-            <h2>
-                Pages
-            </h2>
+                    </div>
+                </div>
+            </nav>
 
-            <a  class="button"
-                href="page-new.html">
-                <span class="glyphicon glyphicon-plus pull-right"></span>
-            </a>
         </header>
 
-        <a  class="button"
-            href="widget-list.html">
-            Test Page
-        </a>
+        <div class="container-fluid">
 
-        <a  class="button"
-            href="page-edit.html">
-            <span class="glyphicon glyphicon-cog pull-right"></span>
-        </a>
+            <a  class="button"
+                href="widget-list.html">
+                Test Page
+            </a>
+
+            <a  class="button"
+                href="page-edit.html">
+                <span class="glyphicon glyphicon-cog pull-right"></span>
+            </a>
+        </div>
 
 
 
         <footer>
-            <a  class="button"
-                href="profile.html">
-                <span class="glyphicon glyphicon-user pull-right"></span>
-            </a>
+            <nav class="navbar navbar-default navbar-fixed-bottom">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+
+                        <div class="navbar-text pull-right">
+                            <a href="profile.html">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </footer>
     </body>
 </html>
