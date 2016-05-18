@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Widget Edit - Image</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p class="navbar-text navbar-left back-button">
+                    <a href="widget-list.html"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left pull-left"></span>
+                    </a>
+                </p>
+                <a class="navbar-brand">
+                    Widget Edit
+                </a>
+                <p class="navbar-text navbar-right">
+                    <a href="widget-list.html"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon-ok pull-right"></span>
+                    </a>
+                </p>
+
+            </div>
+        </div>
+    </nav>
+
+</header>
+
+<div class="container-fluid">
+    <form>
+        <div class="form-group">
+
+            <label for="widget-name">Name</label>
+            <input name="widget-name"
+                   id="widget-name"
+                   type="text"
+                   class="form-control"
+                   value="Test Widget Name"/>
+        </div>
+
+        <div class="form-group">
+            <label for="widget-text">Text</label>
+            <input name="widget-text"
+                   id="widget-text"
+                   type="text"
+                   class="form-control"
+                   value="Test Widget Image"/>
+        </div>
+
+        <div class="form-group">
+            <label for="widget-url">URL</label>
+            <input name="widget-url"
+                   id="widget-url"
+                   type="text"
+                   class="form-control"
+                   value="www.image.com"/>
+        </div>
+
+        <div class="form-group">
+            <label for="widget-width">Width</label>
+            <input name="widget-width"
+                   id="widget-width"
+                   type="text"
+                   class="form-control"
+                   value="100%"/>
+        </div>
+
+        <div class="form-group">
+            <label for="widget-file">Upload</label>
+            <input name="widget-file"
+                   id="widget-file"
+                   type="file"
+                   class="form-control"
+                   value="100%"/>
+        </div>
+
+        <a  class="btn btn-block btn-primary"
+            href="widget-list.html">
+            Upload Image
+        </a>
+
+        <a  class="btn btn-block btn-danger"
+            href="widget-list.html">
+            Delete
+        </a>
+    </form>
+</div>
+
+<footer>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="navbar-header">
+
+                <div class="navbar-text pull-right">
+                    <a href="profile.html">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</footer>
+
+</body>
+</html>
