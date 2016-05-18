@@ -2,6 +2,10 @@ body {
     padding-top : 60px;
 }
 
+.login-register-body {
+    padding-top: 0;
+}
+
 span.glyphicon {
     margin-right: 15px;
     margin-left: 15px;
