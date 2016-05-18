@@ -8,5 +8,17 @@ span.glyphicon {
 }
 
 .back-button {
-    float: left
+    float: left;
+}
+
+.table th {
+    border: none !important;
+}
+
+.table td {
+    border-top: none !important;
+}
+
+.borderless {
+    border:0 !important;
 }
