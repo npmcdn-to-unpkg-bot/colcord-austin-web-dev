@@ -1,9 +1,11 @@
 body {
     padding-top : 60px;
+    padding-bottom : 60px;
 }
 
 .login-register-body {
     padding-top: 0;
+    padding-bottom: 0;
 }
 
 span.glyphicon {
