@@ -34,9 +34,14 @@ span.glyphicon {
     position: absolute;
     background: white;
     border-radius: 2px;
+    z-index: 1000;
 }
 
 span.widget {
     border-radius: 3px;
     margin: 1px;
+}
+
+img {
+    min-width: 100%;
 }
