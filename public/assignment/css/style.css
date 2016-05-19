@@ -45,3 +45,7 @@ span.widget {
 img {
     min-width: 100%;
 }
+
+div.top-space {
+    margin-top: 10px;
+}
