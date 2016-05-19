@@ -17,18 +17,6 @@ span.glyphicon {
     float: left;
 }
 
-.table th {
-    border: none !important;
-}
-
-.table td {
-    border-top: none !important;
-}
-
-.borderless {
-    border:0 !important;
-}
-
 .widget-container {
     right: 15px;
     position: absolute;
