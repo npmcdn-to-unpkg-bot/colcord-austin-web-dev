@@ -5,28 +5,27 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
-    <title>New Website</title>
+    <title>Widget Edit - Header</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/yeti.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/yeti.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
-
     <header>
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <p class="navbar-text navbar-left back-button">
-                        <a href="website-list.html"
+                        <a href="widget-list.html"
                            class="navbar-link">
                             <span class="glyphicon glyphicon-chevron-left pull-left"></span>
                         </a>
                     </p>
                     <a class="navbar-brand">
-                        New Website
+                        Widget Edit
                     </a>
                     <p class="navbar-text navbar-right">
-                        <a href="website-list.html"
+                        <a href="widget-list.html"
                            class="navbar-link">
                             <span class="glyphicon glyphicon-ok pull-right"></span>
                         </a>
@@ -35,27 +34,46 @@
                 </div>
             </div>
         </nav>
+
     </header>
 
     <div class="container-fluid">
         <form>
             <div class="form-group">
-                <label for="name">Name</label>
-                <input name="name"
-                       id="name"
+
+                <label for="widget-name">Name</label>
+                <input name="widget-name"
+                       id="widget-name"
                        type="text"
                        class="form-control"
-                       placeholder="Name"/>
+                       placeholder="My Header"/>
             </div>
 
             <div class="form-group">
-                <label for="description">Description</label>
-                <textarea rows="3"
-                          name="description"
-                          id="description"
-                          class="form-control"
-                          placeholder="Description"></textarea>
+                <label for="widget-text">Text</label>
+                <input name="widget-text"
+                       id="widget-text"
+                       type="text"
+                       class="form-control"
+                       placeholder="This Is My Header"
+                       value="US Senate Reaches Compromise on Emergency Zika Funding"/>
             </div>
+
+            <div class="form-group">
+                <label for="widget-size">Size</label>
+                <input name="widget-size"
+                       id="widget-size"
+                       type="number"
+                       min="1"
+                       class="form-control"
+                       placeholder="1"
+                       value="3"/>
+            </div>
+
+            <a  class="btn btn-block btn-danger"
+                href="widget-list.html">
+                Delete
+            </a>
         </form>
     </div>
 
@@ -65,7 +83,7 @@
                 <div class="navbar-header">
 
                     <div class="navbar-text pull-right">
-                        <a href="profile.html">
+                        <a href="../user/profile.html">
                             <span class="glyphicon glyphicon-user"></span>
                         </a>
                     </div>
@@ -73,7 +91,6 @@
             </div>
         </nav>
     </footer>
-
 
 </body>
 </html>

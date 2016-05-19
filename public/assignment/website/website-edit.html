@@ -5,27 +5,28 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
-    <title>New Page</title>
+    <title>Edit Website</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/yeti.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/yeti.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
+
     <header>
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <p class="navbar-text navbar-left back-button">
-                        <a href="page-list.html"
+                        <a href="website-list.html"
                            class="navbar-link">
                             <span class="glyphicon glyphicon-chevron-left pull-left"></span>
                         </a>
                     </p>
                     <a class="navbar-brand">
-                        New Page
+                        Edit Website
                     </a>
                     <p class="navbar-text navbar-right">
-                        <a href="page-list.html"
+                        <a href="website-list.html"
                            class="navbar-link">
                             <span class="glyphicon glyphicon-ok pull-right"></span>
                         </a>
@@ -34,29 +35,33 @@
                 </div>
             </div>
         </nav>
-
     </header>
 
     <div class="container-fluid">
         <form>
             <div class="form-group">
-
-                <label for="pagename">Name</label>
-                <input name="pagename"
-                       id="pagename"
+                <label for="name">Name</label>
+                <input name="name"
+                       id="name"
                        type="text"
                        class="form-control"
-                       placeholder="Page Name"/>
+                       placeholder="Lorem Ipsum"
+                       value="Blogger"/>
             </div>
 
             <div class="form-group">
-                <label for="pagetitle">Title</label>
-                <input name="pagetitle"
-                       id="pagetitle"
-                       type="text"
-                       class="form-control"
-                       placeholder="Page Title"/>
+                <label for="description">Description</label>
+                    <textarea rows="3"
+                              name="description"
+                              id="description"
+                              class="form-control"
+                              placeholder="Lorem ipsum dolor sit amet...">Blogger is a blog-publishing service that allows multi-user blogs with time-stamped entries. It was developed by Pyra Labs, which was bought by Google in 2003. Generally, the blogs are hosted by Google...</textarea>
             </div>
+
+            <a  class="btn btn-block btn-danger"
+                href="website-list.html">
+                Delete
+            </a>
         </form>
     </div>
 
@@ -64,8 +69,9 @@
         <nav class="navbar navbar-default navbar-fixed-bottom">
             <div class="container-fluid">
                 <div class="navbar-header">
+
                     <div class="navbar-text pull-right">
-                        <a href="profile.html">
+                        <a href="../user/profile.html">
                             <span class="glyphicon glyphicon-user"></span>
                         </a>
                     </div>
@@ -73,6 +79,7 @@
             </div>
         </nav>
     </footer>
+
 
 </body>
 </html>
