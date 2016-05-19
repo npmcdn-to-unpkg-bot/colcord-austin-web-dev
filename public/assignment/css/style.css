@@ -28,3 +28,22 @@ span.glyphicon {
 .borderless {
     border:0 !important;
 }
+
+.widget-cog-container {
+    right: 16px;
+    position: absolute;
+    background: white;
+    padding: 3px;
+    border-radius: 2px;
+}
+
+span.widget-cog {
+    /*background-color: white;*/
+    /*top: 20px;*/
+    /*left: 20px;*/
+    /*padding: 5px;*/
+    /*margin: 5px;*/
+    border-radius: 3px;
+    margin-right: 0;
+    margin-left: 0;
+}
