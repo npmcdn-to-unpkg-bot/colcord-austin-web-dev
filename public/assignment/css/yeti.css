@@ -5258,7 +5258,7 @@ a.thumbnail.active {
     padding: 10px 15px;
     margin-bottom: -1px;
     background-color: #ffffff;
-    border: 1px solid #dddddd;
+    border: 0;
 }
 .list-group-item:first-child {
     border-top-right-radius: 0;
@@ -6158,7 +6158,6 @@ button.close {
     font-size: 15px;
     background-color: #333333;
     border-bottom: 1px solid #262626;
-    border-radius: -1 -1 0 0;
 }
 .popover-content {
     padding: 9px 14px;
@@ -6999,7 +6998,7 @@ input[type="checkbox"] {
     color: #999999;
 }
 .list-group {
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 300;
 }
 .close {
