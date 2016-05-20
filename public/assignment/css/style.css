@@ -8,10 +8,6 @@ body {
     padding-bottom: 0;
 }
 
-.back-button {
-    float: left;
-}
-
 .ajc-widget-container {
     z-index: 1000;
     position: absolute;
@@ -24,8 +20,4 @@ body {
 
 img {
     min-width: 100%;
-}
-
-div.top-space {
-    margin-top: 10px;
 }
