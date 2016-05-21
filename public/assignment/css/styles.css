@@ -21,3 +21,12 @@ body {
 img {
     min-width: 100%;
 }
+
+
+.list-group-item {
+    border: 0;
+}
+
+.list-group {
+    font-size: 15px;
+}
