@@ -18,6 +18,11 @@ body {
     border-bottom-left-radius: 2px;
 }
 
+.ajc-nav-glyphicon {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
 img {
     min-width: 100%;
 }
@@ -30,3 +35,4 @@ img {
 .list-group {
     font-size: 15px;
 }
+
