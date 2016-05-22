@@ -68,6 +68,10 @@ table {
     margin-right: auto;
 }
 
+.ajc-prep-signature {
+    width: 40px;
+}
+
 .list-group {
     padding-top: 10px;
     padding-bottom: 10px;
