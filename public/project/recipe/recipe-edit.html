@@ -19,7 +19,7 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <p class="navbar-text navbar-left pull-left">
-                        <a href="recipe-book.html"
+                        <a href="recipe-view.html"
                            class="navbar-link">
                             <span class="glyphicon glyphicon-chevron-left ajc-nav-glyphicon"></span>
                         </a>
@@ -73,57 +73,66 @@
                        value="5"/>
             </div>
 
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Ingredient</th>
-                            <th>Amount</th>
-                            <th>Style</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td contenteditable='true'>Chicken Breast</td>
-                            <td contenteditable='true'>1</td>
-                            <td contenteditable='true'>Diced</td>
-                        </tr>
-                        <tr>
-                            <td contenteditable='true'>Cheddar Cheese</td>
-                            <td contenteditable='true'>1</td>
-                            <td contenteditable='true'>Sliced</td>
-                        </tr>
-                        <tr>
-                            <td contenteditable='true'>Avocado</td>
-                            <td contenteditable='true'>1/4</td>
-                            <td contenteditable='true'>Sliced</td>
-                        </tr>
-                        <tr>
-                            <td contenteditable='true'>Ciabatta Bread</td>
-                            <td contenteditable='true'>1</td>
-                            <td contenteditable='true'></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Ingredient</th>
+                                    <th>Amount</th>
+                                    <th>Style</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td contenteditable='true'>Chicken Breast</td>
+                                    <td contenteditable='true'>1</td>
+                                    <td contenteditable='true'>Diced</td>
+                                </tr>
+                                <tr>
+                                    <td contenteditable='true'>Cheddar Cheese</td>
+                                    <td contenteditable='true'>1</td>
+                                    <td contenteditable='true'>Sliced</td>
+                                </tr>
+                                <tr>
+                                    <td contenteditable='true'>Avocado</td>
+                                    <td contenteditable='true'>1/4</td>
+                                    <td contenteditable='true'>Sliced</td>
+                                </tr>
+                                <tr>
+                                    <td contenteditable='true'>Ciabatta Bread</td>
+                                    <td contenteditable='true'>1</td>
+                                    <td contenteditable='true'></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <label for="directions">Directions</label>
+                        <textarea rows="5"
+                                  id="directions"
+                                  class="form-control"
+                                  placeholder="Lorem ipsum dolor sit amet...">Cook chicken breast fully. Steam cooked chicken breast for 2 minutes. Cut chicken breast in half. Place Cheddar Cheese, chicken breast, and avocado in Ciabatta. Panini press for 2 minutes...</textarea>
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="directions">Directions</label>
-                <textarea rows="5"
-                          id="directions"
-                          class="form-control"
-                          placeholder="Lorem ipsum dolor sit amet...">Cook chicken breast fully. Steam cooked chicken breast for 2 minutes. Cut chicken breast in half. Place Cheddar Cheese, chicken breast, and avocado in Ciabatta. Panini press for 2 minutes...</textarea>
-            </div>
+            <hr>
 
             <a  class="btn btn-block btn-success"
                 href="recipe-view.html">
                 Save Changes
             </a>
-
             <a  class="btn btn-block btn-danger"
                 href="recipe-book.html">
                 Delete
             </a>
+
+
 
         </form>
     </div>
