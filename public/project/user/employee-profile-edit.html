@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
+    <title>Edit Profile</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/paper/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="../css/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand">
+                        Edit Profile
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid">
+
+        <form>
+            <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="text"
+                       id="firstname"
+                       class="form-control"
+                       placeholder="first name"
+                       value="Joe"/>
+            </div>
+
+            <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text"
+                       id="lastname"
+                       class="form-control"
+                       placeholder="last name"
+                       value="Smith"/>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email"
+                       id="email"
+                       class="form-control"
+                       placeholder="email address"
+                       value="joe.smith@example.com"/>
+            </div>
+
+
+            <div class="form-group">
+                <input type="password"
+                       class="form-control"
+                       placeholder="current password"/>
+            </div>
+
+            <div class="form-group">
+                <input type="password"
+                       class="form-control"
+                       placeholder="new password"/>
+            </div>
+
+            <div class="form-group">
+                <input type="password"
+                       class="form-control"
+                       placeholder="verify new password"/>
+            </div>
+
+            <h6>Restaurant ID: 1234567</h6>
+
+            <a  class="btn btn-block btn-primary"
+                href="employee-profile.html">
+                Update Profile
+            </a>
+
+            <a  class="btn btn-block btn-danger"
+                href="employee-profile.html">
+                Cancel
+            </a>
+
+        </form>
+    </div>
+
+
+    <footer>
+        <nav class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                        <a href="../recipe/recipe-book.html"
+                           class="navbar-link">
+                            <span class="glyphicon glyphicon glyphicon glyphicon-book"></span>
+                        </a>
+                    </p>
+
+                    <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                        <a href="#"
+                           class="navbar-link">
+                            <span class="glyphicon glyphicon glyphicon-th-list"></span>
+                        </a>
+                    </p>
+
+                    <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                        <a href="#"
+                           class="navbar-link">
+                            <span class="glyphicon glyphicon-time"></span>
+                        </a>
+                    </p>
+
+                    <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                        <a href="employee-profile.html"
+                           class="navbar-link">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                    </p>
+
+
+                </div>
+            </div>
+        </nav>
+    </footer>
+
+</body>
+</html>
