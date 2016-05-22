@@ -4,6 +4,10 @@ body {
     padding-bottom: 70px;
 }
 
+table {
+    background-color: white;
+}
+
 .ajc-login-register-body {
     padding-top: 0;
     padding-bottom: 20px;
