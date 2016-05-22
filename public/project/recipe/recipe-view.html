@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
+    <title>View Recipe</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/paper/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="../css/styles.css">
+</head>
+<body>
+
+
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <p class="navbar-text navbar-left pull-left">
+                        <a href="recipe-book.html"
+                           class="navbar-link">
+                            <span class="glyphicon glyphicon-chevron-left ajc-nav-glyphicon"></span>
+                        </a>
+                    </p>
+                    <a class="navbar-brand">
+                        View Recipe
+                    </a>
+                    <p class="navbar-text navbar-left pull-right">
+                        <a href="#"
+                           class="navbar-link">
+                            <span class="glyphicon glyphicon-plus-sign ajc-nav-glyphicon"></span>
+                        </a>
+                    </p>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid">
+        <h5>Chicken Panini</h5>
+        <div class="row">
+            <div class="col-xs-6">
+                <p><b>Prep Time (min):</b> 10</p>
+            </div>
+            <div class="col-xs-6">
+                <p><b>Type:</b> Sandwich</p>
+            </div>
+        </div>
+        <p>
+            A warm chicken panini with cheddar cheese
+            with avocado on ciabatta bread
+        </p>
+        <hr>
+
+        <div class="row">
+            <div class="col-xs-8">
+                <h5>Ingredients</h5>
+            </div>
+            <div class="col-xs-4">
+
+
+                <div class="form-group">
+                    <label for="multiplier">Multiplier</label>
+                    <input type="number"
+                           min="1"
+                           id="multiplier"
+                           class="form-control"
+                           value="1" style="text-align: right"/>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Ingredient</th>
+                        <th>Amount</th>
+                        <th>Style</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Chicken Breast</td>
+                        <td>1</td>
+                        <td>Diced</td>
+                    </tr>
+                    <tr>
+                        <td>Cheddar Cheese</td>
+                        <td>1</td>
+                        <td>Sliced</td>
+                    </tr>
+                    <tr>
+                        <td>Avocado</td>
+                        <td>1/4</td>
+                        <td>Sliced</td>
+                    </tr>
+                    <tr>
+                        <td>Ciabatta Bread</td>
+                        <td>1</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <h5>Directions</h5>
+        <ol>
+            <li>Cook chicken breast fully</li>
+            <li>Steam cooked chicken breast for 2 minutes</li>
+            <li>Cut chicken breast in half</li>
+            <li>Place
+                Cheddar Cheese, chicken breast,
+                and avocado in Ciabatta</li>
+            <li>Panini press
+                for 2 minutes</li>
+        </ol>
+
+        <div class="row">
+            <div class="col-xs-6">
+                <input type="datetime"
+                       min="1"
+                       class="form-control"
+                       value="00:02:00"/>
+            </div>
+            <div class="col-xs-6">
+                <a  class="btn btn-block btn-success"
+                    href="recipe-edit.html">
+                    Add Timer
+                </a>
+            </div>
+        </div>
+
+
+        <hr>
+        <a  class="btn btn-block btn-danger"
+            href="recipe-edit.html">
+            Edit Recipe
+        </a>
+
+    </div>
+
+
+    <footer>
+        <nav class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                        <a href="recipe-book.html"
+                           class="navbar-link">
+                            <span class="glyphicon glyphicon glyphicon glyphicon-book"></span>
+                        </a>
+                    </p>
+
+                    <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                        <a href="#"
+                           class="navbar-link">
+                            <span class="glyphicon glyphicon glyphicon-th-list"></span>
+                        </a>
+                    </p>
+
+                    <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                        <a href="#"
+                           class="navbar-link">
+                            <span class="glyphicon glyphicon-time"></span>
+                        </a>
+                    </p>
+
+                    <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                        <a href="../user/employee-profile.html"
+                           class="navbar-link">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                    </p>
+
+
+                </div>
+            </div>
+        </nav>
+    </footer>
+
+</body>
+</html>
