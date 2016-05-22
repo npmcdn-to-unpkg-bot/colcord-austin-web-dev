@@ -103,4 +103,8 @@ table {
     color: indianred
 }
 
+a {
+    text-decoration: none !important;
+}
+
 
