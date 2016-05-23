@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
-    <title>Widget Edit - YouTube</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/yeti/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/styles.css">
-</head>
-<body>
 <header>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text navbar-left pull-left">
-                    <a href="widget-list.html"
+                    <a href="#/user/:uid/website/:wid/page/:pid/widget"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-chevron-left pull-left ajc-nav-glyphicon"></span>
                     </a>
@@ -24,7 +12,7 @@
                     Widget Edit
                 </a>
                 <p class="navbar-text navbar-right">
-                    <a href="widget-list.html"
+                    <a href="#/user/:uid/website/:wid/page/:pid/widget"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-ok pull-right ajc-nav-glyphicon"></span>
                     </a>
@@ -80,7 +68,7 @@
         </div>
 
         <a  class="btn btn-block btn-danger"
-            href="widget-list.html">
+            href="#/user/:uid/website/:wid/page/:pid/widget">
             Delete
         </a>
     </form>
@@ -92,7 +80,7 @@
             <div class="navbar-header">
 
                 <div class="navbar-text pull-right">
-                    <a href="../user/profile.html">
+                    <a href="#/user/:uid">
                         <span class="glyphicon glyphicon-user ajc-nav-glyphicon"></span>
                     </a>
                 </div>
@@ -100,6 +88,3 @@
         </div>
     </nav>
 </footer>
-
-</body>
-</html>

@@ -1,30 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
-    <title>Edit Page</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/yeti/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/styles.css">
-</head>
-<body>
 <header>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text navbar-left pull-left">
-                    <a href="page-list.html"
+                    <a href="#/user/:uid/website/:wid/page"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-chevron-left pull-left ajc-nav-glyphicon"></span>
                     </a>
                 </p>
                 <a class="navbar-brand">
-                    Edit Page
+                    New Page
                 </a>
                 <p class="navbar-text navbar-right">
-                    <a href="page-list.html"
+                    <a href="#/user/:uid/website/:wid/page"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-ok pull-right ajc-nav-glyphicon"></span>
                     </a>
@@ -45,8 +33,7 @@
                    id="pagename"
                    type="text"
                    class="form-control"
-                   placeholder="Page Name"
-                   value="Blog Post"/>
+                   placeholder="Page Name"/>
         </div>
 
         <div class="form-group">
@@ -55,14 +42,8 @@
                    id="pagetitle"
                    type="text"
                    class="form-control"
-                   placeholder="Page Title"
-                   value="This is my Blog Post!"/>
+                   placeholder="Page Title"/>
         </div>
-
-        <a  class="btn btn-block btn-danger"
-            href="page-list.html">
-            Delete
-        </a>
     </form>
 </div>
 
@@ -70,9 +51,8 @@
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-header">
-
                 <div class="navbar-text pull-right">
-                    <a href="../user/profile.html">
+                    <a href="#/user/:uid">
                         <span class="glyphicon glyphicon-user ajc-nav-glyphicon"></span>
                     </a>
                 </div>
@@ -80,6 +60,3 @@
         </div>
     </nav>
 </footer>
-
-</body>
-</html>
