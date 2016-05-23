@@ -3,11 +3,6 @@ body {
     padding-bottom : 60px;
 }
 
-.ajc-login-register-body {
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
 .ajc-widget-container {
     z-index: 1000;
     position: absolute;
