@@ -85,32 +85,37 @@
                        placeholder="10"/>
             </div>
 
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Ingredient</th>
-                        <th>Amount</th>
-                        <th>Style</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td contenteditable='true'></td>
-                        <td contenteditable='true'></td>
-                        <td contenteditable='true'></td>
-                    </tr>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Ingredient</th>
+                                <th>Amount</th>
+                                <th>Style</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td contenteditable='true'></td>
+                                <td contenteditable='true'></td>
+                                <td contenteditable='true'></td>
+                            </tr>
 
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="form-group">
-                <label for="directions">Directions</label>
-                    <textarea rows="5"
-                              id="directions"
-                              class="form-control"
-                              placeholder="This is how to cook my new recipe..."></textarea>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="directions">Directions</label>
+                            <textarea rows="5"
+                                      id="directions"
+                                      class="form-control"
+                                      placeholder="This is how to cook my new recipe..."></textarea>
+                    </div>
+                </div>
             </div>
 
             <a  class="btn btn-block btn-success"
