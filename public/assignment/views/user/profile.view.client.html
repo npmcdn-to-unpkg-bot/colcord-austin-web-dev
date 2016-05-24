@@ -33,42 +33,39 @@
     <form>
         <div class="form-group">
             <label for="username">Username</label>
-            <input name="username"
+            <input ng-model="model.user.username"
                    id="username"
                    type="text"
                    class="form-control"
-                   placeholder="alice"
-                   value="ajdcolcord"/>
+                   placeholder="alice"/>
         </div>
+
 
         <div class="form-group">
             <label for="email">Email</label>
-            <input name="email"
+            <input ng-model="model.user.email"
                    id="email"
                    type="email"
                    class="form-control"
-                   placeholder="alice@wonderland.com"
-                   value="ajdcolcord@gmail.com"/>
+                   placeholder="alice@wonderland.com"/>
         </div>
 
         <div class="form-group">
             <label for="first-name">First Name</label>
-            <input name="first-name"
+            <input ng-model="model.user.firstName"
                    id="first-name"
                    type="text"
                    class="form-control"
-                   placeholder="Alice"
-                   value="Austin"/>
+                   placeholder="Alice"/>
         </div>
 
         <div class="form-group">
             <label for="last-name">Last Name</label>
-            <input name="last-name"
+            <input ng-model="model.user.lastName"
                    id="last-name"
                    type="text"
                    class="form-control"
-                   placeholder="Wonderland"
-                   value="Colcord"/>
+                   placeholder="Wonderland"/>
         </div>
 
         <a  class="btn btn-block btn-primary"
