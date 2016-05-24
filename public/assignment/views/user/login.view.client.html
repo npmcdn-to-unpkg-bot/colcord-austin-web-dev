@@ -1,4 +1,11 @@
 <div class="container-fluid">
+
+    <div ng-if="model.error"
+         class="alert alert-danger"
+         role="alert">
+        User not found
+    </div>
+
     <header>
         <h2>
             Login
@@ -7,23 +14,23 @@
 
     <form>
         <div class="form-group">
-            <input name="username"
-                   id="username"
+            <input ng-model="username"
                    type="text"
                    class="form-control"
                    placeholder="username"/>
         </div>
 
         <div class="form-group">
-            <input name="password"
+            <input ng-model="password"
                    id="password"
                    type="password"
                    class="form-control"
                    placeholder="password"/>
         </div>
 
-        <a  class="btn btn-block btn-primary"
-            href="#/user/:uid">
+        <a  ng-click="model.login(username, password)"
+            class="btn btn-block btn-primary">
+            <!--href="#/user/:uid">-->
             Login
         </a>
 
