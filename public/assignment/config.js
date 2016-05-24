@@ -7,7 +7,8 @@
         $routeProvider
             .when("/", {
                 templateUrl: "views/user/login.view.client.html",
-                controller: "LoginController"
+                controller: "LoginController",
+                controllerAs: "model"
             })
             .when("/login", {
                 templateUrl: "views/user/login.view.client.html",
@@ -51,6 +52,8 @@
             })
 
 
-            .otherwise({redirectTo: "views/user/login.view.client.html"})
+            .otherwise({
+                redirectTo: "views/user/login.view.client.html"
+            })
     }
 })();
