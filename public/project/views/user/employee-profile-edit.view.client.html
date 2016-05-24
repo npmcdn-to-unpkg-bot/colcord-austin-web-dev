@@ -1,0 +1,114 @@
+<header>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">
+                    Edit Profile
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container-fluid">
+
+    <form>
+        <div class="form-group">
+            <label for="firstname">First Name</label>
+            <input type="text"
+                   id="firstname"
+                   class="form-control"
+                   placeholder="first name"
+                   value="Joe"/>
+        </div>
+
+        <div class="form-group">
+            <label for="lastname">Last Name</label>
+            <input type="text"
+                   id="lastname"
+                   class="form-control"
+                   placeholder="last name"
+                   value="Smith"/>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email"
+                   id="email"
+                   class="form-control"
+                   placeholder="email address"
+                   value="joe.smith@example.com"/>
+        </div>
+
+
+        <div class="form-group">
+            <input type="password"
+                   class="form-control"
+                   placeholder="current password"/>
+        </div>
+
+        <div class="form-group">
+            <input type="password"
+                   class="form-control"
+                   placeholder="new password"/>
+        </div>
+
+        <div class="form-group">
+            <input type="password"
+                   class="form-control"
+                   placeholder="verify new password"/>
+        </div>
+
+        <h6>Restaurant ID: 1234567</h6>
+
+        <a  class="btn btn-block btn-primary"
+            href="#/user/:uid">
+            Update Profile
+        </a>
+
+        <a  class="btn btn-block btn-danger"
+            href="#/user/:uid">
+            Cancel
+        </a>
+
+    </form>
+</div>
+
+
+<footer>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                    <a href="#/user/:uid/recipe/recipe-book"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon glyphicon glyphicon-book"></span>
+                    </a>
+                </p>
+
+                <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                    <a href="#/user/:uid/prep/prep-list"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon glyphicon-list-alt"></span>
+                    </a>
+                </p>
+
+                <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                    <a href="#user/:uid/prep/timer-list"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </a>
+                </p>
+
+                <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                    <a href="#/user/:uid"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </a>
+                </p>
+
+
+            </div>
+        </div>
+    </nav>
+</footer>

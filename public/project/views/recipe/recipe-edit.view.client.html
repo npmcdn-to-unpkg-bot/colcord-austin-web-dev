@@ -1,0 +1,160 @@
+<header>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p class="navbar-text navbar-left pull-left">
+                    <a href="#/user/:uid/recipe/:rid"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left ajc-nav-glyphicon"></span>
+                    </a>
+                </p>
+                <a class="navbar-brand">
+                    Edit Recipe
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container-fluid">
+    <form>
+        <div class="form-group">
+            <label for="recipename">Recipe Name</label>
+            <input type="text"
+                   id="recipename"
+                   class="form-control"
+                   placeholder="recipe name"
+                   value="Chicken Panini"/>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea rows="3"
+                      id="description"
+                      class="form-control"
+                      placeholder="Lorem ipsum dolor sit amet...">A warm chicken panini with cheddar cheese with avocado on ciabatta bread</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="type">Type</label>
+            <select class="form-control"
+                    id="type">
+                <option value="soup">Soup</option>
+                <option selected="selected" value="sandwitch">Sandwitch</option>
+                <option value="salad">Salad</option>
+                <option value="side">Side Dish</option>
+
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="preptime">Prep Time (minutes)</label>
+            <input type="number"
+                   id="preptime"
+                   min="0"
+                   class="form-control"
+                   placeholder="prep time"
+                   value="5"/>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Ingredient</th>
+                                <th>Amount</th>
+                                <th>Style</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td contenteditable='true'>Chicken Breast</td>
+                                <td contenteditable='true'>1</td>
+                                <td contenteditable='true'>Diced</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable='true'>Cheddar Cheese</td>
+                                <td contenteditable='true'>1</td>
+                                <td contenteditable='true'>Sliced</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable='true'>Avocado</td>
+                                <td contenteditable='true'>1/4</td>
+                                <td contenteditable='true'>Sliced</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable='true'>Ciabatta Bread</td>
+                                <td contenteditable='true'>1</td>
+                                <td contenteditable='true'></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-6">
+
+                <div class="form-group">
+                    <label for="directions">Directions</label>
+                    <textarea rows="5"
+                              id="directions"
+                              class="form-control"
+                              placeholder="Lorem ipsum dolor sit amet...">Cook chicken breast fully. Steam cooked chicken breast for 2 minutes. Cut chicken breast in half. Place Cheddar Cheese, chicken breast, and avocado in Ciabatta. Panini press for 2 minutes...</textarea>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <a  class="btn btn-block btn-success"
+            href="#/user/:uid/recipe/:rid">
+            Save Changes
+        </a>
+        <a  class="btn btn-block btn-danger"
+            href="#/user/:uid/recipe/recipe-book">
+            Delete
+        </a>
+
+
+
+    </form>
+</div>
+
+<footer>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                    <a href="ok.html"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon glyphicon glyphicon-book"></span>
+                    </a>
+                </p>
+
+                <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                    <a href="#/user/:uid/prep/prep-list"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon glyphicon-list-alt"></span>
+                    </a>
+                </p>
+
+                <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                    <a href="#user/:uid/prep/timer-list"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </a>
+                </p>
+
+                <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                    <a href="#/user/:uid"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </a>
+                </p>
+
+
+            </div>
+        </div>
+    </nav>
+</footer>

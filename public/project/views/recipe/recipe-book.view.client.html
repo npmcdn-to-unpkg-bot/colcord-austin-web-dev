@@ -1,0 +1,224 @@
+<header>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">
+                    Recipe Book
+                </a>
+                <p class="navbar-text navbar-right">
+                    <a href="#/user/:uid/recipe/new"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon-plus pull-right ajc-nav-glyphicon"></span>
+                    </a>
+                </p>
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container-fluid">
+    <!-- http://stackoverflow.com/questions/24682421/put-search-icon-near-textbox-using-bootstrap -->
+    <div class="form-group has-feedback">
+        <input type="text"
+               class="form-control"
+               placeholder="Search my recipes...">
+        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h5>Recent</h5>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a>
+                        <span class="glyphicon glyphicon-plus-sign pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid/edit">
+                        <span class="glyphicon glyphicon-pencil pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid">
+                        Buffalo Chicken Wrap
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a>
+                        <span class="glyphicon glyphicon-plus-sign pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid/edit">
+                        <span class="glyphicon glyphicon-pencil pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid">
+                        Chicken Caesar Salad
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a>
+                        <span class="glyphicon glyphicon-plus-sign pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid/edit">
+                        <span class="glyphicon glyphicon-pencil pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid">
+                        Chicken Noodle Soup
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a>
+                        <span class="glyphicon glyphicon-plus-sign pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid/edit">
+                        <span class="glyphicon glyphicon-pencil pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid">
+                        Broccoli Cheddar Soup
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a>
+                        <span class="glyphicon glyphicon-plus-sign pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid/edit">
+                        <span class="glyphicon glyphicon-pencil pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid">
+                        Beef Chili
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-sm-6">
+            <h5>All</h5>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a>
+                        <span class="glyphicon glyphicon-plus-sign pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid/edit">
+                        <span class="glyphicon glyphicon-pencil pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid">
+                        Buffalo Chicken Wrap
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a>
+                        <span class="glyphicon glyphicon-plus-sign pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid/edit">
+                        <span class="glyphicon glyphicon-pencil pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid">
+                        Chicken Noodle Soup
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a>
+                        <span class="glyphicon glyphicon-plus-sign pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid/edit">
+                        <span class="glyphicon glyphicon-pencil pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid">
+                        Broccoli Cheddar Soup
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a>
+                        <span class="glyphicon glyphicon-plus-sign pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid/edit">
+                        <span class="glyphicon glyphicon-pencil pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid">
+                        Beef Chili
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a>
+                        <span class="glyphicon glyphicon-plus-sign pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid/edit">
+                        <span class="glyphicon glyphicon-pencil pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid">
+                        Steak Tip Panini
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a>
+                        <span class="glyphicon glyphicon-plus-sign pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid/edit">
+                        <span class="glyphicon glyphicon-pencil pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid">
+                        Chicken Caesar Salad
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a>
+                        <span class="glyphicon glyphicon-plus-sign pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid/edit">
+                        <span class="glyphicon glyphicon-pencil pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid">
+                        Egg Salad
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a>
+                        <span class="glyphicon glyphicon-plus-sign pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid/edit">
+                        <span class="glyphicon glyphicon-pencil pull-right ajc-list-glyphicon"></span>
+                    </a>
+                    <a  href="#/user/:uid/recipe/:rid">
+                        Cheese Omlette
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<footer>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                    <a href="#/user/:uid/recipe/recipe-book"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon glyphicon glyphicon-book"></span>
+                    </a>
+                </p>
+
+                <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                    <a href="#/user/:uid/prep/prep-list"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon glyphicon-list-alt"></span>
+                    </a>
+                </p>
+
+                <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                    <a href="#user/:uid/prep/timer-list"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </a>
+                </p>
+
+                <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                    <a href="#/user/:uid"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </a>
+                </p>
+
+
+            </div>
+        </div>
+    </nav>
+</footer>
