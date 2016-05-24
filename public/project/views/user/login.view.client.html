@@ -4,24 +4,32 @@
         <hr>
     </header>
 
+    <div ng-if="model.error"
+         class="alert alert-danger"
+         role="alert">
+        User not found
+    </div>
 
     <h3>Login</h3>
 
     <form>
         <div class="form-group">
-            <input type="text"
+            <input ng-model="username"
+                   type="text"
                    class="form-control"
                    placeholder="username"/>
         </div>
 
         <div class="form-group">
-            <input type="password"
+            <input ng-model="password"
+                   type="password"
                    class="form-control"
                    placeholder="password"/>
         </div>
 
         <a  class="btn btn-block btn-primary"
-            href="#/user/:uid">
+            ng-click="model.login(username, password)">
+            <!--href="#/user/:uid">-->
             Login
         </a>
 
