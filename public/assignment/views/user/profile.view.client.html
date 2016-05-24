@@ -20,13 +20,15 @@
 <div class="container-fluid">
 
     <!--PLACEHOLDERS FOR ALERTS AT TOP- NOT USED FOR ASSIGNMENT 2-->
-    <!--<div class="alert alert-success">-->
-        <!--Successfully updated your profile-->
-    <!--</div>-->
+    <div ng-show="model.success"
+         class="alert alert-success">
+        {{model.success}}
+    </div>
 
-    <!--<div class="alert alert-danger">-->
-        <!--Unable to update your profile-->
-    <!--</div>-->
+    <div ng-show="model.error"
+         class="alert alert-danger">
+        {{model.error}}
+    </div>
     <!------------------------------------------------------------->
 
     <form>

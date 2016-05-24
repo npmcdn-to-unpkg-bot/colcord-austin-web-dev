@@ -47,8 +47,9 @@
         init();
 
         function updateUser() {
-            users[i].firstName = vm.user.firstName;
-            users[i].lastName = vm.user.lastName;
+            users[index].firstName = vm.user.firstName;
+            users[index].lastName = vm.user.lastName;
+            vm.success = "User successfully updated";
         }
     }
 
