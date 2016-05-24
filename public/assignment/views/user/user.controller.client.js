@@ -7,10 +7,9 @@
 
 
     var users = [
-        {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-        {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-        {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-        {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
+        {_id: "123", username: "alice",    firstname: "Alice", lastname: "Wonderland", password: "alice", email: "alice@wonderland.com", restaurantid: 12345678},
+        {_id: "333", username: "joe",    firstname: "Joe", lastname: "Smith", password: "joe", email: "joe@smith.com", restaurantid: 12665678},        {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
+        {_id: "512", username: "richard",    firstname: "Richard", lastname: "Morrison", password: "richard", email: "richard@morrison.com", restaurantid: 12345678},
     ];
 
 
