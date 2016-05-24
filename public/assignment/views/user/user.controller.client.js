@@ -32,13 +32,21 @@
 
     function ProfileController($routeParams) {
         var vm = this;
+        vm.updateUser = updateUser;
         var uid = $routeParams["uid"];
+        var index = -1;
         console.log(uid);
         
         for(var i in users) {
             if(users[i]._id === uid) {
                 vm.user = users[i];
+                index = i;
             }
+        }
+
+        function updateUser() {
+            users[i].firstName = vm.user.firstName;
+            users[i].lastName = vm.user.lastName;
         }
 
     }
