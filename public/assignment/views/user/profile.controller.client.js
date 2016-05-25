@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($routeParams) {
+    function ProfileController($routeParams, UserService) {
         var vm = this;
         vm.updateUser = updateUser;
 
@@ -11,19 +11,18 @@
         var index = -1;
 
         function init() {
-            for (var i in users) {
-                if (users[i]._id === uid) {
-                    vm.user = angular.copy(users[i]);
-                    index = i;
-                }
-            }
+            vm.user = UserService.findUserById(uid);
         }
         init();
 
         function updateUser() {
-            users[index].firstName = vm.user.firstName;
-            users[index].lastName = vm.user.lastName;
-            vm.success = "User successfully updated";
+            var result = UserService.updateUser(vm.user._id, vm.user);
+            if(result === true) {
+                vm.success = "User successfully updated";
+            }
+            else {
+                vm.error = "User not successfully updated";
+            }
         }
     }
 
