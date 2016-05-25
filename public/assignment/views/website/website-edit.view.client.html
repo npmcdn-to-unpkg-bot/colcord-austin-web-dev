@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text navbar-left pull-left">
-                    <a href="#/user/:uid/website"
+                    <a href="#/user/{{model.uid}}/website"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-chevron-left pull-left ajc-nav-glyphicon"></span>
                     </a>
@@ -12,7 +12,7 @@
                     Edit Website
                 </a>
                 <p class="navbar-text navbar-right">
-                    <a href="#/user/:uid/website"
+                    <a href="#/user/{{model.uid}}/website"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-ok pull-right ajc-nav-glyphicon"></span>
                     </a>
@@ -26,13 +26,12 @@
 <div class="container-fluid">
     <form>
         <div class="form-group">
-            <label for="name">Website Name</label>
-            <input name="name"
-                   id="name"
+            <label for="websiteName">Website Name</label>
+            <input ng-model="model.website.name"
+                   id="websiteName"
                    type="text"
                    class="form-control"
-                   placeholder="Lorem Ipsum"
-                   value="Blogger"/>
+                   placeholder="Lorem Ipsum"/>
         </div>
 
         <div class="form-group">
@@ -41,11 +40,11 @@
                           name="description"
                           id="description"
                           class="form-control"
-                          placeholder="Lorem ipsum dolor sit amet...">Blogger is a blog-publishing service that allows multi-user blogs with time-stamped entries. It was developed by Pyra Labs, which was bought by Google in 2003. Generally, the blogs are hosted by Google...</textarea>
+                          placeholder="Lorem ipsum dolor sit amet...">Lorem ipsum</textarea>
         </div>
 
         <a  class="btn btn-block btn-danger"
-            href="#/user/:uid/website">
+            href="#/user/{{model.uid}}/website">
             Delete
         </a>
     </form>
@@ -63,7 +62,7 @@
                 </div>
 
                 <div class="navbar-text pull-right">
-                    <a href="#/user/:uid">
+                    <a href="#/user/{{model.uid}}">
                         <span class="glyphicon glyphicon-user ajc-nav-glyphicon"></span>
                     </a>
                 </div>
