@@ -11,7 +11,7 @@
         var index = -1;
 
         function init() {
-            vm.user = UserService.findUserById(uid);
+            vm.user = angular.copy(UserService.findUserById(uid));
         }
         init();
 
