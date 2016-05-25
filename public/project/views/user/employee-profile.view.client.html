@@ -20,7 +20,7 @@
     <hr>
 
     <a  class="btn btn-block btn-primary"
-        ng-click="model.editProfile()">
+        href="#/user/{{model.user._id}}/edit">
         Edit Profile
     </a>
 
@@ -37,25 +37,25 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#/user/:uid/recipe/recipe-book"
+                    <a href="#/user/{{model.user._id}}/recipe/recipe-book"
                        class="navbar-link">
                         <span class="glyphicon glyphicon glyphicon glyphicon-book"></span>
                     </a>
                 </p>
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#/user/:uid/prep/prep-list"
+                    <a href="#/user/{{model.user._id}}/prep/prep-list"
                        class="navbar-link">
                         <span class="glyphicon glyphicon glyphicon-list-alt"></span>
                     </a>
                 </p>
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#user/:uid/prep/timer-list"
+                    <a href="#user/{{model.user._id}}/prep/timer-list"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-time"></span>
                     </a>
                 </p>
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#/user/:uid"
+                    <a href="#/user/{{model.user._id}}"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-user"></span>
                     </a>
