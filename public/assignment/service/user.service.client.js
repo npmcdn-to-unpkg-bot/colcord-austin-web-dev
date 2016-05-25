@@ -13,17 +13,37 @@
 
         var api = {
             createUser: createUser,
-            findUserByUsernameAndPassword: findUserByUsernameAndPassword,
             findUserById: findUserById,
+            findUserByUsername: findUserByUsername,
+            findUserByCredentials: findUserByCredentials,
             updateUser: updateUser,
             deleteUser: deleteUser
         };
         return api;
 
-        function createUser(user) {}
-        function deleteUser(id) {}
+        function createUser(user) {
+            users.push(user);
+        }
 
-        function findUserByUsernameAndPassword(username, password) {
+        function findUserById(userId) {
+            for (var i in users) {
+                if (users[i]._id === userId) {
+                    return users[i];
+                }
+            }
+            return null;
+        }
+
+        function findUserByUsername(username) {
+            for(var i in users) {
+                if (users[i] === username) {
+                    return users[i];
+                }
+            }
+            return null;
+        }
+
+        function findUserByCredentials(username, password) {
             for(var i in users) {
                 if(users[i].username === username && users[i].password == password) {
                     return users[i];
@@ -32,24 +52,23 @@
             return null;
         }
 
-        function findUserById(id) {
-            for (var i in users) {
-                if (users[i]._id === id) {
-                    return users[i];
-                }
-            }
-            return null;
-        }
-        
-        function updateUser(id, newUser) {
+        function updateUser(userId, user) {
             for(var i in users) {
-                if(users[i]._id === id) {
-                    users[i].firstName = newUser.firstName;
-                    users[i].lastName = newUser.lastName;
+                if(users[i]._id === userId) {
+                    users[i].firstName = user.firstName;
+                    users[i].lastName = user.lastName;
                     return true;
                 }
             }
             return false;
+        }
+        
+        function deleteUser(userId) {
+            for(var i in users) {
+                if (users[i]._id === userId) {
+                    users.splice(i, 1);
+                }
+            }
         }
     }
 
