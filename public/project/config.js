@@ -19,7 +19,9 @@
                 templateUrl: "views/user/register.view.client.html"
             })
             .when("/user/:uid", {
-                templateUrl: "views/user/employee-profile.view.client.html"
+                templateUrl: "views/user/employee-profile.view.client.html",
+                controller: "ProfileController",
+                controllerAs: "model"
             })
             .when("/user/:uid/edit", {
                 templateUrl: "views/user/employee-profile-edit.view.client.html"

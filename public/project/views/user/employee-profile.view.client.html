@@ -12,14 +12,15 @@
 
 <div class="container-fluid">
 
-    <h5>Joe Smith</h5>
+    <h5>{{model.user.firstname}} {{model.user.lastname}}</h5>
     <hr>
-    <h6>joe.smith@example.com</h6>
-    <h6>Restaurant ID: 1234567</h6>
+    <h6>{{model.user.username}}</h6>
+    <h6>{{model.user.email}}</h6>
+    <h6>Restaurant ID: {{model.user.restaurantid}}</h6>
     <hr>
 
     <a  class="btn btn-block btn-primary"
-        href="#/user/:uid/edit">
+        ng-click="model.editProfile()">
         Edit Profile
     </a>
 
