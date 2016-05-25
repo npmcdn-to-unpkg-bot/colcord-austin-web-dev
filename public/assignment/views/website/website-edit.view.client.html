@@ -12,7 +12,8 @@
                     Edit Website
                 </a>
                 <p class="navbar-text navbar-right">
-                    <a href="#/user/{{model.uid}}/website"
+                    <a ng-click="model.updateWebsite()"
+                        href="#/user/{{model.uid}}/website"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-ok pull-right ajc-nav-glyphicon"></span>
                     </a>
@@ -37,10 +38,10 @@
         <div class="form-group">
             <label for="description">Website Description</label>
                 <textarea rows="3"
-                          name="description"
+                          ng-model="model.website.description"
                           id="description"
                           class="form-control"
-                          placeholder="Lorem ipsum dolor sit amet...">Lorem ipsum</textarea>
+                          placeholder="Lorem ipsum dolor sit amet..."></textarea>
         </div>
 
         <a  class="btn btn-block btn-danger"
