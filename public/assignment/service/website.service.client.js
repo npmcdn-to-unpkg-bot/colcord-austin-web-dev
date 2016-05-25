@@ -15,12 +15,20 @@
     function WebsiteService() {
 
         var api = {
-            findWebsitesForUser: findWebsitesForUser,
-            findWebsiteById: findWebsiteById
+            createWebsite: createWebsite,
+            findWebsitesByUser: findWebsitesByUser,
+            findWebsiteById: findWebsiteById,
+            updateWebsite: updateWebsite,
+            deleteWebsite: deleteWebsite
         };
         return api;
 
-        function findWebsitesForUser(userId) {
+        function createWebsite(userId, website) {
+            website.developerId = userId;
+            websites.push(website);
+        }
+
+        function findWebsitesByUser(userId) {
             var result = [];
             for(var i in websites) {
                 if(websites[i].developerId === userId) {
@@ -37,6 +45,22 @@
                 }
             }
             return null;
+        }
+
+        function updateWebsite(websiteId, website) {
+            for(var i in websites) {
+                if(websites[i]._id === websiteId) {
+                    websites[i] = website;
+                }
+            }
+        }
+
+        function deleteWebsite(websiteId) {
+            for(var i in websites) {
+                if (websites[i]._id === websiteId) {
+                    websites.splice(i, 1);
+                }
+            }
         }
     }
 })();
