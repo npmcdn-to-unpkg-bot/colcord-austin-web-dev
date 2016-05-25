@@ -12,10 +12,16 @@
 
 <div class="container-fluid">
 
+    <div ng-show="model.error"
+         class="alert alert-danger">
+        {{model.error}}
+    </div>
+
     <form>
         <div class="form-group">
             <label for="firstname">First Name</label>
-            <input type="text"
+            <input ng-model="model.user.firstname"
+                   type="text"
                    id="firstname"
                    class="form-control"
                    placeholder="first name"
@@ -24,7 +30,8 @@
 
         <div class="form-group">
             <label for="lastname">Last Name</label>
-            <input type="text"
+            <input ng-model="model.user.lastname"
+                   type="text"
                    id="lastname"
                    class="form-control"
                    placeholder="last name"
@@ -33,7 +40,8 @@
 
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email"
+            <input ng-model="model.user.email"
+                   type="email"
                    id="email"
                    class="form-control"
                    placeholder="email address"
@@ -42,7 +50,8 @@
 
 
         <div class="form-group">
-            <input type="password"
+            <input ng-model="currentpassword"
+                   type="password"
                    class="form-control"
                    placeholder="current password"/>
         </div>
@@ -59,15 +68,15 @@
                    placeholder="verify new password"/>
         </div>
 
-        <h6>Restaurant ID: 1234567</h6>
+        <h6>Restaurant ID: {{model.user.restaurantid}}</h6>
 
         <a  class="btn btn-block btn-primary"
-            href="#/user/:uid">
+            ng-click="model.updateProfile(currentpassword, newpassword, verifynewpassword)">
             Update Profile
         </a>
 
         <a  class="btn btn-block btn-danger"
-            href="#/user/:uid">
+            href="#/user/{{model.user._id}}">
             Cancel
         </a>
 
@@ -98,7 +107,7 @@
                     </a>
                 </p>
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#/user/:uid"
+                    <a href="#/user/{{model.user._id}}"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-user"></span>
                     </a>

@@ -24,7 +24,9 @@
                 controllerAs: "model"
             })
             .when("/user/:uid/edit", {
-                templateUrl: "views/user/employee-profile-edit.view.client.html"
+                templateUrl: "views/user/employee-profile-edit.view.client.html",
+                controller: "ProfileController",
+                controllerAs: "model"
             })
             .when("/user/:uid/prep/prep-list", {
                 templateUrl: "views/prep/prep-list.view.client.html"

@@ -29,8 +29,7 @@
 
     function ProfileController($location, $routeParams) {
         var vm = this;
-        vm.editProfile = editProfile;
-        // vm.updateProfile = updateProfile;
+        vm.updateProfile = updateProfile;
         
         var uid = $routeParams["uid"];
         var index = -1;
@@ -48,12 +47,24 @@
         }
         init();
 
-        function editProfile() {
-            $location.url("/user/" + uid + "/edit");
+        function updateProfile(currentpassword, newpassword, verifynewpassword) {
+            if (users[index].password == currentpassword
+                && newpassword == verifynewpassword) {
+
+                users[index].firstName = vm.user.firstName;
+                users[index].lastName = vm.user.lastName;
+                users[index].email = vm.user.email;
+                users[index].password = vm.user.password;
+                vm.success = "User successfully updated";
+                $location.url("/user/" + uid)
+            }
+            else {
+                vm.error = "Incorrect Password or Not Matching New Passwords"
+            }
+
+
         }
-        // function updateProfile() {
-        //    
-        // }
+
     }
     
 })();
