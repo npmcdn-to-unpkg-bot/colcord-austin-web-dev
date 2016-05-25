@@ -9,7 +9,7 @@
         { "_id": "543", "name": "Post 3", "websiteId": "456" }
     ];
 
-    function WebsiteService() {
+    function PageService() {
 
         var api = {
             createPage: createPage,

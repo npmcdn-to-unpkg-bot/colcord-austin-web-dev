@@ -27,7 +27,7 @@
 
         function findUserById(userId) {
             for (var i in users) {
-                if (users[i]._id === userId) {
+                if (users[i]._id == userId) {
                     return users[i];
                 }
             }
@@ -36,7 +36,7 @@
 
         function findUserByUsername(username) {
             for(var i in users) {
-                if (users[i] === username) {
+                if (users[i].username === username) {
                     return users[i];
                 }
             }
@@ -57,6 +57,7 @@
                 if(users[i]._id === userId) {
                     users[i].firstName = user.firstName;
                     users[i].lastName = user.lastName;
+                    users[i].email = user.email;
                     return true;
                 }
             }

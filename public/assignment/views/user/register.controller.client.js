@@ -4,37 +4,36 @@
         .controller("RegisterController", RegisterController);
     
 
-    function RegisterController($location) {
+    function RegisterController($location, UserService) {
+
         var vm = this;
-
         vm.register = register;
-        function register(username, password, verifypassword) {
-            var taken = false;
 
-            for(var i in users) {
-                if (users[i].username === username) {
-                    vm.error = "Username taken";
-                    taken = true;
+        function register(username, password, verifypassword) {
+            if (username && password && verifypassword) {
+                if (UserService.findUserByUsername(username) !== null) {
+                    vm.error = "Username taken"
                 }
-            }
-            if (!taken) {
-                if (password !== verifypassword) {
-                    vm.error = "Passwords do not match";
-                }
-                else {
-                    users.push({
-                        _id: '999',
+                else if (password === verifypassword) {
+                    var id = (new Date).getTime();
+                    var newUser = {
+                        _id: id,
                         username: username,
                         password: password,
                         firstName: '',
-                        lastName: ''
-                    });
-                    $location.url("/user/" + 999);
-                    console.log(username)
+                        lastName: '',
+                        email: ''
+                    };
+
+                    UserService.createUser(newUser);
+                    $location.url("/user/" + id);
+                }
+                else {
+                    vm.error = "Passwords do not match";
                 }
             }
             else {
-                vm.error = "Username taken";
+                vm.error = "Please enter a username and password"
             }
         }
     }
