@@ -48,34 +48,41 @@
             </div>
 
         </div>
+        <div ng-switch-when="IMAGE"
+             class="ajc-widget">
+            <img ng-src="{{widget.url}}"
+                 width="{{widget.width}}"/>
+        </div>
         <div ng-switch-default>{{widget}}</div>
     </div>
 
+
+    <!---->
     <div ng-repeat="widget in model.widgets">
         <!--HEADER-->
-        <div class="ajc-widget"
-             ng-if="widget.widgetType === 'HEADER'">
-            <div class="ajc-widget-container">
-                <a  href="widget-header.view.client.html">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-                <span class="glyphicon glyphicon-align-justify"></span>
-            </div>
-            <h1>{{widget.text}}</h1>
-        </div>
+        <!--<div class="ajc-widget"-->
+             <!--ng-if="widget.widgetType === 'HEADER'">-->
+            <!--<div class="ajc-widget-container">-->
+                <!--<a  href="widget-header.view.client.html">-->
+                    <!--<span class="glyphicon glyphicon-cog"></span>-->
+                <!--</a>-->
+                <!--<span class="glyphicon glyphicon-align-justify"></span>-->
+            <!--</div>-->
+            <!--<h1>{{widget.text}}</h1>-->
+        <!--</div>-->
 
         <!--IMAGE-->
-        <div class="ajc-widget"
-             ng-if="widget.widgetType === 'IMAGE'">
-            <div class="ajc-widget-container">
-                <a  href="widget-image.view.client.html">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-                <span class="glyphicon glyphicon-align-justify"></span>
-            </div>
-            <img class="img-responsive"
-                 ng-src="{{widget.url}}"/>
-        </div>
+        <!--<div class="ajc-widget"-->
+             <!--ng-if="widget.widgetType === 'IMAGE'">-->
+            <!--<div class="ajc-widget-container">-->
+                <!--<a  href="widget-image.view.client.html">-->
+                    <!--<span class="glyphicon glyphicon-cog"></span>-->
+                <!--</a>-->
+                <!--<span class="glyphicon glyphicon-align-justify"></span>-->
+            <!--</div>-->
+            <!--<img class="img-responsive"-->
+                 <!--ng-src="{{widget.url}}"/>-->
+        <!--</div>-->
 
         <!--YOUTUBE-->
         <div class="ajc-widget"
