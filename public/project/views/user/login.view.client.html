@@ -4,10 +4,9 @@
         <hr>
     </header>
 
-    <div ng-if="model.error"
-         class="alert alert-danger"
-         role="alert">
-        User not found
+    <div ng-show="model.error"
+         class="alert alert-danger">
+        {{model.error}}
     </div>
 
     <h3>Login</h3>
@@ -36,6 +35,5 @@
             href="#/register">
             Register
         </a>
-
     </form>
 </div>
