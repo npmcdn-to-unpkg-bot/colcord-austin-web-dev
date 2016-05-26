@@ -5,11 +5,12 @@
     
     function Config($routeProvider) {
         $routeProvider
-            .when("/", {
-                templateUrl: "views/user/login.view.client.html",
-                controller: "LoginController",
-                controllerAs: "model"
-            })
+            //user routes
+            // .when("/", {
+            //     templateUrl: "views/user/login.view.client.html",
+            //     controller: "LoginController",
+            //     controllerAs: "model"
+            // })
             .when("/login", {
                 templateUrl: "views/user/login.view.client.html",
                 controller: "LoginController",
@@ -25,6 +26,8 @@
                 controller: "ProfileController",
                 controllerAs: "model"
             })
+            
+            //website routes
             .when("/user/:uid/website", {
                 templateUrl: "views/website/website-list.view.client.html",
                 controller: "WebsiteListController",
@@ -40,6 +43,8 @@
                 controller: "EditWebsiteController",
                 controllerAs: "model"
             })
+            
+            //page routes
             .when("/user/:uid/website/:wid/page", {
                 templateUrl: "views/page/page-list.view.client.html",
                 controller: "PageListController",
@@ -55,6 +60,8 @@
                 controller: "EditPageController",
                 controllerAs: "model"
             })
+            
+            //widget routes
             .when("/user/:uid/website/:wid/page/:pid/widget", {
                 templateUrl: "views/widget/widget-list.view.client.html",
                 controller: "WidgetListController",
@@ -67,12 +74,15 @@
                 
             })
             .when("/user/:uid/website/:wid/page/:pid/widget/:wgid", {
-                templateUrl: "views/widget/widget-edit.view.client.html"
+                templateUrl: "views/widget/widget-edit.view.client.html",
+                controller: "WidgetEditController",
+                controllerAs: "model"
             })
 
-
+            //default route - login
             .otherwise({
-                redirectTo: "views/user/login.view.client.html"
-            })
+                // redirectTo: "views/user/login.view.client.html"
+                redirectTo: "/login"
+            });
     }
 })();

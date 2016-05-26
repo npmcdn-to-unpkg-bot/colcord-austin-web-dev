@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text navbar-left pull-left">
-                    <a href="#/user/:uid/website/:wid/page/:pid/widget"
+                    <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-chevron-left pull-left ajc-nav-glyphicon"></span>
                     </a>
@@ -12,7 +12,7 @@
                     Widget Edit
                 </a>
                 <p class="navbar-text navbar-right">
-                    <a href="#/user/:uid/website/:wid/page/:pid/widget"
+                    <a ng-click="model.updateWidget()"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-ok pull-right ajc-nav-glyphicon"></span>
                     </a>
@@ -29,7 +29,7 @@
         <div class="form-group">
 
             <label for="widget-name">Name</label>
-            <input name="widget-name"
+            <input ng-model="model.widget.name"
                    id="widget-name"
                    type="text"
                    class="form-control"
@@ -39,7 +39,7 @@
 
         <div class="form-group">
             <label for="widget-text">Text</label>
-            <input name="widget-text"
+            <input ng-model="model.widget.text"
                    id="widget-text"
                    type="text"
                    class="form-control"
@@ -49,18 +49,19 @@
 
         <div class="form-group">
             <label for="widget-size">Size</label>
-            <select class="form-control"
+            <select ng-model="model.widget.size"
+                    class="form-control"
                     id="widget-size">
                 <option value="1">1</option>
                 <option value="2">2</option>
-                <option selected="selected" value="3">3</option>
+                <option value="3">3</option>
                 <option value="4">4</option>
 
             </select>
         </div>
 
-        <a  class="btn btn-block btn-danger"
-            href="#/user/:uid/website/:wid/page/:pid/widget">
+        <a  ng-click="model.deleteWidget()"
+            class="btn btn-block btn-danger">
             Delete
         </a>
     </form>
@@ -70,9 +71,8 @@
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-header">
-
                 <div class="navbar-text pull-right">
-                    <a href="#/user/:uid">
+                    <a href="#/user/{{model.uid}}">
                         <span class="glyphicon glyphicon-user ajc-nav-glyphicon"></span>
                     </a>
                 </div>
