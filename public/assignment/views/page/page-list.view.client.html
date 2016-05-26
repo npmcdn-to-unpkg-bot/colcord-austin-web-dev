@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text navbar-left pull-left">
-                    <a href="#/user/:uid/website"
+                    <a href="#/user/{{model.uid}}/website"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-chevron-left pull-left ajc-nav-glyphicon"></span>
                     </a>
@@ -13,7 +13,7 @@
                     Pages
                 </a>
                 <p class="navbar-text navbar-right">
-                    <a href="#/user/:uid/website/:wid/page/new"
+                    <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/new"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-plus pull-right ajc-nav-glyphicon"></span>
                     </a>
@@ -27,28 +27,13 @@
 
 <div class="container-fluid">
     <ul class="list-group">
-        <li class="list-group-item">
-            <a  href="#/user/:uid/website/:wid/page/:pid">
+        <li ng-repeat="page in model.pages"
+            class="list-group-item">
+            <a  href="#/user/{{model.uid}}/website/{{page.websiteId}}/page/{{page._id}}">
                 <span class="glyphicon glyphicon-cog pull-right"></span>
             </a>
-            <a  href="#/user/:uid/website/:wid/page/:pid/widget">
-                Blog Post 1
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a  href="#/user/:uid/website/:wid/page/:pid">
-                <span class="glyphicon glyphicon-cog pull-right"></span>
-            </a>
-            <a  href="#/user/:uid/website/:wid/page/:pid/widget">
-                Blog Post 2
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a  href="#/user/:uid/website/:wid/page/:pid">
-                <span class="glyphicon glyphicon-cog pull-right"></span>
-            </a>
-            <a  href="#/user/:uid/website/:wid/page/:pid/widget">
-                Blog Post 3
+            <a  href="#/user/{{model.uid}}/website/{{page.websiteId}}/page/{{page._id}}/widget">
+                {{page.name}}
             </a>
         </li>
     </ul>
@@ -61,7 +46,7 @@
             <div class="navbar-header">
 
                 <div class="navbar-text pull-right">
-                    <a href="#/user/:uid">
+                    <a href="#/user/{{model.uid}}">
                         <span class="glyphicon glyphicon-user ajc-nav-glyphicon"></span>
                     </a>
                 </div>
