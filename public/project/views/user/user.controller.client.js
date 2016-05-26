@@ -40,7 +40,7 @@
         function init() {
             for (var i in users) {
                 if (users[i]._id === uid) {
-                    vm.user = users[i];
+                    vm.user = angular.copy(users[i]);
                     index = i;
                 }
             }

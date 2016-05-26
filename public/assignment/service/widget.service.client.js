@@ -41,7 +41,7 @@
         
         function findWidgetById(widgetId) {
             for(var i in widgets) {
-                if(widgets[i]._id === widgetId) {
+                if(widgets[i]._id == widgetId) {
                     return widgets[i];
                 }
             }
@@ -50,7 +50,7 @@
 
         function updateWidget(widgetId, widget) {
             for(var i in widgets) {
-                if(widgets[i]._id === widgetId) {
+                if(widgets[i]._id == widgetId) {
                     widgets[i] = widget;
                 }
             }
@@ -58,7 +58,7 @@
 
         function deleteWidget(widgetId) {
             for(var i in widgets) {
-                if (widgets[i]._id === widgetId) {
+                if (widgets[i]._id == widgetId) {
                     widgets.splice(i, 1);
                 }
             }

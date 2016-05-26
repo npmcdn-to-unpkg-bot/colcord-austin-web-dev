@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text navbar-left pull-left">
-                    <a href="#/user/:uid/website"
+                    <a href="#/user/{{model.uid}}/website"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-chevron-left pull-left ajc-nav-glyphicon"></span>
                     </a>
@@ -12,7 +12,8 @@
                     New Website
                 </a>
                 <p class="navbar-text navbar-right">
-                    <a href="#/user/:uid/website"
+                    <a ng-click="model.createWebsite(name, description)"
+                       href="#/user/{{model.uid}}/website"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-ok pull-right ajc-nav-glyphicon"></span>
                     </a>
@@ -27,7 +28,7 @@
     <form>
         <div class="form-group">
             <label for="name">Website Name</label>
-            <input name="name"
+            <input ng-model="name"
                    id="name"
                    type="text"
                    class="form-control"
@@ -37,7 +38,7 @@
         <div class="form-group">
             <label for="description">Website Description</label>
             <textarea rows="3"
-                      name="description"
+                      ng-model="description"
                       id="description"
                       class="form-control"
                       placeholder="Description"></textarea>
@@ -51,7 +52,7 @@
             <div class="navbar-header">
 
                 <div class="navbar-text pull-right">
-                    <a href="#/user/:uid">
+                    <a href="#/user/{{model.uid}}">
                         <span class="glyphicon glyphicon-user ajc-nav-glyphicon"></span>
                     </a>
                 </div>

@@ -46,7 +46,7 @@
 
         function updatePage(pageId, page) {
             for(var i in pages) {
-                if(pages[i]._id === pageId) {
+                if(pages[i]._id == pageId) {
                     pages[i] = page;
                 }
             }
@@ -54,7 +54,7 @@
 
         function deletePage(pageId) {
             for(var i in pages) {
-                if (pages[i]._id === pageId) {
+                if (pages[i]._id == pageId) {
                     pages.splice(i, 1);
                 }
             }
