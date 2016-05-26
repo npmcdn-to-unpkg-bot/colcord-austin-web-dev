@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text navbar-left pull-left">
-                    <a href="#/user/:uid/website/:wid/page"
+                    <a href="#/user/{{model.uid}}/website/{{model.wid}}/page"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-chevron-left pull-left ajc-nav-glyphicon"></span>
                     </a>
@@ -12,136 +12,127 @@
                     Widgets
                 </a>
                 <p class="navbar-text navbar-right">
-                    <a href="#/user/:uid/website/:wid/page/:pid/widget/new"
+                    <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/new"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-plus pull-right ajc-nav-glyphicon"></span>
                     </a>
                 </p>
-
             </div>
         </div>
     </nav>
-
 </header>
 
 
 <div class="container-fluid">
-
-    <div class="ajc-widget">
-
-        <div class="ajc-widget-container">
-            <a  href="widget-header.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
+    <div ng-repeat="widget in model.widgets">
+        <!--HEADER-->
+        <div class="ajc-widget"
+             ng-if="widget.widgetType === 'HEADER'">
+            <div class="ajc-widget-container">
+                <a  href="widget-header.view.client.html">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+                <span class="glyphicon glyphicon-align-justify"></span>
+            </div>
+            <h1>{{widget.text}}</h1>
         </div>
 
-        <h1>Space</h1>
+        <!--IMAGE-->
+        <div class="ajc-widget"
+             ng-if="widget.widgetType === 'IMAGE'">
+            <div class="ajc-widget-container">
+                <a  href="widget-image.view.client.html">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+                <span class="glyphicon glyphicon-align-justify"></span>
+            </div>
+            <img class="img-responsive"
+                 ng-src="{{widget.url}}"/>
+        </div>
+
+        <!--YOUTUBE-->
+        <div class="ajc-widget"
+             ng-if="widget.widgetType === 'YOUTUBE'">
+            <div class="ajc-widget-container">
+                <a  href="widget-youtube.view.client.html">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+                <span class="glyphicon glyphicon-align-justify"></span>
+            </div>
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item"
+                        width="100%"
+                        ng-src="{{widget.url}}"
+                        frameborder="0"
+                        allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!--HTML-->
+
+        <div class="ajc-widget"
+             ng-if="widget.widgetType === 'HTML'">
+            <div class="ajc-widget-container">
+                <a  href="">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+                <span class="glyphicon glyphicon-align-justify"></span>
+            </div>
+
+            {{widget.text}}
+        </div>
+
+        <!--<div class="ajc-widget">-->
+            <!--<div class="ajc-widget-container">-->
+                <!--<a  href="widget-header.view.client.html">-->
+                    <!--<span class="glyphicon glyphicon-cog"></span>-->
+                <!--</a>-->
+                <!--<span class="glyphicon glyphicon-align-justify"></span>-->
+            <!--</div>-->
+
+            <!--<h4>SpaceX</h4>-->
+        <!--</div>-->
+
+        <!--<div class="ajc-widget">-->
+
+            <!--<div class="ajc-widget-container">-->
+                <!--<a  href="widget-youtube.view.client.html">-->
+                    <!--<span class="glyphicon glyphicon-cog"></span>-->
+                <!--</a>-->
+                <!--<span class="glyphicon glyphicon-align-justify"></span>-->
+            <!--</div>-->
+
+            <!--<div class="embed-responsive embed-responsive-16by9">-->
+                <!--<iframe class="embed-responsive-item"-->
+                        <!--width="100%"-->
+                        <!--src="https://www.youtube.com/embed/lEr9cPpuAx8"-->
+                        <!--frameborder="0"-->
+                        <!--allowfullscreen></iframe>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="ajc-widget">-->
+            <!--<div class="ajc-widget-container">-->
+                <!--<a  href="">-->
+                    <!--<span class="glyphicon glyphicon-cog"></span>-->
+                <!--</a>-->
+                <!--<span class="glyphicon glyphicon-align-justify"></span>-->
+            <!--</div>-->
+            <!--<p>SpaceX landed its first rocket successfully-->
+                <!--at Landing Zone 1, at Cape Canaveral-->
+                <!--<a href="http://gizmodo.com/spacex-has-sent-a-rocket-to-space-and-back-to-earth-1749192599#_ga=1.210112213.1366711378.1442769390">-->
+                    <!--on December 22nd, 2015-->
+                <!--</a>.-->
+                <!--The second rocket touched down on the ocean barge named-->
+                <!--<em>Of Course I Still Love You</em>-->
+                <!--<a href="http://gizmodo.com/spacexs-falcon-9-rocket-just-made-the-first-ocean-barge-1769942283#_ga=1.11429236.1366711378.1442769390">on April 8th, 2016</a>-->
+                <!--. And the third one successfully landed on the same drone-->
+                <!--raft-->
+                <!--<a href="http://gizmodo.com/spacex-just-made-its-fastest-succesful-rocket-landing-o-1775060445#_ga=1.11429236.1366711378.1442769390">-->
+                    <!--on May 10th, 2016</a>.-->
+            <!--</p>-->
+        <!--</div>-->
     </div>
-
-    <div class="ajc-widget">
-        <div class="ajc-widget-container">
-            <a  href="widget-header.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-
-        <h4>Picture of Space</h4>
-    </div>
-
-    <div class="ajc-widget">
-        <div class="ajc-widget-container">
-            <a  href="widget-image.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-
-        <img class="img-responsive"
-             src="https://i.kinja-img.com/gawker-media/image/upload/jpizjvplpohqzwhqlcd4.JPG"/>
-
-    </div>
-
-    <div class="ajc-widget">
-        <div class="ajc-widget-container">
-            <a  href="">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-
-        <p class="first-text">
-            Yesterday, the House Science, Space and Technology
-            Committee met with NASA and leading aerospace
-            companies to discuss future deep space habitats.
-            As Congressional hearings go, it sounds like an
-            enthralling topic. But the most interesting part
-            of the meeting was not a spirited debate over the
-            merits of
-            <a href="http://gizmodo.com/nasas-attaching-an-expandable-space-house-to-the-iss-1767575617">
-                expandable space houses
-            </a>
-            versus
-            <a href="http://gizmodo.com/nasa-wants-to-build-a-magnetic-force-field-and-a-deep-s-1776542411">
-                magnetic force fields
-            </a>
-            : it was Andy Weir.
-            <br>
-        </p>
-    </div>
-
-    <div class="ajc-widget">
-        <div class="ajc-widget-container">
-            <a  href="widget-header.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-
-        <h4>SpaceX</h4>
-    </div>
-
-    <div class="ajc-widget">
-
-        <div class="ajc-widget-container">
-            <a  href="widget-youtube.view.client.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-
-        <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item"
-                    width="100%"
-                    src="https://www.youtube.com/embed/lEr9cPpuAx8"
-                    frameborder="0"
-                    allowfullscreen></iframe>
-        </div>
-    </div>
-
-    <div class="ajc-widget">
-        <div class="ajc-widget-container">
-            <a  href="">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <p>SpaceX landed its first rocket successfully
-            at Landing Zone 1, at Cape Canaveral
-            <a href="http://gizmodo.com/spacex-has-sent-a-rocket-to-space-and-back-to-earth-1749192599#_ga=1.210112213.1366711378.1442769390">
-                on December 22nd, 2015
-            </a>.
-            The second rocket touched down on the ocean barge named
-            <em>Of Course I Still Love You</em>
-            <a href="http://gizmodo.com/spacexs-falcon-9-rocket-just-made-the-first-ocean-barge-1769942283#_ga=1.11429236.1366711378.1442769390">on April 8th, 2016</a>
-            . And the third one successfully landed on the same drone
-            raft
-            <a href="http://gizmodo.com/spacex-just-made-its-fastest-succesful-rocket-landing-o-1775060445#_ga=1.11429236.1366711378.1442769390">
-                on May 10th, 2016</a>.
-        </p>
-    </div>
-
 </div>
 
 
@@ -161,7 +152,7 @@
                 </div>
 
                 <div class="navbar-text pull-right">
-                    <a href="#/user/:uid">
+                    <a href="#/user/{{model.uid}}">
                         <span class="glyphicon glyphicon-user ajc-nav-glyphicon"></span>
                     </a>
                 </div>
