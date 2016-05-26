@@ -1,29 +1,3 @@
-<header>
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <p class="navbar-text navbar-left pull-left">
-                    <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget"
-                       class="navbar-link">
-                        <span class="glyphicon glyphicon-chevron-left pull-left ajc-nav-glyphicon"></span>
-                    </a>
-                </p>
-                <a class="navbar-brand">
-                    Widget Edit
-                </a>
-                <p class="navbar-text navbar-right">
-                    <a ng-click="model.updateWidget()"
-                       class="navbar-link">
-                        <span class="glyphicon glyphicon-ok pull-right ajc-nav-glyphicon"></span>
-                    </a>
-                </p>
-
-            </div>
-        </div>
-    </nav>
-
-</header>
-
 <div class="container-fluid">
     <form>
         <div class="form-group">
@@ -33,8 +7,7 @@
                    id="widget-name"
                    type="text"
                    class="form-control"
-                   placeholder="My Youtube Video Name"
-                   value="SpaceX Landing"/>
+                   placeholder="My Youtube Video Name"/>
         </div>
 
         <div class="form-group">
@@ -43,8 +16,7 @@
                    id="widget-text"
                    type="text"
                    class="form-control"
-                   placeholder="My Youtube Video Text"
-                   value="Cool rocket landing"/>
+                   placeholder="My Youtube Video Text"/>
         </div>
 
         <div class="form-group">
@@ -53,8 +25,7 @@
                    id="widget-url"
                    type="text"
                    class="form-control"
-                   placeholder="https://youtu.be/xxxxxxxxxx"
-                   value="https://www.youtube.com/embed/lEr9cPpuAx8"/>
+                   placeholder="https://youtu.be/xxxxxxxxxx"/>
         </div>
 
         <div class="form-group">
@@ -72,18 +43,3 @@
         </a>
     </form>
 </div>
-
-<footer>
-    <nav class="navbar navbar-default navbar-fixed-bottom">
-        <div class="container-fluid">
-            <div class="navbar-header">
-
-                <div class="navbar-text pull-right">
-                    <a href="#/user/{{model.uid}}">
-                        <span class="glyphicon glyphicon-user ajc-nav-glyphicon"></span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-</footer>
