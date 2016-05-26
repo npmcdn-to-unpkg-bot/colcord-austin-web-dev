@@ -24,6 +24,7 @@
 
         function deletePage() {
             PageService.deletePage(vm.pid);
+            $location.url("/user/"+ vm.uid + "/website/" + vm.wid + "/page");
         }
         
     }

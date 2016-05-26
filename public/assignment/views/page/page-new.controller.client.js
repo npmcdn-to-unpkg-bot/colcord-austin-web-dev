@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("NewPageController", NewPageController);
 
-    function NewPageController($routeParams, PageService) {
+    function NewPageController($location, $routeParams, PageService) {
         var vm = this;
         vm.createPage = createPage;
 
@@ -19,8 +19,8 @@
                 websiteId: vm.wid,
                 title: title
             };
-
             PageService.createPage(vm.wid, newPage);
+            $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
         }
 
     }

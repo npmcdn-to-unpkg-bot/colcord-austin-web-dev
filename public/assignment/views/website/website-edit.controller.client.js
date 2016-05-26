@@ -23,6 +23,7 @@
 
         function deleteWebsite() {
             WebsiteService.deleteWebsite(vm.wid);
+            $location.url("/user/"+ vm.uid + "/website");
         }
     }
 })();

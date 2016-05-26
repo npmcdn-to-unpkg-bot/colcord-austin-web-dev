@@ -13,7 +13,6 @@
                 </a>
                 <p class="navbar-text navbar-right">
                     <a ng-click="model.updateWebsite()"
-                        href="#/user/{{model.uid}}/website"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-ok pull-right ajc-nav-glyphicon"></span>
                     </a>
@@ -45,8 +44,7 @@
         </div>
 
         <a  class="btn btn-block btn-danger"
-            ng-click="model.deleteWebsite()"
-            href="#/user/{{model.uid}}/website">
+            ng-click="model.deleteWebsite()">
             Delete
         </a>
     </form>
