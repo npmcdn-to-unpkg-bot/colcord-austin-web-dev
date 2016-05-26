@@ -47,7 +47,8 @@
         function updatePage(pageId, page) {
             for(var i in pages) {
                 if(pages[i]._id == pageId) {
-                    pages[i] = page;
+                    pages[i].name = page.name;
+                    pages[i].title = page.title;
                 }
             }
         }
