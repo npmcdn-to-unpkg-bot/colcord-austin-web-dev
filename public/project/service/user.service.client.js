@@ -58,6 +58,7 @@
                     users[i].firstName = user.firstName;
                     users[i].lastName = user.lastName;
                     users[i].email = user.email;
+                    users[i].password = user.password;
                     return true;
                 }
             }

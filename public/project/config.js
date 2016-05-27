@@ -25,7 +25,7 @@
             })
             .when("/user/:uid/edit", {
                 templateUrl: "views/user/employee-profile-edit.view.client.html",
-                controller: "ProfileController",
+                controller: "ProfileEditController",
                 controllerAs: "model"
             })
             .when("/user/:uid/prep/prep-list", {

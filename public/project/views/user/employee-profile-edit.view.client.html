@@ -19,23 +19,21 @@
 
     <form>
         <div class="form-group">
-            <label for="firstname">First Name</label>
-            <input ng-model="model.user.firstname"
+            <label for="firstName">First Name</label>
+            <input ng-model="model.user.firstName"
                    type="text"
-                   id="firstname"
+                   id="firstName"
                    class="form-control"
-                   placeholder="first name"
-                   value="Joe"/>
+                   placeholder="first name"/>
         </div>
 
         <div class="form-group">
-            <label for="lastname">Last Name</label>
-            <input ng-model="model.user.lastname"
+            <label for="lastName">Last Name</label>
+            <input ng-model="model.user.lastName"
                    type="text"
-                   id="lastname"
+                   id="lastName"
                    class="form-control"
-                   placeholder="last name"
-                   value="Smith"/>
+                   placeholder="last name"/>
         </div>
 
         <div class="form-group">
@@ -44,34 +42,35 @@
                    type="email"
                    id="email"
                    class="form-control"
-                   placeholder="email address"
-                   value="joe.smith@example.com"/>
+                   placeholder="email address"/>
         </div>
 
 
         <div class="form-group">
-            <input ng-model="currentpassword"
+            <input ng-model="current_pass"
                    type="password"
                    class="form-control"
                    placeholder="current password"/>
         </div>
 
         <div class="form-group">
-            <input type="password"
+            <input ng-model="new_pass"
+                   type="password"
                    class="form-control"
                    placeholder="new password"/>
         </div>
 
         <div class="form-group">
-            <input type="password"
+            <input ng-model="verify_pass"
+                   type="password"
                    class="form-control"
                    placeholder="verify new password"/>
         </div>
 
-        <h6>Restaurant ID: {{model.user.restaurantid}}</h6>
+        <h6>Restaurant ID: {{model.user.restaurantId}}</h6>
 
         <a  class="btn btn-block btn-primary"
-            ng-click="model.updateProfile(currentpassword, newpassword, verifynewpassword)">
+            ng-click="model.updateUser(current_pass, new_pass, verify_pass)">
             Update Profile
         </a>
 
@@ -89,19 +88,19 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#/user/:uid/recipe/recipe-book"
+                    <a href="#/user/{{model.uid}}/recipe/recipe-book"
                        class="navbar-link">
                         <span class="glyphicon glyphicon glyphicon glyphicon-book"></span>
                     </a>
                 </p>
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#/user/:uid/prep/prep-list"
+                    <a href="#/user/{{model.uid}}/prep/prep-list"
                        class="navbar-link">
                         <span class="glyphicon glyphicon glyphicon-list-alt"></span>
                     </a>
                 </p>
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#user/:uid/prep/timer-list"
+                    <a href="#user/{{model.uid}}/prep/timer-list"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-time"></span>
                     </a>
