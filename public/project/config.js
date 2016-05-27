@@ -40,7 +40,9 @@
                 templateUrl: "views/recipe/recipe-new.view.client.html"
             })
             .when("/user/:uid/recipe/recipe-book", {
-                templateUrl: "views/recipe/recipe-book.view.client.html"
+                templateUrl: "views/recipe/recipe-book.view.client.html",
+                controller: "RecipeBookController",
+                controllerAs: "model"
             })
             .when("/user/:uid/recipe/:rid", {
                 templateUrl: "views/recipe/recipe-view.view.client.html"
@@ -53,6 +55,6 @@
             .otherwise({
                 // redirectTo: "views/user/login.view.client.html"
                 redirectTo: "/login"
-            });    
+            });
     }
 })();

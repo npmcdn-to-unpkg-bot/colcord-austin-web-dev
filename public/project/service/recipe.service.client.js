@@ -19,7 +19,9 @@
                     "1/4 cup Dijon mustard"
                 ],
                 directions: "Cook chicken breast fully. Steam cooked chicken breast for 2 minutes. Cut chicken breast in half. Place Cheddar Cheese, chicken breast, and avocado in Ciabatta. Panini press for 2 minutes",
-                restaurantId: 12345},
+                restaurantId: 12345,
+                recent: true
+            },
             {_id: "543",
                 name: "Beef Broccoli",
                 prepTime: 20,
@@ -34,7 +36,9 @@
                     "1/4 cup onion"
                 ],
                 directions: "Cook beef for a while, add into soup form, cook broccoli and beef in frying pan, mix with soup stuff.",
-                restaurantId: 12345},
+                restaurantId: 12345,
+                recent: true
+            },
             {_id: "998",
                 name: "Beef Chili",
                 prepTime: 30,
@@ -48,7 +52,9 @@
                     "4 cups water"
                 ],
                 directions: "Cook it all together",
-                restaurantId: 12345},
+                restaurantId: 12345,
+                recent: false
+            },
             {_id: "909",
                 name: "Chicken Breast",
                 prepTime: 25,
@@ -61,7 +67,9 @@
                     "4 tbsp olive oil"
                 ],
                 directions: "Cook chicken breast fully at 350 degrees Farenheit, let sit for 15 minutes.",
-                restaurantId: 12345}
+                restaurantId: 12345,
+                recent: true
+            }
         ];
 
 
