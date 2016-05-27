@@ -5,18 +5,20 @@
     
     function Config($routeProvider) {
         $routeProvider
-            .when("/", {
-                templateUrl: "views/user/login.view.client.html",
-                controller: "LoginController",
-                controllerAs: "model"
-            })
+            // .when("/", {
+            //     templateUrl: "views/user/login.view.client.html",
+            //     controller: "LoginController",
+            //     controllerAs: "model"
+            // })
             .when("/login", {
                 templateUrl: "views/user/login.view.client.html",
                 controller: "LoginController",
                 controllerAs: "model"
             })
             .when("/register", {
-                templateUrl: "views/user/register.view.client.html"
+                templateUrl: "views/user/register.view.client.html",
+                controller: "RegisterController",
+                controllerAs: "model"
             })
             .when("/user/:uid", {
                 templateUrl: "views/user/employee-profile.view.client.html",
@@ -47,6 +49,10 @@
                 templateUrl: "views/recipe/recipe-edit.view.client.html"
             })
 
-            .otherwise({redirectTo: "views/user/login.view.client.html"})
+            //default route - login
+            .otherwise({
+                // redirectTo: "views/user/login.view.client.html"
+                redirectTo: "/login"
+            });    
     }
 })();
