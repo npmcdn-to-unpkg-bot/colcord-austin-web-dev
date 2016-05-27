@@ -11,12 +11,12 @@
                 type: "sandwich",
                 description: "A warm chicken puff with cheddar cheese with avocado on ciabatta bread",
                 ingredients: [
-                    "1 1/2 cups shredded rotisserie chicken",
-                    "1 1/2 cups grated cheese",
-                    "1 cup frozen avocado",
-                    "2 sheets (one 17.25-ounce package) frozen puff pastry, thawed",
-                    "1 large egg, beaten",
-                    "1/4 cup Dijon mustard"
+                    ["Rotisserie Chicken", 1.5, "Cups"],
+                    ["Cheddar Cheese", 1.5, "Cups"],
+                    ["Avocado", 1, "Cup"],
+                    ["Frozen Puff Pastry", 2, "Sheets (17.25oz package), Thawed"],
+                    ["Large Egg", 1, "Cup, Beaten"],
+                    ["Dijon Mustard", 0.25, "Cup"]
                 ],
                 directions: "Cook chicken breast fully. PUFF - Steam cooked chicken breast for 2 minutes. Cut chicken breast in half. Place Cheddar Cheese, chicken breast, and avocado in Ciabatta. Panini press for 2 minutes",
                 restaurantId: 12345,

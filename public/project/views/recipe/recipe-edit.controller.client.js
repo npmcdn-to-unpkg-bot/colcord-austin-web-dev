@@ -19,7 +19,7 @@
 
         function updateRecipe() {
             RecipeService.updateRecipe(vm.rid, vm.recipe);
-            $location.url("/user/"+ vm.uid + "/recipe/recipe-book");
+            $location.url("/user/"+ vm.uid + "/recipe/" + vm.rid);
         }
 
         function deleteRecipe() {
