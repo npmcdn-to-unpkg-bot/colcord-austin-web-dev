@@ -48,7 +48,9 @@
                 templateUrl: "views/recipe/recipe-view.view.client.html"
             })
             .when("/user/:uid/recipe/:rid/edit", {
-                templateUrl: "views/recipe/recipe-edit.view.client.html"
+                templateUrl: "views/recipe/recipe-edit.view.client.html",
+                controller: "RecipeEditController",
+                controllerAs: "model"
             })
 
             //default route - login

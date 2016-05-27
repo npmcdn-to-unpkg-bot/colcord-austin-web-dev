@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text navbar-left pull-left">
-                    <a href="#/user/:uid/recipe/:rid"
+                    <a href="#/user/{{model.uid}}/recipe/{{model.rid}}"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-chevron-left ajc-nav-glyphicon"></span>
                     </a>
@@ -20,27 +20,29 @@
     <form>
         <div class="form-group">
             <label for="recipename">Recipe Name</label>
-            <input type="text"
+            <input ng-model="model.recipe.name"
+                   type="text"
                    id="recipename"
                    class="form-control"
-                   placeholder="recipe name"
-                   value="Chicken Panini"/>
+                   placeholder="recipe name"/>
         </div>
 
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea rows="3"
+            <textarea ng-model="model.recipe.description"
+                      rows="3"
                       id="description"
                       class="form-control"
-                      placeholder="Lorem ipsum dolor sit amet...">A warm chicken panini with cheddar cheese with avocado on ciabatta bread</textarea>
+                      placeholder="Lorem ipsum dolor sit amet..."></textarea>
         </div>
 
         <div class="form-group">
             <label for="type">Type</label>
-            <select class="form-control"
+            <select ng-model="model.recipe.type"
+                    class="form-control"
                     id="type">
                 <option value="soup">Soup</option>
-                <option selected="selected" value="sandwitch">Sandwitch</option>
+                <option value="sandwitch">Sandwitch</option>
                 <option value="salad">Salad</option>
                 <option value="side">Side Dish</option>
 
@@ -49,12 +51,12 @@
 
         <div class="form-group">
             <label for="preptime">Prep Time (minutes)</label>
-            <input type="number"
+            <input ng-model="model.recipe.prepTime"
+                   type="number"
                    id="preptime"
                    min="0"
                    class="form-control"
-                   placeholder="prep time"
-                   value="5"/>
+                   placeholder="prep time"/>
         </div>
 
         <div class="row">
@@ -97,10 +99,11 @@
 
                 <div class="form-group">
                     <label for="directions">Directions</label>
-                    <textarea rows="5"
+                    <textarea ng-model="model.recipe.directions"
+                              rows="5"
                               id="directions"
                               class="form-control"
-                              placeholder="Lorem ipsum dolor sit amet...">Cook chicken breast fully. Steam cooked chicken breast for 2 minutes. Cut chicken breast in half. Place Cheddar Cheese, chicken breast, and avocado in Ciabatta. Panini press for 2 minutes...</textarea>
+                              placeholder="Lorem ipsum dolor sit amet..."></textarea>
                 </div>
             </div>
         </div>
@@ -108,11 +111,11 @@
         <hr>
 
         <a  class="btn btn-block btn-success"
-            href="#/user/:uid/recipe/:rid">
+            href="#/user/{{model.uid}}/recipe/{{model.rid}}">
             Save Changes
         </a>
         <a  class="btn btn-block btn-danger"
-            href="#/user/:uid/recipe/recipe-book">
+            href="#/user/{{model.uid}}/recipe/recipe-book">
             Delete
         </a>
 
@@ -126,25 +129,25 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#/user/:uid/recipe/recipe-book"
+                    <a href="#/user/{{model.uid}}/recipe/recipe-book"
                        class="navbar-link">
                         <span class="glyphicon glyphicon glyphicon glyphicon-book"></span>
                     </a>
                 </p>
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#/user/:uid/prep/prep-list"
+                    <a href="#/user/{{model.uid}}/prep/prep-list"
                        class="navbar-link">
                         <span class="glyphicon glyphicon glyphicon-list-alt"></span>
                     </a>
                 </p>
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#user/:uid/prep/timer-list"
+                    <a href="#user/{{model.uid}}/prep/timer-list"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-time"></span>
                     </a>
                 </p>
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#/user/:uid"
+                    <a href="#/user/{{model.uid}}"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-user"></span>
                     </a>

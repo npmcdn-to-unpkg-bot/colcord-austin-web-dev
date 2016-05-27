@@ -9,7 +9,7 @@
                 name: "Chicken Puff Pastry",
                 prepTime: 10,
                 type: "sandwich",
-                description: "A warm chicken panini with cheddar cheese with avocado on ciabatta bread",
+                description: "A warm chicken puff with cheddar cheese with avocado on ciabatta bread",
                 ingredients: [
                     "1 1/2 cups shredded rotisserie chicken",
                     "1 1/2 cups grated cheese",
@@ -18,7 +18,7 @@
                     "1 large egg, beaten",
                     "1/4 cup Dijon mustard"
                 ],
-                directions: "Cook chicken breast fully. Steam cooked chicken breast for 2 minutes. Cut chicken breast in half. Place Cheddar Cheese, chicken breast, and avocado in Ciabatta. Panini press for 2 minutes",
+                directions: "Cook chicken breast fully. PUFF - Steam cooked chicken breast for 2 minutes. Cut chicken breast in half. Place Cheddar Cheese, chicken breast, and avocado in Ciabatta. Panini press for 2 minutes",
                 restaurantId: 12345,
                 recent: true
             },
