@@ -37,7 +37,9 @@
                 templateUrl: "views/timer/timer-list.view.client.html"
             })
             .when("/user/:uid/recipe/new", {
-                templateUrl: "views/recipe/recipe-new.view.client.html"
+                templateUrl: "views/recipe/recipe-new.view.client.html",
+                controller: "RecipeNewController",
+                controllerAs: "model"
             })
             .when("/user/:uid/recipe/recipe-book", {
                 templateUrl: "views/recipe/recipe-book.view.client.html",

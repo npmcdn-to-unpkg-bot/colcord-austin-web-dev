@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text navbar-left pull-left">
-                    <a href="#/user/:uid/recipe/recipe-book"
+                    <a href="#/user/{{model.uid}}/recipe/recipe-book"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-chevron-left ajc-nav-glyphicon"></span>
                     </a>
@@ -12,7 +12,7 @@
                     New Recipe
                 </a>
                 <p class="navbar-text navbar-left pull-right">
-                    <a href="#/user/:uid/recipe/recipe-book"
+                    <a ng-click="model.createRecipe()"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-ok ajc-nav-glyphicon"></span>
                     </a>
@@ -23,6 +23,11 @@
 </header>
 
 <div class="container-fluid">
+
+    <div ng-show="model.error"
+         class="alert alert-danger">
+        {{model.error}}
+    </div>
 
     <!-- http://stackoverflow.com/questions/24682421/put-search-icon-near-textbox-using-bootstrap -->
     <div class="form-group has-feedback">
@@ -35,7 +40,8 @@
     <form>
         <div class="form-group">
             <label for="recipename">Recipe Name</label>
-            <input type="text"
+            <input ng-model="model.recipe.name"
+                   type="text"
                    id="recipename"
                    class="form-control"
                    placeholder="Recipe name"/>
@@ -43,7 +49,8 @@
 
         <div class="form-group">
             <label for="description">Description</label>
-                <textarea rows="3"
+                <textarea ng-model="model.recipe.description"
+                          rows="3"
                           id="description"
                           class="form-control"
                           placeholder="This is my new recipe..."></textarea>
@@ -51,7 +58,8 @@
 
         <div class="form-group">
             <label for="type">Type</label>
-            <select class="form-control"
+            <select ng-model="model.recipe.type"
+                    class="form-control"
                     id="type">
                 <option value="soup">Soup</option>
                 <option value="sandwitch">Sandwitch</option>
@@ -63,7 +71,8 @@
 
         <div class="form-group">
             <label for="preptime">Prep Time (minutes)</label>
-            <input type="number"
+            <input ng-model="model.recipe.prepTime"
+                   type="number"
                    id="preptime"
                    min="0"
                    class="form-control"
@@ -95,7 +104,8 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label for="directions">Directions</label>
-                        <textarea rows="5"
+                        <textarea ng-model="model.recipe.directions"
+                                  rows="5"
                                   id="directions"
                                   class="form-control"
                                   placeholder="This is how to cook my new recipe..."></textarea>
@@ -104,13 +114,13 @@
         </div>
 
         <a  class="btn btn-block btn-success"
-            href="#/user/:uid/recipe/recipe-book">
-            Save Changes
+            ng-click="model.createRecipe()">
+            Save
         </a>
 
         <a  class="btn btn-block btn-danger"
-            href="#/user/:uid/recipe/recipe-book">
-            Delete
+            href="#/user/{{model.uid}}/recipe/recipe-book">
+            Cancel
         </a>
 
     </form>
@@ -122,25 +132,25 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#/user/:uid/recipe/recipe-book"
+                    <a href="#/user/{{model.uid}}/recipe/recipe-book"
                        class="navbar-link">
                         <span class="glyphicon glyphicon glyphicon glyphicon-book"></span>
                     </a>
                 </p>
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#/user/:uid/prep/prep-list"
+                    <a href="#/user/{{model.uid}}/prep/prep-list"
                        class="navbar-link">
                         <span class="glyphicon glyphicon glyphicon-list-alt"></span>
                     </a>
                 </p>
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#user/:uid/prep/timer-list"
+                    <a href="#user/{{model.uid}}/prep/timer-list"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-time"></span>
                     </a>
                 </p>
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#/user/:uid"
+                    <a href="#/user/{{model.uid}}"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-user"></span>
                     </a>
