@@ -17,15 +17,16 @@
                 completed: [
                     {recipeId: 909, important: true, signer: "JW", timeStamp: (new Date).toDateString()}
                 ]},
-            {_id: "444", restaurantId: 12345, toDo: [], inProgress: [], completed: []}
+            {_id: "444", restaurantId: 44412, toDo: [], inProgress: [], completed: []}
         ];
 
         var api = {
             createPrepList: createPrepList,
             findPrepListById: findPrepListById,
             findPrepListByRestaurantId: findPrepListByRestaurantId,
+            addToPrepList: addToPrepList,
             updatePrepList: updatePrepList,
-            deletePrepList: deletePrepList,
+            deletePrepList: deletePrepList
         };
         return api;
 
@@ -49,6 +50,14 @@
                 }
             }
             return null;
+        }
+
+        function addToPrepList(prepListId, prepItem) {
+            for(var i in prepLists) {
+                if(prepLists[i]._id == prepListId) {
+                    prepLists[i].toDo.push(prepItem);
+                }
+            }
         }
 
         function updatePrepList(prepListId, prepList) {
