@@ -23,7 +23,7 @@
         }
 
         function deleteRecipe() {
-            WebsiteService.deleteRecipe(vm.rid);
+            RecipeService.deleteRecipe(vm.rid);
             $location.url("/user/"+ vm.uid + "/recipe/recipe-book");
         }
     }

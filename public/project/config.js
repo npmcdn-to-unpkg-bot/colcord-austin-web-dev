@@ -45,7 +45,9 @@
                 controllerAs: "model"
             })
             .when("/user/:uid/recipe/:rid", {
-                templateUrl: "views/recipe/recipe-view.view.client.html"
+                templateUrl: "views/recipe/recipe-view.view.client.html",
+                controller: "RecipeViewController",
+                controllerAs: "model"
             })
             .when("/user/:uid/recipe/:rid/edit", {
                 templateUrl: "views/recipe/recipe-edit.view.client.html",

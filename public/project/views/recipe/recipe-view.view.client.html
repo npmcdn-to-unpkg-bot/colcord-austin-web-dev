@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text navbar-left pull-left">
-                    <a href="#/user/:uid/recipe/recipe-book"
+                    <a href="#/user/{{model.uid}}/recipe/recipe-book"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-chevron-left ajc-nav-glyphicon"></span>
                     </a>
@@ -23,18 +23,17 @@
 </header>
 
 <div class="container-fluid">
-    <h5>Chicken Panini</h5>
+    <h5>{{model.recipe.name}}</h5>
     <div class="row">
         <div class="col-xs-6">
-            <p><b>Prep Time (min):</b> 10</p>
+            <p><b>Prep Time (min):</b> {{model.recipe.prepTime}}</p>
         </div>
         <div class="col-xs-6">
-            <p><b>Type:</b> Sandwich</p>
+            <p><b>Type:</b> {{model.recipe.type}}</p>
         </div>
     </div>
     <p>
-        A warm chicken panini with cheddar cheese
-        with avocado on ciabatta bread
+        {{model.recipe.description}}
     </p>
     <hr>
 
@@ -46,8 +45,6 @@
                     <h5>Ingredients</h5>
                 </div>
                 <div class="col-xs-4">
-
-
                     <div class="form-group">
                         <label for="multiplier">Multiplier</label>
                         <input type="number"
@@ -58,10 +55,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -72,25 +65,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Chicken Breast</td>
-                            <td>1</td>
-                            <td>Diced</td>
-                        </tr>
-                        <tr>
-                            <td>Cheddar Cheese</td>
-                            <td>1</td>
-                            <td>Sliced</td>
-                        </tr>
-                        <tr>
-                            <td>Avocado</td>
-                            <td>1/4</td>
-                            <td>Sliced</td>
-                        </tr>
-                        <tr>
-                            <td>Ciabatta Bread</td>
-                            <td>1</td>
-                            <td></td>
+
+                        <tr ng-repeat="ingredient in model.recipe.ingredients">
+                            <td>{{ ingredient[0] }}</td>
+                            <td>{{ ingredient[1] }}</td>
+                            <td>{{ ingredient[2] }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -101,16 +80,7 @@
         <div class="col-sm-6">
 
             <h5>Directions</h5>
-            <ol>
-                <li>Cook chicken breast fully</li>
-                <li>Steam cooked chicken breast for 2 minutes</li>
-                <li>Cut chicken breast in half</li>
-                <li>Place
-                    Cheddar Cheese, chicken breast,
-                    and avocado in Ciabatta</li>
-                <li>Panini press
-                    for 2 minutes</li>
-            </ol>
+            <p>{{model.recipe.directions}}</p>
 
             <div class="row">
                 <div class="col-xs-6">
@@ -132,7 +102,7 @@
         </div>
     </div>
     <a  class="btn btn-block btn-danger"
-        href="#/user/:uid/recipe/:rid/edit">
+        href="#/user/{{model.uid}}/recipe/{{model.rid}}/edit">
         Edit Recipe
     </a>
 
@@ -144,25 +114,25 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#/user/:uid/recipe/recipe-book"
+                    <a href="#/user/{{model.uid}}/recipe/recipe-book"
                        class="navbar-link">
                         <span class="glyphicon glyphicon glyphicon glyphicon-book"></span>
                     </a>
                 </p>
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#/user/:uid/prep/prep-list"
+                    <a href="#/user/{{model.uid}}/prep/prep-list"
                        class="navbar-link">
                         <span class="glyphicon glyphicon glyphicon-list-alt"></span>
                     </a>
                 </p>
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#user/:uid/prep/timer-list"
+                    <a href="#user/{{model.uid}}/prep/timer-list"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-time"></span>
                     </a>
                 </p>
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#/user/:uid"
+                    <a href="#/user/{{model.uid}}"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-user"></span>
                     </a>
