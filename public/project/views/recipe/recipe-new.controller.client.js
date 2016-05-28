@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module("Prepster")
+        .module("Prepper")
         .controller("RecipeNewController", RecipeNewController);
 
     function RecipeNewController($location, $routeParams, RecipeService, UserService) {

@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module("Prepster")
+        .module("Prepper")
         .controller("RecipeBookController", RecipeBookController);
 
     function RecipeBookController($routeParams, RecipeService, UserService, PrepService) {

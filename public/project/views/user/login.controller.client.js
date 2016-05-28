@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module("Prepster")
+        .module("Prepper")
         .controller("LoginController", LoginController);
 
     function LoginController($location, UserService) {

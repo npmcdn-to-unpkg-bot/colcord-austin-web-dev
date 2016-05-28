@@ -1,3 +1,3 @@
 (function() {
-    angular.module("Prepster", ["ngRoute"]);
+    angular.module("Prepper", ["ngRoute"]);
 })();

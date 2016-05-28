@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module("Prepster")
+        .module("Prepper")
         .factory("PrepService", PrepService);
 
     function PrepService() {

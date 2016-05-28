@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module("Prepster")
+        .module("Prepper")
         .controller("ProfileEditController", ProfileEditController);
 
     function ProfileEditController($location, $routeParams, UserService) {

@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module("Prepster")
+        .module("Prepper")
         .config(Config);
     
     function Config($routeProvider) {
@@ -36,7 +36,9 @@
                 controllerAs: "model"
             })
             .when("/user/:uid/prep/timer-list", {
-                templateUrl: "views/timer/timer-list.view.client.html"
+                templateUrl: "views/timer/timer-list.view.client.html",
+                controller: "TimerListController",
+                controllerAs: "model"
             })
             .when("/user/:uid/recipe/new", {
                 templateUrl: "views/recipe/recipe-new.view.client.html",

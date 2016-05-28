@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module("Prepster")
+        .module("Prepper")
         .factory("RecipeService", RecipeService);
 
     function RecipeService() {
@@ -87,7 +87,7 @@
         function findRecipesByRestaurant(restaurantId) {
             var result = [];
             for(var i in recipes) {
-                if(recipes[i].restaurantId === restaurantId) {
+                if(recipes[i].restaurantId == restaurantId) {
                     result.push(recipes[i]);
                 }
             }
