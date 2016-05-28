@@ -33,7 +33,7 @@
                 <li class="list-group-item"
                     ng-repeat="recipe in model.recipeBook"
                     ng-if="recipe.recent">
-                    <a>
+                    <a ng-click="model.addToPrepToDo(recipe._id)">
                         <span class="glyphicon glyphicon-plus-sign pull-right ajc-list-glyphicon"></span>
                     </a>
                     <a  href="#/user/{{model.uid}}/recipe/{{recipe._id}}/edit">
