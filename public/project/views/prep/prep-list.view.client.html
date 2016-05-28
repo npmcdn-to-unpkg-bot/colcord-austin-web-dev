@@ -16,24 +16,14 @@
         <div class="col-sm-4">
             <h5>To-Do</h5>
             <ul class="list-group">
-                <li class="list-group-item">
+                <li ng-repeat="recipe in model.prepList.toDo"
+                    class="list-group-item">
                     <span class="glyphicon glyphicon glyphicon-align-justify pull-right ajc-list-glyphicon"></span>
-                    <a  href="#/user/:uid/recipe/:rid">
-                        Buffalo Chicken Wrap
+                    <a  href="#/user/{{model.uid}}/recipe/{{model.getRecipeFromTask(recipe)._id}}">
+                        {{model.getRecipeFromTask(recipe).name}}
                     </a>
-                    <span class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
-                </li>
-                <li class="list-group-item">
-                    <span class="glyphicon glyphicon glyphicon-align-justify pull-right ajc-list-glyphicon"></span>
-                    <a  href="#/user/:uid/recipe/:rid">
-                        Chicken Noodle Soup
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <span class="glyphicon glyphicon glyphicon-align-justify pull-right ajc-list-glyphicon"></span>
-                    <a  href="#/user/:uid/recipe/:rid">
-                        Beef Stew
-                    </a>
+                    <span ng-if="recipe.important"
+                          class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
                 </li>
             </ul>
         </div>
@@ -41,37 +31,21 @@
         <div class="col-sm-4">
             <h5>In Progress</h5>
             <ul class="list-group">
-                <li class="list-group-item">
+                <li ng-repeat="recipe in model.prepList.inProgress"
+                    class="list-group-item">
                     <span class="glyphicon glyphicon glyphicon-align-justify pull-right ajc-list-glyphicon"></span>
-                    <a  href="#/user/:uid/recipe/:rid">
-                        Lobster Salad
+                    <a  href="#/user/{{model.uid}}/recipe/{{model.getRecipeFromTask(recipe)._id}}">
+                        {{model.getRecipeFromTask(recipe).name}}
                     </a>
+                    <span ng-if="recipe.important"
+                          class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
                     <div class="ajc-prep-signature pull-right">
-                        <input type="text"
+                        <input ng-model="recipe.signer"
+                               type="text"
                                class="form-control"
-                               placeholder="sign"
-                               value="AC"/>
+                               placeholder="sign"/>
                     </div>
-
-                    <p>May 22 - 12:45pm</p>
-                </li>
-                <li class="list-group-item">
-                    <span class="glyphicon glyphicon glyphicon-align-justify pull-right ajc-list-glyphicon"></span>
-                    <a  href="#/user/:uid/recipe/:rid">
-                        Bacon
-                    </a>
-                    <span class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
-
-                    <div class="ajc-prep-signature pull-right">
-                        <input type="text"
-                               class="form-control"
-                               placeholder="sign"
-                               value="CW"/>
-                    </div>
-
-                    <p>May 22 - 11:56am</p>
-
-
+                    <p>{{recipe.timeStamp}}</p>
                 </li>
             </ul>
         </div>
@@ -79,27 +53,18 @@
         <div class="col-sm-4">
             <h5>Completed</h5>
             <ul class="list-group">
-                <li class="list-group-item">
+                <li ng-repeat="recipe in model.prepList.completed"
+                    class="list-group-item">
                     <span class="glyphicon glyphicon glyphicon-align-justify pull-right ajc-list-glyphicon"></span>
-                    <a  href="#/user/:uid/recipe/:rid">
-                        Beef Chili
+                    <a  href="#/user/{{model.uid}}/recipe/{{model.getRecipeFromTask(recipe)._id}}">
+                        {{model.getRecipeFromTask(recipe).name}}
                     </a>
-                    <p class="pull-right">
-                        JM
-                    </p>
-                    <p>May 22 - 10:45am</p>
-                </li>
-                <li class="list-group-item">
-                    <span class="glyphicon glyphicon glyphicon-align-justify pull-right ajc-list-glyphicon"></span>
-                    <a  href="#/user/:uid/recipe/:rid">
-                        Caesar Dressing
-                    </a>
-
-                    <p class="pull-right">
-                        CW
-                    </p>
-                    <p>May 22 - 8:41am</p>
-
+                    <span ng-if="recipe.important"
+                          class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
+                    <div class="ajc-prep-signature pull-right">
+                        <p>{{recipe.signer}}</p>
+                    </div>
+                    <p>{{recipe.timeStamp}}</p>
                 </li>
             </ul>
         </div>
@@ -114,25 +79,25 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#/user/:uid/recipe/recipe-book"
+                    <a href="#/user/{{model.uid}}/recipe/recipe-book"
                        class="navbar-link">
                         <span class="glyphicon glyphicon glyphicon glyphicon-book"></span>
                     </a>
                 </p>
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#/user/:uid/prep/prep-list"
+                    <a href="#/user/{{model.uid}}/prep/prep-list"
                        class="navbar-link">
                         <span class="glyphicon glyphicon glyphicon-list-alt"></span>
                     </a>
                 </p>
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#user/:uid/prep/timer-list"
+                    <a href="#user/{{model.uid}}/prep/timer-list"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-time"></span>
                     </a>
                 </p>
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
-                    <a href="#/user/:uid"
+                    <a href="#/user/{{model.uid}}"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-user"></span>
                     </a>

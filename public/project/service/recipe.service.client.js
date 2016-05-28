@@ -23,17 +23,16 @@
                 recent: true
             },
             {_id: "543",
-                name: "Beef Broccoli",
+                name: "Beef Broccoli Soup",
                 prepTime: 20,
                 type: "soup",
                 description: "A warm beef soup with cheese",
                 ingredients: [
-                    "1 1/2 cups beef stock",
-                    "1 1/2 cups grated mozzarella cheese",
-                    "1 cup broccoli",
-                    "1 1/2 lb. ground beef",
-                    "1 cup water",
-                    "1/4 cup onion"
+                    ["Beef (ground)", 1.5, "Pounds"],
+                    ["Broccoli", 1.5, "Cups"],
+                    ["Water", 3, "Cups"],
+                    ["Salt", 2, "tbsp"],
+                    ["Beef Broth", 2, "Tbsp"]
                 ],
                 directions: "Cook beef for a while, add into soup form, cook broccoli and beef in frying pan, mix with soup stuff.",
                 restaurantId: 12345,
@@ -45,11 +44,11 @@
                 type: "soup",
                 description: "Our award winning chili",
                 ingredients: [
-                    "5 pounds ground beef",
-                    "1 1/2 cups grated cheese",
-                    "8 cups beans",
-                    "2 tbsp chili powder",
-                    "4 cups water"
+                    ["Beef (ground)", 4, "Pounds"],
+                    ["Beans", 4, "Cups"],
+                    ["Water", 3, "Cups"],
+                    ["Onion", 2, "Cups, Diced"],
+                    ["Pepper", 1, "Cups, Diced"]
                 ],
                 directions: "Cook it all together",
                 restaurantId: 12345,
@@ -61,12 +60,10 @@
                 type: "meat",
                 description: "Baked chicken breast",
                 ingredients: [
-                    "4 chicken breasts",
-                    "4 tbsp kosher salt",
-                    "2 tbsp ground pepper",
-                    "4 tbsp olive oil"
+                    ["Chicken Breast", 1, "Breast"],
+                    ["Salt", 1, "tsp"]
                 ],
-                directions: "Cook chicken breast fully at 350 degrees Farenheit, let sit for 15 minutes.",
+                directions: "Cook chicken breast fully at 350 degrees Farenheit, let sit for 15 minutes. Salt lightly.",
                 restaurantId: 12345,
                 recent: true
             }

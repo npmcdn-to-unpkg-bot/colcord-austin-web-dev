@@ -31,7 +31,9 @@
                 controllerAs: "model"
             })
             .when("/user/:uid/prep/prep-list", {
-                templateUrl: "views/prep/prep-list.view.client.html"
+                templateUrl: "views/prep/prep-list.view.client.html",
+                controller: "PrepListController",
+                controllerAs: "model"
             })
             .when("/user/:uid/prep/timer-list", {
                 templateUrl: "views/timer/timer-list.view.client.html"
