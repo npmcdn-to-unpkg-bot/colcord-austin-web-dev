@@ -6,6 +6,7 @@
     function PrepListController($routeParams, RecipeService, UserService, PrepService) {
         var vm = this;
         vm.getRecipeFromTask = getRecipeFromTask;
+        vm.removeFromPrepList = removeFromPrepList;
         
         vm.uid = $routeParams["uid"];
         
@@ -18,6 +19,10 @@
 
         function getRecipeFromTask(prepTask) {
             return RecipeService.findRecipeById(prepTask.recipeId);
+        }
+
+        function removeFromPrepList(recipeId) {
+            PrepService.removeFromPrepList(vm.prepList._id, recipeId);
         }
 
          

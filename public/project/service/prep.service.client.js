@@ -25,6 +25,7 @@
             findPrepListById: findPrepListById,
             findPrepListByRestaurantId: findPrepListByRestaurantId,
             addToPrepList: addToPrepList,
+            removeFromPrepList: removeFromPrepList,
             updatePrepList: updatePrepList,
             deletePrepList: deletePrepList
         };
@@ -60,6 +61,18 @@
             }
         }
 
+        function removeFromPrepList(prepListId, recipeId) {
+            for(var i in prepLists) {
+                if(prepLists[i]._id == prepListId) {
+                    for(var j in prepLists[i].completed) {
+                        if(prepLists[i].completed[j].recipeId == recipeId) {
+                            prepLists[i].completed.splice(j, 1);
+                        }
+                    }
+                }
+            }
+        }
+
         function updatePrepList(prepListId, prepList) {
             for(var i in prepLists) {
                 if(prepLists[i]._id == prepListId) {
@@ -79,6 +92,7 @@
                 }
             }
         }
+        
     }
 
 })();

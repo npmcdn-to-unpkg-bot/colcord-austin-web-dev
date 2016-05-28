@@ -61,6 +61,8 @@
                     </a>
                     <span ng-if="recipe.important"
                           class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
+                    <span ng-click="model.removeFromPrepList(recipe.recipeId)"
+                          class="glyphicon glyphicon-remove pull-right ajc-list-glyphicon"></span>
                     <div class="ajc-prep-signature pull-right">
                         <p>{{recipe.signer}}</p>
                     </div>
