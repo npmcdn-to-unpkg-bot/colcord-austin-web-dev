@@ -18,7 +18,8 @@
             <ul class="list-group">
                 <li ng-repeat="recipe in model.prepList.toDo"
                     class="list-group-item">
-                    <span class="glyphicon glyphicon glyphicon-align-justify pull-right ajc-list-glyphicon"></span>
+                    <span ng-click="model.moveToInProgress(recipe)"
+                          class="glyphicon glyphicon glyphicon-arrow-right pull-right ajc-list-glyphicon"></span>
                     <a  href="#/user/{{model.uid}}/recipe/{{model.getRecipeFromTask(recipe)._id}}">
                         {{model.getRecipeFromTask(recipe).name}}
                     </a>
@@ -33,7 +34,8 @@
             <ul class="list-group">
                 <li ng-repeat="recipe in model.prepList.inProgress"
                     class="list-group-item">
-                    <span class="glyphicon glyphicon glyphicon-align-justify pull-right ajc-list-glyphicon"></span>
+                    <span ng-click="model.moveToCompleted(recipe)"
+                          class="glyphicon glyphicon glyphicon-arrow-right pull-right ajc-list-glyphicon"></span>
                     <a  href="#/user/{{model.uid}}/recipe/{{model.getRecipeFromTask(recipe)._id}}">
                         {{model.getRecipeFromTask(recipe).name}}
                     </a>
@@ -61,7 +63,7 @@
                     </a>
                     <span ng-if="recipe.important"
                           class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
-                    <span ng-click="model.removeFromPrepList(recipe.recipeId)"
+                    <span ng-click="model.removeFromPrepCompletedList(recipe.recipeId)"
                           class="glyphicon glyphicon-remove pull-right ajc-list-glyphicon"></span>
                     <div class="ajc-prep-signature pull-right">
                         <p>{{recipe.signer}}</p>

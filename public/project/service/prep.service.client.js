@@ -24,8 +24,12 @@
             createPrepList: createPrepList,
             findPrepListById: findPrepListById,
             findPrepListByRestaurantId: findPrepListByRestaurantId,
-            addToPrepList: addToPrepList,
-            removeFromPrepList: removeFromPrepList,
+            addToPrepListToDo: addToPrepListToDo,
+            addToPrepListInProgress: addToPrepListInProgress,
+            addToPrepListCompleted: addToPrepListCompleted,
+            removeFromPrepCompletedList: removeFromPrepCompletedList,
+            removeFromPrepToDoList: removeFromPrepToDoList,
+            removeFromPrepInProgressList: removeFromPrepInProgressList,
             updatePrepList: updatePrepList,
             deletePrepList: deletePrepList
         };
@@ -53,7 +57,7 @@
             return null;
         }
 
-        function addToPrepList(prepListId, prepItem) {
+        function addToPrepListToDo(prepListId, prepItem) {
             for(var i in prepLists) {
                 if(prepLists[i]._id == prepListId) {
                     prepLists[i].toDo.push(prepItem);
@@ -61,7 +65,25 @@
             }
         }
 
-        function removeFromPrepList(prepListId, recipeId) {
+        function addToPrepListInProgress(prepListId, prepItem) {
+            for(var i in prepLists) {
+                if(prepLists[i]._id == prepListId) {
+                    prepItem.timeStamp = (new Date).toDateString();
+                    prepLists[i].inProgress.push(prepItem);
+                }
+            }
+        }
+
+        function addToPrepListCompleted(prepListId, prepItem) {
+            for(var i in prepLists) {
+                if(prepLists[i]._id == prepListId) {
+                    prepItem.timeStamp = (new Date).toDateString();
+                    prepLists[i].completed.push(prepItem);
+                }
+            }
+        }
+
+        function removeFromPrepCompletedList(prepListId, recipeId) {
             for(var i in prepLists) {
                 if(prepLists[i]._id == prepListId) {
                     for(var j in prepLists[i].completed) {
@@ -73,10 +95,34 @@
             }
         }
 
+        function removeFromPrepToDoList(prepListId, recipeId) {
+            for(var i in prepLists) {
+                if(prepLists[i]._id == prepListId) {
+                    for(var j in prepLists[i].toDo) {
+                        if(prepLists[i].toDo[j].recipeId == recipeId) {
+                            prepLists[i].toDo.splice(j, 1);
+                        }
+                    }
+                }
+            }
+        }
+
+        function removeFromPrepInProgressList(prepListId, recipeId) {
+            for(var i in prepLists) {
+                if(prepLists[i]._id == prepListId) {
+                    for(var j in prepLists[i].inProgress) {
+                        if(prepLists[i].inProgress[j].recipeId == recipeId) {
+                            prepLists[i].inProgress.splice(j, 1);
+                        }
+                    }
+                }
+            }
+        }
+
         function updatePrepList(prepListId, prepList) {
             for(var i in prepLists) {
                 if(prepLists[i]._id == prepListId) {
-                    prepLists[i].todo = prepList.todo;
+                    prepLists[i].toDo = prepList.toDo;
                     prepLists[i].inProgress = prepList.inProgress;
                     prepLists[i].completed = prepList.completed;
                     return true;

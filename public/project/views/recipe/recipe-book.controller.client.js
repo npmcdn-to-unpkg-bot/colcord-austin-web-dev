@@ -23,7 +23,7 @@
                 important: false,
                 signer: "",
                 timeStamp: (new Date).toDateString()};
-            PrepService.addToPrepList(vm.prepList._id, newPrepItem);
+            PrepService.addToPrepListToDo(vm.prepList._id, newPrepItem);
         }
     }
     
