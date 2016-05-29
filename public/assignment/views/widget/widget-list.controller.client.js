@@ -26,7 +26,6 @@
             var id = urlParts[urlParts.length - 1];
             var url = "https://www.youtube.com/embed/" + id;
             return $sce.trustAsResourceUrl(url);
-
         }
     }
 })();
