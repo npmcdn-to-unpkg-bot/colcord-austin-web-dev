@@ -23,6 +23,13 @@
 </header>
 
 <div class="container-fluid">
+
+    <div ng-if="model.error"
+         class="alert alert-danger"
+         role="alert">
+        {{model.error}}
+    </div>
+
     <form>
         <div class="form-group">
             <label for="name">Website Name</label>
