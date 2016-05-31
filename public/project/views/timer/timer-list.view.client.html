@@ -20,18 +20,20 @@
     <div class="row">
         <div class="col-sm-4">
             <ul class="list-group">
-                <li class="list-group-item ajc-timer-danger">
+                <li ng-repeat="timer in model.timers"
+                    class="list-group-item ajc-timer-danger">
                     <div class="row">
                         <div class="col-xs-6">
-                            <a  href="#/user/{{model.uid}}/recipe/:rid">
-                                Beef Stew
+                            <a  href="#/user/{{model.uid}}/recipe/{{timer.recipeId}}">
+                                {{timer.name}}
                             </a>
                         </div>
                         <div class="col-xs-6">
                             <a href="#user/{{model.uid}}/prep/timer-list">
-                                <span class="glyphicon glyphicon-trash pull-right ajc-list-glyphicon"></span>
+                                <span ng-click="model.deleteTimer(timer._id)"
+                                      class="glyphicon glyphicon-trash pull-right ajc-list-glyphicon"></span>
                             </a>
-                            <p class="pull-right">00:00:10</p>
+                            <p class="pull-right">{{model.getMinutesRemaining(timer) | number : 4}}</p>
                         </div>
                     </div>
                 </li>

@@ -5,13 +5,16 @@
 
     function TimerService() {
         var timers = [
-            {_id: 412, username: "ajdcolcord", timeStart: (new Date).getTime()}
+            {_id: 412, name: "Thaw Puff Pastry", recipeId: 123, username: "ajdcolcord", timeStart: (new Date).getTime(), setMinutes: 4},
+            {_id: 542, name: "Sear Beef", recipeId: 543, username: "ajdcolcord", timeStart: (new Date).getTime(), setMinutes: 10},
+            {_id: 123, name: "Bake Chicken", recipeId: 909, username: "ajdcolcord", timeStart: (new Date).getTime(), setMinutes: 20},
+            {_id: 990, name: "Beef Chili Cook at 10", recipeId: 998, username: "ajdcolcord", timeStart: (new Date).getTime(), setMinutes: 2}
         ];
 
         var api = {
             createTimer: createTimer,
             findTimerById: findTimerById,
-            findTimerByUsername: findTimerByUsername,
+            findTimersByUsername: findTimersByUsername,
             addTimer: addTimer,
             updateTimer: updateTimer,
             deleteTimer: deleteTimer
@@ -31,13 +34,14 @@
             return null;
         }
 
-        function findTimerByUsername(username) {
+        function findTimersByUsername(username) {
+            var result = [];
             for (var i in timers) {
                 if (timers[i].username == username) {
-                    return timers[i];
+                    result.push(timers[i]);
                 }
             }
-            return null;
+            return result;
         }
 
         function addTimer(timer) {
@@ -58,10 +62,10 @@
             for(var i in timers) {
                 if (timers[i]._id == timerId) {
                     timers.splice(i, 1);
+                    console.log('delete');
                 }
             }
         }
-        
     }
 
 })();
