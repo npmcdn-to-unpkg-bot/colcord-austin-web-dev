@@ -21,16 +21,13 @@ module.exports = function(app) {
         else {
             res.send(users);
         }
-
-        console.log(username);
-        console.log(password);
-        res.send(users);
     }
 
     function findUserByCredentials(username, password, response) {
         for(var u in users) {
             if(users[u].username === username && users[u].password === password) {
                 response.send(users[u]);
+                return;
             }
         }
         response.send({});
@@ -40,6 +37,7 @@ module.exports = function(app) {
         for(var u in users) {
             if(users[u].username === username) {
                 response.send(users[u]);
+                return;
             }
         }
         response.send({});
@@ -50,6 +48,7 @@ module.exports = function(app) {
         for(var i in users) {
             if(users[i]._id == userId) {
                 res.send(users[i]);
+                return;
             }
         }
         res.send({});
