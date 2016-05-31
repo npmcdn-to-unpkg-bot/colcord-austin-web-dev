@@ -71,9 +71,9 @@
                             </tr>
                         </thead>
                         <tr ng-repeat="ingredient in model.recipe.ingredients">
-                            <td contenteditable="true">{{ ingredient[0] }}</td>
-                            <td contenteditable='true'>{{ ingredient[1] }}</td>
-                            <td contenteditable='true'>{{ ingredient[2] }}</td>
+                            <td contenteditable="true">{{ingredient.name}}</td>
+                            <td contenteditable='true'>{{ingredient.amount}}</td>
+                            <td contenteditable='true'>{{ingredient.measure}}</td>
                         </tr>
                     </table>
                 </div>

@@ -26,6 +26,10 @@
             RecipeService.deleteRecipe(vm.rid);
             $location.url("/user/"+ vm.uid + "/recipe/recipe-book");
         }
+
+        function getTrustedHTML(widget) {
+            return $sce.trustAsHtml(widget.text);
+        }
     }
     
 })();

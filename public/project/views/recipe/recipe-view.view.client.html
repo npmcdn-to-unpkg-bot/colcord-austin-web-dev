@@ -68,9 +68,9 @@
                     <tbody>
 
                         <tr ng-repeat="ingredient in model.recipe.ingredients">
-                            <td>{{ ingredient[0] }}</td>
-                            <td>{{ ingredient[1] }}</td>
-                            <td>{{ ingredient[2] }}</td>
+                            <td>{{ ingredient.name }}</td>
+                            <td>{{ ingredient.amount }}</td>
+                            <td>{{ ingredient.measure }}</td>
                         </tr>
                     </tbody>
                 </table>
