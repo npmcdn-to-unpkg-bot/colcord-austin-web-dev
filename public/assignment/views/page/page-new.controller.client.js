@@ -14,13 +14,21 @@
             if (name != null) {
                 var id = (new Date).getTime();
                 var newPage = {
-                    _id: id,
                     name: name,
                     websiteId: vm.wid,
                     title: title
                 };
-                PageService.createPage(vm.wid, newPage);
-                $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+                PageService
+                    .createPage(vm.uid, newPage)
+                    .then(
+                        function(response) {
+                            vm.success = "Created new website";
+                            $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+                        },
+                        function(error) {
+                            vm.error = error.data;
+                        }
+                    )
             }
             else {
                 vm.error = "Please Enter a Page Name";

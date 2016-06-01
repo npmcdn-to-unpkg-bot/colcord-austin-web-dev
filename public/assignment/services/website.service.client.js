@@ -27,7 +27,6 @@
         }
 
         function updateWebsite(websiteId, website) {
-            console.log("updateweb from web service client");
             return $http.put("/api/website/" + websiteId, website);
         }
 

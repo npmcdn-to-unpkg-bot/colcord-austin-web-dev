@@ -45,7 +45,6 @@ module.exports = function(app) {
     }
 
     function updateWebsite(req, res) {
-        console.log("updateweb");
         var website = req.body;
         var websiteId = req.params.websiteId;
 
@@ -53,7 +52,7 @@ module.exports = function(app) {
             if(websites[i]._id == websiteId) {
                 websites[i].name = website.name;
                 websites[i].description = website.description;
-                res.send(200);
+                res.sendStatus(200);
                 return true;
             }
         }
@@ -65,7 +64,7 @@ module.exports = function(app) {
         for(var i in websites) {
             if(websites[i]._id == id) {
                 websites.splice(i, 1);
-                res.send(200);
+                res.sendStatus(200);
                 return true;
             }
         }
