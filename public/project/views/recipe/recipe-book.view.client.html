@@ -34,10 +34,10 @@
                     ng-repeat="recipe in model.recipeBook"
                     ng-if="recipe.recent">
                     <a ng-click="model.addToPrepToDo(recipe._id)">
-                        <span class="glyphicon glyphicon-plus-sign pull-right ajc-list-glyphicon"></span>
+                        <span class="btn btn-success glyphicon glyphicon-plus-sign pull-right"></span>
                     </a>
                     <a  href="#/user/{{model.uid}}/recipe/{{recipe._id}}/edit">
-                        <span class="glyphicon glyphicon-pencil pull-right ajc-list-glyphicon"></span>
+                        <span class="btn btn-danger glyphicon glyphicon-pencil pull-right"></span>
                     </a>
                     <a  href="#/user/{{model.uid}}/recipe/{{recipe._id}}">
                         {{recipe.name}}
@@ -51,11 +51,11 @@
             <ul class="list-group">
                 <li class="list-group-item"
                     ng-repeat="recipe in model.recipeBook">
-                    <a>
-                        <span class="glyphicon glyphicon-plus-sign pull-right ajc-list-glyphicon"></span>
+                    <a ng-click="model.addToPrepToDo(recipe._id)">
+                        <span class="btn btn-success glyphicon glyphicon-plus-sign pull-right"></span>
                     </a>
                     <a  href="#/user/{{model.uid}}/recipe/{{recipe._id}}/edit">
-                        <span class="glyphicon glyphicon-pencil pull-right ajc-list-glyphicon"></span>
+                        <span class="btn btn-danger glyphicon glyphicon-pencil pull-right"></span>
                     </a>
                     <a  href="#/user/{{model.uid}}/recipe/{{recipe._id}}">
                         {{recipe.name}}
