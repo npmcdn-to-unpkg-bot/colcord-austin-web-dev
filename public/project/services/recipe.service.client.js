@@ -11,12 +11,12 @@
                 type: "sandwich",
                 description: "A warm chicken puff with cheddar cheese with avocado on ciabatta bread",
                 ingredients: [
-                    {name: "Rotisserie Chicken", amount: 1.5, measure: "Cups"},
-                    {name: "Cheddar Cheese", amount: 1.5, measure: "Cups"},
-                    {name: "Avocado", amount: 1, measure: "Cup"},
-                    {name: "Frozen Puff Pastry", amount: 2, measure: "Sheets (17.25oz package), Thawed"},
-                    {name: "Large Egg", amount: 1, measure: "Cup, Beaten"},
-                    {name: "Dijon Mustard", amount: 0.25, measure: "Cup"}
+                    {_id: 412, name: "Rotisserie Chicken", amount: 1.5, measure: "Cups"},
+                    {_id: 222, name: "Cheddar Cheese", amount: 1.5, measure: "Cups"},
+                    {_id: 441, name: "Avocado", amount: 1, measure: "Cup"},
+                    {_id: 980, name: "Frozen Puff Pastry", amount: 2, measure: "Sheets (17.25oz package), Thawed"},
+                    {_id: 612, name: "Large Egg", amount: 1, measure: "Cup, Beaten"},
+                    {_id: 411, name: "Dijon Mustard", amount: 0.25, measure: "Cup"}
                 ],
                 directions: "Cook chicken breast fully. PUFF - Steam cooked chicken breast for 2 minutes. Cut chicken breast in half. Place Cheddar Cheese, chicken breast, and avocado in Ciabatta. Panini press for 2 minutes",
                 restaurantId: 12345,
@@ -28,11 +28,11 @@
                 type: "soup",
                 description: "A warm beef soup with cheese",
                 ingredients: [
-                    {name: "Beef (ground)", amount: 1.5, measure: "Pounds"},
-                    {name: "Broccoli", amount: 1.5, measure: "Cups"},
-                    {name: "Water", amount: 3, measure: "Cups"},
-                    {name: "Salt", amount: 2, measure: "tbsp"},
-                    {name: "Beef Broth", amount: 2, measure: "Tbsp"}
+                    {_id: 993, name: "Beef (ground)", amount: 1.5, measure: "Pounds"},
+                    {_id: 561, name: "Broccoli", amount: 1.5, measure: "Cups"},
+                    {_id: 555, name: "Water", amount: 3, measure: "Cups"},
+                    {_id: 231, name: "Salt", amount: 2, measure: "tbsp"},
+                    {_id: 563, name: "Beef Broth", amount: 2, measure: "Tbsp"}
                 ],
                 directions: "Cook beef for a while, add into soup form, cook broccoli and beef in frying pan, mix with soup stuff.",
                 restaurantId: 12345,
@@ -44,11 +44,11 @@
                 type: "soup",
                 description: "Our award winning chili",
                 ingredients: [
-                    {name: "Beef (ground)", amount: 4, measure: "Pounds"},
-                    {name: "Beans", amount: 4, measure: "Cups"},
-                    {name: "Water", amount: 3, measure: "Cups"},
-                    {name: "Onion", amount: 2, measure: "Cups, Diced"},
-                    {name: "Pepper", amount: 1, measure: "Cups, Diced"}
+                    {_id: 323, name: "Beef (ground)", amount: 4, measure: "Pounds"},
+                    {_id: 909, name: "Beans", amount: 4, measure: "Cups"},
+                    {_id: 331, name: "Water", amount: 3, measure: "Cups"},
+                    {_id: 889, name: "Onion", amount: 2, measure: "Cups, Diced"},
+                    {_id: 665, name: "Pepper", amount: 1, measure: "Cups, Diced"}
                 ],
                 directions: "Cook it all together",
                 restaurantId: 12345,
@@ -60,8 +60,8 @@
                 type: "meat",
                 description: "Baked chicken breast",
                 ingredients: [
-                    {name: "Chicken Breast", amount: 1, measure: "Breast"},
-                    {name: "Salt", amount: 1, measure: "tsp"}
+                    {_id: 339, name: "Chicken Breast", amount: 1, measure: "Breast"},
+                    {_id: 901, name: "Salt", amount: 1, measure: "tsp"}
                 ],
                 directions: "Cook chicken breast fully at 350 degrees Farenheit, let sit for 15 minutes. Salt lightly.",
                 restaurantId: 12345,

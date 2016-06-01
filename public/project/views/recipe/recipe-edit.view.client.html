@@ -70,12 +70,37 @@
                                 <th>Measurement</th>
                             </tr>
                         </thead>
-                        <tr ng-repeat="ingredient in model.recipe.ingredients">
-                            <td contenteditable="true">{{ingredient.name}}</td>
-                            <td contenteditable='true'>{{ingredient.amount}}</td>
-                            <td contenteditable='true'>{{ingredient.measure}}</td>
-                        </tr>
                     </table>
+
+                    <div class="row"
+                         ng-repeat="ingredient in model.recipe.ingredients">
+                        <div class="col-xs-5">
+                            <input ng-model="ingredient.name"
+                                   type="text"
+                                   class="form-control"
+                                   placeholder="name"/>
+                        </div>
+                        <div class="col-xs-2">
+                            <input ng-model="ingredient.amount"
+                                   type="number"
+                                   class="form-control"
+                                   placeholder="amount"/>
+                        </div>
+                        <div class="col-xs-4">
+                            <input ng-model="ingredient.measure"
+                                   type="text"
+                                   class="form-control"
+                                   placeholder="measurement"/>
+                        </div>
+                        <div class="col-xs-1">
+                            <span ng-click="model.removeIngredient(ingredient._id)"
+                                  class="btn btn-danger glyphicon glyphicon-remove pull-right"></span>
+                        </div>
+                    </div>
+                    <div ng-click="model.addIngredientRow()"
+                         class="btn btn-primary btn-block">
+                        Add Ingredient
+                    </div>
                 </div>
             </div>
             <div class="col-sm-6">
