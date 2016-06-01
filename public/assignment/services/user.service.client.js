@@ -15,8 +15,13 @@
         };
         return api;
 
-        function createUser(user) {
-            users.push(user);
+        function createUser(username, password) {
+            var url = "/api/user";
+            var user = {
+                username: username, 
+                password: password
+            };
+            return $http.post(url, user);
         }
 
         function findUserById(userId) {
