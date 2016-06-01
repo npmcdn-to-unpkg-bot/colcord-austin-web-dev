@@ -8,6 +8,35 @@ module.exports = function(app) {
 
     app.get("/api/user", getUsers);
     app.get("/api/user/:userId", findUserById);
+    app.put("/api/user/:userId", updateUser);
+    app.delete("/api/user/:userId", deleteUser);
+
+    function deleteUser(req, res) {
+        var id = req.params.userId;
+        for(var i in users) {
+            if(users[i]._id == id) {
+                users.splice(i, 1);
+                res.send(200);
+                return true;
+            }
+        }
+        res.status(404).send("Unable to remove user with ID " + id);
+    }
+
+    function updateUser(req, res) {
+        var id = req.params.userId;
+        var newUser = req.body;
+        for(var i in users) {
+            if(users[i]._id == id) {
+                users[i].firstName = newUser.firstName;
+                users[i].lastName = newUser.lastName;
+                users[i].email = newUser.email;
+                res.send(200);
+                return true;
+            }
+        }
+        res.status(400).send("User with ID " + id + " not found");
+    }
 
     function getUsers(req, res) {
         var username = req.query['username'];
@@ -23,24 +52,24 @@ module.exports = function(app) {
         }
     }
 
-    function findUserByCredentials(username, password, response) {
+    function findUserByCredentials(username, password, res) {
         for(var u in users) {
             if(users[u].username === username && users[u].password === password) {
-                response.send(users[u]);
+                res.send(users[u]);
                 return;
             }
         }
-        response.send({});
+        res.send(403);
     }
 
-    function findUserByUsername(username, response) {
+    function findUserByUsername(username, res) {
         for(var u in users) {
             if(users[u].username === username) {
-                response.send(users[u]);
+                res.send(users[u]);
                 return;
             }
         }
-        response.send({});
+        res.send({});
     }
 
     function findUserById(req, res) {

@@ -11,17 +11,18 @@
 
             UserService
                 .findUserByCredentials(username, password)
-                .then(function(response) {
-                    var user = response.data;
+                .then(
+                    function(response) {
+                        var user = response.data;
 
-                    if(user) {
-                        var id = user._id;
-                        $location.url("/user/" + id);
-                    }
-                    else {
+                        if(user) {
+                            var id = user._id;
+                            $location.url("/user/" + id);
+                        }
+                    },
+                    function(error) {
                         vm.error = "User not found";
-                    }
-                });
+                    });
         }
     }
 
