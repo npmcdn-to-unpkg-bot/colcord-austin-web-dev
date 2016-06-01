@@ -11,7 +11,6 @@
         var uid = $routeParams["uid"];
 
         function init() {
-            // vm.user = angular.copy(UserService.findUserById(uid));
             UserService
                 .findUserById(uid)
                 .then(function(res) {
