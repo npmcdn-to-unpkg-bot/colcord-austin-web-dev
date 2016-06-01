@@ -11,7 +11,7 @@
 
         function register(username, password, verifyPassword, firstName, lastName, email, restaurantId) {
             if (username && password && verifyPassword) {
-                if (UserService.findUserByUsername(username) !== null) {
+                if (UserService.findUserByUsername(username.toLowerCase()) !== null) {
                     vm.error = "Username taken"
                 }
                 else if (firstName == null) {
@@ -33,7 +33,7 @@
                     var id = (new Date).getTime();
                     var newUser = {
                         _id: id,
-                        username: username,
+                        username: username.toLowerCase(),
                         password: password,
                         firstName: firstName,
                         lastName: lastName,
