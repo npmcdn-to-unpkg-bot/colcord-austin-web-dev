@@ -10,6 +10,7 @@
         
         vm.uid = $routeParams["uid"];
         vm.rid = $routeParams["rid"];
+        vm.multiplier = 1;
         
         function init() {
             vm.recipe = RecipeService.findRecipeById(vm.rid);
