@@ -10,11 +10,6 @@
                 controller: "LoginController",
                 controllerAs: "model"
             })
-            .when("/flickr", {
-                templateUrl: "views/widget/widget-flickr-search.view.client.html",
-                controller: "FlickrImageSearchController",
-                controllerAs: "model"
-            })
             .when("/register", {
                 templateUrl: "views/user/register.view.client.html",
                 controller: "RegisterController",
@@ -75,6 +70,11 @@
             .when("/user/:uid/website/:wid/page/:pid/widget/:wgid", {
                 templateUrl: "views/widget/widget-edit.view.client.html",
                 controller: "WidgetEditController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/website/:wid/page/:pid/widget/:wgid/flickr", {
+                templateUrl: "views/widget/widget-flickr-search.view.client.html",
+                controller: "FlickrImageSearchController",
                 controllerAs: "model"
             })
 
