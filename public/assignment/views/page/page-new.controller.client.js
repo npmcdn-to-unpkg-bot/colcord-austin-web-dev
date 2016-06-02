@@ -12,7 +12,6 @@
 
         function createPage(name, title) {
             if (name != null) {
-                var id = (new Date).getTime();
                 var newPage = {
                     name: name,
                     websiteId: vm.wid,

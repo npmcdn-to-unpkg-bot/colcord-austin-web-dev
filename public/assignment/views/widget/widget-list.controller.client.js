@@ -13,7 +13,15 @@
         vm.pid = $routeParams.pid;
         
         function init() {
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pid);
+            WidgetService
+                .findWidgetsByPageId(vm.pid)
+                .then(
+                    function(response) {
+                        vm.widgets = response.data;
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    });
         }
         init();
 
