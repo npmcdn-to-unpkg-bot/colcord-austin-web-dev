@@ -3,6 +3,14 @@ body {
     padding-bottom : 60px;
 }
 
+.ajc-search {
+    padding-bottom: 5px;
+}
+
+.ajc-flickr-image {
+    padding: 1px;
+}
+
 .ajc-widget-container {
     z-index: 1000;
     position: absolute;

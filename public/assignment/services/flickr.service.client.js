@@ -2,10 +2,9 @@
     angular
         .module("WebAppMaker")
         .factory("FlickrService", FlickrService);
-    
-    var key = "xxx";
-    var urlBase = "https://xxxxx";
 
+    var key = "xxx";
+    var urlBase = "https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&api_key=API_KEY&text=TEXT";
 
     function FlickrService($http) {
 
