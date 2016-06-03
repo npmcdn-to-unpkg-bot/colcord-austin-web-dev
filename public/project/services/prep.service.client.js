@@ -3,22 +3,7 @@
         .module("Prepper")
         .factory("PrepService", PrepService);
 
-    function PrepService() {
-        var prepLists = [
-            {_id: "123", 
-                restaurantId: 12345, 
-                toDo: [
-                    {recipeId: 123, important: true}
-                ], 
-                inProgress: [
-                    {recipeId: 543, important: true, signer: "AC", timeStamp: (new Date).toDateString()},
-                    {recipeId: 998, important: false, signer: "CW", timeStamp: (new Date).toDateString()}
-                ], 
-                completed: [
-                    {recipeId: 909, important: true, signer: "JW", timeStamp: (new Date).toDateString()}
-                ]},
-            {_id: "444", restaurantId: 44412, toDo: [], inProgress: [], completed: []}
-        ];
+    function PrepService($http) {
 
         var api = {
             createPrepList: createPrepList,
@@ -36,25 +21,15 @@
         return api;
 
         function createPrepList(prepList) {
-            prepLists.push(prepList);
+            return $http.post("/api/prep", prepList);
         }
 
         function findPrepListById(prepListId) {
-            for (var i in prepLists) {
-                if (prepLists[i]._id == prepListId) {
-                    return prepLists[i];
-                }
-            }
-            return null;
+            return $http.get("/api/prep/" + prepListId);
         }
 
         function findPrepListByRestaurantId(restaurantId) {
-            for (var i in prepLists) {
-                if (prepLists[i].restaurantId == restaurantId) {
-                    return prepLists[i];
-                }
-            }
-            return null;
+            return $http.get("/api/prep/restaurant/" + restaurantId);
         }
 
         function addToPrepListToDo(prepListId, prepItem) {
@@ -120,23 +95,11 @@
         }
 
         function updatePrepList(prepListId, prepList) {
-            for(var i in prepLists) {
-                if(prepLists[i]._id == prepListId) {
-                    prepLists[i].toDo = prepList.toDo;
-                    prepLists[i].inProgress = prepList.inProgress;
-                    prepLists[i].completed = prepList.completed;
-                    return true;
-                }
-            }
-            return false;
+            return $http.put("/api/prep/" + prepListId, prepList);
         }
         
         function deletePrepList(prepListId) {
-            for(var i in prepLists) {
-                if (prepLists[i]._id == prepListId) {
-                    prepLists.splice(i, 1);
-                }
-            }
+            return $http.delete("/api/prep/" + prepListId);
         }
         
     }

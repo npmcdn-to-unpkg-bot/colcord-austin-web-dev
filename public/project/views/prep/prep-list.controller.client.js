@@ -13,9 +13,27 @@
         vm.uid = $routeParams["uid"];
         
         function init() {
-            vm.user = UserService.findUserById(vm.uid);
-            // vm.recipeBook = RecipeService.findRecipesByRestaurant(vm.user.restaurantId);
-            vm.prepList = PrepService.findPrepListByRestaurantId(vm.user.restaurantId);
+            UserService
+                .findUserById(vm.uid)
+                .then(
+                    function(response) {
+                        vm.user = response.data;
+                        PrepService
+                            .findPrepListByRestaurantId(vm.user.restaurantId)
+                            .then(
+                                function(response) {
+                                    vm.prepList = response.data;
+                                },
+                                function(error) {
+                                    vm.error = error.data;
+                                }
+                            )
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                );
+
         }
         init();
 

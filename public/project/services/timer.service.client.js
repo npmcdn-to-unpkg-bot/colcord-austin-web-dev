@@ -5,10 +5,10 @@
 
     function TimerService() {
         var timers = [
-            {_id: 412, name: "Thaw Puff Pastry", recipeId: 123, username: "ajdcolcord", timeStart: (new Date).getTime(), setMinutes: 4},
-            {_id: 542, name: "Sear Beef", recipeId: 543, username: "ajdcolcord", timeStart: (new Date).getTime(), setMinutes: 10},
-            {_id: 123, name: "Bake Chicken", recipeId: 909, username: "ajdcolcord", timeStart: (new Date).getTime(), setMinutes: 20},
-            {_id: 990, name: "Beef Chili Cook at 10", recipeId: 998, username: "ajdcolcord", timeStart: (new Date).getTime(), setMinutes: 2}
+            {_id: 412, name: "Thaw Puff Pastry", recipeId: 123, username: "ajdcolcord", timeStart: new Date(), setMinutes: 4},
+            {_id: 542, name: "Sear Beef", recipeId: 543, username: "ajdcolcord", timeStart: new Date(), setMinutes: 10},
+            {_id: 123, name: "Bake Chicken", recipeId: 909, username: "ajdcolcord", timeStart: new Date(), setMinutes: 20},
+            {_id: 990, name: "Beef Chili Cook at 10", recipeId: 998, username: "ajdcolcord", timeStart: new Date(), setMinutes: 2}
         ];
 
         var api = {
@@ -62,7 +62,6 @@
             for(var i in timers) {
                 if (timers[i]._id == timerId) {
                     timers.splice(i, 1);
-                    console.log('delete');
                 }
             }
         }
