@@ -6,10 +6,10 @@
     function ProfileController($routeParams, UserService) {
         var vm = this;
         
-        var uid = $routeParams["uid"];
+        vm.uid = $routeParams["uid"];
         
         function init() {
-            vm.user = angular.copy(UserService.findUserById(uid));
+            vm.user = angular.copy(UserService.findUserById(vm.uid));
         }
         init();
     }

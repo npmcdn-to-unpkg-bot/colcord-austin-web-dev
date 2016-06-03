@@ -7,10 +7,10 @@
         var vm = this;
         vm.updateUser = updateUser;
 
-        var uid = $routeParams["uid"];
+        vm.uid = $routeParams["uid"];
 
         function init() {
-            vm.user = angular.copy(UserService.findUserById(uid));
+            vm.user = angular.copy(UserService.findUserById(vm.uid));
         }
         init();
 
@@ -21,7 +21,7 @@
                     var result = UserService.updateUser(vm.user._id, vm.user);
                     if (result === true) {
                         vm.success = "User successfully updated";
-                        $location.url("/user/" + uid)
+                        $location.url("/user/" + vm.uid)
                     }
                     else {
                         vm.error = "User not successfully updated";
