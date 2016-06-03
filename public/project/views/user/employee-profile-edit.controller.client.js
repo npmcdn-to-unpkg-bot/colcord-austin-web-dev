@@ -10,7 +10,16 @@
         vm.uid = $routeParams["uid"];
 
         function init() {
-            vm.user = angular.copy(UserService.findUserById(vm.uid));
+            UserService
+                .findUserById(vm.uid)
+                .then(
+                    function(response) {
+                        vm.user = response.data;
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                )
         }
         init();
 
@@ -18,17 +27,21 @@
             if (vm.user.password === current_pass) {
                 if (new_pass && verify_new_pass && new_pass == verify_new_pass) {
                     vm.user.password = new_pass;
-                    var result = UserService.updateUser(vm.user._id, vm.user);
-                    if (result === true) {
-                        vm.success = "User successfully updated";
-                        $location.url("/user/" + vm.uid)
-                    }
-                    else {
-                        vm.error = "User not successfully updated";
-                    }
+
+                    UserService
+                        .updateUser(vm.uid, vm.user)
+                        .then(
+                            function(res) {
+                                vm.success = "User successfully updated";
+                                $location.url("/user/" + vm.uid);
+                            },
+                            function(error) {
+                                vm.error = error.data;
+                            }
+                        );
                 }
                 else {
-                    vm.error = "New passwords must match and must not be empty"
+                    vm.error = "New passwords must match and must not be empty";
                 }
             }
             else {

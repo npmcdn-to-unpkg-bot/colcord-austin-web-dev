@@ -11,10 +11,7 @@
 
         function register(username, password, verifyPassword, firstName, lastName, email, restaurantId) {
             if (username && password && verifyPassword) {
-                if (UserService.findUserByUsername(username.toLowerCase()) !== null) {
-                    vm.error = "Username taken"
-                }
-                else if (firstName == null) {
+                if (firstName == null) {
                     vm.error = "Please enter a first name";
                 }
                 else if (lastName == null) {
@@ -30,9 +27,9 @@
                     vm.error = "Please enter a restaurant id";
                 }
                 else {
-                    var id = (new Date).getTime();
+                    // var id = (new Date).getTime();
                     var newUser = {
-                        _id: id,
+                        // _id: id,
                         username: username.toLowerCase(),
                         password: password,
                         firstName: firstName,
@@ -41,8 +38,16 @@
                         restaurantId: restaurantId
                     };
 
-                    UserService.createUser(newUser);
-                    $location.url("/user/" + id);
+                    UserService
+                        .createUser(newUser)
+                        .then(
+                            function(response) {
+                                $location.url("/user/" + response.data);
+                            },
+                            function(error) {
+                                vm.error = error.data;
+                            }
+                        )
                 }
             }
             else {
