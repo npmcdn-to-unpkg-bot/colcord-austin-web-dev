@@ -22,7 +22,7 @@ module.exports = function(app) {
 
 
     function uploadImage(req, res) {
-        console.log("upload");
+
 
         var widgetId      = req.body.widgetId;
         var websiteId     = req.body.websiteId;
@@ -30,6 +30,12 @@ module.exports = function(app) {
         var userId        = req.body.userId;
         var width         = req.body.width;
         var myFile        = req.file;
+
+        // if no file has been selected, don't set the URL and don't upload any file
+        if(myFile == null) {
+            res.redirect("/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
+            return;
+        }
 
         var originalname  = myFile.originalname; // file name on user's computer
         var filename      = myFile.filename;     // new file name in upload folder
