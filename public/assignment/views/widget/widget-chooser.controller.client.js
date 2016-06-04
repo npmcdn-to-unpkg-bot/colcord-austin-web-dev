@@ -13,9 +13,7 @@
         vm.pid = $routeParams.pid;
 
         function createWidget(widgetType) {
-            // var id = (new Date()).getTime();
             var newWidget = {
-                // _id: id,
                 widgetType: widgetType,
                 pageId: vm.pid
             };

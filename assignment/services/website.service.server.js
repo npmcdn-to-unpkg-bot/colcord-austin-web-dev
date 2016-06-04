@@ -49,7 +49,7 @@ module.exports = function(app) {
         var websiteId = req.params.websiteId;
 
         for(var i in websites) {
-            if(websites[i]._id == websiteId) {
+            if(websites[i]._id === websiteId) {
                 websites[i].name = website.name;
                 websites[i].description = website.description;
                 res.sendStatus(200);
@@ -60,14 +60,14 @@ module.exports = function(app) {
     }
 
     function deleteWebsite(req, res) {
-        var id = req.params.websiteId;
+        var websiteId = req.params.websiteId;
         for(var i in websites) {
-            if(websites[i]._id == id) {
+            if(websites[i]._id === websiteId) {
                 websites.splice(i, 1);
                 res.sendStatus(200);
                 return true;
             }
         }
-        res.status(404).send("Unable to remove website with ID " + id);
+        res.status(404).send("Unable to remove website with ID " + websiteId);
     }
 };

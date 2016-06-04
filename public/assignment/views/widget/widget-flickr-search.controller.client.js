@@ -36,25 +36,30 @@
                 .findWidgetById(vm.wgid)
                 .then(
                     function(response) {
-                        var widget = response.data;
-                        widget.url = url;
-                        WidgetService
-                            .updateWidget(vm.wgid, widget)
-                            .then(
-                                function(response) {
-                                    vm.success = "Added Flickr Image";
-                                    $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/" + vm.wgid);
-
-                                },
-                                function(error) {
-                                    vm.error = error.data;
-                                }
-                            )
+                        requestUpdateFlickrImage(response, url)
                     },
                     function(error) {
                         vm.error = error.data;
                     }
                 );
             }
+
+        // internal helper function for selectPhoto
+        function requestUpdateFlickrImage(response, url) {
+            var widget = response.data;
+            widget.url = url;
+            WidgetService
+                .updateWidget(vm.wgid, widget)
+                .then(
+                    function(response) {
+                        vm.success = "Added Flickr Image";
+                        $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget/" + vm.wgid);
+
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                )
+        }
     }
 })();

@@ -46,7 +46,7 @@ module.exports = function(app) {
         var pageId = req.params.pageId;
 
         for(var i in pages) {
-            if(pages[i]._id == pageId) {
+            if(pages[i]._id === pageId) {
                 pages[i].name = page.name;
                 pages[i].title = page.title;
                 res.sendStatus(200);
@@ -57,14 +57,14 @@ module.exports = function(app) {
     }
     
     function deletePage(req, res) {
-        var id = req.params.pageId;
+        var pageId = req.params.pageId;
         for(var i in pages) {
-            if(pages[i]._id == id) {
+            if(pages[i]._id === pageId) {
                 pages.splice(i, 1);
                 res.sendStatus(200);
                 return true;
             }
         }
-        res.status(404).send("Unable to remove page with ID " + id);
+        res.status(404).send("Unable to remove page with ID " + pageId);
     }
 };

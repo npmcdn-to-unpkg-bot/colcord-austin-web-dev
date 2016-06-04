@@ -97,14 +97,14 @@ module.exports = function(app) {
     }
 
     function deleteWidget(req, res) {
-        var id = req.params.widgetId;
+        var widgetId = req.params.widgetId;
         for(var i in widgets) {
-            if(widgets[i]._id === id) {
+            if(widgets[i]._id === widgetId) {
                 widgets.splice(i, 1);
                 res.sendStatus(200);
                 return true;
             }
         }
-        res.status(404).send("Unable to remove widget with ID " + id);
+        res.status(404).send("Unable to remove widget with ID " + widgetId);
     }
 };

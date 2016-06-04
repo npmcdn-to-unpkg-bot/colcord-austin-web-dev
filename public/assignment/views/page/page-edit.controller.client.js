@@ -29,7 +29,7 @@
             PageService
                 .updatePage(vm.pid, vm.page)
                 .then(
-                    function(res) {
+                    function(response) {
                         vm.success = "Page successfully updated";
                         $location.url("/user/"+ vm.uid + "/website/" + vm.wid + "/page");
                     },

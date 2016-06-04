@@ -6,7 +6,7 @@ module.exports = function(app) {
         {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
     ];
 
-    app.get("/api/user", getUsers);
+    app.get("/api/user", getUsers); // handles : /api/user, /api/user?username=username, and /api/user?username=username&password=password
     app.post("/api/user", createUser);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
@@ -31,7 +31,7 @@ module.exports = function(app) {
     function deleteUser(req, res) {
         var id = req.params.userId;
         for(var i in users) {
-            if(users[i]._id == id) {
+            if(users[i]._id === id) {
                 users.splice(i, 1);
                 res.sendStatus(200);
                 return true;
@@ -86,17 +86,17 @@ module.exports = function(app) {
                 return;
             }
         }
-        res.send({});
+        res.status(400).send("User with username " + username + " not found");
     }
 
     function findUserById(req, res) {
         var userId = req.params.userId;
         for(var i in users) {
-            if(users[i]._id == userId) {
+            if(users[i]._id === userId) {
                 res.send(users[i]);
                 return;
             }
         }
-        res.send({});
+        res.status(400).send("User with ID " + userId + " not found");
     }
 };
