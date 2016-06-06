@@ -19,19 +19,26 @@
                         console.log(vm.user);
                         console.log("here res id " + vm.user.restaurantId);
 
-                        vm.recipeBook = RecipeService.findRecipesByRestaurant(vm.user.restaurantId);
-                        PrepService
-                            .findPrepListByRestaurantId(vm.user.restaurantId)
+                        RecipeService
+                            .findRecipesByRestaurant(vm.user.restaurantId)
                             .then(
                                 function(response) {
-                                    console.log("here");
-                                    vm.prepList = response.data;
+                                    vm.recipeBook = response.data;
+                                    PrepService
+                                        .findPrepListByRestaurantId(vm.user.restaurantId)
+                                        .then(
+                                            function(response) {
+                                                vm.prepList = response.data;
+                                            },
+                                            function(error) {
+                                                vm.error = error.data;
+                                            }
+                                        )
                                 },
                                 function(error) {
-                                    console.log('here error');
                                     vm.error = error.data;
                                 }
-                            )
+                            );
                     },
                     function(error) {
                         vm.error = error.data;

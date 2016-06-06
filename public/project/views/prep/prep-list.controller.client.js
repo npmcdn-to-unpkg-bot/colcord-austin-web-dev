@@ -38,8 +38,19 @@
         init();
 
         function getRecipeFromTask(prepTask) {
-            return RecipeService
+            RecipeService
                 .findRecipeById(prepTask.recipeId)
+                .then(
+                    function(response) {
+                        console.log("HI");
+                    },
+                    function(error) {
+                        console.log("ERROR");
+                    }
+
+                );
+                //TODO : FIX THIS
+                // .findRecipeById(prepTask.recipeId)
                 // .then(
                 //     function(response) {
                 //         return response.data;
