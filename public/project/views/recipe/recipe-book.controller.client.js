@@ -8,11 +8,36 @@
         vm.addToPrepToDo = addToPrepToDo;
         
         vm.uid = $routeParams["uid"];
+        console.log("uid" + vm.uid);
         
         function init() {
-            vm.user = UserService.findUserById(vm.uid);
-            vm.recipeBook = RecipeService.findRecipesByRestaurant(vm.user.restaurantId);
-            vm.prepList = PrepService.findPrepListByRestaurantId(vm.user.restaurantId);
+            UserService
+                .findUserById(vm.uid)
+                .then(
+                    function(response) {
+                        vm.user = response.data;
+                        console.log(vm.user);
+                        console.log("here res id " + vm.user.restaurantId);
+
+                        vm.recipeBook = RecipeService.findRecipesByRestaurant(vm.user.restaurantId);
+                        PrepService
+                            .findPrepListByRestaurantId(vm.user.restaurantId)
+                            .then(
+                                function(response) {
+                                    console.log("here");
+                                    vm.prepList = response.data;
+                                },
+                                function(error) {
+                                    console.log('here error');
+                                    vm.error = error.data;
+                                }
+                            )
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                )
+
 
         }
         init();

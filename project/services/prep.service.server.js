@@ -18,30 +18,18 @@ module.exports = function(app) {
     app.post("/api/prep/", createPrepList);
     // app.get("/api/website/:websiteId/page", findAllPagesForWebsite);
     app.get("/api/prep/:prepListId", findPrepListById);
-    app.get("/api/prep/restaurant/:restaurantId", findPrepListByRestaurantId);
+    app.get("/api/restaurant/:restaurantId/prep/", findPrepListByRestaurantId);
 
     app.put("/api/prep/:prepListId", updatePrepList);
     app.delete("/api/prep/:prepListId", deletePrepList);
-    //
+    
     function createPrepList(req, res) {
         var newPrepList = req.body;
         newPrepList._id = (new Date()).getTime() + "";
         prepLists.push(newPrepList);
         res.sendStatus(200);
     }
-    //
-    // function findAllPagesForWebsite(req, res) {
-    //     var websiteId = req.params.websiteId;
-    //
-    //     var result = [];
-    //     for(var i in pages) {
-    //         if(pages[i].websiteId === websiteId) {
-    //             result.push(pages[i]);
-    //         }
-    //     }
-    //     res.send(result);
-    // }
-    //
+    
     function findPrepListById(req, res) {
         var prepListId = req.params.prepListId;
         for(var i in prepLists) {

@@ -29,7 +29,7 @@
         }
 
         function findPrepListByRestaurantId(restaurantId) {
-            return $http.get("/api/prep/restaurant/" + restaurantId);
+            return $http.get("/api/restaurant/" + restaurantId + "/prep");
         }
 
         function addToPrepListToDo(prepListId, prepItem) {
