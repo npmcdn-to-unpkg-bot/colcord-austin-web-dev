@@ -20,25 +20,13 @@
                             .findRecipesByRestaurant(vm.user.restaurantId)
                             .then(
                                 function(response) {
-                                    console.log(vm.user.restaurantId);
                                     vm.recipeBook = response.data;
                                     PrepService
                                         .findPrepListByRestaurantId(vm.user.restaurantId)
                                         .then(
                                             function(response) {
                                                 vm.prepList = response.data;
-                                                TimerService
-                                                    .findTimersByUsername(vm.user.username)
-                                                    .then(
-                                                        function(response) {
-                                                            console.log(response);
-                                                            vm.timers = response.data;
-                                                            console.log(vm.user.username);
-                                                        },
-                                                        function(error) {
-                                                            vm.error = error.data;
-                                                        }
-                                                    )
+                                                getTimers();
                                             },
                                             function(error) {
                                                 vm.error = error.data;
@@ -56,6 +44,19 @@
                 )
         }
         init();
+
+        function getTimers() {
+            TimerService
+                .findTimersByUsername(vm.user.username)
+                .then(
+                    function(response) {
+                        vm.timers = response.data;
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                )
+        }
 
         function getMinutesRemaining(timer) {
             // return timer.setMinutes - (formatTime(new Date() - timer.timeStart));
@@ -76,6 +77,7 @@
                 .then(
                     function(response) {
                         vm.success = "Successfully removed timer";
+                        getTimers();
                     },
                     function(error) {
                         vm.error = error.data;
