@@ -72,8 +72,9 @@ module.exports = function(app) {
     //
     function createRecipe(req, res) {
         var newRecipe = req.body;
-        recipes.push(recipe);
-        res.send(200);
+        newRecipe._id = (new Date).getTime() + "";
+        recipes.push(newRecipe);
+        res.json(newRecipe);
     }
     
     function findAllRecipesByRestaurantId(req, res) {

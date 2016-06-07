@@ -12,10 +12,7 @@
 
         function createRecipe() {
             try {
-                var id = (new Date).getTime();
-
                 var newRecipe = {
-                    _id: id,
                     name: vm.recipe.name,
                     prepTime: vm.recipe.prepTime,
                     type: vm.recipe.type,
@@ -25,9 +22,18 @@
                     restaurantId: vm.recipe.restaurantId,
                     recent: true
                 };
-                console.log(id);
-                RecipeService.createRecipe(UserService.findUserById(vm.uid).restaurantId, newRecipe);
-                $location.url("/user/" + vm.uid + "/recipe/" + id);
+                RecipeService
+                    .createRecipe(UserService.findUserById(vm.uid).restaurantId, newRecipe)
+                    .then(
+                        function(response) {
+                            vm.success = "Successfully created recipe";
+                            console.log(response);
+                            $location.url("/user/" + vm.uid + "/recipe/" + response.data._id);
+                        },
+                        function(error) {
+                            vm.error = error.data;
+                        }
+                    );
             }
             catch(err) {
                 vm.error = "Error creating recipe";
