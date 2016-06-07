@@ -28,17 +28,6 @@ module.exports = function(app, models) {
                     res.status(400).send("Username " + newUser.username + " is already in use");
                 }
             );
-
-        // for(var i in users) {
-        //     if(users[i].username === newUser.username) {
-        //         res.status(400).send("Username " + newUser.username + " is already in use");
-        //         return;
-        //     }
-        // }
-        //
-        // newUser._id = (new Date()).getTime() + "";
-        // users.push(newUser);
-        // res.json(newUser);
     }
 
 
@@ -84,13 +73,16 @@ module.exports = function(app, models) {
     }
 
     function findUserByCredentials(username, password, res) {
-        for(var u in users) {
-            if(users[u].username === username && users[u].password === password) {
-                res.send(users[u]);
-                return;
-            }
-        }
-        res.sendStatus(403);
+        userModel
+            .findUserByCredentials(username, password)
+            .then(
+                function(user) {
+                    res.json(user);
+                },
+                function(error) {
+                    res.status(403).send("Unable to login");
+                }
+            );
     }
 
     function findUserByUsername(username, res) {
