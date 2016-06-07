@@ -13,9 +13,28 @@
         vm.multiplier = 1;
         
         function init() {
-            vm.recipe = RecipeService.findRecipeById(vm.rid);
-            vm.restaurantId = vm.recipe.restaurantId;
-            vm.prepList = PrepService.findPrepListByRestaurantId(vm.restaurantId);
+            RecipeService
+                .findRecipeById(vm.rid)
+                .then(
+                    function(response) {
+                        vm.recipe = response.data;
+                        vm.restaurantId = vm.recipe.restaurantId;
+                        PrepService
+                            .findPrepListByRestaurantId(vm.restaurantId)
+                            .then(
+                                function(response) {
+                                    vm.prepList = response.data;
+                                },
+                                function(error) {
+                                    vm.error = error.data;
+                                }
+                            )
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+
+                );
         }
         init();
         
@@ -25,7 +44,16 @@
                 important: false,
                 signer: "",
                 timeStamp: (new Date).toDateString()};
-            PrepService.addToPrepListToDo(vm.prepList._id, newPrepItem);
+            PrepService
+                .addToPrepListToDo(vm.prepList._id, newPrepItem)
+                .then(
+                    function(response) {
+                        vm.success = "Successfully added recipe to to-do";
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                )
         }
     }
     
