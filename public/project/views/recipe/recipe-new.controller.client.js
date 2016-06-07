@@ -7,8 +7,11 @@
         var vm = this;
 
         vm.createRecipe = createRecipe;
+        vm.addIngredientRow = addIngredientRow;
+        vm.removeIngredient = removeIngredient;
 
         vm.uid = $routeParams["uid"];
+        vm.ingredients = [];
 
         function createRecipe() {
             try {
@@ -17,7 +20,7 @@
                     prepTime: vm.recipe.prepTime,
                     type: vm.recipe.type,
                     description: vm.recipe.description,
-                    ingredients: vm.recipe.ingredients,
+                    ingredients: vm.ingredients,
                     directions: vm.recipe.directions,
                     restaurantId: vm.recipe.restaurantId,
                     recent: true
@@ -37,6 +40,18 @@
             }
             catch(err) {
                 vm.error = "Error creating recipe";
+            }
+        }
+
+        function addIngredientRow() {
+            vm.ingredients.push({_id: (new Date).getTime()});
+        }
+
+        function removeIngredient(ingredientId) {
+            for(var i in vm.recipe.ingredients) {
+                if(vm.recipe.ingredients[i]._id == ingredientId) {
+                    vm.recipe.ingredients.splice(i, 1);
+                }
             }
         }
     }

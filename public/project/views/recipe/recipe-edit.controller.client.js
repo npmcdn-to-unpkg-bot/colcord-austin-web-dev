@@ -15,18 +15,43 @@
         vm.rid = $routeParams["rid"];
         
         function init() {
-            vm.recipe = angular.copy(RecipeService.findRecipeById(vm.rid));
+            RecipeService
+                .findRecipeById(vm.rid)
+                .then(
+                    function(response) {
+                        vm.recipe = response.data;
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                )
         }
         init();
 
         function updateRecipe() {
-            RecipeService.updateRecipe(vm.rid, vm.recipe);
-            $location.url("/user/"+ vm.uid + "/recipe/" + vm.rid);
+            RecipeService
+                .updateRecipe(vm.rid, vm.recipe)
+                .then(
+                    function(response) {
+                        $location.url("/user/"+ vm.uid + "/recipe/" + vm.rid);
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                )
         }
 
         function deleteRecipe() {
-            RecipeService.deleteRecipe(vm.rid);
-            $location.url("/user/"+ vm.uid + "/recipe/recipe-book");
+            RecipeService
+                .deleteRecipe(vm.rid)
+                .then(
+                    function(response) {
+                        $location.url("/user/"+ vm.uid + "/recipe/recipe-book");
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                )
         }
         
         function addIngredientRow() {
