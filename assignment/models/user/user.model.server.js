@@ -31,11 +31,20 @@ module.exports = function() {
         
     }
     
-    function updateUser() {
-        
+    function updateUser(userId, newUser) {
+        return User.update(
+            {_id: userId},
+            {$set :
+                {
+                    firstName: newUser.firstName,
+                    lastName: newUser.lastName,
+                    email: newUser.email
+                }
+            }
+        )
     }
     
-    function deleteUser() {
-        
+    function deleteUser(userId) {
+        return User.remove({_id: userId});
     }
 };

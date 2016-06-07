@@ -32,30 +32,32 @@ module.exports = function(app, models) {
 
 
     function deleteUser(req, res) {
-        var id = req.params.userId;
-        for(var i in users) {
-            if(users[i]._id === id) {
-                users.splice(i, 1);
-                res.sendStatus(200);
-                return true;
-            }
-        }
-        res.status(404).send("Unable to remove user with ID " + id);
+        var userId = req.params.userId;
+        userModel
+            .deleteUser(userId)
+            .then(
+                function(status) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to remove user with ID " + userId);
+                }
+            );
     }
 
     function updateUser(req, res) {
-        var id = req.params.userId;
+        var userId = req.params.userId;
         var newUser = req.body;
-        for(var i in users) {
-            if(users[i]._id == id) {
-                users[i].firstName = newUser.firstName;
-                users[i].lastName = newUser.lastName;
-                users[i].email = newUser.email;
-                res.sendStatus(200);
-                return true;
-            }
-        }
-        res.status(400).send("User with ID " + id + " not found");
+        userModel
+            .updateUser(userId, newUser)
+            .then(
+                function(user) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to update user with ID " + userId);
+                }
+            );
     }
 
     function getUsers(req, res) {
@@ -106,13 +108,5 @@ module.exports = function(app, models) {
                     res.status(400).send(error);
                 }
             );
-        // var userId = req.params.userId;
-        // for(var i in users) {
-        //     if(users[i]._id === userId) {
-        //         res.send(users[i]);
-        //         return;
-        //     }
-        // }
-        // res.status(400).send("User with ID " + userId + " not found");
     }
 };
