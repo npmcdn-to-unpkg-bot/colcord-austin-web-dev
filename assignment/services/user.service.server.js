@@ -1,4 +1,7 @@
-module.exports = function(app) {
+module.exports = function(app, models) {
+
+    var userModel = models.userModel;
+
     var users = [
         {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
         {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
@@ -15,16 +18,27 @@ module.exports = function(app) {
     function createUser(req, res) {
         var newUser = req.body;
 
-        for(var i in users) {
-            if(users[i].username === newUser.username) {
-                res.status(400).send("Username " + newUser.username + " is already in use");
-                return;
-            }
-        }
+        userModel
+            .createUser(newUser)
+            .then(
+                function(user) {
+                    res.json(user);
+                },
+                function(error) {
+                    res.status(400).send("Username " + newUser.username + " is already in use");
+                }
+            );
 
-        newUser._id = (new Date()).getTime() + "";
-        users.push(newUser);
-        res.json(newUser);
+        // for(var i in users) {
+        //     if(users[i].username === newUser.username) {
+        //         res.status(400).send("Username " + newUser.username + " is already in use");
+        //         return;
+        //     }
+        // }
+        //
+        // newUser._id = (new Date()).getTime() + "";
+        // users.push(newUser);
+        // res.json(newUser);
     }
 
 
@@ -91,12 +105,22 @@ module.exports = function(app) {
 
     function findUserById(req, res) {
         var userId = req.params.userId;
-        for(var i in users) {
-            if(users[i]._id === userId) {
-                res.send(users[i]);
-                return;
-            }
-        }
-        res.status(400).send("User with ID " + userId + " not found");
+        userModel.findUserById(userId)
+            .then(
+                function(user) {
+                    res.send(user);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            );
+        // var userId = req.params.userId;
+        // for(var i in users) {
+        //     if(users[i]._id === userId) {
+        //         res.send(users[i]);
+        //         return;
+        //     }
+        // }
+        // res.status(400).send("User with ID " + userId + " not found");
     }
 };
