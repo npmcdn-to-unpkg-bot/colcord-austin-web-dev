@@ -34,7 +34,7 @@
 
         function addToPrepListToDo(prepListId, prepItem) {
             for(var i in prepLists) {
-                if(prepLists[i]._id == prepListId) {
+                if(prepLists[i]._id === prepListId) {
                     prepLists[i].toDo.push(prepItem);
                 }
             }
@@ -42,7 +42,7 @@
 
         function addToPrepListInProgress(prepListId, prepItem) {
             for(var i in prepLists) {
-                if(prepLists[i]._id == prepListId) {
+                if(prepLists[i]._id === prepListId) {
                     prepItem.timeStamp = (new Date).toDateString();
                     prepLists[i].inProgress.push(prepItem);
                 }
@@ -51,7 +51,7 @@
 
         function addToPrepListCompleted(prepListId, prepItem) {
             for(var i in prepLists) {
-                if(prepLists[i]._id == prepListId) {
+                if(prepLists[i]._id === prepListId) {
                     prepItem.timeStamp = (new Date).toDateString();
                     prepLists[i].completed.push(prepItem);
                 }
@@ -60,7 +60,7 @@
 
         function removeFromPrepCompletedList(prepListId, recipeId) {
             for(var i in prepLists) {
-                if(prepLists[i]._id == prepListId) {
+                if(prepLists[i]._id === prepListId) {
                     for(var j in prepLists[i].completed) {
                         if(prepLists[i].completed[j].recipeId == recipeId) {
                             prepLists[i].completed.splice(j, 1);
@@ -72,7 +72,7 @@
 
         function removeFromPrepToDoList(prepListId, recipeId) {
             for(var i in prepLists) {
-                if(prepLists[i]._id == prepListId) {
+                if(prepLists[i]._id === prepListId) {
                     for(var j in prepLists[i].toDo) {
                         if(prepLists[i].toDo[j].recipeId == recipeId) {
                             prepLists[i].toDo.splice(j, 1);
@@ -84,7 +84,7 @@
 
         function removeFromPrepInProgressList(prepListId, recipeId) {
             for(var i in prepLists) {
-                if(prepLists[i]._id == prepListId) {
+                if(prepLists[i]._id === prepListId) {
                     for(var j in prepLists[i].inProgress) {
                         if(prepLists[i].inProgress[j].recipeId == recipeId) {
                             prepLists[i].inProgress.splice(j, 1);

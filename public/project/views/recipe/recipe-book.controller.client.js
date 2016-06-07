@@ -8,7 +8,6 @@
         vm.addToPrepToDo = addToPrepToDo;
         
         vm.uid = $routeParams["uid"];
-        console.log("uid" + vm.uid);
         
         function init() {
             UserService
@@ -16,9 +15,6 @@
                 .then(
                     function(response) {
                         vm.user = response.data;
-                        console.log(vm.user);
-                        console.log("here res id " + vm.user.restaurantId);
-
                         RecipeService
                             .findRecipesByRestaurant(vm.user.restaurantId)
                             .then(

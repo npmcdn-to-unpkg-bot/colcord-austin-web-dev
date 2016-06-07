@@ -46,7 +46,7 @@ module.exports = function(app) {
                 {_id: "665", name: "Pepper", amount: 1, measure: "Cups, Diced"}
             ],
             directions: "Cook it all together",
-            restaurantId: 12345,
+            restaurantId: "12345",
             recent: false
         },
         {_id: "909",

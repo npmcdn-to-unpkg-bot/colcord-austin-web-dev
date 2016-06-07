@@ -19,10 +19,7 @@
         }
 
         function findRecipesByRestaurant(restaurantId) {
-            console.log(restaurantId);
-            var result = $http.get("/api/restaurant/" + restaurantId + "/recipe");
-            console.log(result);
-            return result;
+            return $http.get("/api/restaurant/" + restaurantId + "/recipe");
         }
 
         function findRecipeById(recipeId) {

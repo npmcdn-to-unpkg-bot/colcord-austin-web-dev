@@ -5,10 +5,10 @@
 
     function TimerService() {
         var timers = [
-            {_id: 412, name: "Thaw Puff Pastry", recipeId: 123, username: "ajdcolcord", timeStart: new Date(), setMinutes: 4},
-            {_id: 542, name: "Sear Beef", recipeId: 543, username: "ajdcolcord", timeStart: new Date(), setMinutes: 10},
-            {_id: 123, name: "Bake Chicken", recipeId: 909, username: "ajdcolcord", timeStart: new Date(), setMinutes: 20},
-            {_id: 990, name: "Beef Chili Cook at 10", recipeId: 998, username: "ajdcolcord", timeStart: new Date(), setMinutes: 2}
+            {_id: "412", name: "Thaw Puff Pastry", recipeId: "123", username: "ajdcolcord", timeStart: new Date(), setMinutes: 4},
+            {_id: "542", name: "Sear Beef", recipeId: "543", username: "ajdcolcord", timeStart: new Date(), setMinutes: 10},
+            {_id: "123", name: "Bake Chicken", recipeId: "909", username: "ajdcolcord", timeStart: new Date(), setMinutes: 20},
+            {_id: "990", name: "Beef Chili Cook at 10", recipeId: "998", username: "ajdcolcord", timeStart: new Date(), setMinutes: 2}
         ];
 
         var api = {
@@ -27,7 +27,7 @@
 
         function findTimerById(timerId) {
             for (var i in timers) {
-                if (timers[i]._id == timerId) {
+                if (timers[i]._id === timerId) {
                     return timers[i];
                 }
             }
@@ -37,7 +37,7 @@
         function findTimersByUsername(username) {
             var result = [];
             for (var i in timers) {
-                if (timers[i].username == username) {
+                if (timers[i].username === username) {
                     result.push(timers[i]);
                 }
             }
@@ -50,7 +50,7 @@
 
         function updateTimer(timerId, newTime) {
             for(var i in timers) {
-                if(timers[i]._id == timerId) {
+                if(timers[i]._id === timerId) {
                     timers[i].timeStart = newTime;
                     return true;
                 }
@@ -60,7 +60,7 @@
         
         function deleteTimer(timerId) {
             for(var i in timers) {
-                if (timers[i]._id == timerId) {
+                if (timers[i]._id === timerId) {
                     timers.splice(i, 1);
                 }
             }

@@ -22,21 +22,29 @@
                     description: vm.recipe.description,
                     ingredients: vm.ingredients,
                     directions: vm.recipe.directions,
-                    restaurantId: vm.recipe.restaurantId,
                     recent: true
                 };
-                RecipeService
-                    .createRecipe(UserService.findUserById(vm.uid).restaurantId, newRecipe)
+                UserService
+                    .findUserById(vm.uid)
                     .then(
                         function(response) {
-                            vm.success = "Successfully created recipe";
-                            console.log(response);
-                            $location.url("/user/" + vm.uid + "/recipe/" + response.data._id);
+                            RecipeService
+                                .createRecipe(response.data.restaurantId, newRecipe)
+                                .then(
+                                    function(response) {
+                                        vm.success = "Successfully created recipe";
+                                        $location.url("/user/" + vm.uid + "/recipe/" + response.data._id);
+                                    },
+                                    function(error) {
+                                        vm.error = error.data;
+                                    }
+                                );
                         },
                         function(error) {
                             vm.error = error.data;
                         }
-                    );
+                    )
+
             }
             catch(err) {
                 vm.error = "Error creating recipe";

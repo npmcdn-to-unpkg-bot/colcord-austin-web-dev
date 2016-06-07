@@ -1,24 +1,24 @@
 module.exports = function(app) {
     var prepLists = [
         {_id: "123",
-            restaurantId: 12345,
+            restaurantId: "12345",
             toDo: [
-                {recipeId: 123, important: true}
+                {recipeId: "123", important: true}
             ],
             inProgress: [
-                {recipeId: 543, important: true, signer: "AC", timeStamp: (new Date).toDateString()},
-                {recipeId: 998, important: false, signer: "CW", timeStamp: (new Date).toDateString()}
+                {recipeId: "543", important: true, signer: "AC", timeStamp: (new Date).toDateString() + ""},
+                {recipeId: "998", important: false, signer: "CW", timeStamp: (new Date).toDateString() + ""}
             ],
             completed: [
-                {recipeId: 909, important: true, signer: "JW", timeStamp: (new Date).toDateString()}
+                {recipeId: "909", important: true, signer: "JW", timeStamp: (new Date).toDateString() + ""}
             ]},
-        {_id: "444", restaurantId: 44412, toDo: [], inProgress: [], completed: []}
+        {_id: "444", restaurantId: "44412", toDo: [], inProgress: [], completed: []}
     ];
 
     app.post("/api/prep/", createPrepList);
     // app.get("/api/website/:websiteId/page", findAllPagesForWebsite);
     app.get("/api/prep/:prepListId", findPrepListById);
-    app.get("/api/restaurant/:restaurantId/prep/", findPrepListByRestaurantId);
+    app.get("/api/restaurant/:restaurantId/prep", findPrepListByRestaurantId);
 
     app.put("/api/prep/:prepListId", updatePrepList);
     app.delete("/api/prep/:prepListId", deletePrepList);
@@ -44,7 +44,7 @@ module.exports = function(app) {
     function findPrepListByRestaurantId(req, res) {
         var restaurantId = req.params.restaurantId;
         for (var i in prepLists) {
-            if (prepLists[i].restaurantId == restaurantId) {
+            if (prepLists[i].restaurantId === restaurantId) {
                 res.json(prepLists[i]);
                 return;
             }
@@ -57,7 +57,7 @@ module.exports = function(app) {
         var prepListId = req.params.prepListId;
 
         for(var i in prepLists) {
-            if(prepLists[i]._id == prepListId) {
+            if(prepLists[i]._id === prepListId) {
                 prepLists[i].toDo = prepList.toDo;
                 prepLists[i].inProgress = prepList.inProgress;
                 prepLists[i].completed = prepList.completed;
@@ -71,7 +71,7 @@ module.exports = function(app) {
         var prepListId = req.params.prepListId;
         
         for(var i in prepLists) {
-            if (prepLists[i]._id == prepListId) {
+            if (prepLists[i]._id === prepListId) {
                 prepLists.splice(i, 1);
                 res.sendStatus(200);
                 return true;
