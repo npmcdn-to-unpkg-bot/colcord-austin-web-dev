@@ -87,18 +87,40 @@
                         <tr>
                             <th>Ingredient</th>
                             <th>Amount</th>
-                            <th>Style</th>
+                            <th>Measure</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td contenteditable='true'></td>
-                            <td contenteditable='true'></td>
-                            <td contenteditable='true'></td>
-                        </tr>
-
-                        </tbody>
                     </table>
+
+                    <div class="row"
+                         ng-repeat="ingredient in model.recipe.ingredients">
+                        <div class="col-xs-5">
+                            <input ng-model="ingredient.name"
+                                   type="text"
+                                   class="form-control"
+                                   placeholder="name"/>
+                        </div>
+                        <div class="col-xs-2">
+                            <input ng-model="ingredient.amount"
+                                   type="number"
+                                   class="form-control"
+                                   placeholder="amount"/>
+                        </div>
+                        <div class="col-xs-4">
+                            <input ng-model="ingredient.measure"
+                                   type="text"
+                                   class="form-control"
+                                   placeholder="measurement"/>
+                        </div>
+                        <div class="col-xs-1">
+                            <span ng-click="model.removeIngredient(ingredient._id)"
+                                  class="btn btn-danger glyphicon glyphicon-remove pull-right"></span>
+                        </div>
+                    </div>
+                    <div ng-click="model.addIngredientRow()"
+                         class="btn btn-primary btn-block">
+                        Add Ingredient
+                    </div>
                 </div>
             </div>
             <div class="col-sm-6">
