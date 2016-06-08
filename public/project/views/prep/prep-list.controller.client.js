@@ -100,6 +100,11 @@
                     }
                 )
         }
+
+        $(".prep-list-container")
+            .sortable({
+                axis: 'y'
+            })
          
     }
     
