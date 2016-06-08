@@ -3,9 +3,8 @@
         .module("Prepper")
         .controller("PrepListController", PrepListController);
 
-    function PrepListController($routeParams, RecipeService, UserService, PrepService) {
+    function PrepListController($routeParams, UserService, PrepService) {
         var vm = this;
-        vm.getRecipeFromTask = getRecipeFromTask;
         vm.removeFromPrepCompletedList = removeFromPrepCompletedList;
         vm.moveToInProgress = moveToInProgress;
         vm.moveToCompleted = moveToCompleted;
@@ -36,30 +35,6 @@
 
         }
         init();
-
-        function getRecipeFromTask(prepTask) {
-            RecipeService
-                .findRecipeById(prepTask.recipeId)
-                .then(
-                    function(response) {
-                        console.log("HI");
-                    },
-                    function(error) {
-                        console.log("ERROR");
-                    }
-
-                );
-                //TODO : FIX THIS
-                // .findRecipeById(prepTask.recipeId)
-                // .then(
-                //     function(response) {
-                //         return response.data;
-                //     },
-                //     function(error) {
-                //         vm.error = error.data;
-                //     }
-                // )
-        }
 
         function removeFromPrepCompletedList(recipeId) {
             PrepService

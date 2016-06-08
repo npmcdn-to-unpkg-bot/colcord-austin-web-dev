@@ -3,14 +3,14 @@ module.exports = function(app) {
         {_id: "123",
             restaurantId: "12345",
             toDo: [
-                {_id: "09123", recipeId: "123", important: true}
+                {_id: "09123", recipeId: "123", recipeName: "Chicken Puff Pastry", important: true}
             ],
             inProgress: [
-                {_id: "99202", recipeId: "543", important: true, signer: "AC", timeStamp: (new Date).toDateString() + ""},
-                {_id: "14123", recipeId: "998", important: false, signer: "CW", timeStamp: (new Date).toDateString() + ""}
+                {_id: "99202", recipeId: "543", recipeName: "Beef Broccoli Soup", important: true, signer: "AC", timeStamp: (new Date).toDateString() + ""},
+                {_id: "14123", recipeId: "998", recipeName: "Beef Chili", important: false, signer: "CW", timeStamp: (new Date).toDateString() + ""}
             ],
             completed: [
-                {_id: "55123", recipeId: "909", important: true, signer: "JW", timeStamp: (new Date).toDateString() + ""}
+                {_id: "55123", recipeId: "909", recipeName: "Chicken Breast", important: true, signer: "JW", timeStamp: (new Date).toDateString() + ""}
             ]},
         {_id: "444", restaurantId: "44412", toDo: [], inProgress: [], completed: []}
     ];
