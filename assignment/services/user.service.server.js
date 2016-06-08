@@ -79,7 +79,12 @@ module.exports = function(app, models) {
             .findUserByCredentials(username, password)
             .then(
                 function(user) {
-                    res.json(user);
+                    if(user) {
+                        res.json(user);
+                    }
+                    else {
+                        res.status(403).send("Username and Password Not Found");
+                    }
                 },
                 function(error) {
                     res.status(403).send("Unable to login");
@@ -88,13 +93,16 @@ module.exports = function(app, models) {
     }
 
     function findUserByUsername(username, res) {
-        for(var u in users) {
-            if(users[u].username === username) {
-                res.send(users[u]);
-                return;
-            }
-        }
-        res.status(400).send("User with username " + username + " not found");
+        userModel
+            .findUserByUsername(username)
+            .then(
+                function(user) {
+                    res.json(user);
+                },
+                function(error) {
+                    res.status(400).send("User with username " + username + " not found");
+                }
+            );
     }
 
     function findUserById(req, res) {

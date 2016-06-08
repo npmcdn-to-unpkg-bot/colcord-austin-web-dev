@@ -27,8 +27,8 @@ module.exports = function() {
         return User.findOne({username: username, password: password});
     }
     
-    function findUserByUsername() {
-        
+    function findUserByUsername(username) {
+        return User.findOne({username: username});
     }
     
     function updateUser(userId, newUser) {

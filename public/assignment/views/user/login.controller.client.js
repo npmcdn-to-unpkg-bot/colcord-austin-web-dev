@@ -21,7 +21,7 @@
                         }
                     },
                     function(error) {
-                        vm.error = "User not found";
+                        vm.error = error.data;
                     });
         }
     }

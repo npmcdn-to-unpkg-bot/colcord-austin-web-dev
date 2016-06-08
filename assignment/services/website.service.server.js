@@ -50,39 +50,47 @@ module.exports = function(app, models) {
 
     function findWebsiteById(req, res) {
         var websiteId = req.params.websiteId;
-        for(var i in websites) {
-            if(websites[i]._id === websiteId) {
-                res.json(websites[i]);
-                return;
-            }
-        }
-        res.status(400).send("Website with ID " + websiteId + " not found");
+        
+        websiteModel
+            .findWebsiteById(websiteId)
+            .then(
+                function(website) {
+                    res.json(website);
+                },
+                function(error) {
+                    res.status(404).send(error);
+                }
+            );
     }
 
     function updateWebsite(req, res) {
         var website = req.body;
         var websiteId = req.params.websiteId;
-
-        for(var i in websites) {
-            if(websites[i]._id === websiteId) {
-                websites[i].name = website.name;
-                websites[i].description = website.description;
-                res.sendStatus(200);
-                return true;
-            }
-        }
-        res.status(400).send("Website with ID " + websiteId + " not found");
+        
+        websiteModel
+            .updateWebsite(websiteId, website)
+            .then(
+                function(website) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to update website with ID " + websiteId);
+                }
+            );
     }
 
     function deleteWebsite(req, res) {
         var websiteId = req.params.websiteId;
-        for(var i in websites) {
-            if(websites[i]._id === websiteId) {
-                websites.splice(i, 1);
-                res.sendStatus(200);
-                return true;
-            }
-        }
-        res.status(404).send("Unable to remove website with ID " + websiteId);
+
+        websiteModel
+            .deleteWebsite(websiteId)
+            .then(
+                function(status) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to remove website with ID " + websiteId);
+                }
+            );
     }
 };
