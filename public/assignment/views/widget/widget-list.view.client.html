@@ -26,7 +26,7 @@
 <div class="container-fluid widget-container">
 
     <div ng-repeat="widget in model.widgets"
-         ng-switch="widget.widgetType">
+         ng-switch="widget.type">
 
         <div class="ajc-widget-container">
             <a  href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}">

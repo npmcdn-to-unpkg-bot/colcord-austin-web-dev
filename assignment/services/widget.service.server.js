@@ -1,4 +1,7 @@
-module.exports = function(app) {
+module.exports = function(app, models) {
+
+    var widgetModel = models.widgetModel;
+
     var widgets = [
         { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
         { "_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
@@ -54,57 +57,79 @@ module.exports = function(app) {
 
     function createWidget(req, res) {
         var newWidget = req.body;
-        newWidget._id = (new Date()).getTime() + "";
-        widgets.push(newWidget);
-        res.status(200).send(newWidget._id);
+        var pageId = req.params.pageId;
+
+        widgetModel
+            .createWidget(pageId, newWidget)
+            .then(
+                function(widget) {
+                    res.json(widget);
+                    console.log(widget);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            );
     }
 
     function findAllWidgetsForPage(req, res) {
         var pageId = req.params.pageId;
 
-        var result = [];
-        for(var i in widgets) {
-            if(widgets[i].pageId === pageId) {
-                result.push(widgets[i]);
-            }
-        }
-        res.send(result);
+        widgetModel
+            .findAllWidgetsForPage(pageId)
+            .then(
+                function(widgets) {
+                    res.json(widgets);
+                },
+                function(error) {
+                    res.status(404).send(error);
+                }
+            );
     }
 
     function findWidgetById(req, res) {
         var widgetId = req.params.widgetId;
-        for(var i in widgets) {
-            if(widgets[i]._id === widgetId) {
-                res.json(widgets[i]);
-                return;
-            }
-        }
-        res.status(400).send("Widget with ID " + widgetId + " not found");
+
+        widgetModel
+            .findWidgetById(widgetId)
+            .then(
+                function(widget) {
+                    res.json(widget);
+                },
+                function(error) {
+                    res.status(404).send(error);
+                }
+            );
     }
 
     function updateWidget(req, res) {
         var widget = req.body;
         var widgetId = req.params.widgetId;
 
-        for(var i in widgets) {
-            if(widgets[i]._id === widgetId) {
-                widgets[i] = widget;
-                res.sendStatus(200);
-                return true;
-            }
-        }
-        res.status(400).send("Widget with ID " + widgetId + " not found");
+        widgetModel
+            .updateWidget(widgetId, widget)
+            .then(
+                function(widget) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to update widget with ID " + widgetId);
+                }
+            );
     }
 
     function deleteWidget(req, res) {
         var widgetId = req.params.widgetId;
-        for(var i in widgets) {
-            if(widgets[i]._id === widgetId) {
-                widgets.splice(i, 1);
-                res.sendStatus(200);
-                return true;
-            }
-        }
-        res.status(404).send("Unable to remove widget with ID " + widgetId);
+
+        widgetModel
+            .deleteWidget(widgetId)
+            .then(
+                function(status) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to remove widget with ID " + widgetId);
+                }
+            );
     }
 };
