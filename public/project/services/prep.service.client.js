@@ -32,12 +32,8 @@
             return $http.get("/api/restaurant/" + restaurantId + "/prep");
         }
 
-        function addToPrepListToDo(prepListId, prepItem) {
-            for(var i in prepLists) {
-                if(prepLists[i]._id === prepListId) {
-                    prepLists[i].toDo.push(prepItem);
-                }
-            }
+        function addToPrepListToDo(prepListId, ticket) {
+            return $http.put("/api/prep/" + prepListId + "/toDo", ticket);
         }
 
         function addToPrepListInProgress(prepListId, prepItem) {

@@ -45,13 +45,24 @@
         }
         init();
 
-        function addToPrepToDo(recipeId) {
+        function addToPrepToDo(recipeId, name) {
             var newPrepItem = {
                 recipeId: recipeId,
+                name: name,
                 important: false,
                 signer: "",
                 timeStamp: (new Date).toDateString()};
-            PrepService.addToPrepListToDo(vm.prepList._id, newPrepItem);
+            
+            PrepService
+                .addToPrepListToDo(vm.prepList._id, newPrepItem)
+                .then(
+                    function(response) {
+                        vm.success = "Successfully added item to ToDo";
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                )
         }
     }
     

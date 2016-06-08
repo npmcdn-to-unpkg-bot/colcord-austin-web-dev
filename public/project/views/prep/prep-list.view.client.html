@@ -21,7 +21,7 @@
                     <span ng-click="model.moveToInProgress(recipe)"
                           class="glyphicon glyphicon glyphicon-arrow-right pull-right ajc-list-glyphicon"></span>
                     <a  href="#/user/{{model.uid}}/recipe/{{recipe.recipeId}}">
-                        {{recipe.recipeName}}
+                        {{recipe.name}}
                     </a>
                     <span ng-if="recipe.important"
                           class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
@@ -37,7 +37,7 @@
                     <span ng-click="model.moveToCompleted(recipe)"
                           class="glyphicon glyphicon glyphicon-arrow-right pull-right ajc-list-glyphicon"></span>
                     <a  href="#/user/{{model.uid}}/recipe/{{recipe.recipeId}}">
-                        {{recipe.recipeName}}
+                        {{recipe.name}}
                     </a>
                     <span ng-if="recipe.important"
                           class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
@@ -59,7 +59,7 @@
                     class="list-group-item">
                     <span class="glyphicon glyphicon glyphicon-align-justify pull-right ajc-list-glyphicon"></span>
                     <a  href="#/user/{{model.uid}}/recipe/{{recipe.recipeId}}">
-                        {{recipe.recipeName}}
+                        {{recipe.name}}
                     </a>
                     <span ng-if="recipe.important"
                           class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
