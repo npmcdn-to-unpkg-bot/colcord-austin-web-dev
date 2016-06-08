@@ -26,17 +26,22 @@
         init();
 
         function updatePage() {
-            PageService
-                .updatePage(vm.pid, vm.page)
-                .then(
-                    function(response) {
-                        vm.success = "Page successfully updated";
-                        $location.url("/user/"+ vm.uid + "/website/" + vm.wid + "/page");
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                    }
-                )
+            if (vm.page.name) {
+                PageService
+                    .updatePage(vm.pid, vm.page)
+                    .then(
+                        function (response) {
+                            vm.success = "Page successfully updated";
+                            $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+                        },
+                        function (error) {
+                            vm.error = error.data;
+                        }
+                    )
+            }
+            else {
+                vm.error = "Please Enter a Page Name";
+            }
         }
 
         function deletePage() {

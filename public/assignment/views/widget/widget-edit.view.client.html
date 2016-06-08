@@ -24,6 +24,14 @@
 
 </header>
 
+<div class="container-fluid">
+    <div ng-if="model.error"
+         class="alert alert-danger"
+         role="alert">
+        {{model.error}}
+    </div>
+</div>
+
 <div ng-switch="model.widget.type">
     <div ng-switch-when="HEADER">
         <ng-include src="'views/widget/widget-header.view.client.html'">

@@ -27,17 +27,22 @@
         init();
 
         function updateWidget() {
-            WidgetService
-                .updateWidget(vm.wgid, vm.widget)
-                .then(
-                    function(response) {
-                        vm.success = "Widget successfully updated";
-                        $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                    }
-                )
+            if(vm.widget.name) {
+                WidgetService
+                    .updateWidget(vm.wgid, vm.widget)
+                    .then(
+                        function (response) {
+                            vm.success = "Widget successfully updated";
+                            $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page/" + vm.pid + "/widget");
+                        },
+                        function (error) {
+                            vm.error = error.data;
+                        }
+                    )
+            }
+            else {
+                vm.error = "Please Enter a Name for this Widget";
+            }
         }
 
         function deleteWidget() {

@@ -25,17 +25,22 @@
         init();
 
         function updateWebsite() {
-            WebsiteService
-                .updateWebsite(vm.wid, vm.website)
-                .then(
-                    function(res) {
-                        vm.success = "Website successfully updated";
-                        $location.url("/user/"+ vm.uid + "/website");
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                    }
-                )
+            if (vm.website.name) {
+                WebsiteService
+                    .updateWebsite(vm.wid, vm.website)
+                    .then(
+                        function (res) {
+                            vm.success = "Website successfully updated";
+                            $location.url("/user/" + vm.uid + "/website");
+                        },
+                        function (error) {
+                            vm.error = error.data;
+                        }
+                    )
+            }
+            else {
+                vm.error = "Please Enter a Website Name";
+            }
         }
 
         function deleteWebsite() {
