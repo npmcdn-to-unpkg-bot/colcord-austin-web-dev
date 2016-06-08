@@ -18,7 +18,7 @@
                     title: title
                 };
                 PageService
-                    .createPage(vm.uid, newPage)
+                    .createPage(vm.wid, newPage)
                     .then(
                         function(response) {
                             vm.success = "Created new website";
