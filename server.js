@@ -12,7 +12,7 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 }
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/cs4550summer1');
+// mongoose.connect('mongodb://localhost/cs4550summer1');
 //////////////////////////////
 
 var bodyParser = require('body-parser');
