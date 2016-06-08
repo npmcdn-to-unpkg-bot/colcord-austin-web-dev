@@ -36,58 +36,24 @@
             return $http.put("/api/prep/" + prepListId + "/toDo", ticket);
         }
 
-        function addToPrepListInProgress(prepListId, prepItem) {
-            for(var i in prepLists) {
-                if(prepLists[i]._id === prepListId) {
-                    prepItem.timeStamp = (new Date).toDateString();
-                    prepLists[i].inProgress.push(prepItem);
-                }
-            }
+        function addToPrepListInProgress(prepListId, ticket) {
+            return $http.put("/api/prep/" + prepListId + "/inProgress", ticket);
         }
 
-        function addToPrepListCompleted(prepListId, prepItem) {
-            for(var i in prepLists) {
-                if(prepLists[i]._id === prepListId) {
-                    prepItem.timeStamp = (new Date).toDateString();
-                    prepLists[i].completed.push(prepItem);
-                }
-            }
+        function addToPrepListCompleted(prepListId, ticket) {
+            return $http.put("/api/prep/" + prepListId + "/completed", ticket);
         }
 
-        function removeFromPrepCompletedList(prepListId, recipeId) {
-            for(var i in prepLists) {
-                if(prepLists[i]._id === prepListId) {
-                    for(var j in prepLists[i].completed) {
-                        if(prepLists[i].completed[j].recipeId == recipeId) {
-                            prepLists[i].completed.splice(j, 1);
-                        }
-                    }
-                }
-            }
+        function removeFromPrepCompletedList(prepListId, ticketId) {
+            return $http.delete("/api/prep/" + prepListId + "/completed/" + ticketId);
         }
 
-        function removeFromPrepToDoList(prepListId, recipeId) {
-            for(var i in prepLists) {
-                if(prepLists[i]._id === prepListId) {
-                    for(var j in prepLists[i].toDo) {
-                        if(prepLists[i].toDo[j].recipeId == recipeId) {
-                            prepLists[i].toDo.splice(j, 1);
-                        }
-                    }
-                }
-            }
+        function removeFromPrepToDoList(prepListId, ticketId) {
+            return $http.delete("/api/prep/" + prepListId + "/toDo/" + ticketId);
         }
 
-        function removeFromPrepInProgressList(prepListId, recipeId) {
-            for(var i in prepLists) {
-                if(prepLists[i]._id === prepListId) {
-                    for(var j in prepLists[i].inProgress) {
-                        if(prepLists[i].inProgress[j].recipeId == recipeId) {
-                            prepLists[i].inProgress.splice(j, 1);
-                        }
-                    }
-                }
-            }
+        function removeFromPrepInProgressList(prepListId, ticketId) {
+            return $http.delete("/api/prep/" + prepListId + "/inProgress/" + ticketId);
         }
 
         function updatePrepList(prepListId, prepList) {

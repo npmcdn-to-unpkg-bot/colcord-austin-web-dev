@@ -17,16 +17,7 @@
                 .then(
                     function(response) {
                         vm.user = response.data;
-                        PrepService
-                            .findPrepListByRestaurantId(vm.user.restaurantId)
-                            .then(
-                                function(response) {
-                                    vm.prepList = response.data;
-                                },
-                                function(error) {
-                                    vm.error = error.data;
-                                }
-                            )
+                        getPrepList();
                     },
                     function(error) {
                         vm.error = error.data;
@@ -36,11 +27,25 @@
         }
         init();
 
-        function removeFromPrepCompletedList(recipeId) {
+        function getPrepList() {
             PrepService
-                .removeFromPrepCompletedList(vm.prepList._id, recipeId)
+                .findPrepListByRestaurantId(vm.user.restaurantId)
                 .then(
                     function(response) {
+                        vm.prepList = response.data;
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                )
+        }
+
+        function removeFromPrepCompletedList(ticket) {
+            PrepService
+                .removeFromPrepCompletedList(vm.prepList._id, ticket._id)
+                .then(
+                    function(response) {
+                        getPrepList();
                         vm.success = "Item Removed Successfully";
                     },
                     function(error) {
@@ -51,13 +56,14 @@
 
         function moveToInProgress(prepListItem) {
             PrepService
-                .addToPrepListInProgress(vm.prepList._id, angular.copy(prepListItem))
+                .addToPrepListInProgress(vm.prepList._id, prepListItem)
                 .then(
                     function(response) {
                         PrepService
-                            .removeFromPrepToDoList(vm.prepList._id, prepListItem.recipeId)
+                            .removeFromPrepToDoList(vm.prepList._id, prepListItem._id)
                             .then(
                                 function(response) {
+                                    getPrepList();
                                     vm.success = "Item moved successfully";
                                 },
                                 function(error) {
@@ -71,15 +77,17 @@
                 )
 
         }
+
         function moveToCompleted(prepListItem) {
             PrepService
-                .addToPrepListCompleted(vm.prepList._id, angular.copy(prepListItem))
+                .addToPrepListCompleted(vm.prepList._id, prepListItem)
                 .then(
                     function(response) {
                         PrepService
-                            .removeFromPrepInProgressList(vm.prepList._id, prepListItem.recipeId)
+                            .removeFromPrepInProgressList(vm.prepList._id, prepListItem._id)
                             .then(
                                 function(response) {
+                                    getPrepList();
                                     vm.success = "Item moved successfully";
                                 },
                                 function(error) {
