@@ -13,7 +13,6 @@ module.exports = function(app) {
     app.delete("/api/employee/:userId", deleteUser);
     
     function createUser(req, res) {
-        console.log("HERE");
         var newUser = req.body;
 
         for(var i in users) {

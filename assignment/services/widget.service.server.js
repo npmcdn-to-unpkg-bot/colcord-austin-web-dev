@@ -64,7 +64,6 @@ module.exports = function(app, models) {
             .then(
                 function(widget) {
                     res.json(widget);
-                    console.log(widget);
                 },
                 function(error) {
                     res.status(400).send(error);

@@ -58,7 +58,6 @@ module.exports = function(app) {
     }
     
     function deleteTimer(req, res) {
-        console.log(req.params.timerId);
         var timerId = req.params.timerId;
         for(var i in timers) {
             if (timers[i]._id === timerId) {
