@@ -38,13 +38,16 @@
         </div>
 
         <div class="form-group">
-            <span class="form-control">
-                <label for="formatted">Formatted</label>
-                <input ng-model="model.widget.formatted"
-                       type="checkbox"
-                       id="formatted"
-                       class="pull-right"/>
-            </span>
+
+            <div class="input-group">
+                <input type="text"
+                       class="form-control"
+                       value="Formatted">
+                <span class="input-group-addon">
+                    <input ng-model="model.widget.formatted"
+                           type="checkbox">
+                </span>
+            </div>
         </div>
 
         <a  ng-click="model.deleteWidget()"
