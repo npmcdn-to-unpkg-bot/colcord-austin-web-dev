@@ -25,7 +25,7 @@
         init();
 
         function updateWebsite() {
-            if (vm.website.name) {
+            if (vm.website.name && vm.website.name != "") {
                 WebsiteService
                     .updateWebsite(vm.wid, vm.website)
                     .then(

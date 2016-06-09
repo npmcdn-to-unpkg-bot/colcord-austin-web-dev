@@ -27,7 +27,7 @@
         init();
 
         function updateWidget() {
-            if(vm.widget.name) {
+            if(vm.widget.name && vm.widget.name != "") {
                 WidgetService
                     .updateWidget(vm.wgid, vm.widget)
                     .then(

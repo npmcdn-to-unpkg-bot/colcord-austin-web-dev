@@ -11,7 +11,7 @@
         vm.wid = $routeParams["wid"];
 
         function createPage(name, title) {
-            if (name != null) {
+            if (name != null && name != "") {
                 var newPage = {
                     name: name,
                     websiteId: vm.wid,

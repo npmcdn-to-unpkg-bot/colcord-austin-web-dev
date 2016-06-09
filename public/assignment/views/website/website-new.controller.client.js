@@ -10,7 +10,7 @@
         vm.uid = $routeParams["uid"];
       
         function createWebsite(name, description) {
-            if (name != null) {
+            if (name != null && name != "") {
                 var id = (new Date).getTime();
       
                 var newWebsite = {

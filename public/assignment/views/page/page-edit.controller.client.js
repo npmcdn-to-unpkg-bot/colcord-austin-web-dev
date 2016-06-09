@@ -26,7 +26,7 @@
         init();
 
         function updatePage() {
-            if (vm.page.name) {
+            if (vm.page.name && vm.page.name != "") {
                 PageService
                     .updatePage(vm.pid, vm.page)
                     .then(
