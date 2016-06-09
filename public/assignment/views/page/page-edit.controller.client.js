@@ -7,6 +7,7 @@
         var vm = this;
         vm.updatePage = updatePage;
         vm.deletePage = deletePage;
+        vm.submitted = false;
 
         vm.uid = $routeParams.uid;
         vm.wid = $routeParams.wid;
@@ -26,6 +27,7 @@
         init();
 
         function updatePage() {
+            vm.submitted = true;
             if (vm.page.name && vm.page.name != "") {
                 PageService
                     .updatePage(vm.pid, vm.page)
@@ -33,6 +35,7 @@
                         function (response) {
                             vm.success = "Page successfully updated";
                             $location.url("/user/" + vm.uid + "/website/" + vm.wid + "/page");
+                            vm.submitted = false;
                         },
                         function (error) {
                             vm.error = error.data;
