@@ -38,7 +38,8 @@
 
         $(".widget-container")
             .sortable({
-                axis: 'y'
+                axis: 'y',
+                handle: ".ajc-widget-handle"
             })
     }
 })();
