@@ -17,17 +17,30 @@ module.exports = function(app, models) {
 
     function createUser(req, res) {
         var newUser = req.body;
-
         userModel
-            .createUser(newUser)
+            .findUserByUsername(newUser.username)
             .then(
                 function(user) {
-                    res.json(user);
+                    if(!user) {
+                        userModel
+                            .createUser(newUser)
+                            .then(
+                                function(user) {
+                                    res.json(user);
+                                },
+                                function(error) {
+                                    res.status(400).send("Unable to create new user: " + newUser.username);
+                                }
+                            );
+                    }
+                    else {
+                        res.status(400).send("Username " + newUser.username + " is already in use");
+                    }
                 },
                 function(error) {
-                    res.status(400).send("Username " + newUser.username + " is already in use");
+                    res.status(400).send(error);
                 }
-            );
+            )
     }
 
 
