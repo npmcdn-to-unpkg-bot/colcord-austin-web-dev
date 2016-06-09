@@ -1,6 +1,7 @@
 module.exports = function(app, models) {
 
     var widgetModel = models.widgetModel;
+    var pageModel = models.pageModel;
 
     var widgets = [
         { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
@@ -63,7 +64,16 @@ module.exports = function(app, models) {
             .createWidget(pageId, newWidget)
             .then(
                 function(widget) {
-                    res.json(widget);
+                    pageModel
+                        .addWidgetIdToPage(widget._id, pageId)
+                        .then(
+                            function(response) {
+                                res.json(widget);
+                            },
+                            function(error) {
+                                res.status(400).send(error);
+                            }
+                        )
                 },
                 function(error) {
                     res.status(400).send(error);
@@ -121,14 +131,31 @@ module.exports = function(app, models) {
         var widgetId = req.params.widgetId;
 
         widgetModel
-            .deleteWidget(widgetId)
+            .findWidgetById(widgetId)
             .then(
-                function(status) {
-                    res.sendStatus(200);
-                },
-                function(error) {
-                    res.status(404).send("Unable to remove widget with ID " + widgetId);
+                function(widget) {
+                    var pageId = widget._page;
+
+                    pageModel
+                        .removeWidgetIdFromPage(widgetId, pageId)
+                        .then(
+                            function(status) {
+                                widgetModel
+                                    .deleteWidget(widgetId)
+                                    .then(
+                                        function(status) {
+                                            res.sendStatus(200);
+                                        },
+                                        function(error) {
+                                            res.status(404).send("Unable to remove widget with ID " + widgetId);
+                                        }
+                                    );
+                            },
+                            function(error) {
+                                res.status(404).send("Unable to remove widget ID " + widgetId + " from page " + pageId);
+                            }
+                        )
                 }
-            );
+            )
     }
 };

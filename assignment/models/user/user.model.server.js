@@ -11,9 +11,27 @@ module.exports = function() {
         findUserByCredentials: findUserByCredentials,
         findUserByUsername: findUserByUsername,
         updateUser: updateUser,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
+        addWebsiteIdToUser: addWebsiteIdToUser,
+        removeWebsiteIdFromUser: removeWebsiteIdFromUser
     };
     return api;
+
+    function addWebsiteIdToUser(websiteId, userId) {
+        return User.findOne({_id: userId},
+            function(err, doc) {
+                doc.websites.push(websiteId);
+                doc.save();
+        });
+    }
+
+    function removeWebsiteIdFromUser(websiteId, userId) {
+        return User.findOne({_id: userId},
+            function(err, doc) {
+                doc.websites.pull(websiteId);
+                doc.save();
+            });
+    }
     
     function createUser(user) {
         return User.create(user);

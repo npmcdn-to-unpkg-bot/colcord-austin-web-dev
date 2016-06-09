@@ -1,6 +1,7 @@
 module.exports = function(app, models) {
 
     var websiteModel = models.websiteModel;
+    var userModel = models.userModel;
 
     var websites = [
         { "_id": "123", "name": "Facebook",    "developerId": "456" },
@@ -25,7 +26,17 @@ module.exports = function(app, models) {
             .createWebsite(userId, newWebsite)
             .then(
                 function(website) {
-                    res.json(website);
+                    var websiteId = website._id;
+                    userModel
+                        .addWebsiteIdToUser(websiteId, userId)
+                        .then(
+                            function(response) {
+                                res.json(website);
+                            },
+                            function(error) {
+                                res.status(400).send(error);
+                            }
+                        );
                 },
                 function(error) {
                     res.status(400).send(error);
@@ -83,13 +94,30 @@ module.exports = function(app, models) {
         var websiteId = req.params.websiteId;
 
         websiteModel
-            .deleteWebsite(websiteId)
+            .findWebsiteById(websiteId)
             .then(
-                function(status) {
-                    res.sendStatus(200);
-                },
-                function(error) {
-                    res.status(404).send("Unable to remove website with ID " + websiteId);
+                function(website) {
+                    var userId = website._user;
+
+                    userModel
+                        .removeWebsiteIdFromUser(websiteId, userId)
+                        .then(
+                            function(status) {
+                                websiteModel
+                                    .deleteWebsite(websiteId)
+                                    .then(
+                                        function(status) {
+                                            res.sendStatus(200);
+                                        },
+                                        function(error) {
+                                            res.status(404).send("Unable to remove website with ID " + websiteId);
+                                        }
+                                    );
+                            },
+                            function(error) {
+                                res.status(404).send("Unable to remove website ID " + websiteId + " from user " + userId);
+                            }
+                        )
                 }
             );
     }

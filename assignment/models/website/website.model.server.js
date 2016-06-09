@@ -9,10 +9,28 @@ module.exports = function() {
         findAllWebsitesForUser: findAllWebsitesForUser,
         findWebsiteById: findWebsiteById,
         updateWebsite: updateWebsite,
-        deleteWebsite: deleteWebsite
+        deleteWebsite: deleteWebsite,
+        addPageIdToWebsite: addPageIdToWebsite,
+        removePageIdFromWebsite: removePageIdFromWebsite
     };
 
     return api;
+
+    function addPageIdToWebsite(pageId, websiteId) {
+        return Website.findOne({_id: websiteId},
+            function(err, doc) {
+                doc.pages.push(pageId);
+                doc.save();
+            });
+    }
+
+    function removePageIdFromWebsite(pageId, websiteId) {
+        return Website.findOne({_id: websiteId},
+            function(err, doc) {
+                doc.pages.pull(pageId);
+                doc.save();
+            });
+    }
 
     function createWebsite(userId, website) {
         website._user = userId;

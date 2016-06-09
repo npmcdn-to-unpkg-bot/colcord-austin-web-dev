@@ -9,10 +9,28 @@ module.exports = function() {
         findAllPagesForWebsite: findAllPagesForWebsite,
         findPageById: findPageById,
         updatePage: updatePage,
-        deletePage: deletePage
+        deletePage: deletePage,
+        addWidgetIdToPage: addWidgetIdToPage,
+        removeWidgetIdFromPage: removeWidgetIdFromPage
     };
 
     return api;
+
+    function addWidgetIdToPage(widgetId, pageId) {
+        return Page.findOne({_id: pageId},
+            function(err, doc) {
+                doc.widgets.push(widgetId);
+                doc.save();
+            });
+    }
+
+    function removeWidgetIdFromPage(widgetId, pageId) {
+        return Page.findOne({_id: pageId},
+            function(err, doc) {
+                doc.widgets.pull(widgetId);
+                doc.save();
+            });
+    }
 
     function createPage(websiteId, page) {
         page._website = websiteId;
