@@ -5,9 +5,11 @@
 
     function LoginController($location, UserService) {
         var vm = this;
+        vm.submitted = false;
 
         vm.login = login;
         function login(username, password) {
+            vm.submitted = true;
 
             UserService
                 .findUserByCredentials(username, password)
@@ -18,6 +20,7 @@
                         if(user) {
                             var id = user._id;
                             $location.url("/user/" + id);
+                            vm.submitted = false;
                         }
                     },
                     function(error) {
