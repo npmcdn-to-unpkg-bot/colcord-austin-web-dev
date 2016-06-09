@@ -48,12 +48,27 @@ module.exports = function(app, models) {
         var size          = myFile.size;
         var mimetype      = myFile.mimetype;
 
-        for(var i in widgets) {
-            if (widgets[i]._id === widgetId) {
-                widgets[i].url = "/uploads/" + filename;
-            }
-        }
-        res.redirect("/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
+        widgetModel
+            .findWidgetById(widgetId)
+            .then(
+                function(widget) {
+                    widget.url = "/uploads/" + filename;
+
+                    widgetModel
+                        .updateWidget(widgetId, widget)
+                        .then(
+                            function(widget) {
+                                res.redirect("/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
+                            },
+                            function(error) {
+                                res.status(404).send("Unable to update widget with ID " + widgetId);
+                            }
+                        );
+                },
+                function(error) {
+                    res.status(404).send(error);
+                }
+            );
     }
 
     function createWidget(req, res) {
