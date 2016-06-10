@@ -99,26 +99,24 @@ module.exports = function(app, models) {
                 function(website) {
                     var userId = website._user;
 
-                    userModel
+                    return userModel
                         .removeWebsiteIdFromUser(websiteId, userId)
-                        .then(
-                            function(status) {
-                                websiteModel
-                                    .deleteWebsite(websiteId)
-                                    .then(
-                                        function(status) {
-                                            res.sendStatus(200);
-                                        },
-                                        function(error) {
-                                            res.status(404).send("Unable to remove website with ID " + websiteId);
-                                        }
-                                    );
-                            },
-                            function(error) {
-                                res.status(404).send("Unable to remove website ID " + websiteId + " from user " + userId);
-                            }
-                        )
                 }
-            );
+            ).then(
+            function(status) {
+                return websiteModel
+                    .deleteWebsite(websiteId)
+            },
+            function(error) {
+                res.status(404).send("Unable to remove website ID " + websiteId + " from user " + userId);
+            })
+            .then(
+                function(status) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to remove website with ID " + websiteId);
+                }
+            )
     }
 };
