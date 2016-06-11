@@ -23,21 +23,20 @@ module.exports = function(app, models) {
             .createPage(websiteId, newPage)
             .then(
                 function(page) {
-                    websiteModel
+                    return websiteModel
                         .addPageIdToWebsite(page._id, websiteId)
-                        .then(
-                            function(response) {
-                                res.json(page);
-                            },
-                            function(error) {
-                                res.status(400).send(error);
-                            }
-                        )
                 },
                 function(error) {
                     res.status(400).send(error);
                 }
-            );
+            ).then(
+                function(response) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+        )
     }
 
     function findAllPagesForWebsite(req, res) {
@@ -95,26 +94,27 @@ module.exports = function(app, models) {
                 function(page) {
                     var websiteId = page._website;
 
-                    websiteModel
+                    return websiteModel
                         .removePageIdFromWebsite(pageId, websiteId)
-                        .then(
-                            function(status) {
-                                pageModel
-                                    .deletePage(pageId)
-                                    .then(
-                                        function(status) {
-                                            res.sendStatus(200);
-                                        },
-                                        function(error) {
-                                            res.status(404).send("Unable to remove page with ID " + pageId);
-                                        }
-                                    )
-                            },
-                            function(error) {
-                                res.status(404).send("Unable to remove page ID " + pageId + " from website " + websiteId);
-                            }
-                        )
+                },
+                function(error) {
+                    res.status(404).send("Unable to find page with ID " + pageId);
                 }
-            );
+            ).then(
+                function(status) {
+                    return pageModel
+                        .deletePage(pageId)
+                },
+                function(error) {
+                    res.status(404).send("Unable to remove page with ID " + pageId + " from website");
+                }
+            ).then(
+                function(status) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to delete page with ID " + pageId);
+                }
+        )
     }
 };
