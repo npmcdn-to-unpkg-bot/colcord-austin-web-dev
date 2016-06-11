@@ -27,9 +27,7 @@
                     vm.error = "Please enter a restaurant id";
                 }
                 else {
-                    // var id = (new Date).getTime();
                     var newUser = {
-                        // _id: id,
                         username: username.toLowerCase(),
                         password: password,
                         firstName: firstName,
