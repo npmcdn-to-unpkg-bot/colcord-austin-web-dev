@@ -41,7 +41,6 @@
             console.log("WIDGET LIST CONTROLLER");
             console.log(startIndex);
             console.log(endIndex);
-            // $http.put("/page/" + vm.pid + "/widget?start=" + startIndex + "&end=" + endIndex);
             WidgetService
                 .reorderWidget(vm.pid, startIndex, endIndex)
                 .then(

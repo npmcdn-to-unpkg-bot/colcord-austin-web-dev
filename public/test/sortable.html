@@ -3,8 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="../assignment/css/jquery-ui.min.css"/>
+    <script src="../assignment/js/jquery.js"></script>
+    <script src="../assignment/js/jquery-ui.js"></script>
+
 </head>
 <body>
+
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        <li>Item 6</li>
+        <li>Item 7</li>
+    </ul>
+
+    <script>
+        jQuery("ul")
+                .sortable(
+                        {axis: 'y'}
+                );
+    </script>
 
 </body>
 </html>
