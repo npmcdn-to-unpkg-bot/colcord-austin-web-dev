@@ -9,7 +9,17 @@
         vm.deleteTimer = deleteTimer;
                 
         vm.uid = $routeParams["uid"];
-        
+
+        vm.globalTime = new Date().getTime();
+        $interval(function(){
+            vm.globalTime++;
+            console.log(vm.globalTime);
+            for(var i in vm.timers) {
+                vm.timers[i].timeRemaining = getMinutesRemaining(vm.timers[i]);
+            }
+        }, 1000);
+
+
         function init() {
             UserService
                 .findUserById(vm.uid)
@@ -60,20 +70,8 @@
 
         function getMinutesRemaining(timer) {
             var endTime = addMinutes(timer.timeStart, timer.setMinutes);
-            var timeLeft = new Date(endTime - new Date().getTime());
-
-            $interval(function(){
-                    timeLeft--;
-                //    iterate over timers, decrement their display value
-                }, 1000);
-            return timeLeft
-
+            return new Date(endTime - vm.globalTime);
         }
-
-        // function formatTime(date) {
-        //     // http://stackoverflow.com/questions/6312993/javascript-seconds-to-time-string-with-format-hhmmss
-        //     return date.toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
-        // }
 
         function deleteTimer(timerId) {
             TimerService
@@ -88,18 +86,6 @@
                     }
                 )
         }
-
-        // function getTimeRemaining(timer) {
-        //     return timer.timeStart;
-            // var timeNow = 5 - ((Date.now() - timer.timeStart));
-            // $interval(function(){
-            //     // timer.timeStart--;
-            //     timeNow;
-            // }, 1000);
-            // return (timeNow - timer.timeStart);
-
-
-        // }
 
         function addMinutes(date, minutes) {
             // http://stackoverflow.com/questions/1197928/how-to-add-30-minutes-to-a-javascript-date-object
