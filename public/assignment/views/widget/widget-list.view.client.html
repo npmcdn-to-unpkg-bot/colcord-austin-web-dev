@@ -31,8 +31,6 @@
         <div ng-repeat="widget in model.widgets | orderBy : 'order'"
              ng-switch="widget.type"
              class="widget-container">
-            <h1> Order: {{widget.order}}</h1>
-
             <div class="ajc-widget-container">
                 <a  href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget/{{widget._id}}">
                     <span class="glyphicon glyphicon-cog"></span>
