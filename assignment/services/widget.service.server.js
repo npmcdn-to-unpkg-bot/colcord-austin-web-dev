@@ -177,27 +177,27 @@ module.exports = function(app, models) {
             .then(
                 function(widget) {
                     var pageId = widget._page;
-
-                    pageModel
+                    return pageModel
                         .removeWidgetIdFromPage(widgetId, pageId)
-                        .then(
-                            function(status) {
-                                widgetModel
-                                    .deleteWidget(widgetId)
-                                    .then(
-                                        function(status) {
-                                            res.sendStatus(200);
-                                        },
-                                        function(error) {
-                                            res.status(404).send("Unable to remove widget with ID " + widgetId);
-                                        }
-                                    );
-                            },
-                            function(error) {
-                                res.status(404).send("Unable to remove widget ID " + widgetId + " from page " + pageId);
-                            }
-                        )
+                },
+                function(error) {
+                    res.status(404).send("Unable to find widget " + widgetId);
                 }
-            )
+            ).then(
+                function(status) {
+                    return widgetModel
+                        .deleteWidget(widgetId)
+                },
+                function(error) {
+                    res.status(404).send("Unable to remove widget ID " + widgetId + " from page " + pageId);
+                }
+            ).then(
+                function(status) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to remove widget with ID " + widgetId);
+                }
+        );
     }
 };
