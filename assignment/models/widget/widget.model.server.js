@@ -9,11 +9,41 @@ module.exports = function() {
         findAllWidgetsForPage: findAllWidgetsForPage,
         findWidgetById: findWidgetById,
         updateWidget: updateWidget,
-        deleteWidget: deleteWidget
-        // reorderWidget: reorderWidget
+        deleteWidget: deleteWidget,
+        reorderWidget: reorderWidget
     };
 
     return api;
+
+    function reorderWidget(startOrder, endOrder, pageId) {
+        var start = parseInt(startOrder);
+        var end = parseInt(endOrder);
+        return Widget
+            .find({_page: pageId}, function(err, widgets) {
+                widgets.forEach(function(widget) {
+                    if(start < end) {
+                        if(widget.order > start && widget.order <= end) {
+                            widget.order--;
+                            widget.save();
+                        }
+                        else if(widget.order === start) {
+                            widget.order = end;
+                            widget.save();
+                        }
+                    }
+                    else {
+                        if(widget.order >= end && widget.order < start) {
+                            widget.order++;
+                            widget.save();
+                        }
+                        else if(widget.order === start) {
+                            widget.order = end;
+                            widget.save();
+                        }
+                    }
+                })
+            });
+    }
 
     function createWidget(pageId, widget) {
         widget._page = pageId;

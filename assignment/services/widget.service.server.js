@@ -23,7 +23,25 @@ module.exports = function(app, models) {
     app.get("/api/widget/:widgetId", findWidgetById);
     app.put("/api/widget/:widgetId", updateWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
+    app.put("/api/page/:pageId/widget", reorderWidget); // "/api/page/:pageId/widget?start=start&end=end"
 
+
+    function reorderWidget(req, res) {
+        var startIndex = req.query['start'];
+        var endIndex = req.query['end'];
+        var pageId = req.params.pageId;
+
+        widgetModel
+            .reorderWidget(startIndex, endIndex, pageId)
+            .then(
+                function(widget) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to reorder widget on page " + pageId);
+                }
+            )
+    }
 
     function uploadImage(req, res) {
 
@@ -76,19 +94,31 @@ module.exports = function(app, models) {
         var pageId = req.params.pageId;
 
         widgetModel
-            .createWidget(pageId, newWidget)
+            .findAllWidgetsForPage(pageId)
             .then(
-                function(widget) {
-                    pageModel
-                        .addWidgetIdToPage(widget._id, pageId)
+                function(widgets) {
+                    newWidget.order = widgets.length;
+
+                    widgetModel
+                        .createWidget(pageId, newWidget)
                         .then(
-                            function(response) {
-                                res.json(widget);
+                            function(widget) {
+                                pageModel
+                                    .addWidgetIdToPage(widget._id, pageId)
+                                    .then(
+                                        function(response) {
+                                            res.json(widget);
+                                        },
+                                        function(error) {
+                                            res.status(400).send(error);
+                                        }
+                                    )
                             },
                             function(error) {
                                 res.status(400).send(error);
                             }
-                        )
+                        );
+
                 },
                 function(error) {
                     res.status(400).send(error);

@@ -7,6 +7,7 @@
         var vm = this;
         vm.getTrustedHTML = getTrustedHTML;
         vm.getTrustedURL = getTrustedURL;
+        vm.sorted = sorted;
 
         vm.uid = $routeParams.uid;
         vm.wid = $routeParams.wid;
@@ -36,10 +37,22 @@
             return $sce.trustAsResourceUrl(url);
         }
 
-        $(".widget-container")
-            .sortable({
-                axis: 'y',
-                handle: ".ajc-widget-handle"
-            })
+        function sorted(startIndex, endIndex) {
+            console.log("WIDGET LIST CONTROLLER");
+            console.log(startIndex);
+            console.log(endIndex);
+            // $http.put("/page/" + vm.pid + "/widget?start=" + startIndex + "&end=" + endIndex);
+            WidgetService
+                .reorderWidget(vm.pid, startIndex, endIndex)
+                .then(
+                    function(response) {
+                        vm.success = "Reordering successful";
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                )
+            
+        }
     }
 })();
