@@ -8,7 +8,7 @@
         var api = {
             createTimer: createTimer,
             findTimerById: findTimerById,
-            findTimersByUsername: findTimersByUsername,
+            findTimersByUserId: findTimersByUserId,
             updateTimer: updateTimer,
             deleteTimer: deleteTimer
         };
@@ -22,8 +22,8 @@
             return $http.get("/api/timer/" + timerId);
         }
 
-        function findTimersByUsername(username) {
-            return $http.get("/api/user/" + username + "/timer");
+        function findTimersByUserId(userId) {
+            return $http.get("/api/user/" + userId + "/timer");
         }
 
         function updateTimer(timerId, newTime) {

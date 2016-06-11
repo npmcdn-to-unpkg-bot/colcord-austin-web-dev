@@ -33,7 +33,7 @@
                                 <span ng-click="model.deleteTimer(timer._id)"
                                       class="glyphicon glyphicon-trash pull-right ajc-list-glyphicon"></span>
                             </a>
-                            <p class="pull-right">{{model.getMinutesRemaining(timer) | number : 4}}</p>
+                            <p class="pull-right">{{model.getMinutesRemaining(timer) | date: 'h:mm:ss a'}}</p>
                         </div>
                     </div>
                 </li>

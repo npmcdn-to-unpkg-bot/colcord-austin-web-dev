@@ -3,7 +3,7 @@
         .module("Prepper")
         .controller("TimerListController", TimerListController);
 
-    function TimerListController($routeParams, UserService, RecipeService, PrepService, TimerService) {
+    function TimerListController($interval, $routeParams, UserService, RecipeService, PrepService, TimerService) {
         var vm = this;
         vm.getMinutesRemaining = getMinutesRemaining;
         vm.deleteTimer = deleteTimer;
@@ -47,7 +47,7 @@
 
         function getTimers() {
             TimerService
-                .findTimersByUsername(vm.user.username)
+                .findTimersByUserId(vm.user._id)
                 .then(
                     function(response) {
                         vm.timers = response.data;
@@ -59,17 +59,21 @@
         }
 
         function getMinutesRemaining(timer) {
-            // return timer.setMinutes - (formatTime(new Date() - timer.timeStart));
-            var difference = (new Date - timer.timeStart);
-            // return formatTime(new Date(difference))
-            return timer.timeStart;
+            var endTime = addMinutes(timer.timeStart, timer.setMinutes);
+            var timeLeft = new Date(endTime - new Date().getTime());
+
+            $interval(function(){
+                    timeLeft--;
+                //    iterate over timers, decrement their display value
+                }, 1000);
+            return timeLeft
 
         }
 
-        function formatTime(date) {
-            // http://stackoverflow.com/questions/6312993/javascript-seconds-to-time-string-with-format-hhmmss
-            return date.toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
-        }
+        // function formatTime(date) {
+        //     // http://stackoverflow.com/questions/6312993/javascript-seconds-to-time-string-with-format-hhmmss
+        //     return date.toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, "$1");
+        // }
 
         function deleteTimer(timerId) {
             TimerService
@@ -83,6 +87,23 @@
                         vm.error = error.data;
                     }
                 )
+        }
+
+        // function getTimeRemaining(timer) {
+        //     return timer.timeStart;
+            // var timeNow = 5 - ((Date.now() - timer.timeStart));
+            // $interval(function(){
+            //     // timer.timeStart--;
+            //     timeNow;
+            // }, 1000);
+            // return (timeNow - timer.timeStart);
+
+
+        // }
+
+        function addMinutes(date, minutes) {
+            // http://stackoverflow.com/questions/1197928/how-to-add-30-minutes-to-a-javascript-date-object
+            return new Date(date + minutes*60000);
         }
     }
     

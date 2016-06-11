@@ -3,10 +3,11 @@
         .module("Prepper")
         .controller("RecipeViewController", RecipeViewController);
 
-    function RecipeViewController($routeParams, RecipeService, PrepService) {
+    function RecipeViewController($routeParams, RecipeService, PrepService, TimerService) {
         var vm = this;
         
         vm.addToPrepToDo = addToPrepToDo;
+        vm.addTimer = addTimer;
         
         vm.uid = $routeParams["uid"];
         vm.rid = $routeParams["rid"];
@@ -50,6 +51,27 @@
                 .then(
                     function(response) {
                         vm.success = "Successfully added recipe to to-do";
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                )
+        }
+        
+        function addTimer(minutes) {
+            console.log("adding timer: " + minutes);
+            var newTimer = {
+                name: vm.recipe.name, 
+                recipeId: vm.recipe._id,
+                userId: vm.uid, 
+                timeStart: Date.now(), 
+                setMinutes: minutes * 60000
+            };
+            TimerService
+                .createTimer(newTimer)
+                .then(
+                    function(response) {
+                        vm.success = "Successfully added timer";
                     },
                     function(error) {
                         vm.error = error.data;

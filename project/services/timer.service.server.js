@@ -1,14 +1,14 @@
 module.exports = function(app) {
     var timers = [
-        {_id: "412", name: "Thaw Puff Pastry", recipeId: "123", username: "ajdcolcord", timeStart: new Date(), setMinutes: 4},
-        {_id: "542", name: "Sear Beef", recipeId: "543", username: "ajdcolcord", timeStart: new Date(), setMinutes: 10},
-        {_id: "123", name: "Bake Chicken", recipeId: "909", username: "ajdcolcord", timeStart: new Date(), setMinutes: 20},
-        {_id: "990", name: "Beef Chili Cook at 10", recipeId: "998", username: "ajdcolcord", timeStart: new Date(), setMinutes: 2}
+        {_id: "412", name: "Thaw Puff Pastry", recipeId: "123", userId: "456", timeStart: Date.now(), setMinutes: 4},
+        {_id: "542", name: "Sear Beef", recipeId: "543", userId: "456", timeStart: Date.now(), setMinutes: 10},
+        {_id: "123", name: "Bake Chicken", recipeId: "909", userId: "456", timeStart: Date.now(), setMinutes: 20},
+        {_id: "990", name: "Beef Chili Cook at 10", recipeId: "998", userId: "456", timeStart: Date.now(), setMinutes: 2}
     ];
 
     app.post("/api/timer/", createTimer);
     app.get("/api/timer/:timerId", findTimerById);
-    app.get("/api/user/:username/timer", findTimersByUsername);
+    app.get("/api/user/:userId/timer", findTimersByUsername);
     app.put("/api/timer/:timerId", updateTimer);
     app.delete("/api/timer/:timerId", deleteTimer);
 
@@ -17,7 +17,7 @@ module.exports = function(app) {
         var newTimer = req.body;
         newTimer._id = (new Date()).getTime() + "";
         timers.push(newTimer);
-        res.status(200).send(newWidget._id);
+        res.status(200).send(newTimer._id);
     }
     
     function findTimerById(req, res) {
@@ -33,10 +33,10 @@ module.exports = function(app) {
     }
     
     function findTimersByUsername(req, res) {
-        var username = req.params.username;
+        var userId = req.params.userId;
         var result = [];
         for (var i in timers) {
-            if (timers[i].username === username) {
+            if (timers[i].userId === userId) {
                 result.push(timers[i]);
             }
         }
