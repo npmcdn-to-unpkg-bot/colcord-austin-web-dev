@@ -72,21 +72,20 @@ module.exports = function(app, models) {
                 function(widget) {
                     widget.url = "/uploads/" + filename;
 
-                    widgetModel
+                    return widgetModel
                         .updateWidget(widgetId, widget)
-                        .then(
-                            function(widget) {
-                                res.redirect("/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
-                            },
-                            function(error) {
-                                res.status(404).send("Unable to update widget with ID " + widgetId);
-                            }
-                        );
                 },
                 function(error) {
                     res.status(404).send(error);
                 }
-            );
+            ).then(
+                function(widget) {
+                    res.redirect("/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
+                },
+                function(error) {
+                    res.status(404).send("Unable to update widget with ID " + widgetId);
+                }
+            )
     }
 
     function createWidget(req, res) {
