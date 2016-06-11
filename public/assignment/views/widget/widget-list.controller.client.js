@@ -38,9 +38,6 @@
         }
 
         function sorted(startIndex, endIndex) {
-            console.log("WIDGET LIST CONTROLLER");
-            console.log(startIndex);
-            console.log(endIndex);
             WidgetService
                 .reorderWidget(vm.pid, startIndex, endIndex)
                 .then(
