@@ -98,31 +98,29 @@ module.exports = function(app, models) {
                 function(widgets) {
                     newWidget.order = widgets.length;
 
-                    widgetModel
+                    return widgetModel
                         .createWidget(pageId, newWidget)
-                        .then(
-                            function(widget) {
-                                pageModel
-                                    .addWidgetIdToPage(widget._id, pageId)
-                                    .then(
-                                        function(response) {
-                                            res.json(widget);
-                                        },
-                                        function(error) {
-                                            res.status(400).send(error);
-                                        }
-                                    )
-                            },
-                            function(error) {
-                                res.status(400).send(error);
-                            }
-                        );
-
                 },
                 function(error) {
                     res.status(400).send(error);
                 }
-            );
+            ).then(
+            function(widget) {
+                return pageModel
+                    .addWidgetIdToPage(widget._id, pageId)
+                    .then(
+                        function(response) {
+                            res.json(widget);
+                        },
+                        function(error) {
+                            res.status(400).send(error);
+                        }
+                    )
+            },
+            function(error) {
+                res.status(400).send(error);
+            }
+        );
     }
 
     function findAllWidgetsForPage(req, res) {
