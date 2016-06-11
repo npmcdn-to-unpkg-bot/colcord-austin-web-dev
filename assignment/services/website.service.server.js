@@ -101,16 +101,19 @@ module.exports = function(app, models) {
 
                     return userModel
                         .removeWebsiteIdFromUser(websiteId, userId)
+                },
+                function(error) {
+                    res.status(404).send("Unable to remove website ID " + websiteId + " from user");
                 }
             ).then(
-            function(status) {
-                return websiteModel
-                    .deleteWebsite(websiteId)
-            },
-            function(error) {
-                res.status(404).send("Unable to remove website ID " + websiteId + " from user " + userId);
-            })
-            .then(
+                function(status) {
+                    return websiteModel
+                        .deleteWebsite(websiteId)
+                },
+                function(error) {
+                    res.status(404).send("Unable to delete website " + websiteId);
+                }
+            ).then(
                 function(status) {
                     res.sendStatus(200);
                 },
