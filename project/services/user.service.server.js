@@ -26,7 +26,6 @@ module.exports = function(app, models) {
                             .createUser(newUser)
                             .then(
                                 function(user) {
-                                    console.log(user);
                                     res.send(user._id);
                                 },
                                 function(error) {
