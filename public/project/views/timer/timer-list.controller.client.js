@@ -69,7 +69,7 @@
         }
 
         function getMinutesRemaining(timer) {
-            var endTime = addMinutes(timer.timeStart, timer.setMinutes);
+            var endTime = addMinutes(new Date(timer.timeStart).getTime(), timer.setMinutes);
             return new Date(endTime - vm.globalTime);
         }
 

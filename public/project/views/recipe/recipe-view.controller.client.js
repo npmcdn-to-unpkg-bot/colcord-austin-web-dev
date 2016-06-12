@@ -59,11 +59,10 @@
         }
         
         function addTimer(minutes) {
-            console.log("adding timer: " + minutes);
             var newTimer = {
                 name: vm.recipe.name, 
-                recipeId: vm.recipe._id,
-                userId: vm.uid, 
+                _recipe: vm.recipe._id,
+                _user: vm.uid, 
                 timeStart: Date.now(), 
                 setMinutes: minutes * 60000
             };

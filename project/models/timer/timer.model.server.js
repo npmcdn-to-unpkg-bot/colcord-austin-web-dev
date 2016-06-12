@@ -8,7 +8,7 @@ module.exports = function() {
     var api = {
         createTimer: createTimer,
         findTimerById: findTimerById,
-        findTimersByUsername: findTimersByUsername,
+        findTimersByUserId: findTimersByUserId,
         updateTimer: updateTimer,
         deleteTimer: deleteTimer
     };
@@ -22,7 +22,7 @@ module.exports = function() {
         return Timer.findById(timerId);
     }
     
-    function findTimersByUsername(userId) {
+    function findTimersByUserId(userId) {
         return Timer.find({_user: userId});
     }
     

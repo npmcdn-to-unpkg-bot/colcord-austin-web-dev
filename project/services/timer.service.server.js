@@ -1,4 +1,7 @@
-module.exports = function(app) {
+module.exports = function(app, models) {
+
+    var timerModel = models.timerModel;
+
     var timers = [
         {_id: "412", name: "Thaw Puff Pastry", recipeId: "123", userId: "456", timeStart: Date.now(), setMinutes: 4},
         {_id: "542", name: "Sear Beef", recipeId: "543", userId: "456", timeStart: Date.now(), setMinutes: 10},
@@ -8,64 +11,85 @@ module.exports = function(app) {
 
     app.post("/api/timer/", createTimer);
     app.get("/api/timer/:timerId", findTimerById);
-    app.get("/api/user/:userId/timer", findTimersByUsername);
+    app.get("/api/user/:userId/timer", findTimersByUserId);
     app.put("/api/timer/:timerId", updateTimer);
     app.delete("/api/timer/:timerId", deleteTimer);
 
 
     function createTimer(req, res) {
         var newTimer = req.body;
-        newTimer._id = (new Date()).getTime() + "";
-        timers.push(newTimer);
-        res.status(200).send(newTimer._id);
+
+        timerModel
+            .createTimer(newTimer)
+            .then(
+                function(timer) {
+                    var timerId = timer._id;
+                    res.status(200).send(timerId);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            );
     }
     
     function findTimerById(req, res) {
         var timerId = req.body;
-        for (var i in timers) {
-            if (timers[i]._id === timerId) {
-                res.json(timers[i]);
-                return;
-                
-            }
-        }
-        res.status(400).send("Timer with ID " + timerId + " not found");
+
+        timerModel
+            .findTimerById(timerId)
+            .then(
+                function(timer) {
+                    res.json(timer);
+                },
+                function(error) {
+                    res.status(404).send(error);
+                }
+            );
     }
     
-    function findTimersByUsername(req, res) {
+    function findTimersByUserId(req, res) {
         var userId = req.params.userId;
-        var result = [];
-        for (var i in timers) {
-            if (timers[i].userId === userId) {
-                result.push(timers[i]);
-            }
-        }
-        res.send(result);
+
+        timerModel
+            .findTimersByUserId(userId)
+            .then(
+                function(timers) {
+                    res.json(timers);
+                },
+                function(error) {
+                    res.status(404).send(error);
+                }
+            );
     }
 
     function updateTimer(req, res) {
         var timerId = req.params.timerId;
         var newTime = req.body;
 
-        for(var i in timers) {
-            if(timers[i]._id === timerId) {
-                timers[i].timeStart = newTime;
-                res.sendStatus(200);
-                return true;
-            }
-        }
-        res.status(400).send("Timer with ID " + timerId + " not found");
+        timerModel
+            .updateTimer(timerId, timer)
+            .then(
+                function(timer) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to update timer with ID " + timerId);
+                }
+            );
     }
     
     function deleteTimer(req, res) {
         var timerId = req.params.timerId;
-        for(var i in timers) {
-            if (timers[i]._id === timerId) {
-                timers.splice(i, 1);
-                res.sendStatus(200);
-                return;
-            }
-        }
-        res.status(400).send("Timer with ID " + timerId + " not found");
+
+        timerModel
+            .deleteTimer(timerId)
+            .then(
+                function(status) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to delete timer with ID " + timerId);
+                }
+            );
     }
 };
