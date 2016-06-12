@@ -41,7 +41,7 @@
         
         function addToPrepToDo() {
             var newPrepItem = {
-                recipeId: vm.recipe._id,
+                _recipeId: vm.recipe._id,
                 name: vm.recipe.name,
                 important: false,
                 signer: "",

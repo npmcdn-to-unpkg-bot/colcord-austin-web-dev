@@ -47,7 +47,7 @@
 
         function addToPrepToDo(recipeId, name) {
             var newPrepItem = {
-                recipeId: parseInt(recipeId),
+                _recipeId: recipeId,
                 name: name,
                 important: false,
                 signer: "",

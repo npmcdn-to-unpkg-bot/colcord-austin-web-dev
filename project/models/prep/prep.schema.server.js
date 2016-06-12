@@ -4,21 +4,21 @@ module.exports = function() {
     var PrepSchema = mongoose.Schema({
         restaurantId: Number,
         toDo: [{
-            recipeId: Number,
+            _recipeId: {type: mongoose.Schema.Types.ObjectId, ref: 'Recipe'},
             name: String,
             important: Boolean,
             signer: String,
             timeStamp: {type: Date, default: Date.now()}
         }],
         inProgress: [{
-            recipeId: Number,
+            _recipeId: {type: mongoose.Schema.Types.ObjectId, ref: 'Recipe'},
             name: String,
             important: Boolean,
             signer: String,
             timeStamp: Date
         }],
         completed: [{
-            recipeId: Number,
+            _recipeId: {type: mongoose.Schema.Types.ObjectId, ref: 'Recipe'},
             name: String,
             important: Boolean,
             signer: String,
