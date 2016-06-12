@@ -18,6 +18,13 @@
 </header>
 
 <div class="container-fluid">
+
+    <div ng-if="model.error"
+         class="alert alert-danger"
+         role="alert">
+        {{model.error}}
+    </div>
+
     <!-- http://stackoverflow.com/questions/24682421/put-search-icon-near-textbox-using-bootstrap -->
     <div class="form-group has-feedback">
         <input type="text"
