@@ -47,12 +47,12 @@
 
         function addToPrepToDo(recipeId, name) {
             var newPrepItem = {
-                recipeId: recipeId,
+                recipeId: parseInt(recipeId),
                 name: name,
                 important: false,
                 signer: "",
                 timeStamp: (new Date).toDateString()};
-            
+
             PrepService
                 .addToPrepListToDo(vm.prepList._id, newPrepItem)
                 .then(

@@ -1,7 +1,8 @@
 module.exports = function(app, models) {
 
     var employeeModel = models.employeeModel;
-    
+    var prepModel = models.prepModel;
+
     // var users = [
     //     {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder", email: "alice@wonderland.com", restaurantId: "12345"},
     //     {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley", email: "bob@wonderland.com", restaurantId: "33333"},
@@ -27,11 +28,40 @@ module.exports = function(app, models) {
                             .then(
                                 function(user) {
                                     res.send(user._id);
+                                    prepModel
+                                        .findPrepListByRestaurantId(newUser.restaurantId)
+                                        .then(
+                                            function(response) {
+                                                if (response == null) {
+                                                    var newPrepList = {
+                                                        restaurantId: parseInt(newUser.restaurantId),
+                                                        toDo: [],
+                                                        inProgress: [],
+                                                        completed: []
+                                                    };
+                                                    prepModel
+                                                        .createPrepList(newPrepList)
+                                                        .then(
+                                                            function(response) {
+                                                                res.sendStatus(200);
+                                                            },
+                                                            function(error) {
+                                                                res.status(400).send("Error creating prepList");
+                                                            }
+                                                        )
+                                                }
+                                            },
+                                            function(error) {
+                                                res.status(400).send("Error creating prepList ");
+                                            })
+
                                 },
                                 function(error) {
                                     res.status(400).send("Unable to create new user: " + newUser.username);
                                 }
-                            );
+                            )
+
+
                     }
                     else {
                         res.status(400).send("Username " + newUser.username + " is already in use");

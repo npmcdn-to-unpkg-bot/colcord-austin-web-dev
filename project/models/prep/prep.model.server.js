@@ -30,7 +30,7 @@ module.exports = function() {
     }
     
     function findPrepListByRestaurantId(restaurantId) {
-        return Prep.find({restaurantId: restaurantId});
+        return Prep.findOne({restaurantId: restaurantId});
     }
     
     function updatePrepList(prepListId, newPrepList) {
@@ -53,10 +53,10 @@ module.exports = function() {
 
     function addToPrepToDo(prepListId, ticket) {
         return Prep.findOne({_id: prepListId},
-        function(err, doc) {
-            doc.toDo.push(ticket);
-            doc.save();
-        })
+            function(err, doc) {
+                doc.toDo.push(ticket);
+                doc.save();
+        });
     }
 
     function addToPrepInProgress(prepListId, ticket) {
@@ -78,9 +78,9 @@ module.exports = function() {
     function removeFromPrepToDoList(prepListId, ticketId) {
         return Prep.findOne({_id: prepListId},
             function(err, doc) {
-                for(var i in doc) {
-                    if (doc.toDo[i]._id === ticketId) {
-                        doc.toDo.pull(doc.toDo[i]);
+                for(var i in doc.toDo) {
+                    if (doc.toDo[i]._id == ticketId) {
+                        doc.toDo.splice(i, 1);
                         doc.save();
                     }
                 }
@@ -90,9 +90,9 @@ module.exports = function() {
     function removeFromPrepInProgressList(prepListId, ticketId) {
         return Prep.findOne({_id: prepListId},
             function(err, doc) {
-                for(var i in doc) {
-                    if (doc.inProgress[i]._id === ticketId) {
-                        doc.inProgress.pull(doc.inProgress[i]);
+                for(var i in doc.inProgress) {
+                    if (doc.inProgress[i]._id == ticketId) {
+                        doc.inProgress.splice(i, 1);
                         doc.save();
                     }
                 }
@@ -102,9 +102,9 @@ module.exports = function() {
     function removeFromPrepCompletedList(prepListId, ticketId) {
         return Prep.findOne({_id: prepListId},
             function(err, doc) {
-                for(var i in doc) {
-                    if (doc.completed[i]._id === ticketId) {
-                        doc.completed.pull(doc.completed[i]);
+                for(var i in doc.completed) {
+                    if (doc.completed[i]._id == ticketId) {
+                        doc.completed.splice(i, 1);
                         doc.save();
                     }
                 }

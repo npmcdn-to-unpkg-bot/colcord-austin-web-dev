@@ -1,4 +1,7 @@
-module.exports = function(app) {
+module.exports = function(app, models) {
+
+    var prepModel = models.prepModel;
+
     var prepLists = [
         {_id: "123",
             restaurantId: "12345",
@@ -31,155 +34,171 @@ module.exports = function(app) {
     function removeFromPrepToDoList(req, res) {
         var prepListId = req.params.prepListId;
         var ticketId = req.params.ticketId;
-        
-        for(var i in prepLists) {
-            if(prepLists[i]._id === prepListId) {
-                for(var j in prepLists[i].toDo) {
-                    if(prepLists[i].toDo[j]._id == ticketId) {
-                        prepLists[i].toDo.splice(j, 1);
-                        res.sendStatus(200);
-                        return;
-                    }
+
+        prepModel
+            .removeFromPrepToDoList(prepListId, ticketId)
+            .then(
+                function(status) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(400).send(error);
                 }
-            }
-        }
-        res.status(400).send("Unable to remove task from ToDo preplist for prepList ID " + prepListId);
+            );
     }
 
     function removeFromPrepInProgressList(req, res) {
         var prepListId = req.params.prepListId;
         var ticketId = req.params.ticketId;
 
-        for(var i in prepLists) {
-            if(prepLists[i]._id === prepListId) {
-                for(var j in prepLists[i].inProgress) {
-                    if(prepLists[i].inProgress[j]._id == ticketId) {
-                        prepLists[i].inProgress.splice(j, 1);
-                        res.sendStatus(200);
-                        return;
-                    }
+        prepModel
+            .removeFromPrepInProgressList(prepListId, ticketId)
+            .then(
+                function(status) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(400).send(error);
                 }
-            }
-        }
-        res.status(400).send("Unable to remove task from InProgress preplist for prepList ID " + prepListId);
+            );
     }
 
     function removeFromPrepCompletedList(req, res) {
         var prepListId = req.params.prepListId;
         var ticketId = req.params.ticketId;
 
-        for(var i in prepLists) {
-            if(prepLists[i]._id === prepListId) {
-                for(var j in prepLists[i].completed) {
-                    if(prepLists[i].completed[j]._id == ticketId) {
-                        prepLists[i].completed.splice(j, 1);
-                        res.sendStatus(200);
-                        return;
-                    }
+        prepModel
+            .removeFromPrepCompletedList(prepListId, ticketId)
+            .then(
+                function(status) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(400).send(error);
                 }
-            }
-        }
-        res.status(400).send("Unable to remove task from Completed preplist for prepList ID " + prepListId);
+            );
     }
     
     function addToPrepToDo(req, res) {
         var newTicket = req.body;
         var prepListId = req.params.prepListId;
-    
-        newTicket._id = (new Date()).getTime() + "";
-        for(var i in prepLists) {
-            if(prepLists[i]._id === prepListId) {
-                prepLists[i].toDo.push(newTicket);
-                res.sendStatus(200);
-                return;
-            }
-        }
-        res.status(400).send("Unable to add task to ToDo preplist for prepList ID " + prepListId);
+        
+        prepModel
+            .addToPrepToDo(prepListId, newTicket)
+            .then(
+                function(prepList) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            );
     }
     
     function addToPrepInProgress(req, res) {
         var ticket = req.body;
         var prepListId = req.params.prepListId;
 
-        for(var i in prepLists) {
-            if(prepLists[i]._id === prepListId) {
-                prepLists[i].inProgress.push(ticket);
-                res.sendStatus(200);
-                return;
-            }
-        }
-        res.status(400).send("Unable to add task to InProgress preplist for prepList ID " + prepListId);
+        prepModel
+            .addToPrepInProgress(prepListId, ticket)
+            .then(
+                function(prepList) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            );
     }
 
     function addToPrepCompleted(req, res) {
         var ticket = req.body;
         var prepListId = req.params.prepListId;
 
-        for(var i in prepLists) {
-            if(prepLists[i]._id === prepListId) {
-                prepLists[i].completed.push(ticket);
-                res.sendStatus(200);
-                return;
-            }
-        }
-        res.status(400).send("Unable to add task to Completed preplist for prepList ID " + prepListId);
+        prepModel
+            .addToPrepCompleted(prepListId, ticket)
+            .then(
+                function(prepList) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            );
     }
 
     function createPrepList(req, res) {
         var newPrepList = req.body;
-        newPrepList._id = (new Date()).getTime() + "";
-        prepLists.push(newPrepList);
-        res.sendStatus(200);
+
+        prepModel
+            .createPrepList(newPrepList)
+            .then(
+                function(prepList) {
+                    res.status(200);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            );
     }
     
     function findPrepListById(req, res) {
         var prepListId = req.params.prepListId;
-        for(var i in prepLists) {
-            if(prepLists[i]._id === prepListId) {
-                res.json(prepLists[i]);
-                return;
-            }
-        }
-        res.status(400).send("PrepList with ID " + prepListId + " not found");
+
+        prepModel
+            .findPrepListById(prepListId)
+            .then(
+                function(prepList) {
+                    res.json(prepList);
+                },
+                function(error) {
+                    res.status(404).send(error);
+                }
+            );
     }
     
     function findPrepListByRestaurantId(req, res) {
         var restaurantId = req.params.restaurantId;
-        for (var i in prepLists) {
-            if (prepLists[i].restaurantId === restaurantId) {
-                res.json(prepLists[i]);
-                return;
-            }
-        }
-        res.status(400).send("PrepList with Restaurant ID " + restaurantId + " not found");
+
+        prepModel
+            .findPrepListByRestaurantId(restaurantId)
+            .then(
+                function(prepList) {
+                    res.json(prepList);
+                },
+                function(error) {
+                    res.status(404).send(error);
+                }
+            );
     }
     
     function updatePrepList(req, res) {
         var prepList = req.body;
         var prepListId = req.params.prepListId;
 
-        for(var i in prepLists) {
-            if(prepLists[i]._id === prepListId) {
-                prepLists[i].toDo = prepList.toDo;
-                prepLists[i].inProgress = prepList.inProgress;
-                prepLists[i].completed = prepList.completed;
-                res.sendStatus(200);
-                return true;
-            }
-        }
-        res.status(400).send("PrepList with ID " + prepListId + " not found");
+        prepModel
+            .updatePrepList(prepListId, prepList)
+            .then(
+                function(prepList) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to update prep list with ID " + prepListId);
+                }
+            );
     }
     function deletePrepList(req, res) {
         var prepListId = req.params.prepListId;
-        
-        for(var i in prepLists) {
-            if (prepLists[i]._id === prepListId) {
-                prepLists.splice(i, 1);
-                res.sendStatus(200);
-                return true;
-            }
-        }
-        res.status(404).send("Unable to remove prep list with ID " + prepListId);
 
+        prepModel
+            .deletePrepList(prepListId)
+            .then(
+                function(status) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to delete prep list with ID " + prepListId);
+                }
+            );
     }
 };
