@@ -1,3 +1,3 @@
 (function() {
-    angular.module("Prepper", ["ngRoute"]);
+    angular.module("Prepper", ["ngRoute", "ajcDirectives"]);
 })();

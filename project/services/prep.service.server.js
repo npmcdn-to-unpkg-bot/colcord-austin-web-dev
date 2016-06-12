@@ -30,7 +30,30 @@ module.exports = function(app, models) {
     app.delete("/api/prep/:prepListId/toDo/:ticketId", removeFromPrepToDoList);
     app.delete("/api/prep/:prepListId/inProgress/:ticketId", removeFromPrepInProgressList);
     app.delete("/api/prep/:prepListId/completed/:ticketId", removeFromPrepCompletedList);
-    
+
+    app.put("/api/prep/:prepListId/toDo/reorder", reorderToDo); // "/api/prep/:prepListId/todo/reorder?start=start&end=end"
+
+
+    function reorderToDo(req, res) {
+        var startIndex = req.query['start'];
+        var endIndex = req.query['end'];
+        var prepListId = req.params.prepListId;
+
+        console.log('reordering. Start=' + startIndex + " end=" + endIndex + " prepList=" + prepListId);
+
+        prepModel
+            .reorderToDo(startIndex, endIndex, prepListId)
+            .then(
+                function(prepList) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to reorder tickets for prepList " + prepListId);
+                }
+            )
+    }
+
+
     function removeFromPrepToDoList(req, res) {
         var prepListId = req.params.prepListId;
         var ticketId = req.params.ticketId;
@@ -82,17 +105,29 @@ module.exports = function(app, models) {
     function addToPrepToDo(req, res) {
         var newTicket = req.body;
         var prepListId = req.params.prepListId;
-        
+
         prepModel
-            .addToPrepToDo(prepListId, newTicket)
+            .findPrepListById(prepListId)
             .then(
                 function(prepList) {
-                    res.sendStatus(200);
+                    newTicket.order = prepList.toDo.length;
+                    console.log("ORDER: " + newTicket.order);
+
+                    return prepModel
+                        .addToPrepToDo(prepListId, newTicket)
                 },
                 function(error) {
                     res.status(400).send(error);
                 }
-            );
+            ).then(
+            function(prepList) {
+                res.sendStatus(200);
+
+            },
+            function(error) {
+                res.status(400).send(error);
+            }
+        );
     }
     
     function addToPrepInProgress(req, res) {

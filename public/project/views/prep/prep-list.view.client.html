@@ -21,8 +21,11 @@
     <div class="row">
         <div class="col-sm-4">
             <h5>To-Do</h5>
-            <ul class="list-group prep-list-container">
-                <li ng-repeat="recipe in model.prepList.toDo"
+            <ul class="list-group prep-list-container"
+                ajc-sortable
+                sorted="model.sorted(start, end)"
+                data="model.prepList.toDo">
+                <li ng-repeat="recipe in model.prepList.toDo | orderBy : 'order'"
                     class="list-group-item">
                     <span ng-click="model.moveToInProgress(recipe)"
                           class="glyphicon glyphicon glyphicon-arrow-right pull-right ajc-list-glyphicon"></span>

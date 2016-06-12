@@ -16,7 +16,8 @@
             removeFromPrepToDoList: removeFromPrepToDoList,
             removeFromPrepInProgressList: removeFromPrepInProgressList,
             updatePrepList: updatePrepList,
-            deletePrepList: deletePrepList
+            deletePrepList: deletePrepList,
+            reorderToDo: reorderToDo
         };
         return api;
 
@@ -63,7 +64,10 @@
         function deletePrepList(prepListId) {
             return $http.delete("/api/prep/" + prepListId);
         }
-        
+
+        function reorderToDo(prepListId, startIndex, endIndex) {
+            return $http.put("/api/prep/" + prepListId + "/todo/reorder?start=" + startIndex + "&end=" + endIndex);
+        }
     }
 
 })();

@@ -8,6 +8,7 @@
         vm.removeFromPrepCompletedList = removeFromPrepCompletedList;
         vm.moveToInProgress = moveToInProgress;
         vm.moveToCompleted = moveToCompleted;
+        vm.sorted = sorted;
         
         vm.uid = $routeParams["uid"];
         
@@ -101,11 +102,20 @@
                 )
         }
 
-        $(".prep-list-container")
-            .sortable({
-                axis: 'y'
-            })
-         
+
+        function sorted(startIndex, endIndex) {
+            PrepService
+                .reorderToDo(vm.prepList._id, startIndex, endIndex)
+                .then(
+                    function(response) {
+                        vm.success = "Reordering successful";
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                )
+
+        }
     }
     
 })();

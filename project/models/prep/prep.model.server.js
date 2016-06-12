@@ -17,7 +17,9 @@ module.exports = function() {
         addToPrepCompleted: addToPrepCompleted,
         removeFromPrepToDoList: removeFromPrepToDoList,
         removeFromPrepInProgressList: removeFromPrepInProgressList,
-        removeFromPrepCompletedList: removeFromPrepCompletedList
+        removeFromPrepCompletedList: removeFromPrepCompletedList,
+
+        reorderToDo: reorderToDo
     };
     return api;
 
@@ -108,6 +110,36 @@ module.exports = function() {
                         doc.save();
                     }
                 }
+            });
+    }
+
+    function reorderToDo(startOrder, endOrder, prepListId) {
+        var start = parseInt(startOrder);
+        var end = parseInt(endOrder);
+        return Prep
+            .findOne({_id: prepListId}, function(err, prepList) {
+                prepList.toDo.forEach(function(ticket) {
+                    if(start < end) {
+                        if(ticket.order > start && ticket.order <= end) {
+                            ticket.order--;
+                            prepList.save();
+                        }
+                        else if(ticket.order === start) {
+                            ticket.order = end;
+                            prepList.save();
+                        }
+                    }
+                    else {
+                        if(ticket.order >= end && ticket.order < start) {
+                            ticket.order++;
+                            prepList.save();
+                        }
+                        else if(ticket.order === start) {
+                            ticket.order = end;
+                            prepList.save();
+                        }
+                    }
+                })
             });
     }
 

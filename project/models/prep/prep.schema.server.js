@@ -8,21 +8,24 @@ module.exports = function() {
             name: String,
             important: Boolean,
             signer: String,
-            timeStamp: {type: Date, default: Date.now()}
+            timeStamp: {type: Date, default: Date.now()},
+            order: Number
         }],
         inProgress: [{
             _recipeId: {type: mongoose.Schema.Types.ObjectId, ref: 'Recipe'},
             name: String,
             important: Boolean,
             signer: String,
-            timeStamp: Date
+            timeStamp: Date,
+            order: Number
         }],
         completed: [{
             _recipeId: {type: mongoose.Schema.Types.ObjectId, ref: 'Recipe'},
             name: String,
             important: Boolean,
             signer: String,
-            timeStamp: Date
+            timeStamp: Date,
+            order: Number
         }]
     }, {collection: "project.prep"});
     
