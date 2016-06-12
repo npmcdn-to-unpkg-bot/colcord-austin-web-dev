@@ -8,7 +8,6 @@ module.exports = function() {
         lastName: String,
         email: String,
         restaurantId: String,
-        timers: [{type: mongoose.Schema.Types.ObjectId, ref: 'Timer'}],
         dateCreate: {type: Date, default: Date.now()},
         dateUpdated: Date
     }, {collection: "project.employee"});
