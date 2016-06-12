@@ -1,4 +1,7 @@
-module.exports = function(app) {
+module.exports = function(app, models) {
+
+    var recipeModel = models.recipeModel;
+
     var recipes = [
         {_id: "123",
             name: "Chicken Puff Pastry",
@@ -72,63 +75,78 @@ module.exports = function(app) {
     //
     function createRecipe(req, res) {
         var newRecipe = req.body;
-        newRecipe._id = (new Date).getTime() + "";
-        recipes.push(newRecipe);
-        res.json(newRecipe);
+
+        recipeModel
+            .createRecipe(newRecipe)
+            .then(
+                function(recipe) {
+                    var recipeId = recipe._id;
+                    res.status(200).send(recipeId);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            );
     }
     
     function findAllRecipesByRestaurantId(req, res) {
         var restaurantId = req.params.restaurantId;
-    
-        var result = [];
-        for(var i in recipes) {
-            if(recipes[i].restaurantId === restaurantId) {
-                result.push(recipes[i]);
-            }
-        }
-        res.send(result);
+
+        recipeModel
+            .findAllRecipesByRestaurantId(restaurantId)
+            .then(
+                function(recipes) {
+                    res.json(recipes);
+                },
+                function(error) {
+                    res.status(404).send(error);
+                }
+            );
     }
     
     function findRecipeById(req, res) {
         var recipeId = req.params.recipeId;
-        for(var i in recipes) {
-            if(recipes[i]._id === recipeId) {
-                res.json(recipes[i]);
-                return;
-            }
-        }
-        res.status(400).send("Recipe with ID " + recipeId + " not found");
+
+        recipeModel
+            .findRecipeById(recipeId)
+            .then(
+                function(recipe) {
+                    res.json(recipe);
+                },
+                function(error) {
+                    res.status(404).send(error);
+                }
+            );
     }
     
     function updateRecipe(req, res) {
         var recipe = req.body;
         var recipeId = req.params.recipeId;
-        
-        for(var i in recipes) {
-            if(recipes[i]._id == recipeId) {
-                recipes[i].name = recipe.name;
-                recipes[i].prepTime = recipe.prepTime;
-                recipes[i].type = recipe.type;
-                recipes[i].description = recipe.description;
-                recipes[i].ingredients = recipe.ingredients;
-                recipes[i].directions = recipe.directions;
-                res.sendStatus(200);
-                return;
-            }
-        }
-        res.status(400).send("Recipe with ID " + recipeId + " not found");
+
+        recipeModel
+            .updateRecipe(recipeId, recipe)
+            .then(
+                function(recipe) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to update recipe with ID " + recipeId);
+                }
+            );
     }
     
     function deleteRecipe(req, res) {
-        var recipeId = req.params.websiteId;
+        var recipeId = req.params.recipeId;
 
-        for(var i in recipes) {
-            if (recipes[i]._id === recipeId) {
-                recipes.splice(i, 1);
-                res.sendStatus(200);
-                return;
-            }
-        }
-        res.status(404).send("Unable to remove recipe with ID " + recipeId);
+        recipeModel
+            .deleteRecipe(recipeId)
+            .then(
+                function(status) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to delete recipe with ID " + recipeId);
+                }
+            );
     }
 };

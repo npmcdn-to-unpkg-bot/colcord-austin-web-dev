@@ -33,7 +33,7 @@
                                 .then(
                                     function(response) {
                                         vm.success = "Successfully created recipe";
-                                        $location.url("/user/" + vm.uid + "/recipe/" + response.data._id);
+                                        $location.url("/user/" + vm.uid + "/recipe/" + response.data);
                                     },
                                     function(error) {
                                         vm.error = error.data;

@@ -7,6 +7,7 @@ module.exports = function() {
         type: String,
         description: String,
         ingredients: [{
+            _id: Number,
             name: String,
             amount: Number,
             measure: String

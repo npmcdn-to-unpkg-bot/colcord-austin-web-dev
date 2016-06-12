@@ -37,7 +37,7 @@ module.exports = function() {
                     description: newRecipe.description,
                     ingredients: newRecipe.ingredients,
                     directions: newRecipe.directions,
-                    dateModified: Date.now
+                    dateModified: Date.now()
                 }
             }
         )
