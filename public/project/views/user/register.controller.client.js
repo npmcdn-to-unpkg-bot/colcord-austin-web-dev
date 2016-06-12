@@ -8,9 +8,14 @@
 
         var vm = this;
         vm.register = register;
+        vm.submitted = false;
+        vm.badPassword = false;
+        vm.badEmail = false;
 
         function register(username, password, verifyPassword, firstName, lastName, email, restaurantId) {
+            vm.submitted = true;
             if (username && password && verifyPassword) {
+                console.log(password, " : ", verifyPassword);
                 if (firstName == null) {
                     vm.error = "Please enter a first name";
                 }
@@ -18,9 +23,11 @@
                     vm.error = "Please enter a last name";
                 }
                 else if (password !== verifyPassword) {
+                    vm.badPassword = true;
                     vm.error = "Passwords do not match";
                 }
                 else if (!validateEmail(email)) {
+                    vm.badEmail = true;
                     vm.error = "Invalid email address";
                 }
                 else if (restaurantId == null) {
@@ -41,6 +48,9 @@
                         .then(
                             function(response) {
                                 $location.url("/user/" + response.data);
+                                vm.submitted = false;
+                                vm.badPassword = false;
+                                vm.badEmail = false;
                             },
                             function(error) {
                                 vm.error = error.data;
@@ -49,7 +59,7 @@
                 }
             }
             else {
-                vm.error = "Please enter a username and password"
+                vm.error = "Please enter the required information"
             }
         }
 

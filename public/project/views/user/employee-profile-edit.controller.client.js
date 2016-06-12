@@ -6,6 +6,7 @@
     function ProfileEditController($location, $routeParams, UserService) {
         var vm = this;
         vm.updateUser = updateUser;
+        vm.submitted = false;
 
         vm.uid = $routeParams["uid"];
 
@@ -24,6 +25,7 @@
         init();
 
         function updateUser(current_pass, new_pass, verify_new_pass) {
+            vm.submitted = true;
             if (vm.user.password === current_pass) {
                 if (new_pass && verify_new_pass && new_pass == verify_new_pass) {
                     vm.user.password = new_pass;
@@ -34,6 +36,7 @@
                             function(res) {
                                 vm.success = "User successfully updated";
                                 $location.url("/user/" + vm.uid);
+                                vm.submitted = false;
                             },
                             function(error) {
                                 vm.error = error.data;
