@@ -25,7 +25,8 @@ module.exports = function() {
             important: Boolean,
             signer: String,
             timeStamp: Date,
-            order: Number
+            order: Number,
+            completeTime: Date
         }]
     }, {collection: "project.prep"});
     

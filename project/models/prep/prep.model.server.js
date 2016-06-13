@@ -64,6 +64,7 @@ module.exports = function() {
     function addToPrepInProgress(prepListId, ticket) {
         return Prep.findOne({_id: prepListId},
             function(err, doc) {
+                ticket.timeStamp = Date.now();
                 doc.inProgress.push(ticket);
                 doc.save();
             })
@@ -72,6 +73,7 @@ module.exports = function() {
     function addToPrepCompleted(prepListId, ticket) {
         return Prep.findOne({_id: prepListId},
             function(err, doc) {
+                ticket.completeTime = Date.now();
                 doc.completed.push(ticket);
                 doc.save();
             })

@@ -12,6 +12,7 @@
             $(element)
                 .sortable({
                     axis: 'y',
+                    handle: '.ajc-ticket-handle',
                     
                     start: function(event, ui) {
                         startIndex = ui.item.index();

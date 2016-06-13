@@ -27,13 +27,21 @@
                 data="model.prepList.toDo">
                 <li ng-repeat="recipe in model.prepList.toDo | orderBy : 'order'"
                     class="list-group-item">
+                    <span class="glyphicon glyphicon glyphicon-align-justify ajc-ticket-handle"></span>
+
                     <span ng-click="model.moveToInProgress(recipe)"
                           class="glyphicon glyphicon glyphicon-arrow-right pull-right ajc-list-glyphicon"></span>
                     <a  href="#/user/{{model.uid}}/recipe/{{recipe._recipeId}}">
-                        {{recipe.name}}
+                        <b>{{recipe.name}}</b>
                     </a>
                     <span ng-if="recipe.important"
                           class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
+                    <div class="ajc-prep-signature pull-right">
+                        <input ng-model="recipe.signer"
+                               type="text"
+                               class="form-control"
+                               placeholder="sign"/>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -46,8 +54,9 @@
                     <span ng-click="model.moveToCompleted(recipe)"
                           class="glyphicon glyphicon glyphicon-arrow-right pull-right ajc-list-glyphicon"></span>
                     <a  href="#/user/{{model.uid}}/recipe/{{recipe._recipeId}}">
-                        {{recipe.name}}
+                        <b>{{recipe.name}}</b>
                     </a>
+                    <hr>
                     <span ng-if="recipe.important"
                           class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
                     <div class="ajc-prep-signature pull-right">
@@ -56,7 +65,7 @@
                                class="form-control"
                                placeholder="sign"/>
                     </div>
-                    <p>{{recipe.timeStamp}}</p>
+                    <p>Started: {{recipe.timeStamp | date: 'MMM d - h:mm:ss a'}}</p>
                 </li>
             </ul>
         </div>
@@ -66,10 +75,10 @@
             <ul class="list-group prep-list-container">
                 <li ng-repeat="recipe in model.prepList.completed"
                     class="list-group-item">
-                    <span class="glyphicon glyphicon glyphicon-align-justify pull-right ajc-list-glyphicon"></span>
-                    <a  href="#/user/{{model.uid}}/recipe/{{recipe._recipeId}}">
-                        {{recipe.name}}
+                    <a href="#/user/{{model.uid}}/recipe/{{recipe._recipeId}}">
+                        <b>{{recipe.name}}</b>
                     </a>
+                    <hr>
                     <span ng-if="recipe.important"
                           class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
                     <span ng-click="model.removeFromPrepCompletedList(recipe)"
@@ -77,7 +86,8 @@
                     <div class="ajc-prep-signature pull-right">
                         <p>{{recipe.signer}}</p>
                     </div>
-                    <p>{{recipe.timeStamp}}</p>
+                    <p>Started: {{recipe.timeStamp | date: 'MMM d - h:mm:ss a'}}</p>
+                    <p>Completed: {{recipe.completeTime | date: 'MMM d - h:mm:ss a'}}</p>
                 </li>
             </ul>
         </div>
