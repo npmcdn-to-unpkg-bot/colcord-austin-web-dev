@@ -55,6 +55,11 @@
                 controller: "RecipeEditController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/recipe/:rid/edit/search", {
+                templateUrl: "views/recipe/recipe-search.view.client.html",
+                controller: "RecipeSearchController",
+                controllerAs: "model"
+            })
 
             //default route - login
             .otherwise({

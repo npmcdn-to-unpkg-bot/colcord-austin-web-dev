@@ -1,0 +1,197 @@
+<header>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p class="navbar-text navbar-left pull-left">
+                    <a href="#/user/{{model.uid}}/recipe/recipe-book"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon-chevron-left ajc-nav-glyphicon"></span>
+                    </a>
+                </p>
+                <a class="navbar-brand">
+                    Search Recipe
+                </a>
+                <!--<p class="navbar-text navbar-left pull-right">-->
+                    <!--<a ng-click="model.createRecipe()"-->
+                       <!--class="navbar-link">-->
+                        <!--<span class="glyphicon glyphicon-ok ajc-nav-glyphicon"></span>-->
+                    <!--</a>-->
+                <!--</p>-->
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container-fluid">
+
+    <div ng-show="model.error"
+         class="alert alert-danger">
+        {{model.error}}
+    </div>
+
+    <!-- http://stackoverflow.com/questions/24682421/put-search-icon-near-textbox-using-bootstrap -->
+    <div class="input-group">
+        <!--<input ng-model="searchText"-->
+               <!--type="text"-->
+               <!--class="form-control"-->
+               <!--placeholder="Search recipes...">-->
+        <!--<span ng-click="model.searchRecipes(searchText)"-->
+              <!--class="glyphicon glyphicon-search pull-right"></span>-->
+
+        <input ng-model="searchText"
+               type="text"
+               class="form-control"
+               placeholder="Search recipes...">
+        <span class="input-group-btn">
+            <a ng-click="model.searchRecipes(searchText)"
+               class="btn btn-default"
+               type="button">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+        </span>
+    </div>
+
+    <!--<form>-->
+        <!--<div class="form-group">-->
+            <!--<label for="recipename">Recipe Name</label>-->
+            <!--<input ng-model="model.recipe.name"-->
+                   <!--type="text"-->
+                   <!--id="recipename"-->
+                   <!--class="form-control"-->
+                   <!--placeholder="Recipe name"/>-->
+        <!--</div>-->
+
+        <!--<div class="form-group">-->
+            <!--<label for="description">Description</label>-->
+                <!--<textarea ng-model="model.recipe.description"-->
+                          <!--rows="3"-->
+                          <!--id="description"-->
+                          <!--class="form-control"-->
+                          <!--placeholder="This is my new recipe..."></textarea>-->
+        <!--</div>-->
+
+        <!--<div class="form-group">-->
+            <!--<label for="type">Type</label>-->
+            <!--<select ng-model="model.recipe.type"-->
+                    <!--class="form-control"-->
+                    <!--id="type">-->
+                <!--<option value="soup">Soup</option>-->
+                <!--<option value="sandwitch">Sandwitch</option>-->
+                <!--<option value="salad">Salad</option>-->
+                <!--<option value="side">Side Dish</option>-->
+
+            <!--</select>-->
+        <!--</div>-->
+
+        <!--<div class="form-group">-->
+            <!--<label for="preptime">Prep Time (minutes)</label>-->
+            <!--<input ng-model="model.recipe.prepTime"-->
+                   <!--type="number"-->
+                   <!--id="preptime"-->
+                   <!--min="0"-->
+                   <!--class="form-control"-->
+                   <!--placeholder="10"/>-->
+        <!--</div>-->
+
+        <!--<div class="row">-->
+            <!--<div class="col-sm-6">-->
+                <!--<div class="table-responsive">-->
+                    <!--<table class="table">-->
+                        <!--<thead>-->
+                        <!--<tr>-->
+                            <!--<th>Ingredient</th>-->
+                            <!--<th>Amount</th>-->
+                            <!--<th>Measure</th>-->
+                        <!--</tr>-->
+                        <!--</thead>-->
+                    <!--</table>-->
+
+                    <!--<div class="row"-->
+                         <!--ng-repeat="ingredient in model.ingredients">-->
+                        <!--<div class="col-xs-5">-->
+                            <!--<input ng-model="ingredient.name"-->
+                                   <!--type="text"-->
+                                   <!--class="form-control"-->
+                                   <!--placeholder="name"/>-->
+                        <!--</div>-->
+                        <!--<div class="col-xs-2">-->
+                            <!--<input ng-model="ingredient.amount"-->
+                                   <!--type="number"-->
+                                   <!--class="form-control"-->
+                                   <!--placeholder="amount"/>-->
+                        <!--</div>-->
+                        <!--<div class="col-xs-4">-->
+                            <!--<input ng-model="ingredient.measure"-->
+                                   <!--type="text"-->
+                                   <!--class="form-control"-->
+                                   <!--placeholder="measurement"/>-->
+                        <!--</div>-->
+                        <!--<div class="col-xs-1">-->
+                            <!--<span ng-click="model.removeIngredient(ingredient._id)"-->
+                                  <!--class="btn btn-danger glyphicon glyphicon-remove pull-right"></span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div ng-click="model.addIngredientRow()"-->
+                         <!--class="btn btn-primary btn-block">-->
+                        <!--Add Ingredient-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-6">-->
+                <!--<div class="form-group">-->
+                    <!--<label for="directions">Directions</label>-->
+                        <!--<textarea ng-model="model.recipe.directions"-->
+                                  <!--rows="5"-->
+                                  <!--id="directions"-->
+                                  <!--class="form-control"-->
+                                  <!--placeholder="This is how to cook my new recipe..."></textarea>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<a  class="btn btn-block btn-success"-->
+            <!--ng-click="model.createRecipe()">-->
+            <!--Save-->
+        <!--</a>-->
+
+        <!--<a  class="btn btn-block btn-danger"-->
+            <!--href="#/user/{{model.uid}}/recipe/recipe-book">-->
+            <!--Cancel-->
+        <!--</a>-->
+
+    <!--</form>-->
+</div>
+
+
+<footer>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                    <a href="#/user/{{model.uid}}/recipe/recipe-book"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon glyphicon glyphicon-book"></span>
+                    </a>
+                </p>
+                <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                    <a href="#/user/{{model.uid}}/prep/prep-list"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon glyphicon-list-alt"></span>
+                    </a>
+                </p>
+                <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                    <a href="#user/{{model.uid}}/prep/timer-list"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </a>
+                </p>
+                <p class="navbar-text col-xs-3 ajc-nav-column-centered">
+                    <a href="#/user/{{model.uid}}"
+                       class="navbar-link">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </nav>
+</footer>
