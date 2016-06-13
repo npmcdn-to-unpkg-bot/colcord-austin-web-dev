@@ -38,9 +38,7 @@ module.exports = function(app, models) {
         var startIndex = req.query['start'];
         var endIndex = req.query['end'];
         var prepListId = req.params.prepListId;
-
-        console.log('reordering. Start=' + startIndex + " end=" + endIndex + " prepList=" + prepListId);
-
+        
         prepModel
             .reorderToDo(startIndex, endIndex, prepListId)
             .then(
@@ -111,8 +109,6 @@ module.exports = function(app, models) {
             .then(
                 function(prepList) {
                     newTicket.order = prepList.toDo.length;
-                    console.log("ORDER: " + newTicket.order);
-
                     return prepModel
                         .addToPrepToDo(prepListId, newTicket)
                 },

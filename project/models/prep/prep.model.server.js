@@ -78,12 +78,24 @@ module.exports = function() {
     }
 
     function removeFromPrepToDoList(prepListId, ticketId) {
-        return Prep.findOne({_id: prepListId},
-            function(err, doc) {
-                for(var i in doc.toDo) {
-                    if (doc.toDo[i]._id == ticketId) {
-                        doc.toDo.splice(i, 1);
-                        doc.save();
+        return Prep
+            .findOne({_id: prepListId}, function (err, prepList) {
+
+                for (var i in prepList.toDo) {
+                    if (prepList.toDo[i]._id == ticketId) {
+                        for (var x in prepList.toDo) {
+                            if (prepList.toDo[x].order > prepList.toDo[i].order) {
+                                prepList.toDo[x].order -= 1;
+                            }
+                        }
+                        prepList.save();
+                    }
+                }
+
+                for(var i in prepList.toDo) {
+                    if (prepList.toDo[i]._id == ticketId) {
+                        prepList.toDo.splice(i, 1);
+                        prepList.save();
                     }
                 }
             });
