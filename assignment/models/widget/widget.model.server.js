@@ -82,6 +82,20 @@ module.exports = function() {
     }
     
     function deleteWidget(widgetId) {
-        return Widget.remove({_id: widgetId});
+
+        Widget
+            .findOne({_id: widgetId}, function (err, deletedWidget) {
+                Widget.find({_page: deletedWidget._page}, function (err, widgets) {
+                    return Widget.remove({_id: widgetId}, function (err, x) {
+
+                        widgets.forEach(function (widget) {
+                            if (widget.order > deletedWidget.order) {
+                                widget.order = widget.order - 1;
+                                widget.save();
+                            }
+                        });
+                    });
+                });
+            });
     }
 };
