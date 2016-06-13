@@ -29,14 +29,14 @@
                     class="list-group-item">
                     <span class="glyphicon glyphicon glyphicon-align-justify ajc-ticket-handle"></span>
 
-                    <span ng-click="model.moveToInProgress(recipe)"
-                          class="glyphicon glyphicon glyphicon-arrow-right pull-right ajc-list-glyphicon"></span>
                     <a  href="#/user/{{model.uid}}/recipe/{{recipe._recipeId}}">
                         <b>{{recipe.name}}</b>
                     </a>
                     <span ng-if="recipe.important"
                           class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
-                    <div class="ajc-prep-signature pull-right">
+                    <span ng-click="model.moveToInProgress(recipe)"
+                          class="glyphicon glyphicon glyphicon-arrow-right ajc-list-glyphicon pull-right"></span>
+                    <div class="ajc-prep-signature">
                         <input ng-model="recipe.signer"
                                type="text"
                                class="form-control"
@@ -83,7 +83,7 @@
                           class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
                     <span ng-click="model.removeFromPrepCompletedList(recipe)"
                           class="glyphicon glyphicon-remove pull-right ajc-list-glyphicon"></span>
-                    <div class="ajc-prep-signature pull-right">
+                    <div class="ajc-prep-signature">
                         <p>{{recipe.signer}}</p>
                     </div>
                     <p>Started: {{recipe.timeStamp | date: 'MMM d - h:mm:ss a'}}</p>

@@ -43,9 +43,6 @@
                     <a ng-click="model.addToPrepToDo(recipe._id, recipe.name)">
                         <span class="btn btn-success glyphicon glyphicon-plus-sign pull-right"></span>
                     </a>
-                    <a  href="#/user/{{model.uid}}/recipe/{{recipe._id}}/edit">
-                        <span class="btn btn-danger glyphicon glyphicon-pencil pull-right"></span>
-                    </a>
                     <a  href="#/user/{{model.uid}}/recipe/{{recipe._id}}">
                         {{recipe.name}}
                     </a>
@@ -60,9 +57,6 @@
                     ng-repeat="recipe in model.recipeBook">
                     <a ng-click="model.addToPrepToDo(recipe._id, recipe.name)">
                         <span class="btn btn-success glyphicon glyphicon-plus-sign pull-right"></span>
-                    </a>
-                    <a  href="#/user/{{model.uid}}/recipe/{{recipe._id}}/edit">
-                        <span class="btn btn-danger glyphicon glyphicon-pencil pull-right"></span>
                     </a>
                     <a  href="#/user/{{model.uid}}/recipe/{{recipe._id}}">
                         {{recipe.name}}
