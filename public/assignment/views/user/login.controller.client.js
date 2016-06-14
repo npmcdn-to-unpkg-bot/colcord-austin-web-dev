@@ -3,11 +3,12 @@
         .module("WebAppMaker")
         .controller("LoginController", LoginController);
 
-    function LoginController($location, UserService) {
+    function LoginController($location, $rootScope, UserService) {
         var vm = this;
         vm.submitted = false;
 
         vm.login = login;
+
         function login(username, password) {
             vm.submitted = true;
 
@@ -18,8 +19,8 @@
                         var user = response.data;
 
                         if(user) {
-                            var id = user._id;
-                            $location.url("/user/" + id);
+                            $rootScope.currentUser = user;
+                            $location.url("/user/" + user._id);
                             vm.submitted = false;
                         }
                     },

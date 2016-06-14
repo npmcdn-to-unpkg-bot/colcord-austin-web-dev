@@ -18,8 +18,18 @@
             .when("/user/:uid", {
                 templateUrl: "views/user/profile.view.client.html",
                 controller: "ProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedin: checkLoggedin
+                }
             })
+            // .when("/admin", {
+            //     templateUrl: "views/admin/admin.view.client.html",
+            //     resolve: {
+            //         loggedin: checkLoggedin,
+            //         isAdmin: checkAdminRole
+            //     }
+            // })
             
             //website routes
             .when("/user/:uid/website", {
@@ -82,5 +92,37 @@
             .otherwise({
                 redirectTo: "/login"
             });
+
+        function checkLoggedin(UserService, $q, $location, $rootScope) {
+
+            var deferred = $q.defer();
+
+            UserService
+                .checkLoggedin()
+                .then(
+                    function(response) {
+                        var user = response.data;
+                        console.log(user);
+                        if (user == '0') {
+                            deferred.reject();
+                            $rootScope.currentUser = null;
+                            $location.url("/login");
+                        }
+                        else {
+                            $rootScope.currentUser = user;
+                            deferred.resolve();
+                        }
+                    },
+                    function(error) {
+                        console.log(error);
+                        deferred.reject();
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    }
+                );
+
+            return deferred.promise;
+        }
+
     }
 })();
