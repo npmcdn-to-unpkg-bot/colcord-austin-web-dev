@@ -1,8 +1,16 @@
 var express = require('express');
 var app = express();
-
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
+var passport = require('passport');
+
 var connectionString = 'mongodb://127.0.0.1:27017/webdev';
+
+var assignment = require('./assignment/app.js');
+var project = require('./project/app.js');
+
 
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
     connectionString = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
@@ -13,18 +21,23 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 }
 mongoose.connect(connectionString);
 
-var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
 
 
-var assignment = require('./assignment/app.js');
-assignment(app);
+//cookieparser
+app.use(cookieParser());
+app.use(session({ secret: 'thesecret' })); //process.env.SESSION_SECRET
+/////////////
 
-var project = require('./project/app.js');
+//passport
+app.use(passport.initialize());
+app.use(passport.session());
+/////////////
+
+assignment(app);
 project(app);
 
 

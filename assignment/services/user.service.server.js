@@ -1,12 +1,80 @@
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 module.exports = function(app, models) {
 
     var userModel = models.userModel;
     
     app.get("/api/user", getUsers); // handles : /api/user, /api/user?username=username, and /api/user?username=username&password=password
+    app.post("/api/login", passport.authenticate('wam'), login); // passport.authenticate('wam')
     app.post("/api/user", createUser);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
+
+    passport.use('wam', new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        userModel
+            .findUserById(user._id)
+            .then(
+                function(user) {
+                    done(null, user);
+                },
+                function(err) {
+                    done(err, null);
+                }
+            );
+    }
+
+    function localStrategy(username, password, done) {
+        userModel
+            .findUserByCredentials(username, password)
+            .then(
+                function(user) {
+                    if (user.username === username && user.password === password) {
+                        return done(null, user);
+                    }
+                    else {
+                        return done(null, false);
+                    }
+                },
+                function(err) {
+                    if (err) {
+                        return done(err);
+                    }
+                }
+            )
+    }
+
+    function login(req, res) {
+        var user = req.user;
+        res.json(user);
+        // var username = req.body.username;
+        // var password = req.body.password;
+        // userModel
+        //     .findUserByCredentials(username, password)
+        //     .then(
+        //         function(user) {
+        //             if(user) {
+        //                 res.json(user);
+        //             }
+        //             else {
+        //                 res.status(403).send("Username and Password Not Found");
+        //             }
+        //         },
+        //         function(error) {
+        //             res.status(403).send("Unable to login");
+        //         }
+        //     );
+
+    }
 
     function createUser(req, res) {
         var newUser = req.body;
@@ -70,17 +138,19 @@ module.exports = function(app, models) {
         var username = req.query['username'];
         var password = req.query['password'];
         if(username && password) {
-            findUserByCredentials(username, password, res);
+            findUserByCredentials(username, password, req, res);
         }
         else if (username) {
-            findUserByUsername(username, res);
+            findUserByUsername(username, req, res);
         }
         else {
             res.status(403).send("Username and Password not Provided");
         }
     }
 
-    function findUserByCredentials(username, password, res) {
+    function findUserByCredentials(username, password, req, res) {
+        req.session.username = username;
+        console.log(req.session);
         userModel
             .findUserByCredentials(username, password)
             .then(
@@ -98,7 +168,7 @@ module.exports = function(app, models) {
             );
     }
 
-    function findUserByUsername(username, res) {
+    function findUserByUsername(username, req, res) {
         userModel
             .findUserByUsername(username)
             .then(
