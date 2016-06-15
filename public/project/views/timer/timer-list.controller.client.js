@@ -9,14 +9,14 @@
         vm.deleteTimer = deleteTimer;
                 
         vm.uid = $routeParams["uid"];
-
+        
         vm.globalTime = new Date().getTime();
         $interval(function(){
             vm.globalTime++;
             console.log(vm.globalTime);
-            for(var i in vm.timers) {
-                vm.timers[i].timeRemaining = getMinutesRemaining(vm.timers[i]);
-            }
+                for(var i in vm.timers) {
+                    vm.timers[i].timeRemaining--;// = getMinutesRemaining(vm.timers[i]);
+                }
         }, 1000);
 
 
@@ -60,7 +60,10 @@
                 .findTimersByUserId(vm.user._id)
                 .then(
                     function(response) {
-                        vm.timers = response.data;
+                       vm.timers = response.data;
+                        for(var i in vm.timers) {
+                            vm.timers[i].timeRemaining = getMinutesRemaining(vm.timers[i]);
+                        }
                     },
                     function(error) {
                         vm.error = error.data;
@@ -69,8 +72,13 @@
         }
 
         function getMinutesRemaining(timer) {
-            var endTime = addMinutes(new Date(timer.timeStart).getTime(), timer.setMinutes);
-            return new Date(endTime - vm.globalTime);
+            console.log(timer.setMinutes);
+            var start = new Date(timer.timeStart).getTime();
+            var end = new Date(new Date(timer.timeStart).getTime() + timer.setMinutes).getTime();
+            console.log("start: " + start);
+            console.log("end  : " + end);
+            // var endTime = addMinutes(timer.timeStart.now, timer.setMinutes);
+            return new Date(end - vm.globalTime);
         }
 
         function deleteTimer(timerId) {
