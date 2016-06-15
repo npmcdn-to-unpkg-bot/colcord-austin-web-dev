@@ -29,13 +29,10 @@
         {{model.error}}
     </div>
 
-    <!-- http://stackoverflow.com/questions/24682421/put-search-icon-near-textbox-using-bootstrap -->
-    <div class="form-group has-feedback">
-        <input type="text"
-               class="form-control"
-               placeholder="Search recipes...">
-        <span class="glyphicon glyphicon-search form-control-feedback"></span>
-    </div>
+    <a  class="btn btn-block btn-default"
+        href="#/user/{{model.uid}}/recipe/new/search">
+        Search
+    </a>
 
     <form>
         <div class="form-group">

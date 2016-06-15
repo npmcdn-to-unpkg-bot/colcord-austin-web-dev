@@ -55,7 +55,7 @@
                 controller: "RecipeEditController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/recipe/:rid/edit/search", {
+            .when("/user/:uid/recipe/new/search", {
                 templateUrl: "views/recipe/recipe-search.view.client.html",
                 controller: "RecipeSearchController",
                 controllerAs: "model"
