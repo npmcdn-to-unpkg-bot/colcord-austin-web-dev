@@ -41,7 +41,11 @@ module.exports = function(app, models) {
             .findUserByCredentials(username, password)
             .then(
                 function(user) {
-                    if (user.username === username && user.password === password) {
+                    if (user
+                        && user.username
+                        && user.password
+                        && user.username === username
+                        && user.password === password) {
                         return done(null, user);
                     }
                     else {
@@ -188,7 +192,6 @@ module.exports = function(app, models) {
 
     function findUserByCredentials(username, password, req, res) {
         req.session.username = username;
-        console.log(req.session);
         userModel
             .findUserByCredentials(username, password)
             .then(

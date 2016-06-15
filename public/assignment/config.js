@@ -102,7 +102,6 @@
                 .then(
                     function(response) {
                         var user = response.data;
-                        console.log(user);
                         if (user == '0') {
                             deferred.reject();
                             $rootScope.currentUser = null;
@@ -114,7 +113,6 @@
                         }
                     },
                     function(error) {
-                        console.log(error);
                         deferred.reject();
                         $rootScope.currentUser = null;
                         $location.url("/login");
