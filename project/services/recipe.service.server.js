@@ -77,13 +77,16 @@ module.exports = function(app, models) {
     app.get("/api/food", food);
 
     function food(req, res) {
+        var searchTerm = req.query['searchterm'];
+        searchTerm = searchTerm.replace(/\s+/g, "%20");
+
         var options = {
             hostname: 'food2fork.com',
-            path: '/api/search?key=e299a830cc2d4f02152b8246d2dacf93&q=soup'
+            path: '/api/search?key=e299a830cc2d4f02152b8246d2dacf93&q=' + searchTerm
         };
-
+        
         http.request(options, function(response) {
-            var str = ''
+            var str = '';
             response.on('data', function (chunk) {
                 str += chunk;
             });

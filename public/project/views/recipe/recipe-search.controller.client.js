@@ -4,8 +4,8 @@
         .controller("RecipeSearchController", RecipeSearchController);
 
     function RecipeSearchController($location, $routeParams, Food2ForkService, RecipeService) {
-        console.log('hi');
         var vm = this;
+        vm.searching = "";
         vm.searchRecipes = searchRecipes;
         // vm.selectRecipe = selectRecipe;
 
@@ -13,17 +13,21 @@
         // vm.wid = $routeParams.wid;
         // vm.pid = $routeParams.pid;
         // vm.wgid = $routeParams.wgid;
-        console.log(vm.uid);
 
-        function searchRecipes(searchText) {
+        function searchRecipes(searchTerm) {
+            vm.searching = "searching...";
             Food2ForkService
-                .searchRecipes(searchText)
+                .searchRecipes(searchTerm)
                 .then(
                     function(response) {
-                        data = response.data;
-                        data = data.substring(0,data.length - 1);
-                        data = JSON.parse(data);
+                        var data = response.data;
                         vm.recipes = data.recipes;
+                        if (vm.recipes.length) {
+                            vm.searching = "";
+                        }
+                        else {
+                            vm.searching = "no recipes found";
+                        }
                     },
                     function(error) {
                         vm.error = error.data;

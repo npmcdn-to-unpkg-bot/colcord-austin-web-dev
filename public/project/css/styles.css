@@ -99,4 +99,17 @@ a {
     text-decoration: none !important;
 }
 
+.ajc-recipe-image {
+    width: 60px;
+    height: 50px;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 0 10px #888888;
+    box-shadow: 0 0 5px #888888;
+    margin-right: 10px;
+}
+
+.ajc-searching {
+    color: grey;
+    font-size: 15px
+}
 
