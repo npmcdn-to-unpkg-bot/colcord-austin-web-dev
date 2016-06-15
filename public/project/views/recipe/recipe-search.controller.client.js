@@ -42,8 +42,7 @@
                 .selectRecipe(recipeId)
                 .then(
                     function(response) {
-                        var data = response.data;
-                        vm.selectedRecipe = data.recipe;
+                        vm.selectedRecipe = response.data.recipe;
                     },
                     function(error) {
                         vm.error = error.data;

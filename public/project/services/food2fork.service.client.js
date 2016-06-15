@@ -16,7 +16,7 @@
         }
         
         function selectRecipe(recipeId) {
-            return $http.get("/api/food/:" + recipeId);
+            return $http.get("/api/food/" + recipeId);
         }
 
     }

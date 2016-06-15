@@ -29,7 +29,6 @@ module.exports = function(app, models) {
             });
 
             response.on('end', function () {
-                console.log(str);
                 res.send(str);
             });
         }).end();
@@ -37,12 +36,12 @@ module.exports = function(app, models) {
 
     function selectRecipe(req, res) {
         var recipeId = req.params.recipeId;
-    
+
         var options = {
             hostname: 'food2fork.com',
-            path: '/api/search?key=' + key + '&rId=' + recipeId
+            path: '/api/get?key=' + key + '&rId=' + recipeId
         };
-    
+        
         http.request(options, function(response) {
             var str = '';
             response.on('data', function (chunk) {
@@ -50,7 +49,6 @@ module.exports = function(app, models) {
             });
     
             response.on('end', function () {
-                console.log(str);
                 res.send(str);
             });
         }).end();

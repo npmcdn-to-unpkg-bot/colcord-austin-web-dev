@@ -25,13 +25,6 @@
 
     <!-- http://stackoverflow.com/questions/24682421/put-search-icon-near-textbox-using-bootstrap -->
     <div class="input-group">
-        <!--<input ng-model="searchText"-->
-               <!--type="text"-->
-               <!--class="form-control"-->
-               <!--placeholder="Search recipes...">-->
-        <!--<span ng-click="model.searchRecipes(searchText)"-->
-              <!--class="glyphicon glyphicon-search pull-right"></span>-->
-
         <input ng-model="searchText"
                type="text"
                class="form-control"
@@ -50,7 +43,7 @@
     </p>
 
     <div class="row">
-        <div class="col-xs-6">
+        <div class="col-md-6">
             <!--INSIDE THIS WORKS, OUTSIDE NOT TESTED YET-->
             <ul class="list-group">
                 <li class="list-group-item"
@@ -60,15 +53,16 @@
                     <a ng-click="">
                         <span class="btn btn-success glyphicon glyphicon-plus-sign pull-right"></span>
                     </a>
-                    <a  href="">
+                    <a  ng-click="model.selectRecipe(recipe.recipe_id)">
                         <b>{{recipe.title}}</b>
                     </a>
                 </li>
             </ul>
             <!--------------------------------------------->
         </div>
+
         <div ng-show="model.selectedRecipe != null"
-             class="col-xs-6">
+             class="col-md-6">
             <ul class="list-group">
                 <li class="list-group-item">
                     <img ng-src="{{model.selectedRecipe.image_url}}"
@@ -80,7 +74,10 @@
                             {{ingredient}}
                         </li>
                     </ul>
-                    <a href="{{model.selectedRecipe.source_url}}">Source</a>
+                    <a href="{{model.selectedRecipe.source_url}}"
+                       target="_blank">
+                        Source
+                    </a>
                 </li>
             </ul>
         </div>
