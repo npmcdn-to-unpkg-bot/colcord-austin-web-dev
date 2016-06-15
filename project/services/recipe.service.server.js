@@ -1,3 +1,5 @@
+var http = require('http');
+
 module.exports = function(app, models) {
 
     var recipeModel = models.recipeModel;
@@ -72,6 +74,26 @@ module.exports = function(app, models) {
     app.get("/api/recipe/:recipeId", findRecipeById);
     app.put("/api/recipe/:recipeId", updateRecipe);
     app.delete("/api/recipe/:recipeId", deleteRecipe);
+    app.get("/api/food", food);
+
+    function food(req, res) {
+        var options = {
+            hostname: 'food2fork.com',
+            path: '/api/search?key=e299a830cc2d4f02152b8246d2dacf93&q=soup'
+        };
+
+        http.request(options, function(response) {
+            var str = ''
+            response.on('data', function (chunk) {
+                str += chunk;
+            });
+
+            response.on('end', function () {
+                console.log(str);
+                res.send(str);
+            });
+        }).end();
+    }
     //
     function createRecipe(req, res) {
         var newRecipe = req.body;
