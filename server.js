@@ -29,16 +29,18 @@ app.use(express.static(__dirname + '/public'));
 
 //cookieparser
 app.use(cookieParser());
-app.use(session({ secret: 'thesecret' })); //process.env.SESSION_SECRET
+app.use(session({
+    secret: 'thesecret',  //process.env.SESSION_SECRET
+    resave: true,
+    saveUninitialized: true
+}));
 /////////////
 
-//passport
 app.use(passport.initialize());
 app.use(passport.session());
-/////////////
 
-assignment(app);
 project(app);
+assignment(app);
 
 
 require ("./test/app.js")(app);

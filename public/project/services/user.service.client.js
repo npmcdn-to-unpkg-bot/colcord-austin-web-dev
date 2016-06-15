@@ -6,6 +6,11 @@
     function UserService($http) {
 
         var api = {
+            login: login,
+            register: register,
+            logout: logout,
+            checkLoggedin: checkLoggedin,
+
             createUser: createUser,
             findUserById: findUserById,
             findUserByUsername: findUserByUsername,
@@ -14,6 +19,32 @@
             deleteUser: deleteUser
         };
         return api;
+
+
+        function login(username, password) {
+            var url = "/api/prepper/login";
+            var user = {
+                username: username,
+                password: password
+            };
+            return $http.post(url, user);
+        }
+
+        function register(username, password) {
+            var user = {
+                username: username,
+                password: password
+            };
+            return $http.post("/api/prepper/register", user);
+        }
+
+        function logout() {
+            return $http.post('/api/prepper/logout');
+        }
+
+        function checkLoggedin() {
+            return $http.get("/api/prepper/loggedin");
+        }
 
         function createUser(user) {
             return $http.post("/api/employee", user);

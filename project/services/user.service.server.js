@@ -1,20 +1,125 @@
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 module.exports = function(app, models) {
 
     var employeeModel = models.employeeModel;
     var prepModel = models.prepModel;
 
-    // var users = [
-    //     {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder", email: "alice@wonderland.com", restaurantId: "12345"},
-    //     {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley", email: "bob@wonderland.com", restaurantId: "33333"},
-    //     {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia", email: "charly@wonderland.com", restaurantId: "12345"},
-    //     {_id: "456", username: "ajdcolcord", password: "ajdcolcord", firstName: "Austin",   lastName: "Colcord", email: "ajd@wonderland.com", restaurantId: "12345"}
-    // ];
+    app.post("/api/prepper/login", passport.authenticate('prepper'), login);
+    app.post("/api/prepper/register", register);
+    app.post('/api/prepper/logout', logout);
+    app.get ('/api/prepper/loggedin', loggedin);
 
     app.get("/api/employee", getUsers);
     app.post("/api/employee", createUser);
     app.get("/api/employee/:userId", findUserById);
     app.put("/api/employee/:userId", updateUser);
     app.delete("/api/employee/:userId", deleteUser);
+
+
+    passport.use('prepper', new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        employeeModel
+            .findUserById(user._id)
+            .then(
+                function(user) {
+                    done(null, user);
+                },
+                function(err) {
+                    done(err, null);
+                }
+            );
+    }
+
+    function localStrategy(username, password, done) {
+        employeeModel
+            .findUserByCredentials(username, password)
+            .then(
+                function(user) {
+                    if (user
+                        && user.username
+                        && user.password
+                        && user.username === username
+                        && user.password === password) {
+                        return done(null, user);
+                    }
+                    else {
+                        return done(null, false);
+                    }
+                },
+                function(err) {
+                    if (err) {
+                        return done(err);
+                    }
+                }
+            )
+    }
+
+
+    function login(req, res) {
+        var user = req.user;
+        res.json(user);
+    }
+
+    function register(req, res) {
+        var username = req.body.username;
+        var password = req.body.password;
+
+        employeeModel
+            .findUserByUsername(username)
+            .then(
+                function(user) {
+                    if(user) {
+                        res.status(400).send("Username already exists");
+                    }
+                    else {
+                        return employeeModel
+                            .createUser(req.body);
+                    }
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            )
+            .then(
+                function(user) {
+                    if(user){
+                        req.login(user, function(err) {
+                            if(err) {
+                                res.status(400).send(err);
+                            } else {
+                                res.json(user);
+                            }
+                        });
+                    }
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            )
+    }
+
+    function logout(req, res) {
+        req.logout();
+        res.sendStatus(200);
+    }
+
+    function loggedin(req, res) {
+        if (req.isAuthenticated()) {
+            res.json(req.user);
+        }
+        else {
+            res.send('0');
+        }
+    }
     
     function createUser(req, res) {
         var newUser = req.body;
@@ -107,7 +212,7 @@ module.exports = function(app, models) {
         var username = req.query['username'];
         var password = req.query['password'];
         if(username && password) {
-            findUserByCredentials(username, password, res);
+            findUserByCredentials(username, password, req, res);
         }
         else if (username) {
             findUserByUsername(username, res);
@@ -117,7 +222,8 @@ module.exports = function(app, models) {
         }
     }
 
-    function findUserByCredentials(username, password, res) {
+    function findUserByCredentials(username, password, req, res) {
+        req.session.username = username;
         employeeModel
             .findUserByCredentials(username, password)
             .then(
