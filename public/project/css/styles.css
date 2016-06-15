@@ -108,6 +108,11 @@ a {
     margin-right: 10px;
 }
 
+.ajc-recipe-image-big {
+    width: 50%;
+    height: auto;
+}
+
 .ajc-searching {
     color: grey;
     font-size: 15px
