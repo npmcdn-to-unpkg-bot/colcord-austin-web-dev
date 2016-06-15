@@ -27,7 +27,7 @@
                 data="model.prepList.toDo">
                 <li ng-repeat="recipe in model.prepList.toDo | orderBy : 'order'"
                     class="list-group-item">
-                    <span class="glyphicon glyphicon glyphicon-align-justify ajc-ticket-handle"></span>
+                    <span class="btn glyphicon glyphicon glyphicon-align-justify ajc-ticket-handle"></span>
 
                     <a  href="#/user/{{model.uid}}/recipe/{{recipe._recipeId}}">
                         <b>{{recipe.name}}</b>
