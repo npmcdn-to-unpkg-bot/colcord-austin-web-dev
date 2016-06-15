@@ -28,6 +28,7 @@
     <!-- http://stackoverflow.com/questions/24682421/put-search-icon-near-textbox-using-bootstrap -->
     <div class="form-group has-feedback">
         <input type="text"
+               ng-model="searchTerm"
                class="form-control"
                placeholder="Search my recipes...">
         <span class="glyphicon glyphicon-search form-control-feedback"></span>
@@ -39,7 +40,9 @@
             <ul class="list-group">
                 <li class="list-group-item"
                     ng-repeat="recipe in model.recipeBook"
-                    ng-if="recipe.recent">
+                    ng-if="recipe.recent && ((recipe.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1))
+                            || searchTerm == ''
+                            || searchTerm == null">
                     <a ng-click="model.addToPrepToDo(recipe._id, recipe.name)">
                         <span class="btn btn-success glyphicon glyphicon-plus-sign pull-right"></span>
                     </a>
