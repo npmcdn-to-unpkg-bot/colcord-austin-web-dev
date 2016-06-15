@@ -3,17 +3,22 @@
         .module("Prepper")
         .controller("TimerListController", TimerListController);
 
-    function TimerListController($interval, $routeParams, UserService, RecipeService, PrepService, TimerService) {
+    function TimerListController($interval, $routeParams, $rootScope,  UserService, RecipeService, PrepService, TimerService) {
         var vm = this;
         vm.getMinutesRemaining = getMinutesRemaining;
         vm.deleteTimer = deleteTimer;
                 
         vm.uid = $routeParams["uid"];
-        
-        vm.globalTime = new Date().getTime();
+
+        if (!$rootScope.globalTime) {
+            $rootScope.globalTime = new Date().getTime();
+            $interval(function() {
+                console.log($rootScope.globalTime);
+                $rootScope.globalTime++;
+            }, 1000);
+        }
+
         $interval(function(){
-            vm.globalTime++;
-            console.log(vm.globalTime);
                 for(var i in vm.timers) {
                     vm.timers[i].timeRemaining--;// = getMinutesRemaining(vm.timers[i]);
                 }
@@ -78,7 +83,7 @@
             console.log("start: " + start);
             console.log("end  : " + end);
             // var endTime = addMinutes(timer.timeStart.now, timer.setMinutes);
-            return new Date(end - vm.globalTime);
+            return new Date(end - $rootScope.globalTime);
         }
 
         function deleteTimer(timerId) {
