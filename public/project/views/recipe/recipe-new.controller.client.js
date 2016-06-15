@@ -56,9 +56,9 @@
         }
 
         function removeIngredient(ingredientId) {
-            for(var i in vm.recipe.ingredients) {
-                if(vm.recipe.ingredients[i]._id == ingredientId) {
-                    vm.recipe.ingredients.splice(i, 1);
+            for(var i in vm.ingredients) {
+                if(vm.ingredients[i]._id == ingredientId) {
+                    vm.ingredients.splice(i, 1);
                 }
             }
         }
