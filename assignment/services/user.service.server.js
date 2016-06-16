@@ -1,6 +1,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var bcrypt = require("bcrypt-nodejs");
 
 module.exports = function(app, models) {
 
@@ -21,12 +22,41 @@ module.exports = function(app, models) {
     app.post("/api/user", createUser);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
-    app.delete("/api/user/:userId", deleteUser);
+    app.delete("/api/user/:userId", authorized, deleteUser);
 
     passport.use('wam', new LocalStrategy(localStrategy));
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
+
+
+    function authorized(req, res, next) {
+        if (!req.isAuthenticated()) {
+            res.sendStatus(401);
+        }
+        else {
+            next();
+        }
+    }
+
+    // function admin(req, res, next) {
+    //     userModel
+    //         .isAdmin(req.user._id)
+    //         .then(
+    //             function(response) {
+    //                 if (!req.isAuthenticated()) {
+    //                     res.sendStatus(401);
+    //                 }
+    //                 else {
+    //                     next();
+    //                 }
+    //             },
+    //             function(error) {
+    //
+    //             }
+    //         );
+    //
+    // }
 
     function serializeUser(user, done) {
         done(null, user);
@@ -47,14 +77,10 @@ module.exports = function(app, models) {
 
     function localStrategy(username, password, done) {
         userModel
-            .findUserByCredentials(username, password)
+            .findUserByUsername(username)
             .then(
                 function(user) {
-                    if (user
-                        && user.username
-                        && user.password
-                        && user.username === username
-                        && user.password === password) {
+                    if (user && bcrypt.compareSync(password, user.password)) {
                         return done(null, user);
                     }
                     else {
@@ -120,6 +146,7 @@ module.exports = function(app, models) {
                         res.status(400).send("Username already exists");
                     }
                     else {
+                        req.body.password = bcrypt.hashSync(password);
                         return userModel
                             .createUser(req.body);
                     }
