@@ -12,10 +12,15 @@ module.exports = function(app, models) {
         clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
         callbackURL  : process.env.FACEBOOK_CALLBACK_URL
     };
-    
+
     app.get("/api/user", getUsers); // handles : /api/user, /api/user?username=username, and /api/user?username=username&password=password
     app.post("/api/login", passport.authenticate('wam'), login);
-    app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }), login);
+    app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: '/#/user',
+            failureRedirect: '/#/login'
+        }));
     app.post("/api/register", register);
     app.post('/api/logout', logout);
     app.get ('/api/loggedin', loggedin);
@@ -105,28 +110,62 @@ module.exports = function(app, models) {
                     }
                     else {
                         var newUser = {
+                            username: profile.displayName.replace(/ /g, '').toLowerCase(),
                             facebook: {
-                                id:     profile.id,
-                                token:  token
+                                id: profile.id,
+                                token: token,
+                                displayName: profile.displayName
                             }
                         };
-                        userModel
+                        return userModel
                             .createUser(newUser)
-                            .then(
-                                function(user) {
-                                    return done(null, user);
-                                },
-                                function(error) {
-                                    return done(error);
-                                    // res.status(400).send("Unable to create new user: " + newUser.username);
-                                }
-                            );
                     }
                 },
                 function(error) {
-                    return done(error)
+                    return done(null)
                 }
             )
+            .then(
+                function(user) {
+                    return done(null, user)
+                },
+                function(error) {
+                    return done(null)
+                }
+            );
+        console.log('hello facebook');
+        done(null, user);
+        // userModel
+        //     .findUserByFacebookId(profile.id)
+        //     .then(
+        //         function(user) {
+        //             if (user) {
+        //                 return done(null, user);
+        //             }
+        //             else {
+        //                 var newUser = {
+        //                     facebook: {
+        //                         id:     profile.id,
+        //                         token:  token
+        //                     }
+        //                 };
+        //                 userModel
+        //                     .createUser(newUser)
+        //                     .then(
+        //                         function(user) {
+        //                             return done(null, user);
+        //                         },
+        //                         function(error) {
+        //                             return done(error);
+        //                             // res.status(400).send("Unable to create new user: " + newUser.username);
+        //                         }
+        //                     );
+        //             }
+        //         },
+        //         function(error) {
+        //             return done(error)
+        //         }
+        //     )
     }
 
     function login(req, res) {
