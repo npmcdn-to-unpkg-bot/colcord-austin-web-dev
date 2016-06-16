@@ -10,7 +10,11 @@ module.exports = function() {
         phone: String,
         websites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Website'}],
         dateCreate: {type: Date, default: Date.now()},
-        dateUpdated: Date
+        dateUpdated: Date,
+        facebook: {
+            id:     String,
+            token:  String
+        }
     }, {collection: "assignment.user"});
     
     return UserSchema;
