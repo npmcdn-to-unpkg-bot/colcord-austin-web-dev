@@ -39,8 +39,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-project(app);
 assignment(app);
+
+project(app);
 
 
 require ("./test/app.js")(app);

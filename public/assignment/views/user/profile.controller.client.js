@@ -12,11 +12,16 @@
         var uid = $routeParams["uid"];
 
         function init() {
-            UserService
-                .findUserById(uid)
-                .then(function(res) {
-                    vm.user = res.data
-                })
+            if(!uid && $rootScope.currentUser) {
+                vm.user = $rootScope.currentUser;
+            }
+            else {
+                UserService
+                    .findUserById(uid)
+                    .then(function (res) {
+                        vm.user = res.data
+                    })
+            }
         }
         init();
         

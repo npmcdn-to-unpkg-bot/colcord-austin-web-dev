@@ -18,8 +18,8 @@ module.exports = function(app, models) {
     app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
-            successRedirect: '/#/user',
-            failureRedirect: '/#/login'
+            successRedirect: '/assignment/#/user',
+            failureRedirect: '/assignment/#/login'
         }));
     app.post("/api/register", register);
     app.post('/api/logout', logout);
@@ -117,55 +117,17 @@ module.exports = function(app, models) {
                                 displayName: profile.displayName
                             }
                         };
-                        return userModel
+                        userModel
                             .createUser(newUser)
+                            .then(
+                                function(user) {
+                                    return done(null, user);
+                                }
+                            )
                     }
-                },
-                function(error) {
-                    return done(null)
-                }
-            )
-            .then(
-                function(user) {
-                    return done(null, user)
-                },
-                function(error) {
-                    return done(null)
                 }
             );
-        console.log('hello facebook');
-        done(null, user);
-        // userModel
-        //     .findUserByFacebookId(profile.id)
-        //     .then(
-        //         function(user) {
-        //             if (user) {
-        //                 return done(null, user);
-        //             }
-        //             else {
-        //                 var newUser = {
-        //                     facebook: {
-        //                         id:     profile.id,
-        //                         token:  token
-        //                     }
-        //                 };
-        //                 userModel
-        //                     .createUser(newUser)
-        //                     .then(
-        //                         function(user) {
-        //                             return done(null, user);
-        //                         },
-        //                         function(error) {
-        //                             return done(error);
-        //                             // res.status(400).send("Unable to create new user: " + newUser.username);
-        //                         }
-        //                     );
-        //             }
-        //         },
-        //         function(error) {
-        //             return done(error)
-        //         }
-        //     )
+
     }
 
     function login(req, res) {

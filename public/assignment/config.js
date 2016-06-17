@@ -104,9 +104,7 @@
             });
 
         function checkLoggedin(UserService, $q, $location, $rootScope) {
-
             var deferred = $q.defer();
-
             UserService
                 .checkLoggedin()
                 .then(
