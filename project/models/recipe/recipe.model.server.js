@@ -32,7 +32,7 @@ module.exports = function() {
             {$set :
                 {
                     name: newRecipe.name,
-                    prepTime: newRecipe.prepTime,
+                    prepTime: newRecipe.prepTime || 0,
                     type: newRecipe.type,
                     description: newRecipe.description,
                     ingredients: newRecipe.ingredients,

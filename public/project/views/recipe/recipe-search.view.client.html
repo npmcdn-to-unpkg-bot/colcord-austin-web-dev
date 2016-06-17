@@ -44,33 +44,36 @@
 
     <div class="row">
         <div class="col-md-6">
-            <!--INSIDE THIS WORKS, OUTSIDE NOT TESTED YET-->
             <ul class="list-group">
                 <li class="list-group-item"
                     ng-repeat="recipe in model.recipes">
                     <img ng-src="{{recipe.image_url}}"
                          class="ajc-recipe-image"/>
-                    <a ng-click="">
-                        <span class="btn btn-success glyphicon glyphicon-plus-sign pull-right"></span>
-                    </a>
                     <a  ng-click="model.selectRecipe(recipe.recipe_id)">
                         <b>{{recipe.title}}</b>
                     </a>
                 </li>
             </ul>
-            <!--------------------------------------------->
         </div>
 
         <div ng-show="model.selectedRecipe != null"
              class="col-md-6">
             <ul class="list-group">
                 <li class="list-group-item">
-                    <img ng-src="{{model.selectedRecipe.image_url}}"
-                         class="ajc-recipe-image ajc-recipe-image-big"/>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <img ng-src="{{model.selectedRecipe.image_url}}"
+                                 class="ajc-recipe-image ajc-recipe-image-big"/>
+                        </div>
+                        <div class="col-xs-6">
+                            <span ng-click="model.addRecipe(model.selectedRecipe)"
+                                  class="btn btn-success glyphicon glyphicon-plus-sign pull-right"></span>
+                        </div>
+                    </div>
                     <h3>{{model.selectedRecipe.title}}</h3>
                     <ul class="list-group">
                         <li class="list-group-item"
-                            ng-repeat="ingredient in model.selectedRecipe.ingredients">
+                            ng-repeat="ingredient in model.selectedRecipe.ingredients track by $index">
                             {{ingredient}}
                         </li>
                     </ul>
