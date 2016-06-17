@@ -30,7 +30,7 @@ app.use(express.static(__dirname + '/public'));
 //cookieparser
 app.use(cookieParser());
 app.use(session({
-    secret: 'thesecret',  //process.env.SESSION_SECRET
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true
 }));
@@ -39,8 +39,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-project(app);
 assignment(app);
+project(app);
 
 
 require ("./test/app.js")(app);
