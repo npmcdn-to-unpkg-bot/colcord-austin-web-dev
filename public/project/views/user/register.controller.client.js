@@ -44,7 +44,7 @@
                     };
 
                     UserService
-                        .register(username, password)
+                        .register(newUser)
                         .then(
                             function(response) {
                                 $rootScope.currentUser = response.data;

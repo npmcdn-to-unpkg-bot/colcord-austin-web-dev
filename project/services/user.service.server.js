@@ -1,5 +1,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var bcrypt = require("bcrypt-nodejs");
+
 
 module.exports = function(app, models) {
 
@@ -41,14 +43,10 @@ module.exports = function(app, models) {
 
     function localStrategy(username, password, done) {
         employeeModel
-            .findUserByCredentials(username, password)
+            .findUserByUsername(username)
             .then(
                 function(user) {
-                    if (user
-                        && user.username
-                        && user.password
-                        && user.username === username
-                        && user.password === password) {
+                    if (user && bcrypt.compareSync(password, user.password)) {
                         return done(null, user);
                     }
                     else {
@@ -81,6 +79,7 @@ module.exports = function(app, models) {
                         res.status(400).send("Username already exists");
                     }
                     else {
+                        req.body.password = bcrypt.hashSync(password);
                         return employeeModel
                             .createUser(req.body);
                     }

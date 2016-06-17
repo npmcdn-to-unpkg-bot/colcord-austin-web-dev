@@ -30,11 +30,7 @@
             return $http.post(url, user);
         }
 
-        function register(username, password) {
-            var user = {
-                username: username,
-                password: password
-            };
+        function register(user) {
             return $http.post("/api/prepper/register", user);
         }
 
