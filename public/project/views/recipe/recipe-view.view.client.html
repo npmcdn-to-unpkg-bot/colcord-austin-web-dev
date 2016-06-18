@@ -77,7 +77,7 @@
 
                         <tr ng-repeat="ingredient in model.recipe.ingredients">
                             <td>{{ ingredient.name }}</td>
-                            <td><p ng-show="ingredient.amount">{{ (ingredient.amount|number) * (model.multiplier|number) || ""}}</p></td>
+                            <td><p ng-show="ingredient.amount">{{(ingredient.amount|number) * (model.multiplier|number)}}</p></td>
                             <td>{{ ingredient.measure }}</td>
                         </tr>
                     </tbody>
