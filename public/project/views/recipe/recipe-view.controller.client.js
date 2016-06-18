@@ -59,24 +59,29 @@
         }
         
         function addTimer(minutes) {
-            var newTimer = {
-                name: vm.recipe.name, 
-                _recipe: vm.recipe._id,
-                _user: vm.uid, 
-                timeStart: new Date(Date.now()),
-                setMinutes: minutes,
-                timeEnd: new Date(Date.now() + (minutes * 60000))
-            };
-            TimerService
-                .createTimer(newTimer)
-                .then(
-                    function(response) {
-                        vm.success = "Successfully added timer";
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                    }
-                )
+            if(minutes) {
+                var newTimer = {
+                    name: vm.recipe.name,
+                    _recipe: vm.recipe._id,
+                    _user: vm.uid,
+                    timeStart: new Date(Date.now()),
+                    setMinutes: minutes,
+                    timeEnd: new Date(Date.now() + (minutes * 60000))
+                };
+                TimerService
+                    .createTimer(newTimer)
+                    .then(
+                        function(response) {
+                            vm.success = "Successfully added timer";
+                        },
+                        function(error) {
+                            vm.error = error.data;
+                        }
+                    )
+            }
+            else {
+                vm.error = "Please enter a time for the timer";
+            }
         }
     }
     
