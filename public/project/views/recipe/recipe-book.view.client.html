@@ -40,7 +40,7 @@
             <ul class="list-group">
                 <li class="list-group-item"
                     ng-repeat="recipe in model.recipeBook"
-                    ng-if="recipe.recent && ((recipe.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1))
+                    ng-if="recipe.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
                             || searchTerm == ''
                             || searchTerm == null">
                     <a ng-click="model.addToPrepToDo(recipe._id, recipe.name)">

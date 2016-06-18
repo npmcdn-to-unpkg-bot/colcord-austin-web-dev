@@ -61,7 +61,7 @@
                 name: recipe.title,
                 description: "Source: " + recipe.source_url,
                 ingredients: vm.ingredients,
-                directions: ingredientsString,
+                directions: ingredientsString
             };
 
             UserService
