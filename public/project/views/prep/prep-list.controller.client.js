@@ -11,6 +11,7 @@
         vm.sorted = sorted;
         
         vm.uid = $routeParams["uid"];
+        vm.unlocked = true;
         
         function init() {
             UserService
@@ -36,7 +37,8 @@
                         vm.prepList = response.data;
                     },
                     function(error) {
-                        vm.error = error.data;
+                        vm.unlocked = false;
+                        vm.error = "Please add a Restaurant ID to your profile to view items on the PrepList";
                     }
                 )
         }

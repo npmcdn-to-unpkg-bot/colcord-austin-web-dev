@@ -5,7 +5,8 @@
                 <a class="navbar-brand">
                     Recipe Book
                 </a>
-                <p class="navbar-text navbar-right">
+                <p ng-show="model.unlocked"
+                   class="navbar-text navbar-right">
                     <a href="#/user/{{model.uid}}/recipe/new"
                        class="navbar-link">
                         <span class="glyphicon glyphicon-plus pull-right ajc-nav-glyphicon"></span>
@@ -26,50 +27,52 @@
     </div>
 
     <!-- http://stackoverflow.com/questions/24682421/put-search-icon-near-textbox-using-bootstrap -->
-    <div class="form-group has-feedback">
-        <input type="text"
-               ng-model="searchTerm"
-               class="form-control"
-               placeholder="Search my recipes...">
-        <span class="glyphicon glyphicon-search form-control-feedback"></span>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-6">
-            <h5>Last 5 Days</h5>
-            <ul class="list-group">
-                <li class="list-group-item"
-                    ng-repeat="recipe in model.recipeBook"
-                    ng-if="model.recentDate.toISOString() < recipe.lastUsedDate &&
-                            (recipe.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
-                            || searchTerm == ''
-                            || searchTerm == null)">
-                    <a ng-click="model.addToPrepToDo(recipe._id, recipe.name)">
-                        <span class="btn btn-success glyphicon glyphicon-plus-sign pull-right"></span>
-                    </a>
-                    <a  href="#/user/{{model.uid}}/recipe/{{recipe._id}}">
-                        {{recipe.name}}
-                    </a>
-                </li>
-            </ul>
+    <div ng-show="model.unlocked">
+        <div class="form-group has-feedback">
+            <input type="text"
+                   ng-model="searchTerm"
+                   class="form-control"
+                   placeholder="Search my recipes...">
+            <span class="glyphicon glyphicon-search form-control-feedback"></span>
         </div>
 
-        <div class="col-sm-6">
-            <h5>All</h5>
-            <ul class="list-group">
-                <li class="list-group-item"
-                    ng-repeat="recipe in model.recipeBook"
-                    ng-if="recipe.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
-                            || searchTerm == ''
-                            || searchTerm == null">
-                    <a ng-click="model.addToPrepToDo(recipe._id, recipe.name)">
-                        <span class="btn btn-success glyphicon glyphicon-plus-sign pull-right"></span>
-                    </a>
-                    <a  href="#/user/{{model.uid}}/recipe/{{recipe._id}}">
-                        {{recipe.name}}
-                    </a>
-                </li>
-            </ul>
+        <div class="row">
+            <div class="col-sm-6">
+                <h5>Last 5 Days</h5>
+                <ul class="list-group">
+                    <li class="list-group-item"
+                        ng-repeat="recipe in model.recipeBook"
+                        ng-if="model.recentDate.toISOString() < recipe.lastUsedDate &&
+                                (recipe.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
+                                || searchTerm == ''
+                                || searchTerm == null)">
+                        <a ng-click="model.addToPrepToDo(recipe._id, recipe.name)">
+                            <span class="btn btn-success glyphicon glyphicon-plus-sign pull-right"></span>
+                        </a>
+                        <a  href="#/user/{{model.uid}}/recipe/{{recipe._id}}">
+                            {{recipe.name}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-sm-6">
+                <h5>All</h5>
+                <ul class="list-group">
+                    <li class="list-group-item"
+                        ng-repeat="recipe in model.recipeBook"
+                        ng-if="recipe.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
+                                || searchTerm == ''
+                                || searchTerm == null">
+                        <a ng-click="model.addToPrepToDo(recipe._id, recipe.name)">
+                            <span class="btn btn-success glyphicon glyphicon-plus-sign pull-right"></span>
+                        </a>
+                        <a  href="#/user/{{model.uid}}/recipe/{{recipe._id}}">
+                            {{recipe.name}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

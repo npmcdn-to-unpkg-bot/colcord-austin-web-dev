@@ -9,6 +9,7 @@
         
         vm.uid = $routeParams["uid"];
         vm.recentDate = new Date();
+        vm.unlocked = true;
 
         function addDays(theDate, days) {
             // http://stackoverflow.com/questions/3818193/how-to-add-number-of-days-to-todays-date
@@ -40,7 +41,8 @@
                                         )
                                 },
                                 function(error) {
-                                    vm.error = error.data;
+                                    vm.unlocked = false;
+                                    vm.error = "Please add a Restaurant ID to your profile to view and create Recipes";
                                 }
                             );
                     },

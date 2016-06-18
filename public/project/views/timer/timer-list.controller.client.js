@@ -9,6 +9,7 @@
         vm.deleteTimer = deleteTimer;
                 
         vm.uid = $routeParams["uid"];
+        vm.unlocked = true;
 
         if (!$rootScope.globalTime) {
             $rootScope.globalTime = new Date().getTime();
@@ -49,7 +50,8 @@
                                         )
                                 },
                                 function(error) {
-                                    vm.error = error.data;
+                                    vm.unlocked = false;
+                                    vm.error = "Please add a Restaurant ID to your profile to view and create Timers";
                                 }
                             )
                     },

@@ -18,82 +18,83 @@
         {{model.error}}
     </div>
 
-    <div class="row">
-        <div class="col-sm-4">
-            <ul class="list-group">
-                <li ng-repeat="timer in model.timers"
-                    class="list-group-item ajc-timer-danger">
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <a  href="#/user/{{model.uid}}/recipe/{{timer._recipe}}">
-                                {{timer.name}}
-                            </a>
+    <div ng-show="model.unlocked">
+        <div class="row">
+            <div class="col-sm-4">
+                <ul class="list-group">
+                    <li ng-repeat="timer in model.timers"
+                        class="list-group-item ajc-timer-danger">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a  href="#/user/{{model.uid}}/recipe/{{timer._recipe}}">
+                                    {{timer.name}}
+                                </a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="#user/{{model.uid}}/prep/timer-list">
+                                    <span ng-click="model.deleteTimer(timer._id)"
+                                          class="glyphicon glyphicon-trash pull-right ajc-list-glyphicon"></span>
+                                </a>
+                                <p class="pull-right">{{timer.timeRemaining}}</p>
+                            </div>
                         </div>
-                        <div class="col-xs-6">
-                            <a href="#user/{{model.uid}}/prep/timer-list">
-                                <span ng-click="model.deleteTimer(timer._id)"
-                                      class="glyphicon glyphicon-trash pull-right ajc-list-glyphicon"></span>
-                            </a>
-                            <p class="pull-right">{{timer.timeRemaining}}</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-4">
+                <ul class="list-group">
+                    <li class="list-group-item ajc-timer-warning">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a  href="#/user/{{model.uid}}/recipe/:rid">
+                                    Buffalo Chicken Wrap
+                                </a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="#user/{{model.uid}}/prep/timer-list">
+                                    <span class="glyphicon glyphicon-trash pull-right ajc-list-glyphicon"></span>
+                                </a>
+                                <p class="pull-right">00:01:10</p>
+                            </div>
                         </div>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-4">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a  href="#/user/{{model.uid}}/recipe/:rid">
+                                    Chicken Noodle Soup
+                                </a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="#user/{{model.uid}}/prep/timer-list">
+                                    <span class="glyphicon glyphicon-trash pull-right ajc-list-glyphicon"></span>
+                                </a>
+                                <p class="pull-right">00:11:10</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <a  href="#/user/{{model.uid}}/recipe/:rid">
+                                    Chicken Breast
+                                </a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="#user/{{model.uid}}/prep/timer-list">
+                                    <span class="glyphicon glyphicon-trash pull-right ajc-list-glyphicon"></span>
+                                </a>
+                                <p class="pull-right">00:21:10</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="col-sm-4">
-            <ul class="list-group">
-                <li class="list-group-item ajc-timer-warning">
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <a  href="#/user/{{model.uid}}/recipe/:rid">
-                                Buffalo Chicken Wrap
-                            </a>
-                        </div>
-                        <div class="col-xs-6">
-                            <a href="#user/{{model.uid}}/prep/timer-list">
-                                <span class="glyphicon glyphicon-trash pull-right ajc-list-glyphicon"></span>
-                            </a>
-                            <p class="pull-right">00:01:10</p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="col-sm-4">
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <a  href="#/user/{{model.uid}}/recipe/:rid">
-                                Chicken Noodle Soup
-                            </a>
-                        </div>
-                        <div class="col-xs-6">
-                            <a href="#user/{{model.uid}}/prep/timer-list">
-                                <span class="glyphicon glyphicon-trash pull-right ajc-list-glyphicon"></span>
-                            </a>
-                            <p class="pull-right">00:11:10</p>
-                        </div>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <a  href="#/user/{{model.uid}}/recipe/:rid">
-                                Chicken Breast
-                            </a>
-                        </div>
-                        <div class="col-xs-6">
-                            <a href="#user/{{model.uid}}/prep/timer-list">
-                                <span class="glyphicon glyphicon-trash pull-right ajc-list-glyphicon"></span>
-                            </a>
-                            <p class="pull-right">00:21:10</p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
     </div>
 </div>
 

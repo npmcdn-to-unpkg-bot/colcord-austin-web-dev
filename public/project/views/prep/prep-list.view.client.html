@@ -18,81 +18,81 @@
         {{model.error}}
     </div>
 
-    <div class="row">
-        <div class="col-sm-4">
-            <h5>To-Do</h5>
-            <ul class="list-group prep-list-container"
-                ajc-sortable
-                sorted="model.sorted(start, end)"
-                data="model.prepList.toDo">
-                <li ng-repeat="recipe in model.prepList.toDo | orderBy : 'order'"
-                    class="list-group-item">
-                    <span class="btn glyphicon glyphicon glyphicon-align-justify ajc-ticket-handle"></span>
+    <div ng-show="model.unlocked">
+        <div class="row">
+            <div class="col-sm-4">
+                <h5>To-Do</h5>
+                <ul class="list-group prep-list-container"
+                    ajc-sortable
+                    sorted="model.sorted(start, end)"
+                    data="model.prepList.toDo">
+                    <li ng-repeat="recipe in model.prepList.toDo | orderBy : 'order'"
+                        class="list-group-item">
+                        <span class="btn glyphicon glyphicon glyphicon-align-justify ajc-ticket-handle"></span>
 
-                    <a  href="#/user/{{model.uid}}/recipe/{{recipe._recipeId}}">
-                        <b>{{recipe.name}}</b>
-                    </a>
-                    <span ng-if="recipe.important"
-                          class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
-                    <span ng-click="model.moveToInProgress(recipe)"
-                          class="glyphicon glyphicon glyphicon-arrow-right ajc-list-glyphicon pull-right"></span>
-                    <div class="ajc-prep-signature">
-                        <input ng-model="recipe.signer"
-                               type="text"
-                               class="form-control"
-                               placeholder="sign"/>
-                    </div>
-                </li>
-            </ul>
+                        <a  href="#/user/{{model.uid}}/recipe/{{recipe._recipeId}}">
+                            <b>{{recipe.name}}</b>
+                        </a>
+                        <span ng-if="recipe.important"
+                              class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
+                        <span ng-click="model.moveToInProgress(recipe)"
+                              class="glyphicon glyphicon glyphicon-arrow-right ajc-list-glyphicon pull-right"></span>
+                        <div class="ajc-prep-signature">
+                            <input ng-model="recipe.signer"
+                                   type="text"
+                                   class="form-control"
+                                   placeholder="sign"/>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-sm-4">
+                <h5>In Progress</h5>
+                <ul class="list-group prep-list-container">
+                    <li ng-repeat="recipe in model.prepList.inProgress"
+                        class="list-group-item">
+                        <span ng-click="model.moveToCompleted(recipe)"
+                              class="glyphicon glyphicon glyphicon-arrow-right pull-right ajc-list-glyphicon"></span>
+                        <a  href="#/user/{{model.uid}}/recipe/{{recipe._recipeId}}">
+                            <b>{{recipe.name}}</b>
+                        </a>
+                        <hr>
+                        <span ng-if="recipe.important"
+                              class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
+                        <div class="ajc-prep-signature pull-right">
+                            <input ng-model="recipe.signer"
+                                   type="text"
+                                   class="form-control"
+                                   placeholder="sign"/>
+                        </div>
+                        <p>Started: {{recipe.timeStamp | date: 'MMM d - h:mm:ss a'}}</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-sm-4">
+                <h5>Completed</h5>
+                <ul class="list-group prep-list-container">
+                    <li ng-repeat="recipe in model.prepList.completed"
+                        class="list-group-item">
+                        <a href="#/user/{{model.uid}}/recipe/{{recipe._recipeId}}">
+                            <b>{{recipe.name}}</b>
+                        </a>
+                        <hr>
+                        <span ng-if="recipe.important"
+                              class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
+                        <span ng-click="model.removeFromPrepCompletedList(recipe)"
+                              class="glyphicon glyphicon-remove pull-right ajc-list-glyphicon"></span>
+                        <div class="ajc-prep-signature">
+                            <p>{{recipe.signer}}</p>
+                        </div>
+                        <p>Started: {{recipe.timeStamp | date: 'MMM d - h:mm:ss a'}}</p>
+                        <p>Completed: {{recipe.completeTime | date: 'MMM d - h:mm:ss a'}}</p>
+                    </li>
+                </ul>
+            </div>
         </div>
-
-        <div class="col-sm-4">
-            <h5>In Progress</h5>
-            <ul class="list-group prep-list-container">
-                <li ng-repeat="recipe in model.prepList.inProgress"
-                    class="list-group-item">
-                    <span ng-click="model.moveToCompleted(recipe)"
-                          class="glyphicon glyphicon glyphicon-arrow-right pull-right ajc-list-glyphicon"></span>
-                    <a  href="#/user/{{model.uid}}/recipe/{{recipe._recipeId}}">
-                        <b>{{recipe.name}}</b>
-                    </a>
-                    <hr>
-                    <span ng-if="recipe.important"
-                          class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
-                    <div class="ajc-prep-signature pull-right">
-                        <input ng-model="recipe.signer"
-                               type="text"
-                               class="form-control"
-                               placeholder="sign"/>
-                    </div>
-                    <p>Started: {{recipe.timeStamp | date: 'MMM d - h:mm:ss a'}}</p>
-                </li>
-            </ul>
-        </div>
-
-        <div class="col-sm-4">
-            <h5>Completed</h5>
-            <ul class="list-group prep-list-container">
-                <li ng-repeat="recipe in model.prepList.completed"
-                    class="list-group-item">
-                    <a href="#/user/{{model.uid}}/recipe/{{recipe._recipeId}}">
-                        <b>{{recipe.name}}</b>
-                    </a>
-                    <hr>
-                    <span ng-if="recipe.important"
-                          class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
-                    <span ng-click="model.removeFromPrepCompletedList(recipe)"
-                          class="glyphicon glyphicon-remove pull-right ajc-list-glyphicon"></span>
-                    <div class="ajc-prep-signature">
-                        <p>{{recipe.signer}}</p>
-                    </div>
-                    <p>Started: {{recipe.timeStamp | date: 'MMM d - h:mm:ss a'}}</p>
-                    <p>Completed: {{recipe.completeTime | date: 'MMM d - h:mm:ss a'}}</p>
-                </li>
-            </ul>
-        </div>
-
-
     </div>
 </div>
 
