@@ -63,8 +63,9 @@
                 name: vm.recipe.name, 
                 _recipe: vm.recipe._id,
                 _user: vm.uid, 
-                timeStart: Date.now(), 
-                setMinutes: minutes * 60000
+                timeStart: new Date(Date.now()),
+                setMinutes: minutes,
+                timeEnd: new Date(Date.now() + (minutes * 60000))
             };
             TimerService
                 .createTimer(newTimer)

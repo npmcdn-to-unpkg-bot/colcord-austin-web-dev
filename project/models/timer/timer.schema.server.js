@@ -7,6 +7,7 @@ module.exports = function() {
         _user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
         timeStart: Date,
         setMinutes: Number,
+        timeEnd: Date,
         dateCreate: {type: Date, default: Date.now()}
 
     }, {collection: "project.timer"});

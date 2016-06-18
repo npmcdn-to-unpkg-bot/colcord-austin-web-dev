@@ -5,24 +5,13 @@
 
     function TimerListController($interval, $routeParams, $rootScope,  UserService, RecipeService, PrepService, TimerService) {
         var vm = this;
-        vm.getMinutesRemaining = getMinutesRemaining;
         vm.deleteTimer = deleteTimer;
+        vm.testGetTimeRemaining = testGetTimeRemaining;
                 
         vm.uid = $routeParams["uid"];
         vm.unlocked = true;
 
-        if (!$rootScope.globalTime) {
-            $rootScope.globalTime = new Date().getTime();
-            $interval(function() {
-                console.log($rootScope.globalTime);
-                $rootScope.globalTime++;
-            }, 1000);
-        }
-
         $interval(function(){
-                for(var i in vm.timers) {
-                    vm.timers[i].timeRemaining--;// = getMinutesRemaining(vm.timers[i]);
-                }
         }, 1000);
 
 
@@ -62,30 +51,41 @@
         }
         init();
 
+        function str_pad_left(string,pad,length) {
+            return (new Array(length+1).join(pad)+string).slice(-length);
+        }
+        
+        function testGetTimeRemaining(timeEnd) {
+            // http://stackoverflow.com/questions/3733227/javascript-seconds-to-minutes-and-seconds
+            var time = new Date(timeEnd) - new Date(Date.now());
+            var strippedTime = parseInt(String(time).slice(0, -3));
+            var hours = Math.floor(strippedTime / 3600);
+            strippedTime = strippedTime - hours * 3600;
+            var minutes = Math.floor(strippedTime / 60);
+            var seconds = strippedTime - minutes * 60;
+
+            var section = 'w';
+            if (hours < 1 && minutes < 10) {
+                section = 'g';
+            }
+            if (hours < 0) {
+                section = 'r';
+                return ['00:00:00', section];
+            }
+            return [str_pad_left(hours,'0',2)+':'+str_pad_left(minutes,'0',2)+':'+str_pad_left(seconds,'0',2), section];
+        }
+
         function getTimers() {
             TimerService
                 .findTimersByUserId(vm.user._id)
                 .then(
                     function(response) {
                        vm.timers = response.data;
-                        for(var i in vm.timers) {
-                            vm.timers[i].timeRemaining = getMinutesRemaining(vm.timers[i]);
-                        }
                     },
                     function(error) {
                         vm.error = error.data;
                     }
                 )
-        }
-
-        function getMinutesRemaining(timer) {
-            console.log(timer.setMinutes);
-            var start = new Date(timer.timeStart).getTime();
-            var end = new Date(new Date(timer.timeStart).getTime() + timer.setMinutes).getTime();
-            console.log("start: " + start);
-            console.log("end  : " + end);
-            // var endTime = addMinutes(timer.timeStart.now, timer.setMinutes);
-            return new Date(end - $rootScope.globalTime);
         }
 
         function deleteTimer(timerId) {
@@ -100,11 +100,6 @@
                         vm.error = error.data;
                     }
                 )
-        }
-
-        function addMinutes(date, minutes) {
-            // http://stackoverflow.com/questions/1197928/how-to-add-30-minutes-to-a-javascript-date-object
-            return new Date(date + minutes*60000);
         }
     }
     
