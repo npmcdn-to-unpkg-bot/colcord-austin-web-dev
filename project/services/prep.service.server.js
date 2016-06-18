@@ -1,6 +1,7 @@
 module.exports = function(app, models) {
 
     var prepModel = models.prepModel;
+    var recipeModel = models.recipeModel;
 
     var prepLists = [
         {_id: "123",
@@ -103,7 +104,6 @@ module.exports = function(app, models) {
     function addToPrepToDo(req, res) {
         var newTicket = req.body;
         var prepListId = req.params.prepListId;
-
         prepModel
             .findPrepListById(prepListId)
             .then(
@@ -117,8 +117,16 @@ module.exports = function(app, models) {
                 }
             ).then(
             function(prepList) {
-                res.sendStatus(200);
-
+                recipeModel
+                    .updateLastUsed(newTicket._recipeId, Date.now())
+                    .then(
+                        function(response) {
+                            res.sendStatus(200);
+                        },
+                        function(error) {
+                            res.status(400).send(error)
+                        }
+                    )
             },
             function(error) {
                 res.status(400).send(error);

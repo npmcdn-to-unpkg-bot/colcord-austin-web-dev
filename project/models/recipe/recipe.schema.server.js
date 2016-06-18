@@ -14,7 +14,7 @@ module.exports = function() {
         }],
         directions: String,
         restaurantId: Number,
-        recent: Boolean,
+        lastUsedDate: {type: Date, default: Date.now()},
         dateCreate: {type: Date, default: Date.now()},
         dateModified: Date
     }, {collection: "project.recipe"});

@@ -10,6 +10,7 @@ module.exports = function() {
         findRecipeById: findRecipeById,
         findAllRecipesByRestaurantId: findAllRecipesByRestaurantId,
         updateRecipe: updateRecipe,
+        updateLastUsed: updateLastUsed,
         deleteRecipe: deleteRecipe
     };
     return api;
@@ -37,7 +38,19 @@ module.exports = function() {
                     description: newRecipe.description,
                     ingredients: newRecipe.ingredients,
                     directions: newRecipe.directions,
-                    dateModified: Date.now()
+                    dateModified: Date.now(),
+                    lastUsedDate: Date.now()
+                }
+            }
+        )
+    }
+    
+    function updateLastUsed(recipeId, date) {
+        return Recipe.update(
+            {_id: recipeId},
+            {$set :
+                {
+                    lastUsedDate: date
                 }
             }
         )

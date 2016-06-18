@@ -36,13 +36,14 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <h5>Recent</h5>
+            <h5>Last 5 Days</h5>
             <ul class="list-group">
                 <li class="list-group-item"
                     ng-repeat="recipe in model.recipeBook"
-                    ng-if="recipe.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
+                    ng-if="model.recentDate.toISOString() < recipe.lastUsedDate &&
+                            (recipe.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
                             || searchTerm == ''
-                            || searchTerm == null">
+                            || searchTerm == null)">
                     <a ng-click="model.addToPrepToDo(recipe._id, recipe.name)">
                         <span class="btn btn-success glyphicon glyphicon-plus-sign pull-right"></span>
                     </a>
@@ -57,7 +58,10 @@
             <h5>All</h5>
             <ul class="list-group">
                 <li class="list-group-item"
-                    ng-repeat="recipe in model.recipeBook">
+                    ng-repeat="recipe in model.recipeBook"
+                    ng-if="recipe.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
+                            || searchTerm == ''
+                            || searchTerm == null">
                     <a ng-click="model.addToPrepToDo(recipe._id, recipe.name)">
                         <span class="btn btn-success glyphicon glyphicon-plus-sign pull-right"></span>
                     </a>

@@ -8,7 +8,17 @@
         vm.addToPrepToDo = addToPrepToDo;
         
         vm.uid = $routeParams["uid"];
-        
+        vm.recentDate = new Date();
+        console.log(vm.recentDate);
+
+
+        function addDays(theDate, days) {
+            // http://stackoverflow.com/questions/3818193/how-to-add-number-of-days-to-todays-date
+            return new Date(theDate.getTime() - days*24*60*60*1000);
+        }
+
+        vm.recentDate = addDays(vm.recentDate, 3);
+
         function init() {
             UserService
                 .findUserById(vm.uid)
