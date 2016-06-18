@@ -3,7 +3,7 @@ var http = require('http');
 module.exports = function(app, models) {
 
     var recipeModel = models.recipeModel;
-    var key = "e299a830cc2d4f02152b8246d2dacf93";
+    var key = process.env.FOOD2FORK_KEY;
     
     app.post("/api/recipe", createRecipe);
     app.get("/api/restaurant/:restaurantId/recipe", findAllRecipesByRestaurantId);
