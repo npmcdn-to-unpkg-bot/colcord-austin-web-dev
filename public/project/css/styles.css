@@ -63,10 +63,6 @@ table {
     margin-right: 15px;
 }
 
-.ajc-list-glyphicon {
-    padding-left: 10px;
-}
-
 .ajc-nav-column-centered {
     text-align: center;
     margin-left: auto;
@@ -118,3 +114,7 @@ a {
     font-size: 15px
 }
 
+.ajc-list-glyphicon {
+    padding: 10px 16px;
+    top: -10px;
+}

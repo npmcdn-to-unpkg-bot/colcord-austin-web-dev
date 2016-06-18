@@ -79,11 +79,11 @@
                         <a href="#/user/{{model.uid}}/recipe/{{recipe._recipeId}}">
                             <b>{{recipe.name}}</b>
                         </a>
-                        <hr>
                         <span ng-if="recipe.important"
                               class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
                         <span ng-click="model.removeFromPrepCompletedList(recipe)"
                               class="glyphicon glyphicon-remove pull-right ajc-list-glyphicon"></span>
+                        <hr>
                         <div class="ajc-prep-signature">
                             <p>{{recipe.signer}}</p>
                         </div>
