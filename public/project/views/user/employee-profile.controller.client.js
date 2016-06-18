@@ -10,16 +10,21 @@
         vm.uid = $routeParams["uid"];
         
         function init() {
-            UserService
-                .findUserById(vm.uid)
-                .then(
-                    function(response) {
-                        vm.user = response.data;
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                    }
-                )
+            if(!vm.uid && $rootScope.currentUser) {
+                vm.user = $rootScope.currentUser;
+            }
+            else {
+                UserService
+                    .findUserById(vm.uid)
+                    .then(
+                        function(response) {
+                            vm.user = response.data;
+                        },
+                        function(error) {
+                            vm.error = error.data;
+                        }
+                    )
+            }
         }
         init();
 

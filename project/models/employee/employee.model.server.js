@@ -13,7 +13,8 @@ module.exports = function() {
         updateUser: updateUser,
         deleteUser: deleteUser,
         addTimerIdToUser: addTimerIdToUser,
-        removeTimerIdFromUser: removeTimerIdFromUser
+        removeTimerIdFromUser: removeTimerIdFromUser,
+        findUserByGoogleId: findUserByGoogleId
     };
     return api;
 
@@ -65,5 +66,9 @@ module.exports = function() {
     
     function deleteUser(userId) {
         return Employee.remove({_id: userId});
+    }
+
+    function findUserByGoogleId(googleId) {
+        return Employee.findOne({'google.id': googleId});
     }
 };

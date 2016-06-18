@@ -9,7 +9,11 @@ module.exports = function() {
         email: String,
         restaurantId: String,
         dateCreate: {type: Date, default: Date.now()},
-        dateUpdated: Date
+        dateUpdated: Date,
+        google: {
+            id:    String,
+            token: String
+        }
     }, {collection: "project.employee"});
     
     return EmployeeSchema;

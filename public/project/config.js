@@ -15,6 +15,14 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
+            .when("/user", {
+                templateUrl: "views/user/employee-profile.view.client.html",
+                controller: "ProfileController",
+                controllerAs: "model",
+                resolve: {
+                    loggedin: checkLoggedin
+                }
+            })
             .when("/user/:uid", {
                 templateUrl: "views/user/employee-profile.view.client.html",
                 controller: "ProfileController",
@@ -70,9 +78,7 @@
             });
 
         function checkLoggedin(UserService, $q, $location, $rootScope) {
-
             var deferred = $q.defer();
-
             UserService
                 .checkLoggedin()
                 .then(
