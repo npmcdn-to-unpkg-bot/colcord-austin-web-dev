@@ -19,6 +19,9 @@
                    type="text"
                    class="form-control"
                    placeholder="username"
+                   autocorrect="off"
+                   autocapitalize="off"
+                   spellcheck="false"
                    required/>
             <span ng-show="form.username.$error.required && form.username.$dirty || form.username.$error.required && model.submitted"
                   class="help-block">
@@ -48,6 +51,11 @@
         <a  class="btn btn-block btn-success"
             href="#/register">
             Register
+        </a>
+
+        <a href="/auth/google" class="btn btn-danger btn-block">
+            <span class="fa fa-google"></span>
+            Google
         </a>
     </form>
 </div>
