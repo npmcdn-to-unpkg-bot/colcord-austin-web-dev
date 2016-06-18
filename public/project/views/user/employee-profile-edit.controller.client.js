@@ -6,6 +6,7 @@
     function ProfileEditController($location, $routeParams, UserService) {
         var vm = this;
         vm.updateUser = updateUser;
+        vm.addRestaurantId = addRestaurantId;
         vm.submitted = false;
 
         vm.uid = $routeParams["uid"];
@@ -49,6 +50,27 @@
             }
             else {
                 vm.error = "Incorrect Password";
+            }
+        }
+
+        function addRestaurantId(newRestaurantId) {
+            console.log(vm.uid);
+            if(newRestaurantId) {
+                UserService
+                    .addRestaurantId(vm.uid, newRestaurantId)
+                    .then(
+                        function(res) {
+                            vm.success = "User successfully updated";
+                            $location.url("/user/" + vm.uid);
+                            vm.submitted = false;
+                        },
+                        function(error) {
+                            vm.error = error.data;
+                        }
+                    );
+            }
+            else {
+                vm.error = "Please enter a Restaurant ID";
             }
         }
     }

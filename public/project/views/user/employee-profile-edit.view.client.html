@@ -53,7 +53,8 @@
         </div>
 
 
-        <div class="form-group"
+        <div ng-show="!model.user.google.id"
+             class="form-group"
              ng-class="{ 'has-error': form.password.$error.required && form.password.$dirty
                         || form.password.$error.required && model.submitted }">
             <input ng-model="current_pass"
@@ -69,7 +70,8 @@
             </span>
         </div>
 
-        <div class="form-group"
+        <div ng-show="!model.user.google.id"
+             class="form-group"
              ng-class="{ 'has-error': form.newPassword.$error.required && form.newPassword.$dirty
                         || form.newPassword.$error.required && model.submitted }">
             <input ng-model="new_pass"
@@ -85,7 +87,8 @@
             </span>
         </div>
 
-        <div class="form-group"
+        <div ng-show="!model.user.google.id"
+             class="form-group"
              ng-class="{ 'has-error': form.verifyPassword.$error.required && form.verifyPassword.$dirty
                         || form.verifyPassword.$error.required && model.submitted }">
             <input ng-model="verify_pass"
@@ -101,11 +104,30 @@
             </span>
         </div>
 
-        <h6>Restaurant ID: {{model.user.restaurantId}}</h6>
+        <div ng-show="!model.user.restaurantId"
+             class="form-group">
+            <input ng-model="newRestaurantId"
+                   type="text"
+                   id="restaurantId"
+                   class="form-control"
+                   autocorrect="off"
+                   placeholder="restaurant id"
+                   spellcheck="false"/>
+        </div>
+        <h6 ng-hide="!model.user.restaurantId">
+            Restaurant ID: {{model.user.restaurantId}}
+        </h6>
 
-        <a  class="btn btn-block btn-primary"
+        <a  ng-show="!model.user.google.id"
+            class="btn btn-block btn-primary"
             ng-click="model.updateUser(current_pass, new_pass, verify_pass)">
             Update Profile
+        </a>
+
+        <a  ng-show="model.user.google.id"
+            class="btn btn-block btn-primary"
+            ng-click="model.addRestaurantId(newRestaurantId)">
+            Add Restaurant ID
         </a>
 
         <a  class="btn btn-block btn-danger"

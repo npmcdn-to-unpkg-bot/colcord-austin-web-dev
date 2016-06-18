@@ -16,7 +16,8 @@
             findUserByUsername: findUserByUsername,
             findUserByCredentials: findUserByCredentials,
             updateUser: updateUser,
-            deleteUser: deleteUser
+            deleteUser: deleteUser,
+            addRestaurantId: addRestaurantId
         };
         return api;
 
@@ -65,6 +66,9 @@
         function deleteUser(userId) {
             return $http.delete("/api/employee/" + userId);
         }
-    }
 
+        function addRestaurantId(userId, newRestaurantId) {
+            return $http.post("/api/employee/newRestaurantId", {userId: userId, restaurantId: newRestaurantId})
+        }
+    }
 })();

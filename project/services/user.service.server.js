@@ -32,6 +32,7 @@ module.exports = function(app, models) {
     app.get("/api/employee/:userId", findUserById);
     app.put("/api/employee/:userId", updateUser);
     app.delete("/api/employee/:userId", deleteUser);
+    app.post("/api/employee/newRestaurantId", addRestaurantId);
 
 
     passport.use('prepper', new LocalStrategy(localStrategy));
@@ -252,6 +253,22 @@ module.exports = function(app, models) {
 
         employeeModel
             .updateUser(userId, newUser)
+            .then(
+                function(user) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to update user with ID " + userId);
+                }
+            );
+    }
+
+    function addRestaurantId(req, res) {
+        var userId = req.body.userId;
+        var newRestaurantId = req.body.restaurantId;
+
+        employeeModel
+            .addRestaurantId(userId, newRestaurantId)
             .then(
                 function(user) {
                     res.sendStatus(200);
