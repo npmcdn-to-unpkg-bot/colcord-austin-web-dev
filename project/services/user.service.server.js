@@ -271,7 +271,35 @@ module.exports = function(app, models) {
             .addRestaurantId(userId, newRestaurantId)
             .then(
                 function(user) {
-                    res.sendStatus(200);
+                    prepModel
+                        .findPrepListByRestaurantId(newRestaurantId)
+                        .then(
+                            function(response) {
+                                if (response == null) {
+                                    var newPrepList = {
+                                        restaurantId: parseInt(newRestaurantId),
+                                        toDo: [],
+                                        inProgress: [],
+                                        completed: []
+                                    };
+                                    prepModel
+                                        .createPrepList(newPrepList)
+                                        .then(
+                                            function(response) {
+                                                res.sendStatus(200);
+                                            },
+                                            function(error) {
+                                                res.status(400).send("Error creating prepList");
+                                            }
+                                        )
+                                }
+                                else {
+                                    res.sendStatus(200);
+                                }
+                            },
+                            function(error) {
+                                res.status(400).send("Error creating prepList ");
+                            })
                 },
                 function(error) {
                     res.status(404).send("Unable to update user with ID " + userId);
