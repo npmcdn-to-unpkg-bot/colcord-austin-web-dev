@@ -143,21 +143,46 @@ module.exports = function(app, models) {
                 function(error) {
                     res.status(400).send(error);
                 }
-            )
-            .then(
+            ).then(
                 function(user) {
-                    if(user){
-                        req.login(user, function(err) {
-                            if(err) {
-                                res.status(400).send(err);
-                            } else {
-                                res.json(user);
-                            }
-                        });
-                    }
+                    req.login(user, function(err) {
+                        if(err) {
+                            res.status(400).send(err);
+                        } else {
+                            prepModel
+                                .findPrepListByRestaurantId(user.restaurantId)
+                                .then(
+                                    function(response) {
+                                        if (response == null) {
+                                            var newPrepList = {
+                                                restaurantId: parseInt(user.restaurantId),
+                                                toDo: [],
+                                                inProgress: [],
+                                                completed: []
+                                            };
+                                            prepModel
+                                                .createPrepList(newPrepList)
+                                                .then(
+                                                    function(response) {
+                                                        res.json(user);
+                                                    },
+                                                    function(error) {
+                                                        res.status(400).send("Error creating prepList");
+                                                    }
+                                                )
+                                        }
+                                    },
+                                    function(error) {
+                                        res.status(400).send("Error creating prepList ");
+                                    })
+
+                        }
+                    });
+
+
                 },
                 function(error) {
-                    res.status(400).send(error);
+                    res.status(400).send("Unable to create new user: " + newUser.username);
                 }
             )
     }
@@ -271,40 +296,39 @@ module.exports = function(app, models) {
             .addRestaurantId(userId, newRestaurantId)
             .then(
                 function(user) {
-                    prepModel
-                        .findPrepListByRestaurantId(newRestaurantId)
-                        .then(
-                            function(response) {
-                                if (response == null) {
-                                    var newPrepList = {
-                                        restaurantId: parseInt(newRestaurantId),
-                                        toDo: [],
-                                        inProgress: [],
-                                        completed: []
-                                    };
-                                    prepModel
-                                        .createPrepList(newPrepList)
-                                        .then(
-                                            function(response) {
-                                                res.sendStatus(200);
-                                            },
-                                            function(error) {
-                                                res.status(400).send("Error creating prepList");
-                                            }
-                                        )
-                                }
-                                else {
-                                    res.sendStatus(200);
-                                }
-                            },
-                            function(error) {
-                                res.status(400).send("Error creating prepList ");
-                            })
+                    return prepModel
+                        .findPrepListByRestaurantId(newRestaurantId);
                 },
                 function(error) {
                     res.status(404).send("Unable to update user with ID " + userId);
                 }
-            );
+            ).then(
+                function(response) {
+                    if (response == null) {
+                        var newPrepList = {
+                            restaurantId: parseInt(newRestaurantId),
+                            toDo: [],
+                            inProgress: [],
+                            completed: []
+                        };
+                        return prepModel
+                            .createPrepList(newPrepList)
+                    }
+                    else {
+                        res.sendStatus(200);
+                    }
+                },
+                function(error) {
+                    res.status(400).send("Error creating prepList");
+                }
+            ).then(
+                function(response) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(400).send("Error creating prepList");
+                }
+        )
     }
     
     function getUsers(req, res) {
