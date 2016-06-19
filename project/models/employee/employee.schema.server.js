@@ -7,13 +7,14 @@ module.exports = function() {
         firstName: String,
         lastName: String,
         email: String,
-        restaurantId: String,
+        restaurantId: Number,
         dateCreate: {type: Date, default: Date.now()},
         dateUpdated: Date,
         google: {
             id:    String,
             token: String
-        }
+        },
+        manager: {type: Boolean, default: false}
     }, {collection: "project.employee"});
     
     return EmployeeSchema;

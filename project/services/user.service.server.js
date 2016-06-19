@@ -127,9 +127,17 @@ module.exports = function(app, models) {
         var username = req.body.username;
         var password = req.body.password;
 
-        employeeModel
-            .findUserByUsername(username)
+        employeeModel.findUsersByRestaurantId(req.body.restaurantId)
             .then(
+                function(users) {
+                    req.body.manager = users.length == 0;
+                    return employeeModel
+                        .findUserByUsername(username)
+                },
+                function(error) {
+                    res.status(404).send("Error when searching for users with restaurantId: " + req.body.restaurantId);
+                }
+            ).then(
                 function(user) {
                     if(user) {
                         res.status(400).send("Username already exists");
@@ -171,11 +179,13 @@ module.exports = function(app, models) {
                                                     }
                                                 )
                                         }
+                                        else {
+                                            res.json(user);
+                                        }
                                     },
                                     function(error) {
                                         res.status(400).send("Error creating prepList ");
                                     })
-
                         }
                     });
 
@@ -292,9 +302,17 @@ module.exports = function(app, models) {
         var userId = req.body.userId;
         var newRestaurantId = req.body.restaurantId;
 
-        employeeModel
-            .addRestaurantId(userId, newRestaurantId)
+        employeeModel.findUsersByRestaurantId(newRestaurantId)
             .then(
+                function(users) {
+                    var managerStatus = users.length == 0;
+                    return employeeModel
+                        .addRestaurantId(userId, newRestaurantId, managerStatus)
+                },
+                function(error) {
+                    res.status(404).send("Unable to update user with ID " + userId);
+                }
+            ).then(
                 function(user) {
                     return prepModel
                         .findPrepListByRestaurantId(newRestaurantId);

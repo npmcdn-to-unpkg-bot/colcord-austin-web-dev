@@ -15,7 +15,8 @@ module.exports = function() {
         addTimerIdToUser: addTimerIdToUser,
         removeTimerIdFromUser: removeTimerIdFromUser,
         findUserByGoogleId: findUserByGoogleId,
-        addRestaurantId: addRestaurantId
+        addRestaurantId: addRestaurantId,
+        findUsersByRestaurantId: findUsersByRestaurantId
     };
     return api;
 
@@ -65,12 +66,13 @@ module.exports = function() {
         )
     }
 
-    function addRestaurantId(userId, newRestaurantId) {
+    function addRestaurantId(userId, newRestaurantId, managerStatus) {
         return Employee.update(
             {_id: userId},
             {$set :
                 {
-                    restaurantId: newRestaurantId
+                    restaurantId: newRestaurantId,
+                    manager: managerStatus
                 }
             }
         )
@@ -82,5 +84,9 @@ module.exports = function() {
 
     function findUserByGoogleId(googleId) {
         return Employee.findOne({'google.id': googleId});
+    }
+    
+    function findUsersByRestaurantId(restaurantId) {
+        return Employee.find({restaurantId: restaurantId});
     }
 };
