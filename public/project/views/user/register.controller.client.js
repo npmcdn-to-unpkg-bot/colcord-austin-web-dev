@@ -15,7 +15,6 @@
         function register(username, password, verifyPassword, firstName, lastName, email, restaurantId) {
             vm.submitted = true;
             if (username && password && verifyPassword) {
-                console.log(password, " : ", verifyPassword);
                 if (firstName == null) {
                     vm.error = "Please enter a first name";
                 }

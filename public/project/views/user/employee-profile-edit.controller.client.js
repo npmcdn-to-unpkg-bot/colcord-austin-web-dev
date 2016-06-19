@@ -54,7 +54,6 @@
         }
 
         function addRestaurantId(newRestaurantId) {
-            console.log(vm.uid);
             if(newRestaurantId) {
                 UserService
                     .addRestaurantId(vm.uid, newRestaurantId)
