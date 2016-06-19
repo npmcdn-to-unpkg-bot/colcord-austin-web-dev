@@ -67,6 +67,7 @@
                         </div>
                         <div class="col-xs-6">
                             <span ng-click="model.addRecipe(model.selectedRecipe)"
+                                  ng-show="model.uid"
                                   class="btn btn-success glyphicon glyphicon-plus-sign pull-right"></span>
                         </div>
                     </div>
@@ -88,7 +89,7 @@
 </div>
 
 
-<footer>
+<footer ng-show="model.uid">
     <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="navbar-header">

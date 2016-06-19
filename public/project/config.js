@@ -15,6 +15,11 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
+            .when("/search", {
+                templateUrl: "views/recipe/recipe-search.view.client.html",
+                controller: "RecipeSearchController",
+                controllerAs: "model"
+            })
             .when("/user", {
                 templateUrl: "views/user/employee-profile.view.client.html",
                 controller: "ProfileController",
