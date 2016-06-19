@@ -42,7 +42,7 @@
 
         function updateUser() {
             UserService
-                .updateUser(uid, vm.user)
+                .updateUser(vm.user._id, vm.user)
                 .then(
                     function(res) {
                         vm.success = "User successfully updated";
@@ -55,7 +55,7 @@
 
         function unRegister() {
             UserService
-                .deleteUser(uid)
+                .deleteUser(vm.user._id)
                 .then(
                     function(response) {
                         $location.url("/login");
