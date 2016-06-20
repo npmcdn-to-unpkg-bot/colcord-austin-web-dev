@@ -8,6 +8,11 @@ var passport = require('passport');
 
 var connectionString = 'mongodb://127.0.0.1:27017/webdev';
 
+// example app for ejs
+app.set('view engine', 'ejs');
+require('./lectures/app')(app);
+//////////////////////
+
 var assignment = require('./assignment/app.js');
 var project = require('./project/app.js');
 

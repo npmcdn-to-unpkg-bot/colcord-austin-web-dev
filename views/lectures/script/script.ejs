@@ -1,0 +1,34 @@
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+<style>
+    .ajc-script .panel {
+        margin-bottom: 0;
+    }
+</style>
+<div class="container-fluid">
+    <h2>Script</h2>
+
+    <div class="ajc-script">
+
+
+    <%
+        for(var s in script) {
+            var template = "statements/" + script[s].type + ".statement.ejs";
+            %>
+            <%- include(template)%>
+            <% include statements/arrow.down.ejs%>
+    <%
+    }
+    %>
+
+    </div>
+
+
+
+
+
+
+
+
+
+</div>
