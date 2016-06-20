@@ -16,16 +16,18 @@
 
 
         function init() {
-            UserService
-                .findUserById(vm.uid)
-                .then(
-                    function (response) {
-                        vm.user = response.data;
-                    },
-                    function (error) {
-                        vm.error = error.data;
-                    }
-                )
+            if(vm.uid) {
+                UserService
+                    .findUserById(vm.uid)
+                    .then(
+                        function (response) {
+                            vm.user = response.data;
+                        },
+                        function (error) {
+                            vm.error = error.data;
+                        }
+                    )
+            }
         }
         init();
 
