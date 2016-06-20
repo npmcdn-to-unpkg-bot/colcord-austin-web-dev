@@ -18,105 +18,144 @@
     </div>
 
     <form name="form" role="form">
-        <div class="form-group">
-            <label for="firstName">First Name</label>
-            <input ng-model="model.user.firstName"
-                   type="text"
-                   id="firstName"
-                   class="form-control"
-                   placeholder="first name"
-                   autocorrect="off"
-                   spellcheck="false"/>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input ng-model="model.user.firstName"
+                           type="text"
+                           id="firstName"
+                           class="form-control"
+                           placeholder="first name"
+                           autocorrect="off"
+                           spellcheck="false"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input ng-model="model.user.lastName"
+                           type="text"
+                           id="lastName"
+                           class="form-control"
+                           placeholder="last name"
+                           autocorrect="off"
+                           spellcheck="false"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input ng-model="model.user.email"
+                           type="email"
+                           id="email"
+                           class="form-control"
+                           placeholder="email address"
+                           autocorrect="off"
+                           autocapitalize="off"
+                           spellcheck="false"/>
+                </div>
+
+
+                <div ng-show="!model.user.google.id"
+                     class="form-group"
+                     ng-class="{ 'has-error': form.password.$error.required && form.password.$dirty
+                                || form.password.$error.required && model.submitted }">
+                    <input ng-model="current_pass"
+                           name="password"
+                           type="password"
+                           class="form-control"
+                           placeholder="current password"
+                           required/>
+                    <span ng-show="form.password.$error.required && form.password.$dirty
+                                    || form.password.$error.required && model.submitted"
+                          class="help-block">
+                        Current password is required
+                    </span>
+                </div>
+
+                <div ng-show="!model.user.google.id"
+                     class="form-group"
+                     ng-class="{ 'has-error': form.newPassword.$error.required && form.newPassword.$dirty
+                                || form.newPassword.$error.required && model.submitted }">
+                    <input ng-model="new_pass"
+                           name="newPassword"
+                           type="password"
+                           class="form-control"
+                           placeholder="new password"
+                           required/>
+                    <span ng-show="form.newPassword.$error.required && form.newPassword.$dirty
+                                    || form.newPassword.$error.required && model.submitted"
+                          class="help-block">
+                        New password is required
+                    </span>
+                </div>
+
+                <div ng-show="!model.user.google.id"
+                     class="form-group"
+                     ng-class="{ 'has-error': form.verifyPassword.$error.required && form.verifyPassword.$dirty
+                                || form.verifyPassword.$error.required && model.submitted }">
+                    <input ng-model="verify_pass"
+                           name="verifyPassword"
+                           type="password"
+                           class="form-control"
+                           placeholder="verify new password"
+                           required/>
+                    <span ng-show="form.verifyPassword.$error.required && form.verifyPassword.$dirty
+                                    || form.verifyPassword.$error.required && model.submitted"
+                          class="help-block">
+                        Verify new password
+                    </span>
+                </div>
+
+                <div ng-show="!model.user.restaurantId"
+                     class="form-group">
+                    <input ng-model="newRestaurantId"
+                           type="text"
+                           id="restaurantId"
+                           class="form-control"
+                           autocorrect="off"
+                           placeholder="restaurant id"
+                           spellcheck="false"/>
+                </div>
+                <h6 ng-hide="!model.user.restaurantId">
+                    Restaurant ID: {{model.user.restaurantId}}
+                </h6>
+            </div>
+
+
+
+            <div class="col-sm-8"
+                 ng-show="model.user.manager">
+                <h5>Employees</h5>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Active</th>
+                    </tr>
+                    </thead>
+                </table>
+
+                <div class="row"
+                     ng-repeat="employee in model.employees">
+                    <div class="col-xs-5">
+                        <p>{{employee.firstName}} {{employee.lastName}}</p>
+                    </div>
+                    <div class="col-xs-5">
+                        <p>{{employee.username}}</p>
+                    </div>
+
+                    <div class="col-xs-2">
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="{{employee.manager}}"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="lastName">Last Name</label>
-            <input ng-model="model.user.lastName"
-                   type="text"
-                   id="lastName"
-                   class="form-control"
-                   placeholder="last name"
-                   autocorrect="off"
-                   spellcheck="false"/>
-        </div>
-
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input ng-model="model.user.email"
-                   type="email"
-                   id="email"
-                   class="form-control"
-                   placeholder="email address"
-                   autocorrect="off"
-                   autocapitalize="off"
-                   spellcheck="false"/>
-        </div>
-
-
-        <div ng-show="!model.user.google.id"
-             class="form-group"
-             ng-class="{ 'has-error': form.password.$error.required && form.password.$dirty
-                        || form.password.$error.required && model.submitted }">
-            <input ng-model="current_pass"
-                   name="password"
-                   type="password"
-                   class="form-control"
-                   placeholder="current password"
-                   required/>
-            <span ng-show="form.password.$error.required && form.password.$dirty
-                            || form.password.$error.required && model.submitted"
-                  class="help-block">
-                Current password is required
-            </span>
-        </div>
-
-        <div ng-show="!model.user.google.id"
-             class="form-group"
-             ng-class="{ 'has-error': form.newPassword.$error.required && form.newPassword.$dirty
-                        || form.newPassword.$error.required && model.submitted }">
-            <input ng-model="new_pass"
-                   name="newPassword"
-                   type="password"
-                   class="form-control"
-                   placeholder="new password"
-                   required/>
-            <span ng-show="form.newPassword.$error.required && form.newPassword.$dirty
-                            || form.newPassword.$error.required && model.submitted"
-                  class="help-block">
-                New password is required
-            </span>
-        </div>
-
-        <div ng-show="!model.user.google.id"
-             class="form-group"
-             ng-class="{ 'has-error': form.verifyPassword.$error.required && form.verifyPassword.$dirty
-                        || form.verifyPassword.$error.required && model.submitted }">
-            <input ng-model="verify_pass"
-                   name="verifyPassword"
-                   type="password"
-                   class="form-control"
-                   placeholder="verify new password"
-                   required/>
-            <span ng-show="form.verifyPassword.$error.required && form.verifyPassword.$dirty
-                            || form.verifyPassword.$error.required && model.submitted"
-                  class="help-block">
-                Verify new password
-            </span>
-        </div>
-
-        <div ng-show="!model.user.restaurantId"
-             class="form-group">
-            <input ng-model="newRestaurantId"
-                   type="text"
-                   id="restaurantId"
-                   class="form-control"
-                   autocorrect="off"
-                   placeholder="restaurant id"
-                   spellcheck="false"/>
-        </div>
-        <h6 ng-hide="!model.user.restaurantId">
-            Restaurant ID: {{model.user.restaurantId}}
-        </h6>
+        <hr>
 
         <a  ng-show="!model.user.google.id"
             class="btn btn-block btn-primary"
@@ -124,7 +163,7 @@
             Update Profile
         </a>
 
-        <a  ng-show="model.user.google.id"
+        <a  ng-show="model.user.google.id && !model.user.restaurantId"
             class="btn btn-block btn-primary"
             ng-click="model.addRestaurantId(newRestaurantId)">
             Add Restaurant ID

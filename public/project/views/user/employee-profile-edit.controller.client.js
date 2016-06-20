@@ -10,6 +10,7 @@
         vm.submitted = false;
 
         vm.uid = $routeParams["uid"];
+        vm.employees = [];
 
         function init() {
             UserService
@@ -17,6 +18,9 @@
                 .then(
                     function(response) {
                         vm.user = response.data;
+                        if (vm.user.manager) {
+                            getEmployees();
+                        }
                     },
                     function(error) {
                         vm.error = error.data;
@@ -24,6 +28,24 @@
                 )
         }
         init();
+
+        function getEmployees() {
+            UserService
+                .findUsersByRestaurantId(vm.user.restaurantId)
+                .then(
+                    function(response) {
+                        var users = response.data;
+                        for(var i in users) {
+                            if (users[i]._id != vm.user._id) {
+                                vm.employees.push(users[i]);
+                            }
+                        }
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                )
+        }
 
         function updateUser(current_pass, new_pass, verify_new_pass) {
             vm.submitted = true;
