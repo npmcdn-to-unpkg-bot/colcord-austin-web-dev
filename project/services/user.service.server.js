@@ -34,6 +34,8 @@ module.exports = function(app, models) {
     app.delete("/api/employee/:userId", deleteUser);
     app.post("/api/employee/newRestaurantId", addRestaurantId);
     app.get("/api/employees/:restaurantId", findUsersByRestaurantId);
+    app.put("/api/activate/:userId", activateUser);
+    app.put("/api/deactivate/:userId", deactivateUser);
 
 
     passport.use('prepper', new LocalStrategy(localStrategy));
@@ -132,6 +134,7 @@ module.exports = function(app, models) {
             .then(
                 function(users) {
                     req.body.manager = users.length == 0;
+                    req.body.active = req.body.manager;
                     return employeeModel
                         .findUserByUsername(username)
                 },
@@ -421,5 +424,31 @@ module.exports = function(app, models) {
                     res.status(400).send(error);
                 }
             );
+    }
+    
+    function activateUser(req, res) {
+        employeeModel
+            .activateUser(req.params.userId)
+            .then(
+                function(response) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            )
+    }
+
+    function deactivateUser(req, res) {
+        employeeModel
+            .deactivateUser(req.params.userId)
+            .then(
+                function(response) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(400).send(error);
+                }
+            )
     }
 };

@@ -18,7 +18,13 @@
         {{model.error}}
     </div>
 
-    <div ng-show="model.unlocked">
+    <div ng-if="!model.user.active && model.unlocked"
+         class="alert alert-danger"
+         role="alert">
+        Please ask your restaurant manager to activate your account to view the prep list
+    </div>
+
+    <div ng-show="model.unlocked && model.user.active">
         <div class="row">
             <div class="col-sm-4">
                 <h5>To-Do</h5>

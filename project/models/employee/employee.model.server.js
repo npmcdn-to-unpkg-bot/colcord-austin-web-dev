@@ -16,7 +16,9 @@ module.exports = function() {
         removeTimerIdFromUser: removeTimerIdFromUser,
         findUserByGoogleId: findUserByGoogleId,
         addRestaurantId: addRestaurantId,
-        findUsersByRestaurantId: findUsersByRestaurantId
+        findUsersByRestaurantId: findUsersByRestaurantId,
+        activateUser: activateUser,
+        deactivateUser: deactivateUser
     };
     return api;
 
@@ -72,7 +74,8 @@ module.exports = function() {
             {$set :
                 {
                     restaurantId: newRestaurantId,
-                    manager: managerStatus
+                    manager: managerStatus,
+                    active: managerStatus
                 }
             }
         )
@@ -88,5 +91,27 @@ module.exports = function() {
     
     function findUsersByRestaurantId(restaurantId) {
         return Employee.find({restaurantId: restaurantId});
+    }
+
+    function activateUser(userId) {
+        return Employee.update(
+            {_id: userId},
+            {$set :
+                {
+                    active: true
+                }
+            }
+        )
+    }
+
+    function deactivateUser(userId) {
+        return Employee.update(
+            {_id: userId},
+            {$set :
+                {
+                    active: false
+                }
+            }
+        )
     }
 };

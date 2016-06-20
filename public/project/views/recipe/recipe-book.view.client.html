@@ -5,7 +5,7 @@
                 <a class="navbar-brand">
                     Recipe Book
                 </a>
-                <p ng-show="model.unlocked"
+                <p ng-show="model.unlocked && model.user.active"
                    class="navbar-text navbar-right">
                     <a href="#/user/{{model.uid}}/recipe/new"
                        class="navbar-link">
@@ -26,8 +26,14 @@
         {{model.error}}
     </div>
 
+    <div ng-if="!model.user.active && model.unlocked"
+         class="alert alert-danger"
+         role="alert">
+        Please ask your restaurant manager to activate your account to view recipes
+    </div>
+
     <!-- http://stackoverflow.com/questions/24682421/put-search-icon-near-textbox-using-bootstrap -->
-    <div ng-show="model.unlocked">
+    <div ng-show="model.unlocked && model.user.active">
         <div class="form-group has-feedback">
             <input type="text"
                    ng-model="searchTerm"

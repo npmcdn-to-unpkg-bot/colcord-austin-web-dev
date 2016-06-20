@@ -148,7 +148,9 @@
 
                     <div class="col-xs-2">
                         <div class="checkbox">
-                            <label><input type="checkbox" value="{{employee.manager}}"></label>
+                            <label><input type="checkbox"
+                                          ng-model="employee.active"
+                                          ng-change="model.activatedChanged(employee)"></label>
                         </div>
                     </div>
                 </div>

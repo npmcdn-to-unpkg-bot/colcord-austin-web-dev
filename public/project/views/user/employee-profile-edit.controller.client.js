@@ -7,8 +7,9 @@
         var vm = this;
         vm.updateUser = updateUser;
         vm.addRestaurantId = addRestaurantId;
+        vm.activatedChanged = activatedChanged;
+        
         vm.submitted = false;
-
         vm.uid = $routeParams["uid"];
         vm.employees = [];
 
@@ -93,6 +94,41 @@
             else {
                 vm.error = "Please enter a Restaurant ID";
             }
+        }
+
+        function activatedChanged(employee) {
+            if(employee.active) {
+                activateUser(employee._id);
+            }
+            else {
+                deactivateUser(employee._id);
+            }
+        }
+        
+        function activateUser(userId) {
+            UserService
+                .activateUser(userId)
+                .then(
+                    function(response) {
+                        vm.success = "User successfully activated: " + userId;
+                    },
+                    function(error) {
+                        vm.error = "Error activating user: " + userId;
+                    }
+                )
+        }
+
+        function deactivateUser(userId) {
+            UserService
+                .deactivateUser(userId)
+                .then(
+                    function(response) {
+                        vm.success = "User successfully deactivated: " + userId;
+                    },
+                    function(error) {
+                        vm.error = "Error deactivating user: " + userId;
+                    }
+                )
         }
     }
 

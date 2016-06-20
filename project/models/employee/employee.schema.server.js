@@ -14,7 +14,8 @@ module.exports = function() {
             id:    String,
             token: String
         },
-        manager: {type: Boolean, default: false}
+        manager: {type: Boolean, default: false},
+        active:  {type: Boolean, default: false}
     }, {collection: "project.employee"});
     
     return EmployeeSchema;

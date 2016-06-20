@@ -18,7 +18,9 @@
             findUsersByRestaurantId: findUsersByRestaurantId,
             updateUser: updateUser,
             deleteUser: deleteUser,
-            addRestaurantId: addRestaurantId
+            addRestaurantId: addRestaurantId,
+            activateUser: activateUser,
+            deactivateUser: deactivateUser
         };
         return api;
 
@@ -74,6 +76,14 @@
         
         function findUsersByRestaurantId(restaurantId) {
             return $http.get("/api/employees/" + restaurantId);
+        }
+        
+        function activateUser(userId) {
+            return $http.put("/api/activate/" + userId);
+        }
+        
+        function deactivateUser(userId) {
+            return $http.put("/api/deactivate/" + userId);
         }
     }
 })();
