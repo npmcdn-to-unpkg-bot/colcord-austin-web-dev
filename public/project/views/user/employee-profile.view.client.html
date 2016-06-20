@@ -1,8 +1,14 @@
 <header>
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top"
+         ng-class="model.user.manager && 'ajc-manager' || ''">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand">
+                <a ng-show="model.user.manager"
+                   class="navbar-brand">
+                    Manager Profile
+                </a>
+                <a ng-hide="model.user.manager"
+                   class="navbar-brand">
                     Profile
                 </a>
             </div>
@@ -18,12 +24,43 @@
         {{model.error}}
     </div>
 
-    <h5>{{model.user.firstName}} {{model.user.lastName}}</h5>
-    <hr>
-    <h6><b>Username</b>: {{model.user.username}}</h6>
-    <h6><b>Email</b>: {{model.user.email}}</h6>
-    <h6><b>Restaurant ID</b>: {{model.user.restaurantId}}</h6>
-    <hr>
+    <div class="row">
+        <div class="col-sm-4">
+            <h5>{{model.user.firstName}} {{model.user.lastName}}</h5>
+            <hr>
+            <h6><b>Username</b>: {{model.user.username}}</h6>
+            <h6><b>Email</b>: {{model.user.email}}</h6>
+            <h6><b>Restaurant ID</b>: {{model.user.restaurantId}}</h6>
+            <hr>
+        </div>
+
+        <div ng-show="model.user.manager"
+             class="col-sm-8">
+            <h5>Employees</h5>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Manager</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="employee in model.employees">
+                            <td>{{employee.firstName}} {{employee.lastName}}</td>
+                            <td>{{employee.username}}</td>
+                            <td>{{employee.email}}</td>
+                            <td>{{employee.manager}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+        </div>
+    </div>
+
 
     <a  class="btn btn-block btn-primary"
         href="#/user/{{model.user._id}}/edit">
@@ -39,7 +76,8 @@
 
 
 <footer>
-    <nav class="navbar navbar-default navbar-fixed-bottom">
+    <nav class="navbar navbar-default navbar-fixed-bottom"
+         ng-class="model.user.manager && 'ajc-manager' || ''">
         <div class="container-fluid">
             <div class="navbar-header">
                 <p class="navbar-text col-xs-3 ajc-nav-column-centered">
