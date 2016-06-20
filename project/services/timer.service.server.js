@@ -14,6 +14,7 @@ module.exports = function(app, models) {
     app.get("/api/user/:userId/timer", findTimersByUserId);
     app.put("/api/timer/:timerId", updateTimer);
     app.delete("/api/timer/:timerId", deleteTimer);
+    app.get("/api/:restaurantId/timers/", findTimersByRestaurantId);
 
 
     function createTimer(req, res) {
@@ -89,6 +90,20 @@ module.exports = function(app, models) {
                 },
                 function(error) {
                     res.status(404).send("Unable to delete timer with ID " + timerId);
+                }
+            );
+    }
+    
+    function findTimersByRestaurantId(req, res) {
+        var restaurantId = req.params.restaurantid;
+        timerModel
+            .findTimersByRestaurantId(restaurantId)
+            .then(
+                function(timers) {
+                    res.json(timers);
+                },
+                function(error) {
+                    res.status(404).send(error);
                 }
             );
     }

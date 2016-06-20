@@ -10,7 +10,8 @@
             findTimerById: findTimerById,
             findTimersByUserId: findTimersByUserId,
             updateTimer: updateTimer,
-            deleteTimer: deleteTimer
+            deleteTimer: deleteTimer,
+            findTimersByRestaurantId: findTimersByRestaurantId
         };
         return api;
 
@@ -32,6 +33,9 @@
         
         function deleteTimer(timerId) {
             return $http.delete("/api/timer/" + timerId);
+        }
+        function findTimersByRestaurantId(restaurantId) {
+            return $http.get("/api/" + restaurantId + "/timers/");
         }
     }
 

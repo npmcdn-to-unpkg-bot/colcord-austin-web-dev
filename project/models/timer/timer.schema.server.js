@@ -8,8 +8,8 @@ module.exports = function() {
         timeStart: Date,
         setMinutes: Number,
         timeEnd: Date,
+        restaurantId: Number,
         dateCreate: {type: Date, default: Date.now()}
-
     }, {collection: "project.timer"});
     
     return TimerSchema;

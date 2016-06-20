@@ -10,7 +10,8 @@ module.exports = function() {
         findTimerById: findTimerById,
         findTimersByUserId: findTimersByUserId,
         updateTimer: updateTimer,
-        deleteTimer: deleteTimer
+        deleteTimer: deleteTimer,
+        findTimersByRestaurantId: findTimersByRestaurantId
     };
     return api;
 
@@ -39,5 +40,9 @@ module.exports = function() {
     
     function deleteTimer(timerId) {
         return Timer.remove({_id: timerId});
+    }
+    
+    function findTimersByRestaurantId(restaurantId) {
+        return Timer.find({restaurantId: restaurantId});
     }
 };

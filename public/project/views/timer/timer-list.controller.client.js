@@ -76,16 +76,30 @@
         }
 
         function getTimers() {
-            TimerService
-                .findTimersByUserId(vm.user._id)
-                .then(
-                    function(response) {
-                       vm.timers = response.data;
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                    }
-                )
+            if (vm.user.manager) {
+                TimerService
+                    .findTimersByRestaurantId(vm.user.restaurantId)
+                    .then(
+                        function(response) {
+                            vm.timers = response.data;
+                        },
+                        function(error) {
+                            vm.error = error.data;
+                        }
+                    )
+            }
+            else {
+                TimerService
+                    .findTimersByUserId(vm.user._id)
+                    .then(
+                        function (response) {
+                            vm.timers = response.data;
+                        },
+                        function (error) {
+                            vm.error = error.data;
+                        }
+                    )
+            }
         }
 
         function deleteTimer(timerId) {
