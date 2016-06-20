@@ -14,6 +14,22 @@
 
         vm.uid = $routeParams["uid"];
 
+
+        function init() {
+            UserService
+                .findUserById(vm.uid)
+                .then(
+                    function (response) {
+                        vm.user = response.data;
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    }
+                )
+        }
+        init();
+
+
         function searchRecipes(searchTerm) {
             vm.searching = "searching...";
             Food2ForkService
@@ -63,18 +79,9 @@
                 ingredients: vm.ingredients,
                 directions: ingredientsString
             };
-
-            UserService
-                .findUserById(vm.uid)
-                .then(
-                    function(response) {
-                        return RecipeService
-                            .createRecipe(response.data.restaurantId, newRecipe);
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                    }
-                )
+            
+            RecipeService
+                .createRecipe(vm.user.restaurantId, newRecipe)
                 .then(
                     function(response) {
                         vm.success = "Successfully created recipe";

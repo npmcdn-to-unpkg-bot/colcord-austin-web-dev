@@ -15,6 +15,7 @@
             findUserById: findUserById,
             findUserByUsername: findUserByUsername,
             findUserByCredentials: findUserByCredentials,
+            findUsersByRestaurantId: findUsersByRestaurantId,
             updateUser: updateUser,
             deleteUser: deleteUser,
             addRestaurantId: addRestaurantId
@@ -69,6 +70,10 @@
 
         function addRestaurantId(userId, newRestaurantId) {
             return $http.post("/api/employee/newRestaurantId", {userId: userId, restaurantId: newRestaurantId})
+        }
+        
+        function findUsersByRestaurantId(restaurantId) {
+            return $http.get("/api/employees/" + restaurantId);
         }
     }
 })();

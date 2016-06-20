@@ -13,6 +13,21 @@
         vm.uid = $routeParams["uid"];
         vm.ingredients = [];
 
+        function init() {
+            UserService
+                .findUserById(vm.uid)
+                .then(
+                    function (response) {
+                        vm.user = response.data;
+                    },
+                    function (error) {
+                        vm.error = error.data;
+                    }
+                )
+        }
+        init();
+
+
         function createRecipe() {
             try {
                 var newRecipe = {
@@ -24,27 +39,17 @@
                     directions: vm.recipe.directions,
                     recent: true
                 };
-                UserService
-                    .findUserById(vm.uid)
+                RecipeService
+                    .createRecipe(vm.user.restaurantId, newRecipe)
                     .then(
                         function(response) {
-                            RecipeService
-                                .createRecipe(response.data.restaurantId, newRecipe)
-                                .then(
-                                    function(response) {
-                                        vm.success = "Successfully created recipe";
-                                        $location.url("/user/" + vm.uid + "/recipe/" + response.data);
-                                    },
-                                    function(error) {
-                                        vm.error = error.data;
-                                    }
-                                );
+                            vm.success = "Successfully created recipe";
+                            $location.url("/user/" + vm.uid + "/recipe/" + response.data);
                         },
                         function(error) {
                             vm.error = error.data;
                         }
-                    )
-
+                    );
             }
             catch(err) {
                 vm.error = "Error creating recipe";

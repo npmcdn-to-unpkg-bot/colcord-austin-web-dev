@@ -33,6 +33,7 @@ module.exports = function(app, models) {
     app.put("/api/employee/:userId", updateUser);
     app.delete("/api/employee/:userId", deleteUser);
     app.post("/api/employee/newRestaurantId", addRestaurantId);
+    app.get("/api/employees/:restaurantId", findUsersByRestaurantId);
 
 
     passport.use('prepper', new LocalStrategy(localStrategy));
@@ -404,6 +405,19 @@ module.exports = function(app, models) {
                     res.send(user);
                 },
                 function(error) {
+                    res.status(400).send(error);
+                }
+            );
+    }
+    
+    function findUsersByRestaurantId(req, res) {
+        employeeModel
+            .findUsersByRestaurantId(req.params.restaurantId)
+            .then(
+                function (users) {
+                    res.send(users);
+                },
+                function (error) {
                     res.status(400).send(error);
                 }
             );
