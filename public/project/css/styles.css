@@ -126,3 +126,7 @@ a {
 .ajc-manager {
     background-color: rgba(191, 191, 191, 0.92);
 }
+
+.ajc-checkbox {
+    margin-top: 0;
+}
