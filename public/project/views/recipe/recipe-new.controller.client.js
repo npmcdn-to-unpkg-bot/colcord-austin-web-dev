@@ -12,6 +12,7 @@
 
         vm.uid = $routeParams["uid"];
         vm.ingredients = [];
+        vm.submitted = false;
 
         function init() {
             UserService
@@ -29,7 +30,8 @@
 
 
         function createRecipe() {
-            try {
+            vm.submitted = true;
+            if (vm.recipe && vm.recipe.name) {
                 var newRecipe = {
                     name: vm.recipe.name,
                     prepTime: vm.recipe.prepTime,
@@ -44,6 +46,7 @@
                     .then(
                         function(response) {
                             vm.success = "Successfully created recipe";
+                            vm.submitted = false;
                             $location.url("/user/" + vm.uid + "/recipe/" + response.data);
                         },
                         function(error) {
@@ -51,8 +54,8 @@
                         }
                     );
             }
-            catch(err) {
-                vm.error = "Error creating recipe";
+            else {
+                vm.error = "Recipe Name is Required";
             }
         }
 

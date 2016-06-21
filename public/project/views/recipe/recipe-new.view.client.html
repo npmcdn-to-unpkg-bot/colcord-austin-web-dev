@@ -36,14 +36,21 @@
 
     <hr>
 
-    <form>
-        <div class="form-group">
+    <form name="form" role="form">
+        <div class="form-group"
+             ng-class="{ 'has-error': form.recipeName.$error.required && form.password.$dirty || form.recipeName.$error.required && model.submitted}">
             <label for="recipename">Recipe Name</label>
             <input ng-model="model.recipe.name"
+                   name="recipeName"
                    type="text"
                    id="recipename"
                    class="form-control"
-                   placeholder="Recipe name"/>
+                   placeholder="Recipe name"
+                   required/>
+            <span ng-show="form.password.$error.required && form.recipeName.$dirty || form.recipeName.$error.required && model.submitted"
+                  class="help-block">
+                Password is required
+            </span>
         </div>
 
         <div class="form-group">

@@ -13,6 +13,7 @@
         
         vm.uid = $routeParams["uid"];
         vm.rid = $routeParams["rid"];
+        vm.submitted = false;
         
         function init() {
             RecipeService
@@ -29,16 +30,23 @@
         init();
 
         function updateRecipe() {
-            RecipeService
-                .updateRecipe(vm.rid, vm.recipe)
-                .then(
-                    function(response) {
-                        $location.url("/user/"+ vm.uid + "/recipe/" + vm.rid);
-                    },
-                    function(error) {
-                        vm.error = error.data;
-                    }
-                )
+            vm.submitted = true;
+            if(vm.recipe.name) {
+                RecipeService
+                    .updateRecipe(vm.rid, vm.recipe)
+                    .then(
+                        function (response) {
+                            vm.submitted = false;
+                            $location.url("/user/" + vm.uid + "/recipe/" + vm.rid);
+                        },
+                        function (error) {
+                            vm.error = error.data;
+                        }
+                    )
+            }
+            else {
+                vm.error = "Recipe name is required";
+            }
         }
 
         function deleteRecipe() {
