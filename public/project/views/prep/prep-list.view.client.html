@@ -59,6 +59,8 @@
                 <ul class="list-group prep-list-container">
                     <li ng-repeat="recipe in model.prepList.inProgress"
                         class="list-group-item">
+                        <span ng-click="model.moveBackToToDo(recipe)"
+                              class="glyphicon glyphicon glyphicon-arrow-left pull-left ajc-list-glyphicon"></span>
                         <span ng-click="model.moveToCompleted(recipe)"
                               class="glyphicon glyphicon glyphicon-arrow-right pull-right ajc-list-glyphicon"></span>
                         <a  href="#/user/{{model.uid}}/recipe/{{recipe._recipeId}}">

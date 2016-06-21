@@ -8,6 +8,7 @@
         vm.removeFromPrepCompletedList = removeFromPrepCompletedList;
         vm.moveToInProgress = moveToInProgress;
         vm.moveToCompleted = moveToCompleted;
+        vm.moveBackToToDo = moveBackToToDo;
         vm.sorted = sorted;
         
         vm.uid = $routeParams["uid"];
@@ -92,6 +93,29 @@
                                 function(response) {
                                     getPrepList();
                                     vm.success = "Item moved successfully";
+                                },
+                                function(error) {
+                                    vm.error = error.data;
+                                }
+                            )
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                )
+        }
+
+        function moveBackToToDo(prepListItem) {
+            PrepService
+                .addToPrepListToDo(vm.prepList._id, prepListItem)
+                .then(
+                    function(response) {
+                        PrepService
+                            .removeFromPrepInProgressList(vm.prepList._id, prepListItem._id)
+                            .then(
+                                function(response) {
+                                    getPrepList();
+                                    vm.success = "Item moved back successfully";
                                 },
                                 function(error) {
                                     vm.error = error.data;
