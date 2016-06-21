@@ -177,6 +177,16 @@
             Cancel
         </a>
 
+
+        <div ng-show="!model.user.manager">
+            <hr>
+
+            <a  ng-click="model.unRegister()"
+                class="btn btn-block btn-warning">
+                Delete Account
+            </a>
+        </div>
+
     </form>
 </div>
 

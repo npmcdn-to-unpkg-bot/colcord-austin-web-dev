@@ -8,6 +8,7 @@
         vm.updateUser = updateUser;
         vm.addRestaurantId = addRestaurantId;
         vm.activatedChanged = activatedChanged;
+        vm.unRegister = unRegister;
         
         vm.submitted = false;
         vm.uid = $routeParams["uid"];
@@ -127,6 +128,19 @@
                     },
                     function(error) {
                         vm.error = "Error deactivating user: " + userId;
+                    }
+                )
+        }
+
+        function unRegister() {
+            UserService
+                .deleteUser(vm.user._id)
+                .then(
+                    function(response) {
+                        $location.url("/login");
+                    },
+                    function(error) {
+                        vm.error = error.data;
                     }
                 )
         }
