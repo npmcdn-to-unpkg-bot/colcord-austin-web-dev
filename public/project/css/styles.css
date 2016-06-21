@@ -130,3 +130,13 @@ a {
 .ajc-checkbox {
     margin-top: 0;
 }
+
+.ajc-center-text {
+    width: 100%;
+    text-align: center;
+}
+
+.ajc-no-decoration, .ajc-no-decoration:hover, .ajc-no-decoration:active {
+    text-decoration: none;
+    color: black;
+}
