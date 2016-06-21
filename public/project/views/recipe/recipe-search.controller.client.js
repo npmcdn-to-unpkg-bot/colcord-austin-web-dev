@@ -33,7 +33,7 @@
 
 
         function searchRecipes(searchTerm) {
-            vm.searching = "searching...";
+            vm.searching = "searching ";
             Food2ForkService
                 .searchRecipes(searchTerm)
                 .then(
