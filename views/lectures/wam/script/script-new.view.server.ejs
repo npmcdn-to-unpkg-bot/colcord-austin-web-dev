@@ -1,0 +1,75 @@
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+
+<form method="post"
+      action="/wam/script/new">
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <p class="navbar-text navbar-left pull-left">
+                        <a href="/wam/script"
+                           class="navbar-link">
+                            <span class="glyphicon glyphicon-chevron-left pull-left ajc-nav-glyphicon"></span>
+                        </a>
+                    </p>
+                    <a class="navbar-brand">
+                        New Script
+                    </a>
+                    <p class="navbar-text navbar-right">
+                        <button class="btn btn-default"
+                                type="submit">
+                            <span class="glyphicon glyphicon-ok pull-right"></span>
+
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid">
+
+        <div ng-if="model.error"
+             class="alert alert-danger"
+             role="alert">
+            {{model.error}}
+        </div>
+
+
+
+            <div class="form-group">
+                <label for="name">Script Name</label>
+                <input name="name"
+                       id="name"
+                       type="text"
+                       class="form-control"
+                       placeholder="Script Name"
+                       required/>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Script Description</label>
+                <textarea rows="3"
+                          name="description"
+                          id="description"
+                          class="form-control"
+                          placeholder="Description">Lorum Ipsum</textarea>
+            </div>
+    </div>
+
+    <footer>
+        <nav class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container-fluid">
+                <div class="navbar-header">
+
+                    <div class="navbar-text pull-right">
+                        <a href="#/user/{{model.uid}}">
+                            <span class="glyphicon glyphicon-user ajc-nav-glyphicon"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </footer>
+</form>
