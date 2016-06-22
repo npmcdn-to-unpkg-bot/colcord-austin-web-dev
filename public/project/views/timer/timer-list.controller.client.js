@@ -64,7 +64,10 @@
             var minutes = Math.floor(strippedTime / 60);
             var seconds = strippedTime - minutes * 60;
 
-            var section = 'w';
+            var section = 'n';
+            if ((hours < 1 && minutes >= 10) || hours >= 1) {
+                section = 'w';
+            }
             if (hours < 1 && minutes < 10) {
                 section = 'g';
             }
