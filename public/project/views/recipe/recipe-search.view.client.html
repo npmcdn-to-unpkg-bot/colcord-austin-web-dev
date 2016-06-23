@@ -23,20 +23,19 @@
         {{model.error}}
     </div>
 
-    <!-- http://stackoverflow.com/questions/24682421/put-search-icon-near-textbox-using-bootstrap -->
-    <div class="input-group">
+    <form class="input-group">
         <input ng-model="searchText"
                type="text"
                class="form-control"
                placeholder="Search recipes...">
         <span class="input-group-btn">
-            <a ng-click="model.searchRecipes(searchText)"
+            <button ng-click="model.searchRecipes(searchText)"
                class="btn btn-default"
-               type="button">
+               type="submit">
                 <span class="glyphicon glyphicon-search"></span>
-            </a>
+            </button>
         </span>
-    </div>
+    </form>
 
     <p class="ajc-searching">
         {{model.searching}}
