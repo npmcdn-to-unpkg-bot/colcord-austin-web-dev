@@ -21,10 +21,14 @@
                                 $location.url("/user/" + user._id);
                                 vm.submitted = false;
                             }
-
                         },
                         function(error) {
-                            vm.error = "Incorrect Username or Password";
+                            if (error.data == "googleUserError") {
+                                vm.error = "This username needs to be signed in through Google";
+                            }
+                            else {
+                                vm.error = "Incorrect Username or Password";
+                            }
                         }
                     );
             }

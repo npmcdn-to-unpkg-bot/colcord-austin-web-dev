@@ -11,7 +11,7 @@
 
     <h3>Login</h3>
 
-    <form name="form" role="form">
+    <form name="form" role="form" novalidate>
         <div class="form-group"
              ng-class="{ 'has-error': form.username.$error.required && form.username.$dirty || form.username.$error.required && model.submitted}">
             <input ng-model="username"

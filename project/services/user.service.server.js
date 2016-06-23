@@ -105,8 +105,11 @@ module.exports = function(app, models) {
             .findUserByUsername(username)
             .then(
                 function(user) {
-                    if (user && bcrypt.compareSync(password, user.password)) {
-                        return done(null, user);
+                    if(user && !user.google.id && bcrypt.compareSync(password, user.password)) {
+                            return done(null, user);
+                    }
+                    else if (user && user.google.id) {
+                        return done(null, "googleUserError");
                     }
                     else {
                         return done(null, false);
@@ -122,8 +125,13 @@ module.exports = function(app, models) {
 
 
     function login(req, res) {
-        var user = req.user;
-        res.json(user);
+        if (req.user == "googleUserError") {
+            res.status(403).send("googleUserError");
+        }
+        else {
+            var user = req.user;
+            res.json(user);
+        }
     }
 
     function register(req, res) {
