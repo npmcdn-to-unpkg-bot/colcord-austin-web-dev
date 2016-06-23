@@ -3,8 +3,13 @@
          ng-class="model.user.manager && 'ajc-manager' || ''">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand">
+                <a ng-hide="model.user.manager"
+                   class="navbar-brand">
                     Timers
+                </a>
+                <a ng-show="model.user.manager"
+                   class="navbar-brand">
+                    All Timers
                 </a>
             </div>
         </div>
