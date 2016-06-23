@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Template from https://getbootstrap.com/examples/cover/ -->
     <meta charset="UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -9,78 +8,87 @@
 
     <title>Austin Colcord</title>
 
-    <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="css/cover.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body>
 
-<div class="site-wrapper">
+    <div class="container-fluid">
 
-    <div class="site-wrapper-inner">
 
-        <div class="cover-container container-fluid">
+        <div>
+            <h1>Austin Colcord</h1>
+            <img id="profile-picture" src="https://avatars3.githubusercontent.com/u/4349365?v=3&s=460">
+        </div>
 
-            <div class="masthead clearfix">
-                <div class="inner">
-                    <h3 class="masthead-brand">Web Development</h3>
-                    <nav>
-                        <ul class="nav masthead-nav">
-                            <li>
-                                <a href="project/index.html#/landing">Project</a>
-                            </li>
-                            <li>
-                                <a href="assignment/index.html">Assignment</a>
-                            </li>
-                            <li>
-                                <a href="test/index.html">TestMongoDB</a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/ajdcolcord/colcord-austin-web-dev">GitHub Repository</a>
-                            </li>
-                            <li>
-                                <a href="https://www.linkedin.com/in/ajdcolcord">LinkedIn</a>
-                            </li>
-                        </ul>
-                    </nav>
+
+        <h2>Web Development</h2>
+
+        <div class="row">
+            <div class="col-md-1">
+            </div>
+
+            <a class="col-md-2" href="project/index.html#/landing">
+                <div class="ajc-link">
+                    <h4>Project</h4>
+                    <hr>
+                    <p>
+                        Click here to view my project - 'Prepper' - which will be used by a restaurant to
+                        organize the recipes, recipe preparation tasks, and timers in the kitchen.
+                    </p>
                 </div>
-            </div>
-
-            <div class="inner cover">
-                <h1 class="cover-heading">Austin Colcord</h1>
-                <!--<p class="lead">Description of this website...</p>-->
-            </div>
-            <div>
-                <p class="lead">
-                    <img id="profile-picture" src="https://avatars3.githubusercontent.com/u/4349365?v=3&s=460">
-                </p>
-            </div>
-
-            <div class="mastfoot">
-                <div class="inner">
-                    <p>ajdcolcord [at] gmail [dot] com</p>
+            </a>
+            <a class="col-md-2" href="assignment/index.html">
+                <div class="ajc-link">
+                    <h4>Assignment</h4>
+                    <hr>
+                    <p>
+                        Click here to view my work on the assignment that was developed throughout the
+                        web development course. This is a 'Web App Maker' that has the intent of allowing
+                        'developers' to create their own unique websites without any coding.
+                    </p>
                 </div>
-            </div>
+            </a>
+            <a class="col-md-2" href="test/index.html">
+                <div class="ajc-link">
+                    <h4>Test MongoDB</h4>
+                    <hr>
+                    <p>
+                        Click here to test the MongoDB database to ensure it is running properly. You should
+                        be able to add and remove items to the list inside, and the state of the items will
+                        persist even if the page is refreshed.
+                    </p>
+                </div>
+            </a>
+            <a class="col-md-2" href="https://github.com/ajdcolcord/colcord-austin-web-dev">
+                <div class="ajc-link">
+                    <h4>Github Repository</h4>
+                    <hr>
+                    <p>
+                        Click here to view my Github repository for the web development course. This includes
+                        the source code for my project and assignment, as well as some testing and experimentation
+                        code that was created along with lectures.
+                    </p>
+                </div>
+            </a>
+            <a class="col-md-2" href="https://www.linkedin.com/in/ajdcolcord">
+                <div class="ajc-link">
+                    <h4>LinkedIn</h4>
+                    <hr>
+                    <p>Click here to view my LinkedIn profile.</p>
+                </div>
+            </a>
 
+            <div class="col-md-1">
+            </div>
+        </div>
+
+        <div class="ajc-link">
+            <h4>ajdcolcord [at] gmail.com</h4>
         </div>
 
     </div>
-
-</div>
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
 </body>
 </html>
