@@ -24,6 +24,7 @@
                 <div class="form-group">
                     <label for="firstName">First Name</label>
                     <input ng-model="model.user.firstName"
+                           ng-readonly="model.user.google.id"
                            type="text"
                            id="firstName"
                            class="form-control"
@@ -35,6 +36,7 @@
                 <div class="form-group">
                     <label for="lastName">Last Name</label>
                     <input ng-model="model.user.lastName"
+                           ng-readonly="model.user.google.id"
                            type="text"
                            id="lastName"
                            class="form-control"
@@ -46,6 +48,7 @@
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input ng-model="model.user.email"
+                           ng-readonly="model.user.google.id"
                            type="email"
                            id="email"
                            class="form-control"
@@ -172,7 +175,8 @@
             Add Restaurant ID
         </a>
 
-        <a  class="btn btn-block btn-danger"
+        <a  ng-hide="model.user.manager"
+            class="btn btn-block btn-danger"
             href="#/user/{{model.user._id}}">
             Cancel
         </a>
