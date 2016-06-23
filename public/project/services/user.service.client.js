@@ -62,8 +62,8 @@
             return $http.get("/api/employee?username=" + username + "&password=" + password);
         }
 
-        function updateUser(userId, user, currentPassword) {
-            return $http.put("/api/employee/" + userId, user);
+        function updateUser(userId, user, newPassword) {
+            return $http.put("/api/employee/" + userId, {user: user, newPassword: newPassword});
         }
         
         function deleteUser(userId) {

@@ -296,18 +296,32 @@ module.exports = function(app, models) {
     
     function updateUser(req, res) {
         var userId = req.params.userId;
-        var newUser = req.body;
-
+        var newUser = req.body.user;
+        var newPassword = req.body.newPassword;
         employeeModel
-            .updateUser(userId, newUser)
+            .findUserByUsername(newUser.username)
             .then(
+                function(user) {
+                    if (user && !user.google.id && bcrypt.compareSync(newUser.password, user.password)) {
+                        newUser.password = bcrypt.hashSync(newPassword);
+                        return employeeModel
+                            .updateUser(userId, newUser);
+                    }
+                    else {
+                        res.status(404).send('Unable to find user in database with username ' + newUser.username);
+                    }
+                },
+                function(error) {
+                    res.status(404).send("Unable to find user with ID " + userId);
+                }
+            ).then(
                 function(user) {
                     res.sendStatus(200);
                 },
                 function(error) {
                     res.status(404).send("Unable to update user with ID " + userId);
                 }
-            );
+        );
     }
 
     function addRestaurantId(req, res) {
