@@ -26,7 +26,15 @@
 
     <div class="row">
         <div class="col-sm-4">
-            <h5>{{model.user.firstName}} {{model.user.lastName}}</h5>
+            <div>
+                <h5>
+                    {{model.user.firstName}}
+                    {{model.user.lastName}}
+                    <i ng-show="model.user.google.id"
+                       class="fa fa-google-plus pull-right"
+                       aria-hidden="true"></i>
+                </h5>
+            </div>
             <hr>
             <h6><b>Username</b>: {{model.user.username}}</h6>
             <h6><b>Email</b>: {{model.user.email}}</h6>
