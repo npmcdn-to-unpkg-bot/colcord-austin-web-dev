@@ -175,7 +175,7 @@
             Add Restaurant ID
         </a>
 
-        <a  ng-hide="model.user.manager"
+        <a  ng-hide="model.user.manager || (model.user.google.id && model.user.restaurantId)"
             class="btn btn-block btn-warning"
             href="#/user/{{model.user._id}}">
             Cancel
