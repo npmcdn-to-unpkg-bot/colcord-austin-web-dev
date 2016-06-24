@@ -171,3 +171,7 @@ a {
 .ajc-white-background {
     background: white;
 }
+
+textarea.ajc-light-border {
+    border: lightgray 1px solid;
+}
