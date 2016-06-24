@@ -10,6 +10,7 @@
                 
         vm.uid = $routeParams["uid"];
         vm.unlocked = true;
+        vm.initialized = false;
 
         $interval(function(){
         }, 1000);
@@ -38,11 +39,18 @@
                     }
                 ).then(
                     function(response) {
-                        vm.prepList = response.data;
-                        getTimers();
+                        if(response) {
+                            vm.prepList = response.data;
+                            getTimers();
+                        }
+                        else {
+                            vm.error = "Please add a Restaurant ID to your profile to view and create Timers";
+                        }
+                        vm.initialized = true;
                     },
                     function(error) {
                         vm.error = error.data;
+                        vm.initialized = true;
                     }
                 )
         }

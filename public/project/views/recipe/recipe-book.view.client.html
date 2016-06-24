@@ -24,16 +24,18 @@
 
 <div class="container-fluid ajc-body-padded">
 
-    <div ng-if="model.error"
-         class="alert alert-danger"
-         role="alert">
-        {{model.error}}
-    </div>
+    <div ng-show="model.initialized">
+        <div ng-show="model.error"
+             class="alert alert-danger"
+             role="alert">
+            {{model.error}}
+        </div>
 
-    <div ng-if="!model.user.active && model.unlocked"
-         class="alert alert-danger"
-         role="alert">
-        Please ask your restaurant manager to activate your account to view recipes
+        <div ng-show="!model.user.active && model.unlocked"
+             class="alert alert-danger"
+             role="alert">
+            Please ask your restaurant manager to activate your account to view recipes
+        </div>
     </div>
 
     <!-- http://stackoverflow.com/questions/24682421/put-search-icon-near-textbox-using-bootstrap -->

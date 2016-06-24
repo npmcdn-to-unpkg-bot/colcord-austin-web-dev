@@ -12,6 +12,7 @@
         vm.uid = $routeParams["uid"];
         vm.recentDate = new Date();
         vm.unlocked = true;
+        vm.initialized = false;
 
         function addDays(theDate, days) {
             // http://stackoverflow.com/questions/3818193/how-to-add-number-of-days-to-todays-date
@@ -34,6 +35,7 @@
                     }
                 ).then(
                     function(response) {
+                        console.log('hi');
                         vm.recipeBook = response.data;
                         return PrepService
                             .findPrepListByRestaurantId(vm.user.restaurantId);
@@ -44,10 +46,17 @@
                     }
                 ).then(
                     function(response) {
-                        vm.prepList = response.data;
+                        if (response) {
+                            vm.prepList = response.data;
+                        }
+                        else {
+                            vm.error = "Please add a Restaurant ID to your profile to view and create Recipes";
+                        }
+                        vm.initialized = true;
                     },
                     function(error) {
                         vm.error = error.data;
+                        vm.initialized = true;
                     }
                 )
         }

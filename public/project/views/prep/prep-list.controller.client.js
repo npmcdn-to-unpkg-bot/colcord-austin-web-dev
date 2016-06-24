@@ -13,6 +13,7 @@
         
         vm.uid = $routeParams["uid"];
         vm.unlocked = true;
+        vm.initialized = false;
         
         function init() {
             UserService
@@ -21,9 +22,11 @@
                     function(response) {
                         vm.user = response.data;
                         getPrepList();
+                        vm.initialized = true;
                     },
                     function(error) {
                         vm.error = error.data;
+                        vm.initialized = true;
                     }
                 );
 
