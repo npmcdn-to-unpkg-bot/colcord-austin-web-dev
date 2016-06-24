@@ -56,7 +56,7 @@
                 _recipeId: recipeId,
                 name: name,
                 important: false,
-                signer: "",
+                notes: "",
                 timeStamp: (new Date).toDateString()};
 
             PrepService

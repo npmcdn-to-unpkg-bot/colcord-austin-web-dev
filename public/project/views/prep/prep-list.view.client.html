@@ -59,7 +59,7 @@
                               class="glyphicon glyphicon glyphicon-arrow-right ajc-list-glyphicon pull-right"></span>
                         <div>
                             <div class="ajc-prep-signature">
-                                <input ng-model="recipe.signer"
+                                <input ng-model="recipe.notes"
                                        type="text"
                                        class="form-control"
                                        placeholder="sign / notes"/>
@@ -89,7 +89,7 @@
                               class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
                         <p>Started: {{recipe.timeStamp | date: 'MMM d - h:mm:ss a'}}</p>
                         <div class="ajc-prep-signature">
-                            <input ng-model="recipe.signer"
+                            <input ng-model="recipe.notes"
                                    type="text"
                                    class="form-control"
                                    placeholder="sign / notes"/>
@@ -116,7 +116,7 @@
                               class="glyphicon glyphicon-remove pull-right ajc-list-glyphicon"></span>
                         <hr>
                         <div class="ajc-prep-signature">
-                            <p class="ajc-wrap">{{recipe.signer}}</p>
+                            <p class="ajc-wrap">{{recipe.notes}}</p>
                         </div>
                         <p>Started: {{recipe.timeStamp | date: 'MMM d - h:mm:ss a'}}</p>
                         <p>Completed: {{recipe.completeTime | date: 'MMM d - h:mm:ss a'}}</p>

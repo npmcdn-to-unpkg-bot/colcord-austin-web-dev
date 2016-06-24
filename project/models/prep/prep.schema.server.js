@@ -7,7 +7,7 @@ module.exports = function() {
             _recipeId: {type: mongoose.Schema.Types.ObjectId, ref: 'Recipe'},
             name: String,
             important: Boolean,
-            signer: String,
+            notes: String,
             timeStamp: {type: Date, default: Date.now()},
             order: Number
         }],
@@ -15,7 +15,7 @@ module.exports = function() {
             _recipeId: {type: mongoose.Schema.Types.ObjectId, ref: 'Recipe'},
             name: String,
             important: Boolean,
-            signer: String,
+            notes: String,
             timeStamp: Date,
             order: Number
         }],
@@ -23,7 +23,7 @@ module.exports = function() {
             _recipeId: {type: mongoose.Schema.Types.ObjectId, ref: 'Recipe'},
             name: String,
             important: Boolean,
-            signer: String,
+            notes: String,
             timeStamp: Date,
             order: Number,
             completeTime: Date
