@@ -64,16 +64,15 @@
                 .then(
                     function(response) {
                         PrepService
-                            .removeFromPrepToDoList(vm.prepList._id, prepListItem._id)
-                            .then(
-                                function(response) {
-                                    getPrepList();
-                                    vm.success = "Item moved successfully";
-                                },
-                                function(error) {
-                                    vm.error = error.data;
-                                }
-                            )
+                            .removeFromPrepToDoList(vm.prepList._id, prepListItem._id);
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                ).then(
+                    function(response) {
+                        getPrepList();
+                        vm.success = "Item moved successfully";
                     },
                     function(error) {
                         vm.error = error.data;
@@ -87,17 +86,16 @@
                 .addToPrepListCompleted(vm.prepList._id, prepListItem)
                 .then(
                     function(response) {
-                        PrepService
-                            .removeFromPrepInProgressList(vm.prepList._id, prepListItem._id)
-                            .then(
-                                function(response) {
-                                    getPrepList();
-                                    vm.success = "Item moved successfully";
-                                },
-                                function(error) {
-                                    vm.error = error.data;
-                                }
-                            )
+                        return PrepService
+                            .removeFromPrepInProgressList(vm.prepList._id, prepListItem._id);
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                ).then(
+                    function(response) {
+                        getPrepList();
+                        vm.success = "Item moved successfully";
                     },
                     function(error) {
                         vm.error = error.data;
@@ -110,17 +108,16 @@
                 .addToPrepListToDo(vm.prepList._id, prepListItem)
                 .then(
                     function(response) {
-                        PrepService
+                        return PrepService
                             .removeFromPrepInProgressList(vm.prepList._id, prepListItem._id)
-                            .then(
-                                function(response) {
-                                    getPrepList();
-                                    vm.success = "Item moved back successfully";
-                                },
-                                function(error) {
-                                    vm.error = error.data;
-                                }
-                            )
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                ).then(
+                    function(response) {
+                        getPrepList();
+                        vm.success = "Item moved back successfully";
                     },
                     function(error) {
                         vm.error = error.data;
