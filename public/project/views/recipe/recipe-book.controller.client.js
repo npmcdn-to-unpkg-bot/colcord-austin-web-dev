@@ -35,7 +35,6 @@
                     }
                 ).then(
                     function(response) {
-                        console.log('hi');
                         vm.recipeBook = response.data;
                         return PrepService
                             .findPrepListByRestaurantId(vm.user.restaurantId);
