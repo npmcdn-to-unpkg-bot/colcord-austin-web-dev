@@ -20,22 +20,20 @@
                     function(response) {
                         vm.recipe = response.data;
                         vm.restaurantId = vm.recipe.restaurantId;
-                        PrepService
-                            .findPrepListByRestaurantId(vm.restaurantId)
-                            .then(
-                                function(response) {
-                                    vm.prepList = response.data;
-                                },
-                                function(error) {
-                                    vm.error = error.data;
-                                }
-                            )
+                        return PrepService
+                            .findPrepListByRestaurantId(vm.restaurantId);
                     },
                     function(error) {
                         vm.error = error.data;
                     }
-
-                );
+                ).then(
+                    function(response) {
+                        vm.prepList = response.data;
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                )
         }
         init();
         
