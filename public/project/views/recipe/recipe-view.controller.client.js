@@ -12,6 +12,7 @@
         vm.uid = $routeParams["uid"];
         vm.rid = $routeParams["rid"];
         vm.multiplier = 1;
+        vm.timerAdded = false;
         
         function init() {
             RecipeService
@@ -72,9 +73,11 @@
                     .then(
                         function(response) {
                             vm.success = "Successfully added timer";
+                            vm.timerAdded = true;
                         },
                         function(error) {
                             vm.error = error.data;
+                            vm.timerAdded = false;
                         }
                     )
             }

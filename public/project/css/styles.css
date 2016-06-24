@@ -175,3 +175,7 @@ a {
 textarea.ajc-light-border {
     border: lightgray 1px solid;
 }
+
+.ajc-add-timer-check {
+    margin-top: 3px;
+}
