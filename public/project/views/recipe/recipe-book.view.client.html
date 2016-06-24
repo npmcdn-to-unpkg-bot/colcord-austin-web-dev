@@ -8,9 +8,12 @@
                 </a>
                 <p ng-show="model.unlocked && model.user.active"
                    class="navbar-text navbar-right">
-                    <a href="#/user/{{model.uid}}/recipe/new"
+                    <a ng-click="model.newRecipe()"
                        class="navbar-link">
-                        <span class="glyphicon glyphicon-plus pull-right ajc-nav-glyphicon"></span>
+                        <span ng-hide="model.loadingNew"
+                              class="glyphicon glyphicon-plus pull-right ajc-nav-glyphicon"></span>
+                        <i ng-show="model.loadingNew"
+                           class="fa fa-circle-o-notch fa-spin fa-1x fa-fw pull-right ajc-nav-glyphicon"></i>
                     </a>
                 </p>
 

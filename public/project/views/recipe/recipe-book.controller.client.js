@@ -3,9 +3,11 @@
         .module("Prepper")
         .controller("RecipeBookController", RecipeBookController);
 
-    function RecipeBookController($routeParams, RecipeService, UserService, PrepService) {
+    function RecipeBookController($routeParams, $location, RecipeService, UserService, PrepService) {
         var vm = this;
+        vm.loadingNew = false;
         vm.addToPrepToDo = addToPrepToDo;
+        vm.newRecipe = newRecipe;
         
         vm.uid = $routeParams["uid"];
         vm.recentDate = new Date();
@@ -69,6 +71,11 @@
                         vm.error = error.data;
                     }
                 )
+        }
+        
+        function newRecipe() {
+            vm.loadingNew = true;
+            $location.url("/user/" + vm.uid + "/recipe/new");
         }
     }
     
