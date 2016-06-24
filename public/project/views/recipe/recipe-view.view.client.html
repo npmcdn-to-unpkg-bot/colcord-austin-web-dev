@@ -14,7 +14,10 @@
                 <p class="navbar-text navbar-left pull-right">
                     <a ng-click="model.addToPrepToDo()"
                        class="navbar-link">
-                        <span class="glyphicon glyphicon-plus-sign ajc-nav-glyphicon"></span>
+                        <span ng-hide="model.addedToPrepToDo"
+                              class="glyphicon glyphicon-plus-sign ajc-nav-glyphicon"></span>
+                        <span ng-show="model.addedToPrepToDo"
+                              class="glyphicon glyphicon-ok pull-right ajc-nav-glyphicon ajc-check"></span>
                     </a>
                 </p>
 
@@ -106,7 +109,7 @@
                         class="btn btn-block btn-success">
                         Add Timer
                         <span ng-show="model.timerAdded"
-                              class="glyphicon glyphicon-ok pull-right ajc-add-timer-check"></span>
+                              class="glyphicon glyphicon-ok pull-right ajc-check"></span>
                     </a>
                 </div>
             </div>

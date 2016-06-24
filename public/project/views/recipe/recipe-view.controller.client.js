@@ -13,6 +13,7 @@
         vm.rid = $routeParams["rid"];
         vm.multiplier = 1;
         vm.timerAdded = false;
+        vm.addedToPrepToDo = false;
         
         function init() {
             RecipeService
@@ -50,9 +51,11 @@
                 .then(
                     function(response) {
                         vm.success = "Successfully added recipe to to-do";
+                        vm.addedToPrepToDo = true;
                     },
                     function(error) {
                         vm.error = error.data;
+                        vm.addedToPrepToDo = false;
                     }
                 )
         }
