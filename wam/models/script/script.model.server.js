@@ -9,9 +9,15 @@ module.exports = function() {
         createScript: createScript,
         findAllScripts: findAllScripts,
         findScriptById: findScriptById,
-        updateScript: updateScript
+        updateScript: updateScript,
+        deleteScript: deleteScript
     };
     return api;
+
+    function deleteScript(scriptId) {
+        return Script
+            .remove({_id: scriptId});
+    }
 
     function updateScript(scriptId, newScript) {
         return Script.update(
@@ -28,7 +34,7 @@ module.exports = function() {
     }
 
     function createScript(script) {
+        console.log(script);
         return Script.create(script);
     }
-
-}
+};

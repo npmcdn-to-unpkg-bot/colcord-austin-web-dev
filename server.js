@@ -9,10 +9,10 @@ var passport = require('passport');
 var connectionString = 'mongodb://127.0.0.1:27017/webdev';
 
 // example app for ejs/wam scripts from lectures
-app.set('view engine', 'ejs');
-require('./lectures/app.js')(app);
-require('./experiments/hello.js')(app);
-require('./wam/app')(app);
+// app.set('view engine', 'ejs');
+// require('./lectures/app.js')(app);
+// require('./experiments/hello.js')(app);
+// require('./wam/app')(app);
 //////////////////////
 
 var assignment = require('./assignment/app.js');

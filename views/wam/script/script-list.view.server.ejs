@@ -1,5 +1,4 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-<link href="/assignment/css/style.css" rel="stylesheet"/>
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -17,11 +16,11 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container" style="padding-top: 70px">
     <ul class="list-group">
         <%  for(var s in scripts) {
         %>      <li class="list-group-item">
-                    <a href="#"><%= scripts[s].name %></a>
+                    <a href="/wam/script/<%= scripts[s]._id%>/statement"><%= scripts[s].name %></a>
                     <a href="/wam/script/<%= scripts[s]._id %>" class="pull-right">
                         <span class="glyphicon glyphicon-cog"></span>
                     </a>

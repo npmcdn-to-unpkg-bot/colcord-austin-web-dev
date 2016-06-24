@@ -1,5 +1,4 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-<link href="/assignment/css/style.css" rel="stylesheet"/>
 
 <form method="post" action="/wam/script/<%= script._id %>">
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -24,7 +23,7 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container" style="padding-top: 70px">
 
         <div class="form-group">
             <label for="scriptName">Script Name</label>
@@ -44,7 +43,7 @@
         </div>
 
     <a class="btn btn-danger btn-block"
-       href="#">Delete</a>
+       href="/wam/script/<%= script._id%>/delete">Delete</a>
 </div>
 
 </form>
