@@ -88,7 +88,7 @@ module.exports = function(app, models) {
     }
     
     function findTimersByRestaurantId(req, res) {
-        var restaurantId = req.params.restaurantid;
+        var restaurantId = req.params.restaurantId;
         timerModel
             .findTimersByRestaurantId(restaurantId)
             .then(
