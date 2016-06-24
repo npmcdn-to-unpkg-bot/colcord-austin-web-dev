@@ -179,3 +179,7 @@ textarea.ajc-light-border {
 .ajc-check {
     margin-top: 3px;
 }
+
+.ajc-hidden {
+    display: none;
+}

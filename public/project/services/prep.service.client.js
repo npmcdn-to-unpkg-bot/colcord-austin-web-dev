@@ -17,7 +17,9 @@
             removeFromPrepInProgressList: removeFromPrepInProgressList,
             updatePrepList: updatePrepList,
             deletePrepList: deletePrepList,
-            reorderToDo: reorderToDo
+            reorderToDo: reorderToDo,
+            addNotesToDo: addNotesToDo,
+            addNotesInProgress: addNotesInProgress
         };
         return api;
 
@@ -67,6 +69,14 @@
 
         function reorderToDo(prepListId, startIndex, endIndex) {
             return $http.put("/api/prep/" + prepListId + "/todo/reorder?start=" + startIndex + "&end=" + endIndex);
+        }
+        
+        function addNotesToDo(prepListId, ticketId, newNotes) {
+            return $http.put("/api/prep/" + prepListId + "/toDo/" + ticketId + "/notes", {notes: newNotes});
+        }
+
+        function addNotesInProgress(prepListId, ticketId, newNotes) {
+            return $http.put("/api/prep/" + prepListId + "/inProgress/" + ticketId + "/notes", {notes: newNotes});
         }
     }
 

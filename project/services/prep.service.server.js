@@ -18,7 +18,45 @@ module.exports = function(app, models) {
 
     app.put("/api/prep/:prepListId/toDo/reorder", reorderToDo); // "/api/prep/:prepListId/todo/reorder?start=start&end=end"
 
+    app.put("/api/prep/:prepListId/toDo/:ticketId/notes", addNotesToDo);
+    app.put("/api/prep/:prepListId/inProgress/:ticketId/notes", addNotesInProgress);
+    
+    function addNotesToDo(req, res) {
+        var newNotes = req.body.notes;
+        var prepListId = req.params.prepListId;
+        var ticketId = req.params.ticketId;
+        
+        prepModel
+            .addNotesToDo(prepListId, ticketId, newNotes)
+            .then(
+                function(response) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to update notes");
+                }
+            )
+        
+    }
 
+    function addNotesInProgress(req, res) {
+        var newNotes = req.body.notes;
+        var prepListId = req.params.prepListId;
+        var ticketId = req.params.ticketId;
+
+        prepModel
+            .addNotesInProgress(prepListId, ticketId, newNotes)
+            .then(
+                function(response) {
+                    res.sendStatus(200);
+                },
+                function(error) {
+                    res.status(404).send("Unable to update notes");
+                }
+            )
+
+    }
+    
     function reorderToDo(req, res) {
         var startIndex = req.query['start'];
         var endIndex = req.query['end'];

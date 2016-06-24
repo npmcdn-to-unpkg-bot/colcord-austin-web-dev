@@ -19,9 +19,35 @@ module.exports = function() {
         removeFromPrepInProgressList: removeFromPrepInProgressList,
         removeFromPrepCompletedList: removeFromPrepCompletedList,
 
-        reorderToDo: reorderToDo
+        reorderToDo: reorderToDo,
+        addNotesToDo: addNotesToDo,
+        addNotesInProgress: addNotesInProgress
     };
     return api;
+
+    function addNotesToDo(prepListId, ticketId, newNotes) {
+        return Prep.findOne({_id: prepListId},
+            function(err, doc) {
+                for(var i in doc.toDo) {
+                    if (doc.toDo[i]._id == ticketId) {
+                        doc.toDo[i].notes += newNotes + " - ";
+                        doc.save();
+                    }
+                }
+            });
+    }
+    
+    function addNotesInProgress(prepListId, ticketId, newNotes) {
+        return Prep.findOne({_id: prepListId},
+            function(err, doc) {
+                for(var i in doc.inProgress) {
+                    if (doc.inProgress[i]._id == ticketId) {
+                        doc.inProgress[i].notes += newNotes + " - ";
+                        doc.save();
+                    }
+                }
+            });
+    }
 
     function createPrepList(prepList) {
         return Prep.create(prepList);

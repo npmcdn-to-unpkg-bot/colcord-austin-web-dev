@@ -10,6 +10,8 @@
         vm.moveToCompleted = moveToCompleted;
         vm.moveBackToToDo = moveBackToToDo;
         vm.sorted = sorted;
+        vm.addNotesToDo = addNotesToDo;
+        vm.addNotesInProgress = addNotesInProgress;
         
         vm.uid = $routeParams["uid"];
         vm.unlocked = true;
@@ -45,6 +47,38 @@
                         vm.error = "Please add a Restaurant ID to your profile to view items on the PrepList";
                     }
                 )
+        }
+        
+        function addNotesToDo(ticket, newNotes) {
+            if (newNotes) {
+                PrepService
+                    .addNotesToDo(vm.prepList._id, ticket._id, newNotes)
+                    .then(
+                        function(response) {
+                            getPrepList();
+                            vm.success = "Notes Updated"
+                        },
+                        function(error) {
+                            vm.error = error.data;
+                        }
+                    )
+            }
+        }
+
+        function addNotesInProgress(ticket, newNotes) {
+            if (newNotes) {
+                PrepService
+                    .addNotesInProgress(vm.prepList._id, ticket._id, newNotes)
+                    .then(
+                        function(response) {
+                            getPrepList();
+                            vm.success = "Notes Updated"
+                        },
+                        function(error) {
+                            vm.error = error.data;
+                        }
+                    )
+            }
         }
 
         function removeFromPrepCompletedList(ticket) {
