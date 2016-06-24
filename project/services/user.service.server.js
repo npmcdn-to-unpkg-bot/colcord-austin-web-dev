@@ -180,16 +180,8 @@ module.exports = function(app, models) {
                                                 inProgress: [],
                                                 completed: []
                                             };
-                                            prepModel
-                                                .createPrepList(newPrepList)
-                                                .then(
-                                                    function(response) {
-                                                        res.json(user);
-                                                    },
-                                                    function(error) {
-                                                        res.status(400).send("Error creating prepList");
-                                                    }
-                                                )
+                                            return prepModel
+                                                .createPrepList(newPrepList);
                                         }
                                         else {
                                             res.json(user);
@@ -197,7 +189,15 @@ module.exports = function(app, models) {
                                     },
                                     function(error) {
                                         res.status(400).send("Error creating prepList ");
-                                    })
+                                    }
+                                ).then(
+                                    function(response) {
+                                        res.json(user);
+                                    },
+                                    function(error) {
+                                        res.status(400).send("Error creating prepList");
+                                    }
+                                )
                         }
                     });
 
@@ -235,40 +235,36 @@ module.exports = function(app, models) {
                             .then(
                                 function(user) {
                                     res.send(user._id);
-                                    prepModel
-                                        .findPrepListByRestaurantId(newUser.restaurantId)
-                                        .then(
-                                            function(response) {
-                                                if (response == null) {
-                                                    var newPrepList = {
-                                                        restaurantId: parseInt(newUser.restaurantId),
-                                                        toDo: [],
-                                                        inProgress: [],
-                                                        completed: []
-                                                    };
-                                                    prepModel
-                                                        .createPrepList(newPrepList)
-                                                        .then(
-                                                            function(response) {
-                                                                res.sendStatus(200);
-                                                            },
-                                                            function(error) {
-                                                                res.status(400).send("Error creating prepList");
-                                                            }
-                                                        )
-                                                }
-                                            },
-                                            function(error) {
-                                                res.status(400).send("Error creating prepList ");
-                                            })
-
+                                    return prepModel
+                                        .findPrepListByRestaurantId(newUser.restaurantId);
                                 },
                                 function(error) {
                                     res.status(400).send("Unable to create new user: " + newUser.username);
                                 }
+                            ).then(
+                                function(response) {
+                                    if (response == null) {
+                                        var newPrepList = {
+                                            restaurantId: parseInt(newUser.restaurantId),
+                                            toDo: [],
+                                            inProgress: [],
+                                            completed: []
+                                        };
+                                        return prepModel
+                                            .createPrepList(newPrepList);
+                                    }
+                                },
+                                function(error) {
+                                    res.status(400).send("Error creating prepList ");
+                                }
+                            ).then(
+                                function(response) {
+                                    res.sendStatus(200);
+                                },
+                                function(error) {
+                                    res.status(400).send("Error creating prepList");
+                                }
                             )
-
-
                     }
                     else {
                         res.status(400).send("Username " + newUser.username + " is already in use");

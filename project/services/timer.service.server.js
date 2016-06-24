@@ -2,13 +2,6 @@ module.exports = function(app, models) {
 
     var timerModel = models.timerModel;
 
-    var timers = [
-        {_id: "412", name: "Thaw Puff Pastry", recipeId: "123", userId: "456", timeStart: Date.now(), setMinutes: 4},
-        {_id: "542", name: "Sear Beef", recipeId: "543", userId: "456", timeStart: Date.now(), setMinutes: 10},
-        {_id: "123", name: "Bake Chicken", recipeId: "909", userId: "456", timeStart: Date.now(), setMinutes: 20},
-        {_id: "990", name: "Beef Chili Cook at 10", recipeId: "998", userId: "456", timeStart: Date.now(), setMinutes: 2}
-    ];
-
     app.post("/api/timer/", createTimer);
     app.get("/api/timer/:timerId", findTimerById);
     app.get("/api/user/:userId/timer", findTimersByUserId);
