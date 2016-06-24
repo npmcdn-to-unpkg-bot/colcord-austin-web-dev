@@ -63,7 +63,7 @@
                 .addToPrepListInProgress(vm.prepList._id, prepListItem)
                 .then(
                     function(response) {
-                        PrepService
+                        return PrepService
                             .removeFromPrepToDoList(vm.prepList._id, prepListItem._id);
                     },
                     function(error) {
