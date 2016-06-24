@@ -155,3 +155,19 @@ a {
 .ajc-explore-icon {
     padding-right: 5px;
 }
+
+.ajc-wrap {
+    word-wrap:break-word;
+}
+
+.ajc-padded-left {
+    padding-left: 10px;
+}
+
+.ajc-table-less-padding {
+    margin-bottom: 10px;
+}
+
+.ajc-white-background {
+    background: white;
+}

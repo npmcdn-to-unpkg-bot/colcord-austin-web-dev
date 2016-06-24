@@ -131,30 +131,32 @@
                  ng-show="model.user.manager">
                 <h5>Employees</h5>
 
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th><span class="pull-right">Active</span></th>
-                    </tr>
-                    </thead>
-                </table>
+                <div class="ajc-white-background">
+                    <table class="table ajc-table-less-padding">
+                        <thead>
+                        <tr>
+                            <th>Employee</th>
+                            <th>Email</th>
+                            <th><span class="pull-right">Active</span></th>
+                        </tr>
+                        </thead>
+                    </table>
 
-                <div class="row"
-                     ng-repeat="employee in model.employees">
-                    <div class="col-xs-5">
-                        <p>{{employee.firstName}} {{employee.lastName}}</p>
-                    </div>
-                    <div class="col-xs-5">
-                        <p>{{employee.email}}</p>
-                    </div>
+                    <div class="row ajc-padded-left"
+                         ng-repeat="employee in model.employees">
+                        <div class="col-xs-5">
+                            <p class="ajc-wrap">{{employee.firstName}} {{employee.lastName}}</p>
+                        </div>
+                        <div class="col-xs-5">
+                            <p class="ajc-wrap">{{employee.email}}</p>
+                        </div>
 
-                    <div class="col-xs-2">
-                        <div class="checkbox ajc-checkbox pull-right">
-                            <label><input type="checkbox"
-                                          ng-model="employee.active"
-                                          ng-change="model.activatedChanged(employee)"></label>
+                        <div class="col-xs-2">
+                            <div class="checkbox ajc-checkbox pull-right">
+                                <label><input type="checkbox"
+                                              ng-model="employee.active"
+                                              ng-change="model.activatedChanged(employee)"></label>
+                            </div>
                         </div>
                     </div>
                 </div>
