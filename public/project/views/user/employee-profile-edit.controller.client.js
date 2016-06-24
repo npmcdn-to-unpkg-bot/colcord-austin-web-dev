@@ -13,6 +13,7 @@
         vm.submitted = false;
         vm.uid = $routeParams["uid"];
         vm.employees = [];
+        vm.badEmail = false;
 
         function init() {
             UserService
@@ -53,18 +54,25 @@
             vm.user.password = current_pass;
             vm.submitted = true;
             if (new_pass && verify_new_pass && new_pass == verify_new_pass) {
-                UserService
-                    .updateUser(vm.uid, vm.user, new_pass)
-                    .then(
-                        function(res) {
-                            vm.success = "User successfully updated";
-                            $location.url("/user/" + vm.uid);
-                            vm.submitted = false;
-                        },
-                        function(error) {
-                            vm.error = error.data;
-                        }
-                    );
+                if (validateEmail(vm.user.email)) {
+                    UserService
+                        .updateUser(vm.uid, vm.user, new_pass)
+                        .then(
+                            function (res) {
+                                vm.success = "User successfully updated";
+                                $location.url("/user/" + vm.uid);
+                                vm.badEmail = false;
+                                vm.submitted = false;
+                            },
+                            function (error) {
+                                vm.error = error.data;
+                            }
+                        )
+                }
+                else {
+                    vm.badEmail = true;
+                    vm.error = "Invalid email address";
+                }
             }
             else {
                 vm.error = "New passwords must match and must not be empty";
@@ -137,6 +145,12 @@
                         vm.error = error.data;
                     }
                 )
+        }
+
+        function validateEmail(email) {
+            // found: http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
         }
     }
 
