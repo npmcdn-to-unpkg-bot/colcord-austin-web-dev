@@ -58,7 +58,10 @@
                 )
         }
 
-        function moveToInProgress(prepListItem) {
+        function moveToInProgress(prepListItem, newNotes) {
+            if(newNotes) {
+                prepListItem.notes += newNotes + " - ";
+            }
             PrepService
                 .addToPrepListInProgress(vm.prepList._id, prepListItem)
                 .then(
@@ -81,7 +84,10 @@
 
         }
 
-        function moveToCompleted(prepListItem) {
+        function moveToCompleted(prepListItem, newNotes) {
+            if(newNotes) {
+                prepListItem.notes += newNotes + " - ";
+            }
             PrepService
                 .addToPrepListCompleted(vm.prepList._id, prepListItem)
                 .then(
@@ -103,7 +109,10 @@
                 )
         }
 
-        function moveBackToToDo(prepListItem) {
+        function moveBackToToDo(prepListItem, newNotes) {
+            if(newNotes) {
+                prepListItem.notes += newNotes + " - ";
+            }
             PrepService
                 .addToPrepListToDo(vm.prepList._id, prepListItem)
                 .then(

@@ -55,14 +55,18 @@
                         </a>
                         <span ng-if="recipe.important"
                               class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
-                        <span ng-click="model.moveToInProgress(recipe)"
+                        <span ng-click="model.moveToInProgress(recipe, newNotes)"
                               class="glyphicon glyphicon glyphicon-arrow-right ajc-list-glyphicon pull-right"></span>
                         <div>
                             <div class="ajc-prep-signature">
-                                <input ng-model="recipe.notes"
+                                <input ng-model="newNotes"
                                        type="text"
                                        class="form-control"
                                        placeholder="sign / notes"/>
+                            </div>
+                            <div ng-show="recipe.notes">
+                                <hr>
+                                <p>{{recipe.notes}}</p>
                             </div>
                         </div>
                     </li>
@@ -77,9 +81,9 @@
                         ng-if="(recipe.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
                                 || searchTerm == ''
                                 || searchTerm == null)">
-                        <span ng-click="model.moveBackToToDo(recipe)"
+                        <span ng-click="model.moveBackToToDo(recipe, newNotes)"
                               class="glyphicon glyphicon glyphicon-arrow-left pull-left ajc-list-glyphicon"></span>
-                        <span ng-click="model.moveToCompleted(recipe)"
+                        <span ng-click="model.moveToCompleted(recipe, newNotes)"
                               class="glyphicon glyphicon glyphicon-arrow-right pull-right ajc-list-glyphicon"></span>
                         <a  href="#/user/{{model.uid}}/recipe/{{recipe._recipeId}}">
                             <b class="ajc-wrap">{{recipe.name}}</b>
@@ -89,10 +93,14 @@
                               class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
                         <p>Started: {{recipe.timeStamp | date: 'MMM d - h:mm:ss a'}}</p>
                         <div class="ajc-prep-signature">
-                            <input ng-model="recipe.notes"
+                            <input ng-model="newNotes"
                                    type="text"
                                    class="form-control"
                                    placeholder="sign / notes"/>
+                        </div>
+                        <div ng-show="recipe.notes">
+                            <hr>
+                            <p>{{recipe.notes}}</p>
                         </div>
 
                     </li>
