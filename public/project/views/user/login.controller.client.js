@@ -11,7 +11,7 @@
         function login(username, password) {
             vm.submitted = true;
             if (username != null) {
-                var user = UserService
+                UserService
                     .login(username.toLowerCase(), password)
                     .then(
                         function(response) {
