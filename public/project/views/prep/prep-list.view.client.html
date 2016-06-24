@@ -26,6 +26,14 @@
     </div>
 
     <div ng-show="model.unlocked && model.user.active">
+        <div class="form-group has-feedback">
+            <input type="text"
+                   ng-model="searchTerm"
+                   class="form-control"
+                   placeholder="Search for a ticket...">
+            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+        </div>
+
         <div class="row">
             <div class="col-sm-4">
                 <h5>To-Do</h5>
@@ -34,8 +42,13 @@
                     sorted="model.sorted(start, end)"
                     data="model.prepList.toDo">
                     <li ng-repeat="recipe in model.prepList.toDo | orderBy : 'order'"
-                        class="list-group-item">
-                        <i class="fa fa-bars btn ajc-ticket-handle" aria-hidden="true"></i>
+                        class="list-group-item"
+                        ng-if="(recipe.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
+                                || searchTerm == ''
+                                || searchTerm == null)">
+                        <i ng-show="searchTerm == '' || searchTerm == null"
+                           class="fa fa-bars btn ajc-ticket-handle"
+                           aria-hidden="true"></i>
 
                         <a  href="#/user/{{model.uid}}/recipe/{{recipe._recipeId}}">
                             <b class="ajc-wrap">{{recipe.name}}</b>
@@ -60,7 +73,10 @@
                 <h5>In Progress</h5>
                 <ul class="list-group prep-list-container">
                     <li ng-repeat="recipe in model.prepList.inProgress"
-                        class="list-group-item">
+                        class="list-group-item"
+                        ng-if="(recipe.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
+                                || searchTerm == ''
+                                || searchTerm == null)">
                         <span ng-click="model.moveBackToToDo(recipe)"
                               class="glyphicon glyphicon glyphicon-arrow-left pull-left ajc-list-glyphicon"></span>
                         <span ng-click="model.moveToCompleted(recipe)"
@@ -87,7 +103,10 @@
                 <h5>Completed</h5>
                 <ul class="list-group prep-list-container">
                     <li ng-repeat="recipe in model.prepList.completed"
-                        class="list-group-item">
+                        class="list-group-item"
+                        ng-if="(recipe.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
+                                || searchTerm == ''
+                                || searchTerm == null)">
                         <a href="#/user/{{model.uid}}/recipe/{{recipe._recipeId}}">
                             <b class="ajc-wrap">{{recipe.name}}</b>
                         </a>
