@@ -38,7 +38,7 @@
                         <i class="fa fa-bars btn ajc-ticket-handle" aria-hidden="true"></i>
 
                         <a  href="#/user/{{model.uid}}/recipe/{{recipe._recipeId}}">
-                            <b>{{recipe.name}}</b>
+                            <b class="ajc-wrap">{{recipe.name}}</b>
                         </a>
                         <span ng-if="recipe.important"
                               class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
@@ -49,7 +49,7 @@
                                 <input ng-model="recipe.signer"
                                        type="text"
                                        class="form-control"
-                                       placeholder="sign"/>
+                                       placeholder="sign / notes"/>
                             </div>
                         </div>
                     </li>
@@ -66,18 +66,19 @@
                         <span ng-click="model.moveToCompleted(recipe)"
                               class="glyphicon glyphicon glyphicon-arrow-right pull-right ajc-list-glyphicon"></span>
                         <a  href="#/user/{{model.uid}}/recipe/{{recipe._recipeId}}">
-                            <b>{{recipe.name}}</b>
+                            <b class="ajc-wrap">{{recipe.name}}</b>
                         </a>
                         <hr>
                         <span ng-if="recipe.important"
                               class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
-                        <div class="ajc-prep-signature pull-right">
+                        <p>Started: {{recipe.timeStamp | date: 'MMM d - h:mm:ss a'}}</p>
+                        <div class="ajc-prep-signature">
                             <input ng-model="recipe.signer"
                                    type="text"
                                    class="form-control"
-                                   placeholder="sign"/>
+                                   placeholder="sign / notes"/>
                         </div>
-                        <p>Started: {{recipe.timeStamp | date: 'MMM d - h:mm:ss a'}}</p>
+
                     </li>
                 </ul>
             </div>
@@ -88,7 +89,7 @@
                     <li ng-repeat="recipe in model.prepList.completed"
                         class="list-group-item">
                         <a href="#/user/{{model.uid}}/recipe/{{recipe._recipeId}}">
-                            <b>{{recipe.name}}</b>
+                            <b class="ajc-wrap">{{recipe.name}}</b>
                         </a>
                         <span ng-if="recipe.important"
                               class="glyphicon glyphicon-exclamation-sign pull-right ajc-list-glyphicon"></span>
@@ -96,7 +97,7 @@
                               class="glyphicon glyphicon-remove pull-right ajc-list-glyphicon"></span>
                         <hr>
                         <div class="ajc-prep-signature">
-                            <p>{{recipe.signer}}</p>
+                            <p class="ajc-wrap">{{recipe.signer}}</p>
                         </div>
                         <p>Started: {{recipe.timeStamp | date: 'MMM d - h:mm:ss a'}}</p>
                         <p>Completed: {{recipe.completeTime | date: 'MMM d - h:mm:ss a'}}</p>
