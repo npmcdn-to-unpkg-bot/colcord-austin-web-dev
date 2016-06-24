@@ -58,8 +58,11 @@
                                 (recipe.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
                                 || searchTerm == ''
                                 || searchTerm == null)">
-                        <a ng-click="model.addToPrepToDo(recipe._id, recipe.name)">
-                            <span class="btn btn-success glyphicon glyphicon-plus-sign pull-right ajc-list-glyphicon"></span>
+                        <a ng-click="model.addToPrepToDo(recipe._id, recipe.name); recipe.added = true">
+                            <span ng-hide="recipe.added"
+                                  class="btn btn-warning glyphicon glyphicon-plus-sign pull-right ajc-list-glyphicon"></span>
+                            <span ng-show="recipe.added"
+                                  class="btn btn-success glyphicon glyphicon-ok pull-right ajc-list-glyphicon"></span>
                         </a>
                         <a  href="#/user/{{model.uid}}/recipe/{{recipe._id}}">
                             <b class="ajc-wrap">{{recipe.name}}</b>
@@ -76,8 +79,11 @@
                         ng-if="recipe.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
                                 || searchTerm == ''
                                 || searchTerm == null">
-                        <a ng-click="model.addToPrepToDo(recipe._id, recipe.name)">
-                            <span class="btn btn-success glyphicon glyphicon-plus-sign pull-right ajc-list-glyphicon"></span>
+                        <a ng-click="model.addToPrepToDo(recipe._id, recipe.name); recipe.added = true">
+                            <span ng-hide="recipe.added"
+                                  class="btn btn-warning glyphicon glyphicon-plus-sign pull-right ajc-list-glyphicon"></span>
+                            <span ng-show="recipe.added"
+                                  class="btn btn-success glyphicon glyphicon-ok pull-right ajc-list-glyphicon"></span>
                         </a>
                         <a  href="#/user/{{model.uid}}/recipe/{{recipe._id}}">
                             <b class="ajc-wrap">{{recipe.name}}</b>
