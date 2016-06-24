@@ -24,34 +24,30 @@
                 .then(
                     function(response) {
                         vm.user = response.data;
-                        RecipeService
-                            .findRecipesByRestaurant(vm.user.restaurantId)
-                            .then(
-                                function(response) {
-                                    vm.recipeBook = response.data;
-                                    PrepService
-                                        .findPrepListByRestaurantId(vm.user.restaurantId)
-                                        .then(
-                                            function(response) {
-                                                vm.prepList = response.data;
-                                            },
-                                            function(error) {
-                                                vm.error = error.data;
-                                            }
-                                        )
-                                },
-                                function(error) {
-                                    vm.unlocked = false;
-                                    vm.error = "Please add a Restaurant ID to your profile to view and create Recipes";
-                                }
-                            );
+                        return RecipeService
+                            .findRecipesByRestaurant(vm.user.restaurantId);
+                    },
+                    function(error) {
+                        vm.error = error.data;
+                    }
+                ).then(
+                    function(response) {
+                        vm.recipeBook = response.data;
+                        return PrepService
+                            .findPrepListByRestaurantId(vm.user.restaurantId);
+                    },
+                    function(error) {
+                        vm.unlocked = false;
+                        vm.error = "Please add a Restaurant ID to your profile to view and create Recipes";
+                    }
+                ).then(
+                    function(response) {
+                        vm.prepList = response.data;
                     },
                     function(error) {
                         vm.error = error.data;
                     }
                 )
-
-
         }
         init();
 
