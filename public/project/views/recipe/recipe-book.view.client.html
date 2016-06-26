@@ -12,8 +12,10 @@
                        class="navbar-link">
                         <span ng-hide="model.loadingNew"
                               class="btn btn-success pull-right ajc-nav-glyphicon ajc-new-recipe">New</span>
-                        <i ng-show="model.loadingNew"
-                           class="btn btn-success fa fa-circle-o-notch fa-spin fa-1x fa-fw pull-right ajc-nav-glyphicon ajc-new-recipe"></i>
+                        <span ng-show="model.loadingNew"
+                           class="btn btn-success pull-right ajc-nav-glyphicon ajc-new-recipe">
+                            <i class="fa fa-circle-o-notch fa-spin fa-1x fa-fw"></i>
+                        </span>
                     </a>
                 </p>
 
