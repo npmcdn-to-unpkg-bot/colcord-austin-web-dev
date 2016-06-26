@@ -183,3 +183,7 @@ textarea.ajc-light-border {
 .ajc-hidden {
     display: none;
 }
+
+.ajc-new-recipe {
+    margin-top: -5px;
+}
